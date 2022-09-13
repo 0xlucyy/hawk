@@ -1,0 +1,25 @@
+# .coveragerc to control coverage.py
+[run]
+branch = True
+data_file = backend/tests/reports/.coverage_report
+
+[report]
+show_missing = True
+# Regexes for lines to exclude from consideration
+exclude_lines =
+
+    # No worries about missing debug-only code:
+    def __repr__
+    if self\.debug
+
+    # No worries if non-runnable code isn't run:
+    if 0:
+    if __name__ == .__main__.:
+
+ignore_errors = True
+
+# [xml]
+# output = backend/tests/reports/xml/coverage-test.xml
+
+# [html]
+# directory = backend/tests/reports/html/

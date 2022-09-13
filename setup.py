@@ -23,7 +23,7 @@ setup(
     install_requires=install_dependencies,
     entry_points={
         'console_scripts': [
-            "test-inject = scripts.run:execute",
+            "test-inject = backend.run:main",
         ]
     }
 )
