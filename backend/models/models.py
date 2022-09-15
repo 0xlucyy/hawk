@@ -1,7 +1,8 @@
 from app import db
-from datetime import datetime
+from datetime import datetime, timedelta
 from backend.models._base import Base
 from backend.models._lockable import Lockable
+from sqlalchemy import func
 
 class ENS(Base, Lockable):
     '''  '''
@@ -22,7 +23,7 @@ class ENS(Base, Lockable):
     def __init__(self, name: str, owner: str, expiration: datetime,
                  bids: int, listings: int, bids_details: str,
                  listings_details: str):
-        self.name = name
+        self.name = name.lower()
         self.owner = owner
         self.expiration = expiration
         self.bids = bids
@@ -34,3 +35,46 @@ class ENS(Base, Lockable):
 
     def __repr__(self):
         return f'Domain {self.id}: {self.name}'
+    
+    @classmethod
+    def domain_exists(cls, domain_name: str = None):
+        '''
+        If domain exists in DB, returns domain, else
+        returns false.
+
+        Returns: backend.models.models.ENS or False
+        '''
+        domain = cls.query.filter(
+            func.lower(ENS.name) == func.lower(domain_name)
+        ).first()
+        return domain if domain != None else False
+
+    @classmethod
+    def expiring(cls, expires_in_days: int = None):
+        '''
+        returns only expiring domains, from those expiring
+        first to those expiring last.
+        '''
+        day = datetime.now() + timedelta(days=expires_in_days)
+        domains = cls.query.filter(
+            ENS.expiration <= day,
+            ENS.expiration > datetime.now(),
+        ).order_by(
+            ENS.expiration.asc()
+        ).all()
+        return domains
+
+    @classmethod
+    def domains_by_expiration(cls, order: str = 'asc'):
+        '''
+        returns domains from those expiring first to those
+        expiring last.
+        '''
+        if order != 'asc' and order != 'desc':
+            return []
+        domains = cls.query.filter(
+            ENS.expiration
+        ).order_by(
+            ENS.expiration.asc() if order == 'asc' else ENS.expiration.desc()
+        ).all()
+        return domains

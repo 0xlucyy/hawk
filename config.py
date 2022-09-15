@@ -54,13 +54,11 @@ class TestConfiguration(_Base):
     DATABASE_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), DATABASE)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
     print(f"SQLALCHEMY_DATABASE_URI: {SQLALCHEMY_DATABASE_URI}")
-    # SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(os.path.abspath(os.path.dirname(__file__)), 'test_tennis.db')
     BCRYPT_LOG_ROUNDS = 4
     WTF_CSRF_ENABLED = False
     CSRF_ENABLED = False
     HASH_ROUNDS = 1
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 def logger(app):
     handler = RotatingFileHandler(app.config['LOGGING_LOCATION'], maxBytes=10000, backupCount=0)

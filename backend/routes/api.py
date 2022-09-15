@@ -13,7 +13,6 @@ from backend.utils.exceptions import (
     DataBaseOffline,
     log_error
 )
-from config import _Base
 
 
 @app.route(f'{app.config["API_URI"]}/health', methods=['GET'])

@@ -17,8 +17,10 @@ app = Flask(
 cors = CORS(app)
 
 if _Base.ENV == "TESTING":
+    print("TESTING APP")
     app.config.from_object(TestConfiguration)
 else:
+    print("PROD APP")
     # Get Config
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.config.from_object(Config)
