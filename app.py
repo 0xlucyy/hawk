@@ -17,14 +17,15 @@ app = Flask(
 cors = CORS(app)
 
 if _Base.ENV == "TESTING":
-    print("TESTING APP")
+    print("\nTESTING APP")
     app.config.from_object(TestConfiguration)
 else:
-    print("PROD APP")
-    # Get Config
+    print("\nPROD APP")
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.config.from_object(Config)
     logger(app)
+
+print(f'\nAPI URI: {app.config["API_URI"]}')
 
 # Custom JSON Encoder
 app.json_provider_class = JSONEncoder
@@ -33,7 +34,6 @@ app.json_provider_class = JSONEncoder
 db = SQLAlchemy(app)
 
 # Route Imports
-# from backend.routes.players import *
 from backend.routes.api import *
 from backend.routes.render import *
 

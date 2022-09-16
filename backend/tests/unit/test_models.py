@@ -7,10 +7,6 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from flask import Flask
 from unittest.mock import MagicMock, patch
 from unittest import mock
-
-
-sys.path.append(os.path.abspath('./'))
-
 from backend.models.models import ENS as ens
 from config import TestConfiguration
 
@@ -21,7 +17,7 @@ class TestModels():
     SESSION = scoped_session(
               sessionmaker(autocommit=False,
                            autoflush=False, bind=ENGINE))
-    APP = Flask('HAWK_TESTING')
+    APP = Flask('HAWK_TESTING_MODELS')
     APP.config.from_object(TestConfiguration)
 
     def setup_method(self):
