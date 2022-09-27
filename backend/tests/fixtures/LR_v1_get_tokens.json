@@ -1,0 +1,85 @@
+{
+    "success": true,
+    "message": null,
+    "data": {
+      "id": 23466475,
+      "collectionAddress": "0xbEA8123277142dE42571f1fAc045225a1D347977",
+      "tokenId": "43",
+      "tokenURI": "https://gateway.pinata.cloud/ipfs/QmZo7Y17rdm8LxPrjwRfL53rAjQaWP49rgx6Mqi96eyfjB/43",
+      "isExplicit": false,
+      "isAnimated": false,
+      "flag": "TRIAGE",
+      "name": "DystoPunk #44",
+      "description": null,
+      "attributes": [
+        {
+          "traitType": "Animated",
+          "value": "Cyborg",
+          "displayType": "string",
+          "count": 87,
+          "floorOrder": null
+        },
+        {
+          "traitType": "Attribute",
+          "value": "Peak Spike",
+          "displayType": "string",
+          "count": 79,
+          "floorOrder": null
+        },
+        {
+          "traitType": "Attribute",
+          "value": "Goatee Beard",
+          "displayType": "string",
+          "count": 97,
+          "floorOrder": null
+        },
+        {
+          "traitType": "Type",
+          "value": "Male",
+          "displayType": "string",
+          "count": 1176,
+          "floorOrder": {
+            "hash": "0xd3fa7e39120133340f2accb01db8d7602c2747188f6f54ad6f271d251aed4773",
+            "collectionAddress": "0xbEA8123277142dE42571f1fAc045225a1D347977",
+            "tokenId": "1401",
+            "isOrderAsk": true,
+            "signer": "0xc52ec2Aea5E8d58841A37c338834Cd0BBeaDC99E",
+            "strategy": "0x56244Bb70CbD3EA9Dc8007399F61dFC065190031",
+            "currencyAddress": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+            "amount": 1,
+            "price": "750000000000000000",
+            "nonce": "3",
+            "startTime": 1656230786,
+            "endTime": 1671782752,
+            "minPercentageToAsk": 8500,
+            "params": "",
+            "status": "VALID",
+            "signature": "0xa578fd4d96455530b375f59a595dcdbbf0e2fcc92d71fd148748f69767d9c0aa1bf08dd7e3827753639277cd149db0c63f65d5d666523a9caa5b13672fa05e221b",
+            "v": 27,
+            "r": "0xa578fd4d96455530b375f59a595dcdbbf0e2fcc92d71fd148748f69767d9c0aa",
+            "s": "0x1bf08dd7e3827753639277cd149db0c63f65d5d666523a9caa5b13672fa05e22"
+          }
+        }
+      ],
+      "collection": {
+        "address": "0xbEA8123277142dE42571f1fAc045225a1D347977",
+        "owner": "0xb9B6856eFD128294a912D584366448BC3d4Ea979",
+        "setter": "0xb9B6856eFD128294a912D584366448BC3d4Ea979",
+        "admin": null,
+        "name": "DystoPunks",
+        "description": "Welcome to a tech-filled dystopian future\nwhere only 2077 Punks survived.",
+        "symbol": "DYSTO",
+        "type": "ERC721",
+        "websiteLink": "https://dystopunks.net/",
+        "facebookLink": null,
+        "twitterLink": null,
+        "instagramLink": null,
+        "telegramLink": null,
+        "mediumLink": "https://dystopunks.medium.com/",
+        "discordLink": "https://discord.gg/DystoPunks",
+        "isVerified": true,
+        "isExplicit": false
+      },
+      "imageURI": "https://static.looksnice.org/0xbEA8123277142dE42571f1fAc045225a1D347977/43"
+    }
+  }

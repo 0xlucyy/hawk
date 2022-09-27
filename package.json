@@ -8,7 +8,7 @@
   },
   "scripts": {
     "setup": "python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt",
-    "test":"pytest -v --cov=backend backend/tests/",
+    "test": "pytest -v --cov=backend backend/tests/",
     "test-full": "pytest -v --cov-report xml:backend/tests/reports/xml/cov.xml --cov-report html:backend/tests/reports/html --cov=backend backend/tests/"
   },
   "repository": {
@@ -17,5 +17,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.3",
+    "ethers": "^5.7.1"
+  }
 }

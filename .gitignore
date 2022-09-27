@@ -131,3 +131,5 @@ dmypy.json
 .DS_Store
 ENS.db
 backend/tests/reports/*
+
+node_modules

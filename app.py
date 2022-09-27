@@ -1,13 +1,14 @@
-import os
-from config import Config, logger, TestConfiguration, _Base
+from config import Config, TestConfiguration, _Base, set_logger
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from flask import Flask, render_template
+from flask import Flask
 from backend.utils.encoder import *
+from logging.config import dictConfig
 
-# import pdb; pdb.set_trace()
 
-# Define Flask Application
+dictConfig(set_logger())
+
+# Define Flask Application.
 app = Flask(
     __name__,
     template_folder='frontend/templates',
@@ -17,15 +18,12 @@ app = Flask(
 cors = CORS(app)
 
 if _Base.ENV == "TESTING":
-    print("\nTESTING APP")
+    print("\nRunning Test Configs")
     app.config.from_object(TestConfiguration)
 else:
-    print("\nPROD APP")
+    print("\nRunning Prod Configs")
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.config.from_object(Config)
-    logger(app)
-
-print(f'\nAPI URI: {app.config["API_URI"]}')
 
 # Custom JSON Encoder
 app.json_provider_class = JSONEncoder
@@ -33,14 +31,21 @@ app.json_provider_class = JSONEncoder
 # Configure DB
 db = SQLAlchemy(app)
 
-# Route Imports
-from backend.routes.api import *
-from backend.routes.render import *
+# # Route Imports
+# from backend.routes.api import *
+# from backend.routes.render import *
 
-# Model Imports
-from backend.models.models import *
+# # Model Imports
+# from backend.models.models import *
 
 if __name__ == '__main__':
+    # Route Imports
+    from backend.routes.api import *
+    from backend.routes.render import *
+
+    # Model Imports
+    from backend.models.models import *
     # import pdb; pdb.set_trace()
+
     db.create_all()
     app.run(debug=True)

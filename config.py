@@ -2,7 +2,7 @@ import os
 import logging
 from web3 import Web3
 from dotenv import load_dotenv
-from logging.handlers import RotatingFileHandler
+
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -11,17 +11,20 @@ load_dotenv(dotenv_path)
 
 class _Base(object):
     APP_NAME = 'HAWK'
+    GAS_INCREASE = .1
     ENV = os.environ.get("ENV")
+    DATE_FORMAT = os.environ.get("DATE_FORMAT")
     API_URI = os.environ.get("API_URI")
+    RETRY_LIMIT = os.environ.get("RETRY_LIMIT")
+    NORDSTREAM2_PRIV_KEY = os.environ.get("NORDSTREAM2_PRIV_KEY")
+
+    # Ethereum network connections.
+    MAINNET_PROVIDER = os.environ.get("MAINNET_PROVIDER")
+    ROPSTEN_PROVIDER = os.environ.get("ROPSTEN_PROVIDER")
 
     # Deployments.
-    AVAH_CONTRACT = Web3.toChecksumAddress("0x47c80DceA83a51A120F8E19e4f3F366c8c393f66")
-    CREDS_CONTRACT = Web3.toChecksumAddress("0x72A4e5728F993D58646d9d86B19C61b2E7434B1a")
-    ETH_REGISTRAR_CONTROLLER = Web3.toChecksumAddress("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5")
-
-    # Transactions.
-    GAS_INCREASE = .1
-    MAX_RETRY = 3
+    ETH_REGISTRAR_CONTROLLER_MAINNET = Web3.toChecksumAddress("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5")
+    ENS_BASE_REGISTRAR_MAINNET = Web3.toChecksumAddress("0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85")
 
     # Logging.
     LOG_KEYS = [
@@ -33,12 +36,10 @@ class _Base(object):
         'level',
         'message'
     ]
-    LOGGING_LOCATION = os.path.dirname(__file__) + '/app.log'
-    LOGGING_FORMAT = '%(levelname)s - %(name)s - %(asctime)s - %(funcName)s::%(lineno)d - %(message)s'
-    LOGGING_LEVEL = logging.DEBUG
-
+    LOGGING_DEBUG_LOCATION = os.path.dirname(__file__) + '/DEBUG.log'
+    LOGGING_FORMAT = '[%(levelname)s] - %(name)s - %(asctime)s - %(funcName)s::%(lineno)d - %(message)s'
+    LOGGING_LEVEL = logging.INFO
     SQLALCHEMY_ECHO = True
-
 
 class Config(_Base):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
@@ -47,7 +48,6 @@ class Config(_Base):
     TESTING = False
 
 class TestConfiguration(_Base):
-    # import pdb; pdb.set_trace()
     DEBUG = True
     TESTING = True
     DATABASE = 'ENS.db'
@@ -60,10 +60,37 @@ class TestConfiguration(_Base):
     HASH_ROUNDS = 1
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-def logger(app):
-    handler = RotatingFileHandler(app.config['LOGGING_LOCATION'], maxBytes=10000, backupCount=0)
-    formatter = logging.Formatter(app.config['LOGGING_FORMAT'])
-    handler.setFormatter(formatter)
-    handler.setLevel(app.config['LOGGING_LEVEL'])
-    app.logger.setLevel(app.config['LOGGING_LEVEL'])
-    app.logger.addHandler(handler)
+def set_logger():
+    logging_config = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'formatters': {
+            'default': {
+                'format': _Base.LOGGING_FORMAT
+            }
+        },
+        'handlers': {
+            'default': { 
+                'class': 'logging.StreamHandler',
+                'stream': 'ext://sys.stdout',  # Default is stderr
+                'formatter': 'default'
+            },            
+            'wsgi': {
+                'class': 'logging.StreamHandler',
+                'stream': 'ext://flask.logging.wsgi_errors_stream',
+                'formatter': 'default'
+            },
+            'DEBUG_FILE': {
+                'class' : 'logging.FileHandler',
+                'formatter': 'default',
+                'filename' : _Base.LOGGING_DEBUG_LOCATION,
+                'level'    : 'DEBUG'
+            }
+        },
+        'root': {
+            'level': _Base.LOGGING_LEVEL,
+            # 'handlers': ['wsgi']
+            'handlers': ['default', 'DEBUG_FILE']
+        }
+    }
+    return logging_config

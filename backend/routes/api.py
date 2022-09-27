@@ -16,8 +16,9 @@ from backend.utils.exceptions import (
 from backend.models.models import *
 from backend.utils.utils import (
     post_to_db,
-    is_db_live
+    is_db_live,
 )
+
 # import pdb; pdb.set_trace()
 
 
@@ -25,14 +26,19 @@ from backend.utils.utils import (
 def health():
     ''' Get status of API '''
     try:
-        is_live = is_db_live(db)
+        app.logger.info('Health check point...')
+        is_live = is_db_live()
+        # is_live = is_db_live(db)
         if is_live != True:
             raise DataBaseOffline
     except(DataBaseOffline) as e:
+        app.logger.error('Health checkpoint failed ... DataBaseOffline')
         return log_error(error=e)
     except(DatabaseError) as e:
+        app.logger.error('Health checkpoint failed ... DatabaseError')
         return log_error(error=e)
     else:
+        app.logger.info('Health endpoint is live...')
         return jsonify({
             'live': True,
             'status_code': 200

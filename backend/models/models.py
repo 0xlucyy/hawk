@@ -11,6 +11,7 @@ class ENS(Base, Lockable):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), unique=True, nullable=False)
     owner = db.Column(db.String(200))
+    hash = db.Column(db.String(100))
     expiration = db.Column(db.TIMESTAMP)
     bids = db.Column(db.Integer)
     bids_details = db.Column(db.String(300))
@@ -21,10 +22,11 @@ class ENS(Base, Lockable):
     # matches = db.relationship('Match', primaryjoin="or_(Player.id==Match.player_1, Player.id==Match.player_2)", lazy='dynamic')
 
     def __init__(self, name: str, owner: str, expiration: datetime,
-                 bids: int, listings: int, bids_details: str,
+                 _hash: str, bids: int, listings: int, bids_details: str,
                  listings_details: str):
         self.name = name.lower()
         self.owner = owner
+        self.hash = _hash
         self.expiration = expiration
         self.bids = bids
         self.bids_details = bids_details

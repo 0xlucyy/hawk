@@ -1,15 +1,14 @@
 import traceback
 from flask import jsonify
-from app import app
+# from app import app
 
 # import pdb; pdb.set_trace()
 
 
 def log_error(error=None):
-    app.logger.error(f"{error}")
     return jsonify({
         "exception_type": type(error).__name__,
-        "error_reason": error.msg if error.msg else error.statement,
+        "error_reason": error.msg,
         "status_code": error.status_code,
         "traceback": traceback.format_exc(),
     })
