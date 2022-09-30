@@ -14,4 +14,3 @@ def stringify(attribute: object) -> str:
 		return value
 	except:
 		return attribute
-

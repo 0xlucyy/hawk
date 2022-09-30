@@ -24,6 +24,7 @@ setup(
     entry_points={
         'console_scripts': [
             "test-inject = backend.run:main",
+            "clean = backend.utils.utils:normalize_file"
         ]
     }
 )

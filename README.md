@@ -22,12 +22,15 @@ domain watcher
 - Look over changes at `alembic/versions` to ensure changes have been captured accurately.
 - Run `alembic upgrade head` to update db to latest version.
 
+### Dependency issues
+- Run `pip install --use-feature=2020-resolver py-evm`.
+- Run `pip install -r requirements.txt`.
 
+### MYSQL
 /usr/local/opt/mysql/bin/mysqld_safe --datadir=/usr/local/var/mysql
 brew services restart mysql
 mysql -uroot
 mysql.server stop
 mysql.server start
 mysql -u root -h localhost -p
-
 mysql -h sqlite:////Users/ancientevil/0x/hawk/ENS.db -u root -p

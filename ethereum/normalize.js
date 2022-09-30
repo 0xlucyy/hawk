@@ -1,12 +1,11 @@
 const ethers = require('ethers')
 const fs = require('fs');
+
 const BigNumber = ethers.BigNumber
 const utils = ethers.utils
 
-
 try {  
-    // var data = fs.readFileSync('tests/fixtures/spanish-nouns-normalized.txt').toString().split("\n");
-    // console.log(es_animals)
+    var data = fs.readFileSync('ethereum/watch_list.txt').toString().split("\n");
 } catch(e) {
     console.log('Error:', e.stack);
 }
@@ -21,5 +20,5 @@ function hash(value) {
     }
 }
 
-hash('luis')
-// data.forEach(hash);
+// hash('test')
+data.forEach(hash);

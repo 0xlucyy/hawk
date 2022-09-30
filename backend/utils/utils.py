@@ -1,3 +1,5 @@
+import sys
+import unicodedata
 from typing import Tuple
 from app import app, db
 from sqlalchemy.sql import text
@@ -97,3 +99,63 @@ def is_db_live():
         return conn.connection._still_open_and_dbapi_connection_is_valid
     except:
         raise DatabaseError
+
+def normalize_file(file = None):
+    '''
+        Takes an uncleaned file and produces a cleaned &
+        normalized file.
+    '''
+    # import pdb; pdb.set_trace()
+    if file == None:
+        file = sys.argv[1]
+    # file = 'test'
+
+    # Read from uncleaned file.
+    with open(f"{app.config['DOMAIN_WATCH_LIST_PATH']}/{file}.txt", 'r') as f:
+        lines = f.readlines()
+
+    clean = []
+    for line in lines:
+        line = line.lower()
+        clean.append(line.replace('\n', ""))
+    
+    # If word is special, create non-special copy.
+    for word in clean:
+        if tilde_identifier(word) == True:
+            non_tilde_copy = remove_accents(word)
+            clean.append(non_tilde_copy.replace('\n', ""))
+
+    # Sort & dedup.
+    clean.sort()
+    clean = list(dict.fromkeys(clean))
+    clean.pop(0) # Remove whitespace entry
+    
+    # Produces cleaned human text file.
+    f = open(f"{app.config['DOMAIN_WATCH_LIST_PATH']}/{file}-{app.config['CLEAN_LIST']}.txt", 'w')
+    for word in clean:
+        f.write(word.replace(' ', ''))
+        f.writelines('\n')
+
+    f.close()
+
+
+# tilde_identifier('drügonñátest')
+def tilde_identifier(word : str = None):
+    '''
+        Answers, does word contain any special characters.
+    '''
+    if any(tilde in word for tilde in app.config['SPANISH_TILDES']):
+        print(f"Tilde found in {word}.")
+        return True
+    return False
+
+
+def remove_accents(word):
+    '''
+        Return word without special characters.
+    '''
+    only_ascii = (unicodedata.normalize('NFKD', word).encode('ASCII', 'ignore')).decode("utf-8")
+    print(f"Copied {word} into {only_ascii}")
+    return only_ascii
+
+# normalize_file()

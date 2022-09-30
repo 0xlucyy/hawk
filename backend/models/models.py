@@ -4,34 +4,24 @@ from backend.models._base import Base
 from backend.models._lockable import Lockable
 from sqlalchemy import func
 
-class ENS(Base, Lockable):
+class Domains(Base, Lockable):
     '''  '''
     __tablename__ = 'domains'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), unique=True, nullable=False)
+    hash = db.Column(db.VARCHAR, nullable=False)
     owner = db.Column(db.String(200))
-    hash = db.Column(db.String(100))
     expiration = db.Column(db.TIMESTAMP)
-    bids = db.Column(db.Integer)
-    bids_details = db.Column(db.String(300))
-    listings = db.Column(db.Integer)
-    listings_details = db.Column(db.String(300))
 
     # db.relationships
-    # matches = db.relationship('Match', primaryjoin="or_(Player.id==Match.player_1, Player.id==Match.player_2)", lazy='dynamic')
+    orders = db.relationship('Orders', backref='domains') # 1 domain to many orders
 
-    def __init__(self, name: str, owner: str, expiration: datetime,
-                 _hash: str, bids: int, listings: int, bids_details: str,
-                 listings_details: str):
+    def __init__(self, name: str, owner: str, expiration: datetime, hash: str):
         self.name = name.lower()
         self.owner = owner
-        self.hash = _hash
+        self.hash = hash
         self.expiration = expiration
-        self.bids = bids
-        self.bids_details = bids_details
-        self.listings = listings
-        self.listings_details = listings_details
         self._created_at = datetime.now()
         self._updated_at = datetime.now()
 
@@ -44,10 +34,10 @@ class ENS(Base, Lockable):
         If domain exists in DB, returns domain, else
         returns false.
 
-        Returns: backend.models.models.ENS or False
+        Returns: backend.models.models.Domains or False
         '''
         domain = cls.query.filter(
-            func.lower(ENS.name) == func.lower(domain_name)
+            func.lower(Domains.name) == func.lower(domain_name)
         ).first()
         return domain if domain != None else False
 
@@ -59,10 +49,10 @@ class ENS(Base, Lockable):
         '''
         day = datetime.now() + timedelta(days=expires_in_days)
         domains = cls.query.filter(
-            ENS.expiration <= day,
-            ENS.expiration > datetime.now(),
+            Domains.expiration <= day,
+            Domains.expiration > datetime.now(),
         ).order_by(
-            ENS.expiration.asc()
+            Domains.expiration.asc()
         ).all()
         return domains
 
@@ -75,8 +65,60 @@ class ENS(Base, Lockable):
         if order != 'asc' and order != 'desc':
             return []
         domains = cls.query.filter(
-            ENS.expiration
+            Domains.expiration
         ).order_by(
-            ENS.expiration.asc() if order == 'asc' else ENS.expiration.desc()
+            Domains.expiration.asc() if order == 'asc' else Domains.expiration.desc()
         ).all()
         return domains
+
+
+class Markets(Base, Lockable):
+    '''   '''
+    __tablename__ = 'markets'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+
+    # db.relationships
+    orders = db.relationship('Orders', backref='markets') # 1 market to many orders
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return f'Market {self.id}: {self.name}'
+
+    @classmethod
+    def get_market_orders(cls, name: str = None):
+        '''
+        returns 
+        '''
+        markets = cls.query.filter(Markets.name == name).first()
+        return markets
+
+
+class Orders(Base, Lockable):
+    '''   '''
+    __tablename__ = 'orders'
+
+    id = db.Column(db.Integer, primary_key=True)
+    order = db.Column(db.TEXT)
+    
+    # db.relationships
+    market_id = db.Column(db.Integer, db.ForeignKey('markets.id'))
+    domain_id = db.Column(db.Integer, db.ForeignKey('domains.id'))
+
+    def __init__(self, market_id, domain_id, order):
+        self.market_id = market_id
+        self.domain_id = domain_id
+        self.order = order
+
+    def __repr__(self):
+        return f'Order {self.id} - Domain: {self.domain_id}'
+
+# Orders.order = {
+#     'status': 'VALID',
+#     'expiration': 8127638921736,
+#     'listings': {'amount': 1, 'amount': .67},
+#     'bids': {}
+# }

@@ -22,6 +22,14 @@ class _Base(object):
     MAINNET_PROVIDER = os.environ.get("MAINNET_PROVIDER")
     ROPSTEN_PROVIDER = os.environ.get("ROPSTEN_PROVIDER")
 
+    # Clean watch list settings.
+    SPANISH_TILDES = ['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ']
+    CLEAN_LIST = 'cleaned'
+    DOMAIN_WATCH_LIST_PATH = 'ethereum'
+
+    # Order model formatter
+    ORDERS = ''
+
     # Deployments.
     ETH_REGISTRAR_CONTROLLER_MAINNET = Web3.toChecksumAddress("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5")
     ENS_BASE_REGISTRAR_MAINNET = Web3.toChecksumAddress("0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85")
