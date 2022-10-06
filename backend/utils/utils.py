@@ -1,6 +1,9 @@
 import sys
+import json
+import csv
 import unicodedata
 from typing import Tuple
+from MySQLdb import _mysql
 from app import app, db
 from sqlalchemy.sql import text
 from backend.utils.exceptions import (
@@ -13,7 +16,6 @@ from web3.exceptions import (
     TimeExhausted,
     ContractLogicError
 )
-
 # import pdb; pdb.set_trace()
 
 
@@ -100,62 +102,61 @@ def is_db_live():
     except:
         raise DatabaseError
 
-def normalize_file(file = None):
-    '''
-        Takes an uncleaned file and produces a cleaned &
-        normalized file.
-    '''
-    # import pdb; pdb.set_trace()
-    if file == None:
-        file = sys.argv[1]
-    # file = 'test'
-
-    # Read from uncleaned file.
-    with open(f"{app.config['DOMAIN_WATCH_LIST_PATH']}/{file}.txt", 'r') as f:
-        lines = f.readlines()
-
-    clean = []
-    for line in lines:
-        line = line.lower()
-        clean.append(line.replace('\n', ""))
-    
-    # If word is special, create non-special copy.
-    for word in clean:
-        if tilde_identifier(word) == True:
-            non_tilde_copy = remove_accents(word)
-            clean.append(non_tilde_copy.replace('\n', ""))
-
-    # Sort & dedup.
-    clean.sort()
-    clean = list(dict.fromkeys(clean))
-    clean.pop(0) # Remove whitespace entry
-    
-    # Produces cleaned human text file.
-    f = open(f"{app.config['DOMAIN_WATCH_LIST_PATH']}/{file}-{app.config['CLEAN_LIST']}.txt", 'w')
-    for word in clean:
-        f.write(word.replace(' ', ''))
-        f.writelines('\n')
-
-    f.close()
-
-
 # tilde_identifier('drügonñátest')
 def tilde_identifier(word : str = None):
     '''
         Answers, does word contain any special characters.
     '''
     if any(tilde in word for tilde in app.config['SPANISH_TILDES']):
-        print(f"Tilde found in {word}.")
+        # print(f"Tilde found in {word}.")
         return True
     return False
-
 
 def remove_accents(word):
     '''
         Return word without special characters.
     '''
     only_ascii = (unicodedata.normalize('NFKD', word).encode('ASCII', 'ignore')).decode("utf-8")
-    print(f"Copied {word} into {only_ascii}")
+    # print(f"Copied {word} into {only_ascii}")
     return only_ascii
 
-# normalize_file()
+def apply_hashes_to_payload(payload : dict = None):
+    with open(f"{app.config['WATCH_LOCATION']}.csv") as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            payload[row[0]] = {'hash': row[1]}
+    if "" in payload.keys(): del payload['']
+    return payload
+
+def create_database():
+    # establishing the connection
+    db_connection = _mysql.connect(user=app.config['MYSQL_USERNAME'], password=app.config['MYSQL_PASSWORD'], host='127.0.0.1')
+
+    # Doping database MYDATABASE if already exists.
+    db_connection.query(f"DROP database IF EXISTS {app.config['MYSQL_DB']}")
+
+    # Creating a database
+    db_connection.query(f"CREATE database {app.config['MYSQL_DB']}")
+
+    db_connection.query("SHOW DATABASES")
+    results = db_connection.use_result()
+
+    # #Closing the connection
+    db_connection.close()
+
+def stringify(attribute: object) -> str:
+	'''
+	Serializes attribute object into JSON formatted string.
+	'''
+	try:
+		if isinstance(attribute, dict):
+			value = json.dumps(attribute)
+		elif isinstance(attribute, str):
+			value = json.dumps(attribute)
+			value = value.replace('"', "")
+		return value
+	except:
+		return attribute
+
+# create_database()

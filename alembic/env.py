@@ -1,7 +1,8 @@
 from app import (
-    app
+    app,
+    db
 )
-from backend.models.models import ENS
+from backend.models.models import Domains
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
@@ -18,7 +19,10 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-target_metadata = ENS.metadata
+# import pdb; pdb.set_trace()
+# target_metadata = Domains.metadata
+target_metadata = db.metadata
+# target_metadata = db.Model
 
 
 def run_migrations_offline() -> None:

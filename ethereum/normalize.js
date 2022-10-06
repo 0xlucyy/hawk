@@ -5,7 +5,7 @@ const BigNumber = ethers.BigNumber
 const utils = ethers.utils
 
 try {  
-    var data = fs.readFileSync('ethereum/watch_list.txt').toString().split("\n");
+    var data = fs.readFileSync('watchlists/watch_clean.txt').toString().split("\n");
 } catch(e) {
     console.log('Error:', e.stack);
 }
@@ -20,5 +20,5 @@ function hash(value) {
     }
 }
 
-// hash('test')
-data.forEach(hash);
+hash('water')
+// data.forEach(hash);

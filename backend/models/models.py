@@ -10,18 +10,21 @@ class Domains(Base, Lockable):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), unique=True, nullable=False)
-    hash = db.Column(db.VARCHAR, nullable=False)
+    hash = db.Column(db.VARCHAR(200), nullable=False)
     owner = db.Column(db.String(200))
+    available = db.Column(db.Boolean)
     expiration = db.Column(db.TIMESTAMP)
 
     # db.relationships
     orders = db.relationship('Orders', backref='domains') # 1 domain to many orders
 
-    def __init__(self, name: str, owner: str, expiration: datetime, hash: str):
+    def __init__(self, name: str, owner: str, expiration: datetime,
+                 hash: str, available: bool):
         self.name = name.lower()
         self.owner = owner
         self.hash = hash
         self.expiration = expiration
+        self.available = available
         self._created_at = datetime.now()
         self._updated_at = datetime.now()
 
@@ -115,6 +118,26 @@ class Orders(Base, Lockable):
 
     def __repr__(self):
         return f'Order {self.id} - Domain: {self.domain_id}'
+
+    @classmethod
+    def get_orders(cls, domain_id: int = None):
+        '''
+        returns 
+        '''
+        markets = cls.query.filter(Orders.domain_id == domain_id).all()
+        return markets
+
+    @classmethod
+    def get_order_by_hash(cls, _hash: str = None):
+        '''
+        returns 
+        '''
+        # https://stackoverflow.com/a/8562155 - .has()
+        orders = cls.query.filter(Orders.domains.has(hash = _hash)).all()
+        #).order_by(
+        #     Orders.domains.expiration.asc()
+        # ).all()
+        return orders
 
 # Orders.order = {
 #     'status': 'VALID',

@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 .DS_Store
-ENS.db
+*.db
 backend/tests/reports/*
 
 node_modules

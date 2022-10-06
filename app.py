@@ -17,13 +17,13 @@ app = Flask(
 )
 cors = CORS(app)
 
-if _Base.ENV == "TESTING":
-    print("\nRunning Test Configs")
-    app.config.from_object(TestConfiguration)
-else:
-    print("\nRunning Prod Configs")
+if _Base.ENV == "live":
+    app.logger.info("Running Prod Configs")
     app.config['CORS_HEADERS'] = 'Content-Type'
     app.config.from_object(Config)
+else:
+    app.logger.info("Running Test Configs")
+    app.config.from_object(TestConfiguration)
 
 # Custom JSON Encoder
 app.json_provider_class = JSONEncoder

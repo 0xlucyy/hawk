@@ -3,28 +3,49 @@ domain watcher
 
 #### Instructions
 - Clone to local workspace.
-- Run `brew install mysql`.
+- Run `brew install mysql` if mysql not already installed.
 - Run `python3 -m venv venv`.
 - Run `. venv/bin/activate`.
 - Run `pip install -r requirements.txt`
+- Run `alembic init alembic`
 - Run `mysql.server start`.
 - Run `mysql -h localhost -u root -p` & insert password.
-- Run `create database ENS;`.
+- Run `create database hawk;`.
+- Run `python app.py` to start server on port 5000.
+- Run `curl http://127.0.0.1:5000/api/v1/health` to check server status.
 
-- Run `python install -e .`.
-
-- Run `npm run setup`.
-- Run `alembic init alembic`
+### Init DB with data
+- Copy/Paste ens words into `watchlists/watch.txt`, one word per line.
+- Run `clean watch` to clean domain names, creates `watchlists/watch_clean.txt`.
+- Run `node ethereum/normalize.js >> watchlists/watch_clean.csv`.
+- Run `build_watchlist` to get human readable metadata about domains in `ethereum/watch_clean.json`.
 
 ### To upgrade DB
-- Modify `backend/models/models.py:ENS` table.
+- Modify any table in `backend/models/models.py` file.
 - Run `alembic revision --autogenerate -m "describe model changes"`.
-- Look over changes at `alembic/versions` to ensure changes have been captured accurately.
+- Inspect newly created `alembic/versions/*.py` file to ensure changes have been captured accurately.
 - Run `alembic upgrade head` to update db to latest version.
 
-### Dependency issues
+# Trouble shooting
+#### Database/alembic
+- If alembic revisions are failing with `FAILED: Target database is not up to date.`, run `alembic stamp head`, then continue with upgrading head. [stackoverflow](https://stackoverflow.com/questions/17768940/target-database-is-not-up-to-date)
+- If previous versions of the database are needed, read this thread, [stackoverflow](https://stackoverflow.com/questions/48242324/undo-last-alembic-migration)
+
+#### Dependency Requirement Issues
 - Run `pip install --use-feature=2020-resolver py-evm`.
 - Run `pip install -r requirements.txt`.
+
+
+# NOTES BELOW
+
+### To use scripts
+- Run `python install -e .`.
+
+### To auto installed
+- Run `npm run setup`.
+
+### Testing
+- Run `clean test` to clean `ethereum/test.txt`.
 
 ### MYSQL
 /usr/local/opt/mysql/bin/mysqld_safe --datadir=/usr/local/var/mysql

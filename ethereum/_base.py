@@ -41,10 +41,11 @@ class Web3_Base():
 
     def get_provider(self):
         print('Setting provider...')
-        if app.config['ENV'] == 'live':
-            provider = app.config["MAINNET_PROVIDER"]
-        else:
-            provider = app.config["ROPSTEN_PROVIDER"]
+        provider = app.config["MAINNET_PROVIDER"]
+        # if app.config['ENV'] == 'live':
+        #     provider = app.config["MAINNET_PROVIDER"]
+        # else:
+        #     provider = app.config["ROPSTEN_PROVIDER"]
         if provider:
             if 'http' in provider:
                 return HTTPProvider(provider)

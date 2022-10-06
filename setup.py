@@ -23,8 +23,9 @@ setup(
     install_requires=install_dependencies,
     entry_points={
         'console_scripts': [
-            "test-inject = backend.run:main",
-            "clean = backend.utils.utils:normalize_file"
+            "build_watchlist = backend.src.scripts:build_watchlist",
+            "clean = backend.src.scripts:clean_file",
+            "refresh = backend.src.scripts:create_database",
         ]
     }
 )
