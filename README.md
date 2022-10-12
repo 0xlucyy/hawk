@@ -9,8 +9,10 @@ domain watcher
 - Run `pip install -r requirements.txt`
 - Run `alembic init alembic`
 - Run `mysql.server start`.
-- Run `mysql -h localhost -u root -p` & insert password.
+- Run `mysql -h localhost -u root` & insert password.
 - Run `create database hawk;`.
+- Run `SET GLOBAL sql_mode = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,ALLOW_INVALID_DATES';`.
+- Exit mysql & run `mysql.server restart`.
 - Run `python app.py` to start server on port 5000.
 - Run `curl http://127.0.0.1:5000/api/v1/health` to check server status.
 
@@ -54,4 +56,10 @@ mysql -uroot
 mysql.server stop
 mysql.server start
 mysql -u root -h localhost -p
-mysql -h sqlite:////Users/ancientevil/0x/hawk/ENS.db -u root -p
+mysql -h sqlite:////Users/ancientevil/0x/hawk/ENS.db -u root
+
+mysql -h localhost -u root -p hawk
+
+
+#
+EXTRA_OPTIONS = --http.api eth,engine,net,web3,txpool

@@ -64,6 +64,8 @@ alvaro
 alysha
 amable
 amanda
+amarilla
+amarillo
 amarok
 amateur
 ambicioso
@@ -159,6 +161,7 @@ azúcarnegra
 bachoco
 baleadas
 ballcorporation
+ballet
 bancoazteca
 banglades
 bangladés
@@ -197,6 +200,7 @@ blackmagic
 blackpearl
 bloodelf
 blooper
+blue
 blueyeswhitedragon
 boar
 bodegaaurrera
@@ -355,6 +359,7 @@ constelacion
 constelaciones
 consul
 contacts
+contemporary
 contrato
 contratos
 cooking-oil
@@ -590,6 +595,7 @@ finlandes
 finlandia
 finlandés
 firestone
+flamenco
 florencia
 folleto
 follow-up
@@ -657,6 +663,7 @@ gorgon
 gorgona
 governor-elect
 grecia
+green
 grifa
 griffin
 grifo
@@ -707,6 +714,8 @@ highelf
 highway
 hijo
 hindustanunilever
+hip-hop
+hiphop
 hipocampo
 hipogrifo
 hippocampus
@@ -756,6 +765,7 @@ imsure
 indeciso
 independientel
 indiana
+indigo
 industries
 infancia
 infernoexotic
@@ -1077,6 +1087,8 @@ naga
 nahuatl
 namacuix
 naples
+naranja
+naranjo
 narendramodi
 natalia
 nationalist
@@ -1143,6 +1155,7 @@ on-site
 one-way
 onlineincome
 onlinepoker
+orange
 orbia
 orc
 orcs
@@ -1275,6 +1288,7 @@ reclutar
 recognition
 record-breaking
 recruitment
+red
 redbeard
 redditor
 regina
@@ -1308,8 +1322,12 @@ rihanna
 rnggod
 roberto
 robotic
+rock-n-roll
 rockets
+rocknroll
 rodrigo
+roja
+rojo
 roma
 rome
 romina
@@ -1323,6 +1341,7 @@ sadness
 sagitario
 salome
 salomé
+salsa
 salvador
 salvadoreno
 salvadoreño
@@ -1441,6 +1460,7 @@ tailandia
 tailandés
 tan
 tangent
+tango
 taquero
 tasker
 tataconsultancyservices
@@ -1477,6 +1497,7 @@ tigres
 tigresa
 time-saving
 timido
+tinto
 tip-off
 tipper
 tiranosauriorex
@@ -1561,13 +1582,17 @@ venom
 venta
 ventas
 venus
+verde
 viaappia
 viaflaminia
 vialatina
 vicente
 victoria
+vino
 vinte
+violet
 violeta
+violeto
 virgo
 visionario
 volcanes
@@ -1606,6 +1631,7 @@ ximena
 xoxoxo
 yaotl
 year-end
+yellow
 yellowsub
 yeti
 yoshi

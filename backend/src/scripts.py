@@ -1,15 +1,48 @@
 import json
 import sys
+from xml import dom
 from MySQLdb import _mysql
 from backend.utils.utils import (
     apply_hashes_to_payload,
     tilde_identifier,
     remove_accents,
+    post_to_db,
     app
 )
 from ethereum.read_ens import ens_claw
+from backend.models import models
+from sqlalchemy.exc import IntegrityError
+from backend.utils.exceptions import (
+    DomainModelDataTypeError
+)
 # import pdb; pdb.set_trace()
 
+
+def populate_db():
+    with open(f"{app.config['WATCH_LOCATION']}.json", 'r', encoding='utf8') as outfile:
+        payload = json.load(outfile)
+    
+    failed = []
+    index = 0
+    for domain, domain_metadata in payload.items():
+        try:
+            new_domain = models.Domains(**domain_metadata)
+        except DomainModelDataTypeError as DMDTE:
+            app.logger.error(DMDTE)
+            failed.append(domain)
+            continue
+        try:
+            post_to_db(new_domain)
+        except IntegrityError as IE: # DB duplicate collision
+            app.logger.error(IE)
+            failed.append(domain)
+            continue
+        index += 1
+    app.logger.info(f"Total success: {index} - " \
+                    f"Total failed: {len(failed)}" \
+                    f" - {failed}")
+
+    
 
 def build_watchlist():
     '''
@@ -20,12 +53,14 @@ def build_watchlist():
     Second - Run `node ethereum/normalize.js >> watchlists/watch_clean.csv` for csv of hashes.
     Third  - Run `build_watchlist` to create `watch_clean.json`.
     '''
-    metadata = {}
-    # Requires csv file at WATCH_LOCATION.
-    metadata = apply_hashes_to_payload(metadata)
-    metadata = ens_claw(metadata)
+    payload = {}
+    # Dumps WATCH_LOCATION.csv into payload - Domain name & domain hash.
+    payload = apply_hashes_to_payload(payload)
+    payload = ens_claw(payload)
+    # import pdb; pdb.set_trace()
     with open(f"{app.config['WATCH_LOCATION']}.json", 'w', encoding='utf8') as outfile:
-        json.dump(metadata, outfile, indent=4, sort_keys=True, ensure_ascii=False)
+        # import pdb; pdb.set_trace()
+        json.dump(payload, outfile, indent=4, sort_keys=True, ensure_ascii=False, default=str)
 
 
 def clean_file(file: str = None):
@@ -35,13 +70,12 @@ def clean_file(file: str = None):
 
         Run `clean FILE_NAME` in terminal.
     '''
-    # import pdb; pdb.set_trace()
     if file == None:
         file = sys.argv[1]
+    app.logger.info(f"Reading {app.config['DOMAIN_WATCH_FOLDER']}/{file}.txt ...")
 
     # Read from uncleaned file.
-    with open(f"{app.config['DOMAIN_WATCH_LIST_PATH']}/{file}.txt", 'r') as f:
-        app.logger.info(f'Opening file {app.config["DOMAIN_WATCH_LIST_PATH"]}/{file}.txt')
+    with open(f"{app.config['DOMAIN_WATCH_FOLDER']}/{file}.txt", 'r') as f:
         words = f.readlines()
 
     clean = []
@@ -52,19 +86,18 @@ def clean_file(file: str = None):
             non_tilde_copy = remove_accents(word)
             clean.append(non_tilde_copy.replace('\n', "").lower())
 
-    # Sort & dedup.
+    app.logger.info(f"Cleaned ...")
     clean.sort()
     clean = list(dict.fromkeys(clean))
-    if clean[0] == '':
-        clean.pop(0) # Remove whitespace entry
-    
-    # Produces cleaned human text file.
-    f = open(f"{app.config['DOMAIN_WATCH_LIST_PATH']}/{file}_{app.config['CLEAN_LIST']}.txt", 'w')
-    app.logger.info(f"Creating {app.config['DOMAIN_WATCH_LIST_PATH']}/{file}_{app.config['CLEAN_LIST']}.txt")
+    app.logger.info(f"Sorted & dedupped ...")
+
+    f = open(f"{app.config['DOMAIN_WATCH_FOLDER']}/{file}_{app.config['CLEAN_FILE']}.txt", 'w')
     for word in clean:
         f.write(word.replace(' ', ''))
         f.writelines('\n')
     f.close()
+
+    app.logger.info(f"Created {app.config['DOMAIN_WATCH_FOLDER']}/{file}_{app.config['CLEAN_FILE']}.txt ...")
 
 
 def create_database():
@@ -91,3 +124,22 @@ def create_database():
 
     # #Closing the connection
     db_connection.close()
+
+
+# def init_db_with_domains(payload: dict = None):
+#     if payload == None:
+#         with open(f"{app.config['WATCH_LOCATION']}.json", 'r') as f:
+#             data = json.load(f)
+#     for domain_name, domain_data in data.items():
+#         dom = models.Domains(
+#             getattr(Domains, param) == request.args.get(param)
+#         )
+    
+#     import pdb; pdb.set_trace()
+#     testing(**data)
+
+# def testing(**kwargs):
+#     import pdb; pdb.set_trace()
+#     print('data')
+
+# init_db_with_domains()

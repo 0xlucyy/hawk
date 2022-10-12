@@ -80,7 +80,7 @@ contract BaseRegistrarImplementation is ERC721, IBaseRegistrar, Ownable {
         override(IERC721, ERC721)
         returns (address)
     {
-        require(expiries[tokenId] > block.timestamp);
+        require(expiries[tokenId] > block.timestamp, 'EXPIRED_OR');
         return super.ownerOf(tokenId);
     }
 

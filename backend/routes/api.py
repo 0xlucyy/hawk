@@ -28,7 +28,6 @@ def health():
     try:
         app.logger.info('Health check point...')
         is_live = is_db_live()
-        # is_live = is_db_live(db)
         if is_live != True:
             raise DataBaseOffline
     except(DataBaseOffline) as e:
@@ -44,6 +43,30 @@ def health():
             'status_code': 200
         })
 
+
+@app.route(f'{app.config["API_URI"]}/expiring', methods=['GET'])
+def get_expiring():
+    days = request.args.get('days')
+
+    '''  '''
+    try:
+        # import pdb; pdb.set_trace()
+        app.logger.info(f'Expiring over the next {days} days.')
+        expiring_in_days = Domains.expiring(int(days))
+    except(Exception) as e:
+        app.logger.info(f'Error: {e}')
+        # import pdb; pdb.set_trace()
+        return jsonify({
+            'live': False,
+            'status_code': 666
+        })
+    else:
+        app.logger.info('How is this working?')
+        import pdb; pdb.set_trace()
+        return jsonify({
+            'live': True,
+            'status_code': 200
+        })
 
 # for param in request.args:
 #     if param != 'type' and param != 'page' and param !='search':

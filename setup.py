@@ -24,8 +24,9 @@ setup(
     entry_points={
         'console_scripts': [
             "build_watchlist = backend.src.scripts:build_watchlist",
-            "clean = backend.src.scripts:clean_file",
-            "refresh = backend.src.scripts:create_database",
+            "clean_file = backend.src.scripts:clean_file",
+            "create_database = backend.src.scripts:create_database",
+            "populate_db = backend.src.scripts:populate_db",
         ]
     }
 )

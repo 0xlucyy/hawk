@@ -26,27 +26,29 @@ class _Base(object):
     # Ethereum network connections.
     MAINNET_PROVIDER = os.environ.get("MAINNET_PROVIDER")
     ROPSTEN_PROVIDER = os.environ.get("ROPSTEN_PROVIDER")
+    INFURA_PROVIDER = os.environ.get("INFURA_PROVIDER")
 
     # Clean watch list settings.
     SPANISH_TILDES = ['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ']
-    CLEAN_LIST = 'clean'
-    DOMAIN_WATCH_LIST_PATH = 'watchlists'
-    WATCH_LOCATION = f'{DOMAIN_WATCH_LIST_PATH}/watch_clean'
-
+    CLEAN_FILE = 'clean'
+    DOMAIN_WATCH_FOLDER = 'watchlists'
+    WATCH_LOCATION = f'{DOMAIN_WATCH_FOLDER}/watch_clean'
+    DATETIME_STR_FORMAT = '%Y-%m-%d %H:%M:%S'
     # ENS Basic Registrar contract ownerOf reverts
     # when domain is in auction/grace.
     ENS_GRACE_AUCTION = 'Domain in grace or auction.'
-
     # Order model formatter
     ORDERS = ''
 
     # Deployments.
     ETH_REGISTRAR_CONTROLLER_MAINNET = Web3.toChecksumAddress("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5")
     ENS_BASE_REGISTRAR_MAINNET = Web3.toChecksumAddress("0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85")
+    DYSTOPUNKS_V2_MAINNET = Web3.toChecksumAddress("0xbEA8123277142dE42571f1fAc045225a1D347977")
 
     LOOKSRARE_BASE_URL = os.environ.get("LOOKSRARE_BASE_URL")
     LOOKSRARE_API_KEY = os.environ.get("LOOKSRARE_API_KEY")
     LOOKSRARE_GET_EVENTS = os.environ.get("LOOKSRARE_GET_EVENTS")
+    ENSVISION_INFO = "https://www.ens.vision/name/{domain}"
 
     # Logging.
     LOG_KEYS = [
@@ -61,9 +63,8 @@ class _Base(object):
     LOGGING_DEBUG_LOCATION = os.path.dirname(__file__) + '/DEBUG.log'
     LOGGING_FORMAT = '[%(levelname)s] - %(name)s - %(asctime)s - %(funcName)s::%(lineno)d - %(message)s'
     LOGGING_LEVEL = logging.INFO
-    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_ECHO = False
 
-    ENSVISION_INFO = "https://www.ens.vision/name/{domain}"
 
 class Config(_Base):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
@@ -77,6 +78,7 @@ class TestConfiguration(_Base):
     DATABASE = f"{os.environ.get('MYSQL_DB')}.db"
     DATABASE_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), DATABASE)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
+    # sqlite:////Users/ancientevil/0x/hawk/hawk.db
     print(f"SQLALCHEMY_DATABASE_URI: {SQLALCHEMY_DATABASE_URI}")
     BCRYPT_LOG_ROUNDS = 4
     WTF_CSRF_ENABLED = False

@@ -6,9 +6,9 @@ from backend.models.models import Domains as domains
 from backend.models.models import Markets as markets
 from backend.models.models import Orders as orders
 from config import TestConfiguration
-from backend.utils.formatters import stringify
-
+from backend.utils.utils import stringify
 # import pdb; pdb.set_trace()
+
 
 class TestModels():
     ENGINE = create_engine(TestConfiguration.SQLALCHEMY_DATABASE_URI)
@@ -21,34 +21,38 @@ class TestModels():
     def setup_method(self):
         self.maxDiff = None
         domains.query = self.SESSION.query_property()
+        markets.query = self.SESSION.query_property()
+        orders.query = self.SESSION.query_property()
         domains.metadata.create_all(bind=self.ENGINE)
+        markets.metadata.create_all(bind=self.ENGINE)
+        orders.metadata.create_all(bind=self.ENGINE)
 
         # Add 4 domains.
         domain_1 = domains(
             name = 'r2-d2',
             owner = '0x770c13284eB073F07d7c88fb787c319d533F785A',
-            expiration = datetime.now(),
+            expiration = datetime.now().strftime(self.APP.config['DATETIME_STR_FORMAT']),
             hash = '114360299276003378370989183678775394162571842735904725917593374563870378194270',
             available = True
         )
         domain_2 = domains(
             name = 'tiger',
             owner = '0xcF1A4C3bE75D8E4AD112755F442433B860249C17',
-            expiration = (datetime.now() + timedelta(hours=1)),
+            expiration = (datetime.now() + timedelta(hours=1)).strftime(self.APP.config['DATETIME_STR_FORMAT']),
             hash = '25761638305059930963366570876944863725087829198157532760805779175900254165511',
             available = False
         )
         domain_3 = domains(
             name = 'ring',
             owner = '0x6b558C075Dce25A9daA5Fa2045a6b302aCb80308',
-            expiration = (datetime.now() + timedelta(hours=24)),
+            expiration = (datetime.now() + timedelta(hours=24)).strftime(self.APP.config['DATETIME_STR_FORMAT']),
             hash = '54030940775804470305256322014098974036755634976796975913253481205479263987144',
             available = False
         )
         domain_4 = domains(
             name = 'water',
             owner = '0x6b558C075Dce25A9daA5Fa2045a6b302aCb80308',
-            expiration = (datetime.now() + timedelta(hours=100)),
+            expiration = (datetime.now() + timedelta(hours=100)).strftime(self.APP.config['DATETIME_STR_FORMAT']),
             hash = '52646283516611546712204954956481580158310707096920139797826052028243406035645',
             available = False
         )
@@ -96,17 +100,20 @@ class TestModels():
         Ensure that a new domain can be declared properly.
         """
         time = datetime.now()
+
         domain = domains(
             name = 'R2-D2-f2',
             owner = '0xcF1A4C3bE75D8E4AD112755F442433B860249C17',
-            expiration = time,
-            hash = 2,
+            expiration = time.strftime(self.APP.config['DATETIME_STR_FORMAT']),
+            hash = '298437592837598236758',
             available = True
         )
+
         assert domain.name == 'r2-d2-f2'
         assert domain.owner == '0xcF1A4C3bE75D8E4AD112755F442433B860249C17'
-        assert domain.expiration == time
-        assert domain.hash == 2
+        assert domain.expiration == datetime.strptime(time.strftime(self.APP.config['DATETIME_STR_FORMAT']), self.APP.config['DATETIME_STR_FORMAT'])
+        assert domain.expiration.strftime(self.APP.config['DATETIME_STR_FORMAT']) == time.strftime(self.APP.config['DATETIME_STR_FORMAT'])
+        assert domain.hash == '298437592837598236758'
         assert domain.available == True
 
 

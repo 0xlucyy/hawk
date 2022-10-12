@@ -23,7 +23,6 @@ class Web3_Base():
         # self.context = Box()
         # self.load_context()
 
-        # import pdb; pdb.set_trace()
         self.w3 = Web3(self.get_provider())
         # self.w3.geth.txpool.inspect()
         if self.w3.isConnected() == False:
@@ -40,12 +39,12 @@ class Web3_Base():
             self.w3 = None
 
     def get_provider(self):
-        print('Setting provider...')
         provider = app.config["MAINNET_PROVIDER"]
+        app.logger.info(f'Setting provider {provider}')
         # if app.config['ENV'] == 'live':
         #     provider = app.config["MAINNET_PROVIDER"]
         # else:
-        #     provider = app.config["ROPSTEN_PROVIDER"]
+        #     provider = app.config["INFURA_PROVIDER"]
         if provider:
             if 'http' in provider:
                 return HTTPProvider(provider)
@@ -69,5 +68,5 @@ class Web3_Base():
     #     # import pdb; pdb.set_trace()
 
 
-# test = Web3_Base()
-# print('holding...')
+test = Web3_Base()
+print('holding...')

@@ -89,12 +89,16 @@ def get_tx_pool_status(w3: Web3 = None):
     return w3.geth.txpool.status()
 
 def post_to_db(data):
-# def post_to_db(db, data):
-    db.session.add(data)
-    db.session.commit()
-    app.logger.info(f"{data} inserted into db.")
+    from sqlalchemy.exc import IntegrityError
+    try:
+        db.session.add(data)
+        db.session.commit()
+        app.logger.info(f"{data} inserted into db.")
+    except IntegrityError as IE:
+        db.session.rollback()
+        app.logger.error(f"{data} not inserted into db.")
+        raise IE
 
-# def is_db_live(db):
 def is_db_live():
     try:
         conn = db.engine.execute(text("SELECT 1"))

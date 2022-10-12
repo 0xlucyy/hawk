@@ -20,5 +20,5 @@ function hash(value) {
     }
 }
 
-hash('water')
-// data.forEach(hash);
+// hash('tihdiascnisajdn98hfj')
+data.forEach(hash);

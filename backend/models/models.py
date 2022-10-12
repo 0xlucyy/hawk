@@ -1,32 +1,52 @@
-from app import db
+from app import db, app
 from datetime import datetime, timedelta
 from backend.models._base import Base
 from backend.models._lockable import Lockable
 from sqlalchemy import func
+from backend.utils.exceptions import (
+    DomainModelDataTypeError
+
+)
+# import pdb; pdb.set_trace()
+
 
 class Domains(Base, Lockable):
     '''  '''
     __tablename__ = 'domains'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), unique=True, nullable=False)
-    hash = db.Column(db.VARCHAR(200), nullable=False)
-    owner = db.Column(db.String(200))
-    available = db.Column(db.Boolean)
-    expiration = db.Column(db.TIMESTAMP)
+    name = db.Column(db.VARCHAR(200), nullable=False)
+    hash = db.Column(db.VARCHAR(100), unique=True, nullable=False)
+    owner = db.Column(db.String(100), nullable=False)
+    available = db.Column(db.Boolean, nullable=False)
+    expiration = db.Column(db.DATETIME, nullable=True)
 
     # db.relationships
     orders = db.relationship('Orders', backref='domains') # 1 domain to many orders
 
-    def __init__(self, name: str, owner: str, expiration: datetime,
+    def __init__(self, name: str, owner: str, expiration: str,
                  hash: str, available: bool):
+        if not isinstance(name, str):
+            raise DomainModelDataTypeError(msg='Name must be a string.')
+        if not isinstance(hash, str):
+            raise DomainModelDataTypeError(msg='Hash must be a string.')
+        if not isinstance(owner, str):
+            raise DomainModelDataTypeError(msg='Owner must be a string.')
+        if not isinstance(available, bool):
+            raise DomainModelDataTypeError(msg='Available must be a bool.')
+        if not isinstance(expiration, str): # "YYYY-MM-DD HH:MM:SS"
+            raise DomainModelDataTypeError(msg='Expiration must be a datetime string.')
+
         self.name = name.lower()
         self.owner = owner
         self.hash = hash
-        self.expiration = expiration
         self.available = available
+        self.expiration = datetime.strptime(
+            expiration, app.config['DATETIME_STR_FORMAT']
+        ) if expiration != 'null' else None
         self._created_at = datetime.now()
         self._updated_at = datetime.now()
+        self._last_activity_at = datetime.now()
 
     def __repr__(self):
         return f'Domain {self.id}: {self.name}'

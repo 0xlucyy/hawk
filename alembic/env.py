@@ -22,7 +22,6 @@ if config.config_file_name is not None:
 # import pdb; pdb.set_trace()
 # target_metadata = Domains.metadata
 target_metadata = db.metadata
-# target_metadata = db.Model
 
 
 def run_migrations_offline() -> None:

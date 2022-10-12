@@ -56,3 +56,12 @@ class DatabaseError(Base):
             log_msg=log_msg,
             title=title
         )
+
+class DomainModelDataTypeError(Base):
+    def __init__(self, msg=None, log_msg=None, title=None):
+        super().__init__(
+            msg=msg or 'Data type is not valid',
+            status_code=400,
+            log_msg=log_msg,
+            title=title
+        )

@@ -10,7 +10,7 @@ def check_current_head(alembic_cfg, connectable):
     """
 
     """
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
     # type: (config.Config, engine.Engine) -> bool
     directory = script.ScriptDirectory.from_config(alembic_cfg)
     with connectable.begin() as connection:

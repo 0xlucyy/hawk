@@ -25,11 +25,10 @@ class TestAPIs():
         Ensure health endpoint happy path works as intended.
         """
         expected_status_code = 200
-        expected_text = '{\n  "live": true,\n  "status_code": 200\n}\n'
+        expected_text = '{"live":true,"status_code":200}\n'
 
         # Tested API
         resp = self.CLIENT.get(f'{TestConfiguration.API_URI}/health')
-
         assert resp.status_code == expected_status_code
         assert resp.text == expected_text
 
