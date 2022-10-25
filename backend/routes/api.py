@@ -19,6 +19,7 @@ from backend.utils.utils import (
     is_db_live,
 )
 
+
 # import pdb; pdb.set_trace()
 
 
@@ -40,7 +41,8 @@ def health():
         app.logger.info('Health endpoint is live...')
         return jsonify({
             'live': True,
-            'status_code': 200
+            'status_code': 200,
+            # 'content-type': 'application/json'
         })
 
 
@@ -50,23 +52,26 @@ def get_expiring():
 
     '''  '''
     try:
-        # import pdb; pdb.set_trace()
         app.logger.info(f'Expiring over the next {days} days.')
-        expiring_in_days = Domains.expiring(int(days))
+        expiring = Domains.expiring(int(days))
     except(Exception) as e:
         app.logger.info(f'Error: {e}')
-        # import pdb; pdb.set_trace()
         return jsonify({
             'live': False,
-            'status_code': 666
+            'status_code': 666,
+            'content-type': 'application/json'
         })
     else:
-        app.logger.info('How is this working?')
-        import pdb; pdb.set_trace()
         return jsonify({
-            'live': True,
+            'total_expiring': len(expiring),
+            'expiring_within': days,
+            'expiring_domains': [domain.__dict__ for domain in expiring],
             'status_code': 200
         })
+
+@app.route('/test', methods=['GET'])
+def get_Test():
+        return jsonify({'working': False})
 
 # for param in request.args:
 #     if param != 'type' and param != 'page' and param !='search':

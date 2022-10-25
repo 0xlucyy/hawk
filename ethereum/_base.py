@@ -13,8 +13,9 @@ from app import (
     app,
     # db
 )
-
 # import pdb; pdb.set_trace()
+
+
 class Web3_Base():
     # load_dotenv() # load environment from .env.
 
@@ -68,5 +69,6 @@ class Web3_Base():
     #     # import pdb; pdb.set_trace()
 
 
-test = Web3_Base()
-print('holding...')
+# test = Web3_Base()
+# import pdb; pdb.set_trace()
+# print('holding...')

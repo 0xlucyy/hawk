@@ -42,7 +42,6 @@ def populate_db():
                     f"Total failed: {len(failed)}" \
                     f" - {failed}")
 
-    
 
 def build_watchlist():
     '''
@@ -68,7 +67,9 @@ def clean_file(file: str = None):
         Creates a file without new lines, white spaces,
         lower cased, & alphanumerical ordered.
 
-        Run `clean FILE_NAME` in terminal.
+        Default location is `/watchlists/watch.txt.
+
+        Run `clean_file watch` in terminal.
     '''
     if file == None:
         file = sys.argv[1]
@@ -81,10 +82,11 @@ def clean_file(file: str = None):
     clean = []
     for word in words:
         word = word.replace('\n', "").lower()
+        word = word.replace(' ', "")
         clean.append(word)
         if tilde_identifier(word) == True:
             non_tilde_copy = remove_accents(word)
-            clean.append(non_tilde_copy.replace('\n', "").lower())
+            clean.append(non_tilde_copy.replace('\n', ""))
 
     app.logger.info(f"Cleaned ...")
     clean.sort()
@@ -124,22 +126,3 @@ def create_database():
 
     # #Closing the connection
     db_connection.close()
-
-
-# def init_db_with_domains(payload: dict = None):
-#     if payload == None:
-#         with open(f"{app.config['WATCH_LOCATION']}.json", 'r') as f:
-#             data = json.load(f)
-#     for domain_name, domain_data in data.items():
-#         dom = models.Domains(
-#             getattr(Domains, param) == request.args.get(param)
-#         )
-    
-#     import pdb; pdb.set_trace()
-#     testing(**data)
-
-# def testing(**kwargs):
-#     import pdb; pdb.set_trace()
-#     print('data')
-
-# init_db_with_domains()

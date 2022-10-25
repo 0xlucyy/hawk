@@ -68,7 +68,7 @@ class _Base(object):
 
 class Config(_Base):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
-    print(f"SQLALCHEMY_DATABASE_URI: {SQLALCHEMY_DATABASE_URI}")
+    # print(f"SQLALCHEMY_DATABASE_URI: {SQLALCHEMY_DATABASE_URI}")
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     TESTING = False
 
@@ -79,7 +79,7 @@ class TestConfiguration(_Base):
     DATABASE_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), DATABASE)
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
     # sqlite:////Users/ancientevil/0x/hawk/hawk.db
-    print(f"SQLALCHEMY_DATABASE_URI: {SQLALCHEMY_DATABASE_URI}")
+    # print(f"SQLALCHEMY_DATABASE_URI: {SQLALCHEMY_DATABASE_URI}")
     BCRYPT_LOG_ROUNDS = 4
     WTF_CSRF_ENABLED = False
     CSRF_ENABLED = False

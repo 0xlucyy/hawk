@@ -93,7 +93,6 @@ def post_to_db(data):
     try:
         db.session.add(data)
         db.session.commit()
-        app.logger.info(f"{data} inserted into db.")
     except IntegrityError as IE:
         db.session.rollback()
         app.logger.error(f"{data} not inserted into db.")

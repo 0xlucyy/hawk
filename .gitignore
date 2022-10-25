@@ -133,3 +133,4 @@ dmypy.json
 backend/tests/reports/*
 
 node_modules
+public/

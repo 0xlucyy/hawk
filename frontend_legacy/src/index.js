@@ -1,19 +1,3 @@
-// import React, {Component} from 'react';
-// import App from './App';
-
-
-// class Index extends Component {
-
-//   render() {
-//       return(
-//         <App />
-//       );
-//   }
-// }
-// export default Index;
-
-
-
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';

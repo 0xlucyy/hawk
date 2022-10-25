@@ -20,5 +20,5 @@ function hash(value) {
     }
 }
 
-// hash('tihdiascnisajdn98hfj')
+// hash('tutoría')
 data.forEach(hash);

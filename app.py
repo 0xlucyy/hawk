@@ -2,10 +2,12 @@ from config import Config, TestConfiguration, _Base, set_logger
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask import Flask
-from backend.utils.encoder import *
+from backend.utils.encoder import JSONEncoder
 from logging.config import dictConfig
+# import pdb; pdb.set_trace()
 
 
+# Set logging conditions.
 dictConfig(set_logger())
 
 # Define Flask Application.
@@ -14,6 +16,9 @@ app = Flask(
     template_folder='frontend/templates',
     static_url_path='/frontend/static',
     static_folder = "frontend/static"
+    # template_folder='frontend/templates',
+    # static_url_path='/frontend/static',
+    # static_folder = "frontend/static"
 )
 cors = CORS(app)
 
@@ -25,18 +30,9 @@ else:
     app.logger.info("Running Test Configs")
     app.config.from_object(TestConfiguration)
 
-# Custom JSON Encoder
-app.json_provider_class = JSONEncoder
-
 # Configure DB
 db = SQLAlchemy(app)
 
-# # Route Imports
-# from backend.routes.api import *
-# from backend.routes.render import *
-
-# # Model Imports
-# from backend.models.models import *
 
 if __name__ == '__main__':
     # Route Imports
@@ -47,5 +43,10 @@ if __name__ == '__main__':
     from backend.models.models import *
     # import pdb; pdb.set_trace()
 
+    # Create all tables.
     db.create_all()
+    # Custom JSON Encoder.
+    app.json_encoder = JSONEncoder
+    # app.json_provider_class = JSONEncoder 
+    # app.json = JSONEncoder
     app.run(debug=True)

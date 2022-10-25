@@ -11,6 +11,7 @@ def log_error(error=None):
         "error_reason": error.msg,
         "status_code": error.status_code,
         "traceback": traceback.format_exc(),
+        'content-type': 'application/json'
     })
 
 class Base(Exception):
