@@ -34,6 +34,7 @@ export default class Home extends Component {
           error: true,
           errorMessage: ''
         });
+        console.log(`activeItem: ${this.state.activeItem}`);
         // console.log(`Days: ${this.state.days}`);
         // console.log(`payload: ${JSON.stringify(this.state.payload)}`);
         // console.log(`error message: ${this.state.errorMessage}`);
@@ -66,19 +67,18 @@ export default class Home extends Component {
     
     < div style = {{margin: 100}}>
     <Container>
-        <Card.Group stackable itemsPerRow={3}>
         <div>
+        <Card.Group itemsPerRow="4" textAlign="center" className='domains'>
             {this.state.payload == null ? (<div>Load data...</div>) : 
             (
                 this.state.payload.expiring_domains.map(domain => 
-                // console.log(`WORKING?: ${JSON.stringify(domain)}`)
-                <Deck payload={domain}/>
+                    // console.log(`WORKING?: ${JSON.stringify(domain)}`)
+                    <Deck payload={domain}/>
                 )
-
-            ) 
+            )
             }
-        </div>
         </Card.Group>
+        </div>
     </Container>
     </div>
     </div>

@@ -1,10 +1,10 @@
 import React from 'react'
-import { Button, Card, Image } from 'semantic-ui-react'
+import { Button, Card, Image, Progress } from 'semantic-ui-react'
 
 
 function Deck(payload) {
     return (
-    <div id="deck">
+    // <div id="deck">
     <Card>
         {/* {console.log(`Deck payload: ${JSON.stringify(payload.payload)}`)} */}
         <Card.Content>
@@ -31,8 +31,9 @@ function Deck(payload) {
             </Button>
             </div>
         </Card.Content>
+        <Progress percent={11} />
     </Card>
-    </div>
+    // {/* </div> */}
     )
   }
 
