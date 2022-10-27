@@ -4,7 +4,7 @@ import { Button, Card, Image } from 'semantic-ui-react'
 
 function Deck(payload) {
     return (
-    <div>
+    <div id="deck">
     <Card>
         {/* {console.log(`Deck payload: ${JSON.stringify(payload.payload)}`)} */}
         <Card.Content>
@@ -13,7 +13,7 @@ function Deck(payload) {
                 size='mini'
                 // src='../../public/favicon.ico'
                 // src='./logo512.png'
-                src='./public/logo512.png'
+                // src='./public/logo512.png'
             />
             <Card.Header>{payload.payload.name}</Card.Header>
             <Card.Meta>Meta</Card.Meta>
