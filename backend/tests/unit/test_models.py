@@ -1,3 +1,4 @@
+import json
 from datetime import datetime, timedelta
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -7,6 +8,7 @@ from backend.models.models import Markets as markets
 from backend.models.models import Orders as orders
 from config import TestConfiguration
 from backend.utils.utils import stringify
+from dateutil.relativedelta import relativedelta
 # import pdb; pdb.set_trace()
 
 
@@ -62,23 +64,19 @@ class TestModels():
         self.SESSION.add(domain_3)
         self.SESSION.add(domain_4)
         self.SESSION.commit()
-        
-        # Add 4 markets
-        market_1 = markets(name = 'looksrare')
-        market_2 = markets(name = 'opensea')
-        market_3 = markets(name = 'x2y2')
-        market_4 = markets(name = 'ensvision')
 
-        self.SESSION.add(market_1)
-        self.SESSION.add(market_2)
-        self.SESSION.add(market_3)
-        self.SESSION.add(market_4)
-        self.SESSION.commit()
+        with open(f"backend/utils/markets.json", 'r', encoding='utf8') as outfile:
+            payload = json.load(outfile)
+            for market, market_metadata in payload.items():
+                new_market = markets(**market_metadata)
+                self.SESSION.add(new_market)
+                self.SESSION.commit()
+
 
         # Add 4 orders
-        order_1 = orders(market_id = 1, domain_id = 1,
+        order_1 = orders(market_id = 2, domain_id = 1,
                          order = stringify({'status': 'VALID', 'expiration': 8127638921737, 'listings': {'amount': 1, 'amount': .67}, 'bids': {}}))
-        order_2 = orders(market_id = 1, domain_id = 2,
+        order_2 = orders(market_id = 2, domain_id = 2,
                          order = stringify({'status': 'VALID', 'expiration': 8127638921738, 'listings': {'amount': .95}, 'bids': {'amount': .55}}))
         order_3 = orders(market_id = 3, domain_id = 2,
                          order = stringify({'status': 'VALID', 'expiration': 8127638921769, 'listings': {'amount': .9}, 'bids': {'amount': .6}}))
@@ -95,11 +93,14 @@ class TestModels():
         self.SESSION.remove()
         domains.metadata.drop_all(bind=self.ENGINE)
 
+
     def test_new_domain(self):
         """
         Ensure that a new domain can be declared properly.
         """
         time = datetime.now()
+        expected_grace = time + relativedelta(days=self.APP.config['ENS_GRACE_PERIOD'])
+        expected_auction = expected_grace + relativedelta(days=self.APP.config['ENS_AUCTION_PERIOD'])
 
         domain = domains(
             name = 'R2-D2-f2',
@@ -111,10 +112,15 @@ class TestModels():
 
         assert domain.name == 'r2-d2-f2'
         assert domain.owner == '0xcF1A4C3bE75D8E4AD112755F442433B860249C17'
-        assert domain.expiration == datetime.strptime(time.strftime(self.APP.config['DATETIME_STR_FORMAT']), self.APP.config['DATETIME_STR_FORMAT'])
-        assert domain.expiration.strftime(self.APP.config['DATETIME_STR_FORMAT']) == time.strftime(self.APP.config['DATETIME_STR_FORMAT'])
         assert domain.hash == '298437592837598236758'
         assert domain.available == True
+
+        assert domain.expiration == datetime.strptime(time.strftime(self.APP.config['DATETIME_STR_FORMAT']), self.APP.config['DATETIME_STR_FORMAT'])
+        assert domain.expiration.strftime(self.APP.config['DATETIME_STR_FORMAT']) == time.strftime(self.APP.config['DATETIME_STR_FORMAT'])
+        assert domain.grace == datetime.strptime(expected_grace.strftime(self.APP.config['DATETIME_STR_FORMAT']), self.APP.config['DATETIME_STR_FORMAT'])
+        assert domain.grace.strftime(self.APP.config['DATETIME_STR_FORMAT']) == expected_grace.strftime(self.APP.config['DATETIME_STR_FORMAT'])
+        assert domain.auction == datetime.strptime(expected_auction.strftime(self.APP.config['DATETIME_STR_FORMAT']), self.APP.config['DATETIME_STR_FORMAT'])
+        assert domain.auction.strftime(self.APP.config['DATETIME_STR_FORMAT']) == expected_auction.strftime(self.APP.config['DATETIME_STR_FORMAT'])
 
 
     def test_domain_exists(self):
@@ -132,6 +138,7 @@ class TestModels():
         assert actual.hash == '114360299276003378370989183678775394162571842735904725917593374563870378194270'
         assert actual.owner == '0x770c13284eB073F07d7c88fb787c319d533F785A'
 
+
     def test_domain_exists_returns_false(self):
         """
         Ensures that a domain that does not exists in db
@@ -143,6 +150,7 @@ class TestModels():
         actual = domains.domain_exists('DOES NOT EXISTS IN DB')
 
         assert actual == expected
+
 
     def test_expiring(self):
         """
@@ -162,6 +170,7 @@ class TestModels():
         assert actual[1].owner == '0x6b558C075Dce25A9daA5Fa2045a6b302aCb80308'
         assert actual[0].expiration < actual[1].expiration
 
+
     def test_expiring_in_0_days(self):
         """
         Zero domains expire in 0 days.
@@ -174,7 +183,8 @@ class TestModels():
         assert str(actual) == expected
         assert len(actual) == 0
 
-    def test_domains_by_expiration_asc(self):
+
+    def test_all_expiring(self):
         """
         Ensure all domains are returned by expiration in
         called order.
@@ -182,29 +192,31 @@ class TestModels():
         expected = '[Domain 1: r2-d2, Domain 2: tiger, Domain 3: ring, Domain 4: water]'
 
         # Tested function
-        actual = domains.domains_by_expiration(order='asc')
+        actual = domains.all_expiring(order='asc')
 
         assert str(actual) == expected
         assert len(actual) == 4
         assert actual[0].expiration <= actual[1].expiration <= actual[2].expiration <= actual[3].expiration
 
+
     def test_markets_available(self):
         """
         Ensure all markets are returned correctly.
         """
-        expected = '[Market 1: looksrare, Market 2: opensea, Market 3: x2y2, Market 4: ensvision]'
+        expected = '[Market 1: ensvision, Market 2: looksrare, Market 3: opensea, Market 4: x2y2, Market 5: rarible, Market 6: reservoirmarket, Market 7: etherscan]'
         
         # Tested function
         actual = markets.query.all()
 
         assert str(actual) == expected
-        assert len(actual) == 4
+        assert len(actual) == 7
+
 
     def test_market_table(self):
         """
         Testing `markets` table relationships.
         """
-        expected = 'Market 1: looksrare'
+        expected = 'Market 2: looksrare'
         expected_name = 'looksrare'
         expected_orders = '[Order 1 - Domain: 1, Order 2 - Domain: 2]'
         expected_order_1 = '{"status": "VALID", "expiration": 8127638921737, "listings": {"amount": 0.67}, "bids": {}}'
@@ -213,7 +225,7 @@ class TestModels():
         exppected_domain_1_name = 'r2-d2'
         exppected_domain_2 = 2 # tiger
         exppected_domain_2_name = 'tiger'
-        exppected_market_id = 1 # looksrare
+        exppected_market_id = 2 # looksrare
         
         # Tested function
         actual = markets.get_market_orders(name='looksrare')
@@ -240,14 +252,11 @@ class TestModels():
         expected_order_1 = '{"status": "VALID", "expiration": 8127638921738, "listings": {"amount": 0.95}, "bids": {"amount": 0.55}}'
         expected_order_2 = '{"status": "VALID", "expiration": 8127638921769, "listings": {"amount": 0.9}, "bids": {"amount": 0.6}}'
         order_market_name_1 = 'looksrare'
-        order_market_name_2 = 'x2y2'
-        order_domain_name = 'tiger' # Getting orders by domain.
+        order_market_name_2 = 'opensea'
+        order_domain_name = 'tiger'
 
         # Tested function
-        # actual = orders.get_orders(domain_id = 2)
         actual = orders.get_order_by_hash('25761638305059930963366570876944863725087829198157532760805779175900254165511')
-
-        print('pass')
 
         assert str(actual) == expected
         assert len(actual) == 2

@@ -34,35 +34,26 @@ class _Base(object):
     DOMAIN_WATCH_FOLDER = 'watchlists'
     WATCH_LOCATION = f'{DOMAIN_WATCH_FOLDER}/watch_clean'
     DATETIME_STR_FORMAT = '%Y-%m-%d %H:%M:%S'
+    ENS_GRACE_PERIOD = 90 # days
+    ENS_AUCTION_PERIOD = 21 # days
     # ENS Basic Registrar contract ownerOf reverts
     # when domain is in auction/grace.
-    ENS_GRACE_AUCTION = 'Domain in grace or auction.'
+    DOMAIN_IN_AUCTION_GRACE = 'AUCTION_GRACE'
+    DOMAIN_IS_FREE = 'FREE'
     # Order model formatter
     ORDERS = ''
 
     # Deployments.
     ETH_REGISTRAR_CONTROLLER_MAINNET = Web3.toChecksumAddress("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5")
     ENS_BASE_REGISTRAR_MAINNET = Web3.toChecksumAddress("0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85")
-    DYSTOPUNKS_V2_MAINNET = Web3.toChecksumAddress("0xbEA8123277142dE42571f1fAc045225a1D347977")
+    # DYSTOPUNKS_V2_MAINNET = Web3.toChecksumAddress("0xbEA8123277142dE42571f1fAc045225a1D347977")
 
-    LOOKSRARE_BASE_URL = os.environ.get("LOOKSRARE_BASE_URL")
     LOOKSRARE_API_KEY = os.environ.get("LOOKSRARE_API_KEY")
-    LOOKSRARE_GET_EVENTS = os.environ.get("LOOKSRARE_GET_EVENTS")
-    ENSVISION_INFO = "https://www.ens.vision/name/{domain}"
 
     # Logging.
-    LOG_KEYS = [
-        'asctime',
-        'timestamp',
-        'filename',
-        'funcName',
-        'lineno',
-        'level',
-        'message'
-    ]
-    LOGGING_DEBUG_LOCATION = os.path.dirname(__file__) + '/DEBUG.log'
+    LOGGING_DEBUG_LOCATION = os.path.dirname(__file__) + '/debug.log'
     LOGGING_FORMAT = '[%(levelname)s] - %(name)s - %(asctime)s - %(funcName)s::%(lineno)d - %(message)s'
-    LOGGING_LEVEL = logging.INFO
+    LOGGING_LEVEL =  logging.ERROR
     SQLALCHEMY_ECHO = False
 
 
@@ -89,7 +80,7 @@ class TestConfiguration(_Base):
 def set_logger():
     logging_config = {
         'version': 1,
-        'disable_existing_loggers': True,
+        'disable_existing_loggers': False,
         'formatters': {
             'default': {
                 'format': _Base.LOGGING_FORMAT
@@ -99,12 +90,14 @@ def set_logger():
             'default': { 
                 'class': 'logging.StreamHandler',
                 'stream': 'ext://sys.stdout',  # Default is stderr
-                'formatter': 'default'
+                'formatter': 'default',
+                'level'    : 'INFO'
             },            
             'wsgi': {
                 'class': 'logging.StreamHandler',
                 'stream': 'ext://flask.logging.wsgi_errors_stream',
-                'formatter': 'default'
+                'formatter': 'default',
+                'level'    : 'ERROR'
             },
             'DEBUG_FILE': {
                 'class' : 'logging.FileHandler',

@@ -24,6 +24,11 @@ class App extends React.Component {
     loading: false,
     timeout: 30,
     days: 0,
+
+    // Markets
+    // looksrare: `https://www.ens.vision/name/${DOMAIN_NAME}`,
+
+    // Error
     error: false,
     errorMessage: '',
     hidden: true,
@@ -51,9 +56,23 @@ class App extends React.Component {
       <Segment inverted vertical style={{ margin: '20em 0em 0em', padding: '5em 0em' }}>
         <Container className="App" id="App" textAlign="center">
           <Layout>
+
+            {/* <Input 
+              placeholder="activeItem"
+              onChange={ (event) => {
+                  this.setState({ activeItem: event.target.value });
+              }}
+              >
+            </Input> */}
+            {/* <Button onClick={this.dismissError}
+              className="icon"
+              labelPosition='left'>
+              dismissError!
+            </Button> */}
+
             <Grid divided inverted stackable>
               <Grid.Column width={4}>
-                <Header handler={this.handleActiveItem}/>
+                <Header handler={this.handleActiveItem} active={this.state.activeItem}/>
               </Grid.Column>
               <Grid.Column width={12}>
                 {
@@ -74,15 +93,3 @@ class App extends React.Component {
 export default App;
 
 
-{/* <Input 
-placeholder="activeItem"
-onChange={ (event) => {
-    this.setState({ activeItem: event.target.value });
-}}
->
-</Input>
-<Button onClick={this.dismissError}
-className="icon"
-labelPosition='left'>
-dismissError!
-</Button> */}

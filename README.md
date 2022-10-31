@@ -16,14 +16,15 @@ domain watcher
 - Run `python app.py` to start server on port 5000.
 - Run `curl http://127.0.0.1:5000/api/v1/health` to check server status.
 
-## Watchlist Workflow
+## Getting started
 - Copy/Paste domain names into `watchlists/watch.txt`, one name per line.
 - Run `clean_file watch` to clean domain names; creates `watchlists/watch_clean.txt`.
 - Run `node ethereum/normalize.js >> watchlists/watch_clean.csv`; creates `watchlists/watch_clean.csv`.
 - Run `build_watchlist` to grab metadata of domain names by querying the Ethereum network; creates `watchlists/watch_clean.json`.
 - Run `create_database` to create `hawk` mysql database.
 - Run `python app.py` to create database tables. `TODO` Make this a script function + combine with create_database.
-- Run `populate_db` to populate database with `watchlists/watch_clean.json` data.
+- Run `populate_domains` to populate database with `watchlists/watch_clean.json` data.
+- Run `populate_markets` to populate database with `backend/utils/markets.json` data.
 
 ## Upgrade MySQL Database
 - Modify any table in `backend/models/*.py` file.

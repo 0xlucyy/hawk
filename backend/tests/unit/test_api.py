@@ -25,10 +25,11 @@ class TestAPIs():
         Ensure health endpoint happy path works as intended.
         """
         expected_status_code = 200
-        expected_text = '{"live":true,"status_code":200}\n'
+        expected_text = '{\n  "live": true,\n  "status_code": 200\n}\n'
 
         # Tested API
         resp = self.CLIENT.get(f'{TestConfiguration.API_URI}/health')
+
         assert resp.status_code == expected_status_code
         assert resp.text == expected_text
 
@@ -48,6 +49,7 @@ class TestAPIs():
 
         actual_json = resp.json
         actual_json.pop('traceback', None)
+        actual_json.pop('content-type', None)
         assert actual_json == expected_json
 
     @mock.patch('backend.routes.api.is_db_live', side_effect = DatabaseError)
@@ -67,4 +69,5 @@ class TestAPIs():
 
         actual_json = resp.json
         actual_json.pop('traceback', None)
+        actual_json.pop('content-type', None)
         assert actual_json == expected_json

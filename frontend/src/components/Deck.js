@@ -9,11 +9,8 @@ function Deck(payload) {
         {/* {console.log(`Deck payload: ${JSON.stringify(payload.payload)}`)} */}
         <Card.Content>
             <Image
-                floated='right'
-                size='mini'
-                // src='../../public/favicon.ico'
-                // src='./logo512.png'
-                // src='./public/logo512.png'
+                centered
+                src='./hawk.png'
             />
             <Card.Header>{payload.payload.name}</Card.Header>
             <Card.Meta>Meta</Card.Meta>

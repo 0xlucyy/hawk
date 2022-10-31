@@ -45,9 +45,8 @@ def health():
             # 'content-type': 'application/json'
         })
 
-
-@app.route(f'{app.config["API_URI"]}/expiring', methods=['GET'])
-def get_expiring():
+@app.route(f'{app.config["API_URI"]}/expiringDomains', methods=['GET'])
+def expiringDomains():
     days = request.args.get('days')
 
     '''  '''
@@ -63,15 +62,66 @@ def get_expiring():
         })
     else:
         return jsonify({
-            'total_expiring': len(expiring),
+            'total': len(expiring),
             'expiring_within': days,
-            'expiring_domains': [domain.__dict__ for domain in expiring],
+            'domains': [domain.__dict__ for domain in expiring],
             'status_code': 200
         })
 
-@app.route('/test', methods=['GET'])
-def get_Test():
-        return jsonify({'working': False})
+@app.route(f'{app.config["API_URI"]}/allDomains', methods=['GET'])
+def allDomains():
+    _order = request.args.get('order')
+
+    if _order != 'asc' and _order != 'desc':
+        return jsonify({
+            'success': False,
+            'status_code': 400,
+            'err': 'Order must be `asc` or `desc`.'
+        })
+    try:
+        app.logger.info(f'Expiring in {_order} order.')
+        all = Domains.all_domains(order=_order)
+    except(Exception) as e:
+        app.logger.error(f'Error: {e}')
+        return log_error(error=e)
+    else:
+        return jsonify({
+            'total': len(all),
+            'order': _order,
+            'domains': [domain.__dict__ for domain in all],
+            'status_code': 200
+        })
+
+
+@app.route(f'{app.config["API_URI"]}/expiredDomains', methods=['GET'])
+def expiredDomains():
+    try:
+        # app.logger.info(f'Expiring in {_order} order.')
+        all = Domains.expired()
+    except(Exception) as e:
+        app.logger.error(f'Error: {e}')
+        return log_error(error=e)
+    else:
+        return jsonify({
+            'total': len(all),
+            'domains': [domain.__dict__ for domain in all],
+            'status_code': 200
+        })
+
+
+@app.route(f'{app.config["API_URI"]}/liveAuction', methods=['GET'])
+def liveAuction():
+    try:
+        all = Domains.auctions()
+    except(Exception) as e:
+        app.logger.error(f'Error: {e}')
+        return log_error(error=e)
+    else:
+        return jsonify({
+            'total': len(all),
+            'domains': [domain.__dict__ for domain in all],
+            'status_code': 200
+        })
 
 # for param in request.args:
 #     if param != 'type' and param != 'page' and param !='search':

@@ -18,7 +18,32 @@ from backend.utils.exceptions import (
 # import pdb; pdb.set_trace()
 
 
-def populate_db():
+def populate_markets():
+    with open(f"backend/utils/markets.json", 'r', encoding='utf8') as outfile:
+        payload = json.load(outfile)
+
+    failed = []
+    index = 0
+    for market, market_metadata in payload.items():
+        try:
+            new_market = models.Markets(**market_metadata)
+        except DomainModelDataTypeError as DMDTE:
+            app.logger.error(DMDTE)
+            failed.append(market)
+            continue
+        try:
+            post_to_db(new_market)
+        except IntegrityError as IE: # DB duplicate collision
+            app.logger.error(IE)
+            failed.append(market)
+            continue
+        index += 1
+    app.logger.info(f"Total success: {index} - " \
+                    f"Total failed: {len(failed)}" \
+                    f" - {failed}")
+
+
+def populate_domains():
     with open(f"{app.config['WATCH_LOCATION']}.json", 'r', encoding='utf8') as outfile:
         payload = json.load(outfile)
     

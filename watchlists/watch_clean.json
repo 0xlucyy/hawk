@@ -18,7 +18,7 @@
         "expiration": "2022-10-16 03:14:26",
         "hash": "64860466647662916477513026785004120348977649384973552053488448466444003406772",
         "name": "50cent",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "aaron": {
         "available": false,
@@ -102,7 +102,7 @@
         "expiration": "null",
         "hash": "6562957251293523797396595801012543336791700008854188166903754560200316619702",
         "name": "acorazado",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "acuario": {
         "available": false,
@@ -137,7 +137,7 @@
         "expiration": "2022-08-26 18:58:16",
         "hash": "115782849674089141455666370945623450820040980706692895873480842921750297998998",
         "name": "adan",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "adrian": {
         "available": false,
@@ -172,7 +172,7 @@
         "expiration": "null",
         "hash": "38512542049019165364974121524424178221744881207031935537807269539286396123104",
         "name": "aerouant",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "afganistan": {
         "available": false,
@@ -277,7 +277,7 @@
         "expiration": "null",
         "hash": "52996765674207187441584337002334014311711600764005542165173192716976832831678",
         "name": "ah-teen",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "ahorros": {
         "available": false,
@@ -326,28 +326,28 @@
         "expiration": "2022-10-23 06:26:39",
         "hash": "67244768563334193406888040164327380656535439292934685859590781035177931455872",
         "name": "alan",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "alas": {
         "available": false,
         "expiration": "2022-09-04 12:25:07",
         "hash": "30680654881717407412238503893834471180482696832541778793971432829474239037010",
         "name": "alas",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "alce": {
         "available": true,
-        "expiration": "null",
+        "expiration": "2022-07-17 20:03:23",
         "hash": "228842047692675625851646464594555598043172857346889884749419484525048940904",
         "name": "alce",
-        "owner": "not owned"
+        "owner": "AUCTION_GRACE"
     },
     "aldo": {
         "available": false,
         "expiration": "2022-08-06 06:45:18",
         "hash": "11032947797953997319527353240821013700428715139594563414307156971641175363500",
         "name": "aldo",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "alegre": {
         "available": false,
@@ -809,7 +809,7 @@
         "expiration": "2022-08-10 02:20:32",
         "hash": "39168556792352123001130099672411753044474963666553016124036375190726971416626",
         "name": "apasionado",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "apophis": {
         "available": false,
@@ -924,11 +924,11 @@
         "owner": "0xa7383918cbd43a73d2391A09fdd429b832b2E2F6"
     },
     "arlen": {
-        "available": false,
+        "available": true,
         "expiration": "2022-07-31 03:17:08",
         "hash": "25830013854087909454800584717564866585991518637273874853454315340906348589905",
         "name": "arlen",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "arma": {
         "available": false,
@@ -963,7 +963,7 @@
         "expiration": "null",
         "hash": "94329502183093846027608665322381748423904042943735942057022827098685923090831",
         "name": "arpia",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "arpía": {
         "available": false,
@@ -1075,7 +1075,7 @@
         "expiration": "2022-10-15 10:20:46",
         "hash": "71596480599645853445774363712653850178954947835046478586272696939532365339122",
         "name": "asignatura",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "ass": {
         "available": false,
@@ -1111,6 +1111,27 @@
         "hash": "104965971337548925862419695487415803821409911430257240114059255420147220098792",
         "name": "astrologo",
         "owner": "0x02Fa71cBb4B1b990A475deb370d0Aa42aA43503b"
+    },
+    "astronaut": {
+        "available": false,
+        "expiration": "2023-05-04 10:38:24",
+        "hash": "34848589741331515396300108341828749191987925752074869346543938103312722466743",
+        "name": "astronaut",
+        "owner": "0xe55743758Af0784bAf43d8EA3840924163271d0A"
+    },
+    "astronauta": {
+        "available": true,
+        "expiration": "2022-07-24 17:49:09",
+        "hash": "47621308126873322194495478667159925371368483645181294596725837802983239847748",
+        "name": "astronauta",
+        "owner": "AUCTION_GRACE"
+    },
+    "astronauto": {
+        "available": true,
+        "expiration": "null",
+        "hash": "34537670287087055418610749659796212321242457233507984625532818312592282016594",
+        "name": "astronauto",
+        "owner": "FREE"
     },
     "astróloga": {
         "available": false,
@@ -1320,21 +1341,21 @@
         "expiration": "null",
         "hash": "1218718994592978232788312272539218689449598911370588348114218875849328146490",
         "name": "azucarnegra",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "azul": {
-        "available": true,
-        "expiration": "null",
+        "available": false,
+        "expiration": "2023-10-30 15:06:59",
         "hash": "18850095312274025269965405932658388476984087061175114685368917532237749636969",
         "name": "azul",
-        "owner": "not owned"
+        "owner": "0xBe6Af028a028dd17eC63817C47C1786c86f33C24"
     },
     "azúcarnegra": {
         "available": true,
         "expiration": "null",
         "hash": "56631420915261369741632788036650641651806979459623644786918775004958747902568",
         "name": "azúcarnegra",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "bachoco": {
         "available": false,
@@ -1772,10 +1793,10 @@
     },
     "blueyeswhitedragon": {
         "available": true,
-        "expiration": "null",
+        "expiration": "2022-06-14 09:45:24",
         "hash": "82989958702621784836658751869437868445798803103039912155298912407231167777315",
         "name": "blueyeswhitedragon",
-        "owner": "not owned"
+        "owner": "AUCTION_GRACE"
     },
     "boar": {
         "available": false,
@@ -1817,7 +1838,7 @@
         "expiration": "2022-08-06 21:23:17",
         "hash": "60244191724998652101268280723975202212437098438531117342121721240743850434676",
         "name": "bogeyman",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "bogota": {
         "available": false,
@@ -1873,7 +1894,7 @@
         "expiration": "null",
         "hash": "46460414156324038949788893439315433566970014850129172458702088749151954206138",
         "name": "bombardero",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "boogeyman": {
         "available": false,
@@ -2062,7 +2083,7 @@
         "expiration": "null",
         "hash": "30965759738579426507578344917006430649564046934536730987229047482737175943856",
         "name": "bíblico",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "cabo": {
         "available": false,
@@ -2188,7 +2209,7 @@
         "expiration": "null",
         "hash": "88723604424830775066183798700194742144874049735556148266465304993053899044783",
         "name": "campanas",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "campaña": {
         "available": false,
@@ -2202,7 +2223,7 @@
         "expiration": "null",
         "hash": "99418854699339353930500132948876954303817560184439096306921859487936061237650",
         "name": "campañas",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "canada": {
         "available": false,
@@ -2307,7 +2328,7 @@
         "expiration": "null",
         "hash": "50723543462454652614973462684060045511988638038839239826571545696906321088032",
         "name": "carinoso",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "cariñoso": {
         "available": false,
@@ -2475,7 +2496,7 @@
         "expiration": "null",
         "hash": "55678552641279413907042945120799591994271354887160581642872875736460253838343",
         "name": "centauros",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "centaurs": {
         "available": false,
@@ -2496,14 +2517,14 @@
         "expiration": "2022-09-13 15:08:09",
         "hash": "27545171120651927185636588989070089698525190777680407427839394814211464535346",
         "name": "centroafricana",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "centroafricano": {
         "available": true,
         "expiration": "null",
         "hash": "13748779244714052264428149141920977035374575960243945678812555103024826549777",
         "name": "centroafricano",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "centroamerica": {
         "available": false,
@@ -2524,7 +2545,7 @@
         "expiration": "2022-08-22 20:24:35",
         "hash": "112092271487736157594277761561164808666169481638243642829587996936877331293951",
         "name": "cerbero",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "cerberus": {
         "available": false,
@@ -2615,7 +2636,7 @@
         "expiration": "null",
         "hash": "16186591880135502926741252500869450808274930019460116928001254688043182565468",
         "name": "chequear",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "chicagotribune": {
         "available": false,
@@ -2636,7 +2657,7 @@
         "expiration": "null",
         "hash": "99617900249793964291988934528839683144309344450539584984940890994429302995392",
         "name": "chicomoztoc",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "chido": {
         "available": false,
@@ -2860,14 +2881,14 @@
         "expiration": "2022-10-16 18:27:18",
         "hash": "104589832383420351263904356505772901463677157271879236512562015297454350491030",
         "name": "ciudaddepanama",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "ciudaddepanamá": {
         "available": true,
         "expiration": "null",
         "hash": "6747951813950443656205640082925765985349559897574927008316941849812162851465",
         "name": "ciudaddepanamá",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "civil": {
         "available": false,
@@ -3014,7 +3035,7 @@
         "expiration": "null",
         "hash": "33668716073377100764242711987991405761904354185681239663770989721474294181738",
         "name": "cold-shoulder",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "colega": {
         "available": false,
@@ -3025,10 +3046,10 @@
     },
     "colibra": {
         "available": true,
-        "expiration": "null",
+        "expiration": "2022-06-18 21:37:28",
         "hash": "38757590951663847204795489425014501074852655403924052012104572680627071849328",
         "name": "colibra",
-        "owner": "not owned"
+        "owner": "AUCTION_GRACE"
     },
     "collection": {
         "available": false,
@@ -3077,7 +3098,7 @@
         "expiration": "null",
         "hash": "24825182849400603094464675314961654343274943510373214277136790961705906069209",
         "name": "combatir",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "comedycentral": {
         "available": false,
@@ -3154,7 +3175,7 @@
         "expiration": "2022-10-06 19:29:12",
         "hash": "106536563033471217666544651442543111932411387774611303744184092180809572978798",
         "name": "compasivo",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "compra": {
         "available": false,
@@ -3182,7 +3203,7 @@
         "expiration": "null",
         "hash": "115324659702671521412014972361546269692597640116389254692598451669976814862459",
         "name": "comprensivo",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "concealed-weapons": {
         "available": false,
@@ -3280,7 +3301,7 @@
         "expiration": "null",
         "hash": "107732430976324332930454966121546786881603763804214900195918574248869901297824",
         "name": "cooking-oil",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "coon": {
         "available": false,
@@ -3373,6 +3394,27 @@
         "name": "cosine",
         "owner": "0x30321484937c8a5595a05FaE7a698e2A2Fc3e510"
     },
+    "cosmonaut": {
+        "available": false,
+        "expiration": "2024-09-22 11:44:16",
+        "hash": "70258628058736364004752220431118317714955499832047138404885369598977398626454",
+        "name": "cosmonaut",
+        "owner": "0xD2Ca7167897c73120900A2c4d4CE708D36817fa6"
+    },
+    "cosmonauta​": {
+        "available": true,
+        "expiration": "null",
+        "hash": "68940980741728050503238154928909058494507366667544555225591195246601646598323",
+        "name": "cosmonauta​",
+        "owner": "FREE"
+    },
+    "cosmonauto": {
+        "available": true,
+        "expiration": "null",
+        "hash": "25375921770688723851265097175661168751032336097097281530252445112623534068351",
+        "name": "cosmonauto",
+        "owner": "FREE"
+    },
     "cot": {
         "available": false,
         "expiration": "2023-09-03 18:24:43",
@@ -3392,7 +3434,7 @@
         "expiration": "2024-10-04 18:08:11",
         "hash": "74205907321043318911736941135992917849660628339996120918473161895646932993426",
         "name": "courtside",
-        "owner": "0x8E74351b6C91e729395560438f6c85a16dD4cce4"
+        "owner": "0x8E551ee9Efd11C69Bc21Bff1F35EE7b12ba1784e"
     },
     "creative": {
         "available": false,
@@ -3539,7 +3581,7 @@
         "expiration": "null",
         "hash": "67701893832855101262174246491028452337505612920285948103238292508645578626804",
         "name": "culhuacan",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "culo": {
         "available": false,
@@ -3571,7 +3613,7 @@
     },
     "curso": {
         "available": false,
-        "expiration": "2023-06-27 08:51:01",
+        "expiration": "2024-06-26 14:40:13",
         "hash": "53403909354691585154963955382914931138135688797248598665664906360496676793297",
         "name": "curso",
         "owner": "0xbB8bD7091721838C05c5CFa9235f64267e1c576b"
@@ -3721,7 +3763,7 @@
         "expiration": "null",
         "hash": "64843955119917405993570988938421960455174200205028989424032036668328346065273",
         "name": "darkforged",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "darwin": {
         "available": false,
@@ -3791,7 +3833,7 @@
         "expiration": "2022-08-17 07:28:29",
         "hash": "85239225934832190253113543399621156687926186045826321079955372171513658252629",
         "name": "debaucher",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "deceiver": {
         "available": false,
@@ -3889,14 +3931,14 @@
         "expiration": "null",
         "hash": "14533342602761628590415045621200845416113000989921307186423729634472847079127",
         "name": "demonionecrofago",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "demonionecrófago": {
         "available": true,
         "expiration": "null",
         "hash": "32646960779320098623662842184404203222329828561308248548841989314756880510014",
         "name": "demonionecrófago",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "derechoshumanos": {
         "available": false,
@@ -3910,14 +3952,14 @@
         "expiration": "null",
         "hash": "49340424115076479455187691775700446449874917446818154527592187761562018102570",
         "name": "derribar",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "desconfiado": {
         "available": true,
         "expiration": "null",
         "hash": "1182715966623204355792296940667659428157185026260878662807933813110515509963",
         "name": "desconfiado",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "designers": {
         "available": false,
@@ -3931,7 +3973,7 @@
         "expiration": "null",
         "hash": "55772492603152648604650578059029506570159494364586826441958925466474839468873",
         "name": "despoiler",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "destructor": {
         "available": false,
@@ -4050,7 +4092,7 @@
         "expiration": "2022-09-30 13:56:12",
         "hash": "29848374257349828985427966428207333040929161643330866055405697623349926032697",
         "name": "diez",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "dilong": {
         "available": false,
@@ -4134,7 +4176,7 @@
         "expiration": "2029-09-29 09:58:23",
         "hash": "10580553498686826405602218646247972452074303573117915303715629561688270720810",
         "name": "distro",
-        "owner": "0x8E74351b6C91e729395560438f6c85a16dD4cce4"
+        "owner": "0x08d3426160cE0b917B744199585d705097548BE3"
     },
     "distrust": {
         "available": false,
@@ -4232,14 +4274,14 @@
         "expiration": "null",
         "hash": "4140020424095553203497380642699454308515198717452041141071275448575590783345",
         "name": "draakki",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "drac": {
         "available": false,
         "expiration": "2022-08-20 18:39:43",
         "hash": "106664175338270209971497038951707575219976369467264084519129400650654145619864",
         "name": "drac",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "drache": {
         "available": false,
@@ -4330,7 +4372,7 @@
         "expiration": "null",
         "hash": "28898137676397472380235569708050841988996712221751567743988329792490832361565",
         "name": "dragoni",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "dragonking": {
         "available": false,
@@ -4351,7 +4393,7 @@
         "expiration": "null",
         "hash": "82382334070931688143891034630040770055454071032357761934458853917072522422478",
         "name": "dragua",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "dragun": {
         "available": false,
@@ -4372,21 +4414,21 @@
         "expiration": "null",
         "hash": "75659973552174236752032725501426283738878755325874161750060394708340609862161",
         "name": "draic",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "drakena": {
         "available": true,
         "expiration": "null",
         "hash": "78587559020501720419389119008416607108335717727508538111405819837992359347657",
         "name": "drakena",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "drakon": {
         "available": true,
-        "expiration": "null",
+        "expiration": "2022-07-23 14:34:56",
         "hash": "13765459356935401848285925233258131444946025321753548407171211503303585592767",
         "name": "drakon",
-        "owner": "not owned"
+        "owner": "AUCTION_GRACE"
     },
     "drakontas": {
         "available": false,
@@ -4463,7 +4505,7 @@
         "expiration": "null",
         "hash": "2582507896327404126171464013043763199820974692237622149811045515081730338206",
         "name": "druk",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "duende": {
         "available": false,
@@ -4477,7 +4519,7 @@
         "expiration": "null",
         "hash": "107594353497512634846783550846710007599988079989185263094621700550401778145697",
         "name": "duendecito",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "duendes": {
         "available": false,
@@ -4554,7 +4596,7 @@
         "expiration": "null",
         "hash": "71840144172723785044980639069121422601425273939762921202262448851816775180613",
         "name": "eaglewarrior",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "earth": {
         "available": false,
@@ -4593,10 +4635,10 @@
     },
     "edmundo": {
         "available": true,
-        "expiration": "null",
+        "expiration": "2022-07-22 14:12:01",
         "hash": "17927165873466545518293188262234096937884496827314793560203320651839357718435",
         "name": "edmundo",
-        "owner": "not owned"
+        "owner": "AUCTION_GRACE"
     },
     "eduardo": {
         "available": false,
@@ -4673,14 +4715,14 @@
         "expiration": "null",
         "hash": "80651592813944227753804560693205768479212304709361272199222174357985487568658",
         "name": "elguera",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "elgüera": {
         "available": true,
         "expiration": "null",
         "hash": "38567776400946993285991566809886015800293132355416442819686851402576782129031",
         "name": "elgüera",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "elias": {
         "available": false,
@@ -4813,7 +4855,7 @@
         "expiration": "null",
         "hash": "103022071927204203855809988654252048192484751074202513956654303526101283467551",
         "name": "energético",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "enero": {
         "available": false,
@@ -4859,10 +4901,10 @@
     },
     "equinsuocha": {
         "available": true,
-        "expiration": "null",
+        "expiration": "2022-06-14 16:13:14",
         "hash": "66719539692907219926524726116159457155453016081301651913682110272882437786588",
         "name": "equinsuocha",
-        "owner": "not owned"
+        "owner": "AUCTION_GRACE"
     },
     "eric": {
         "available": false,
@@ -4918,7 +4960,7 @@
         "expiration": "null",
         "hash": "22147924792331668464756478721156227552492459965954238684156151821367316510630",
         "name": "escoses",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "escosia": {
         "available": false,
@@ -4932,18 +4974,18 @@
         "expiration": "null",
         "hash": "61409374924318279112474574515579421601300506747169884069917913260013302719013",
         "name": "escosés",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "escuchame": {
         "available": true,
         "expiration": "null",
         "hash": "60476356762859812199356709312383038854245608063782394596801895665324705022651",
         "name": "escuchame",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "escuela": {
         "available": false,
-        "expiration": "2024-06-22 09:02:26",
+        "expiration": "2025-06-22 14:51:38",
         "hash": "65922186159784131936626210445059325872540540152686521408072011702524520456836",
         "name": "escuela",
         "owner": "0xbB8bD7091721838C05c5CFa9235f64267e1c576b"
@@ -5072,7 +5114,7 @@
         "expiration": "2022-09-24 00:45:21",
         "hash": "74932001463041037833902024396898654248561728930803360124540491255626202922701",
         "name": "estrella",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "etiopia": {
         "available": false,
@@ -5191,7 +5233,7 @@
         "expiration": "null",
         "hash": "97658914296274981330070855629049174409773506338421458681407497662794147359271",
         "name": "exportas",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "extasis": {
         "available": false,
@@ -5328,7 +5370,7 @@
     },
     "famosa": {
         "available": false,
-        "expiration": "2023-06-27 07:26:57",
+        "expiration": "2024-06-26 13:16:09",
         "hash": "31967000320104253733937225240516059679732236197481692323753223255441978399500",
         "name": "famosa",
         "owner": "0xbB8bD7091721838C05c5CFa9235f64267e1c576b"
@@ -5355,11 +5397,11 @@
         "owner": "0x4B450007057a0C3Cd0da74A54A0C0C293ca954C4"
     },
     "far-off": {
-        "available": false,
+        "available": true,
         "expiration": "2022-07-31 20:31:37",
         "hash": "90607481514102635422882135880919934389026662553601190417754742101433910783248",
         "name": "far-off",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "farlopa": {
         "available": false,
@@ -5415,7 +5457,7 @@
         "expiration": "null",
         "hash": "7646611716660334538825701831852592016284098116644350592773188624578114766698",
         "name": "faunos",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "fauns": {
         "available": false,
@@ -5492,7 +5534,7 @@
         "expiration": "null",
         "hash": "30761161699967751908087402839326563287637236794552705558594370244443908185924",
         "name": "ferocidad",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "feroz": {
         "available": false,
@@ -5506,7 +5548,7 @@
         "expiration": "null",
         "hash": "44000405617341939452344654747617259404690655375808756320164943317652863773321",
         "name": "fiereza",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "fierro": {
         "available": false,
@@ -5569,7 +5611,7 @@
         "expiration": "2022-10-27 00:02:23",
         "hash": "66380930654286483079192678025887488076636090559694707590125081590611131320975",
         "name": "finlandés",
-        "owner": "0x47417c04607445401d54b68E644eF76C67dbf0c1"
+        "owner": "AUCTION_GRACE"
     },
     "firestone": {
         "available": false,
@@ -5580,7 +5622,7 @@
     },
     "flamenco": {
         "available": false,
-        "expiration": "2025-03-02 08:51:24",
+        "expiration": "2026-03-02 14:40:36",
         "hash": "107575950769833550354382896355717505661082999107429264209399425701104246049750",
         "name": "flamenco",
         "owner": "0x26C8DA5e0AA7C9e539d0b869cc554e0d42d632C8"
@@ -5625,7 +5667,7 @@
         "expiration": "null",
         "hash": "5586610298261040270348171999570915796678015717936947697709007338130848168481",
         "name": "forcechoke",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "forecasting": {
         "available": false,
@@ -5688,7 +5730,7 @@
         "expiration": "null",
         "hash": "40322660218687726693583105187236031835039228115895957834195222977143797688022",
         "name": "francotiradora",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "francés": {
         "available": false,
@@ -5751,7 +5793,7 @@
         "expiration": "null",
         "hash": "92744445091274335601691896367786425612969776402740547307583429777568168963312",
         "name": "frostborn",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "fuckman": {
         "available": false,
@@ -6080,7 +6122,7 @@
         "expiration": "null",
         "hash": "92496757498121377581845642016070981561447138107480593184819065532578394579910",
         "name": "god-of-gods",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "god-of-war": {
         "available": false,
@@ -6283,7 +6325,7 @@
         "expiration": "null",
         "hash": "79896780187370462135143491630150434563919053169698555609861344104480306421934",
         "name": "guardacostas",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "guatemala": {
         "available": false,
@@ -6325,7 +6367,7 @@
         "expiration": "2022-09-12 05:18:09",
         "hash": "28532396051612075624256836208627030593940481419387602455182070726834292689515",
         "name": "guey",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "guillermo": {
         "available": false,
@@ -6367,7 +6409,7 @@
         "expiration": "null",
         "hash": "909944782840568137672081586012185809830115580035066348306270263603416013559",
         "name": "guthrum",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "géminis": {
         "available": false,
@@ -6388,7 +6430,7 @@
         "expiration": "2022-09-12 05:11:54",
         "hash": "80183123919453444816856136254298309611914818123259696549588524681325143632850",
         "name": "güey",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "hackernews": {
         "available": false,
@@ -6427,10 +6469,10 @@
     },
     "halfon": {
         "available": true,
-        "expiration": "null",
+        "expiration": "2022-06-14 23:40:13",
         "hash": "20587911754336920487360150150768709250585918859823993267296436136090330520118",
         "name": "halfon",
-        "owner": "not owned"
+        "owner": "AUCTION_GRACE"
     },
     "hamburguesa": {
         "available": false,
@@ -6465,7 +6507,7 @@
         "expiration": "null",
         "hash": "4817082560005909217213138209078638855067261210083242342569694148913521898804",
         "name": "haroldgodwinson",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "harpy": {
         "available": false,
@@ -6507,7 +6549,7 @@
         "expiration": "null",
         "hash": "5041977147527157997124313951592532020530331713518396087803837340899134314495",
         "name": "heavy-water",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "hector": {
         "available": false,
@@ -6591,7 +6633,7 @@
         "expiration": "2022-08-07 08:45:02",
         "hash": "47907653623962242279153897316913006522388446595890541794930184132190773709876",
         "name": "hernan",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "hernán": {
         "available": false,
@@ -6665,10 +6707,10 @@
     },
     "hierba": {
         "available": true,
-        "expiration": "null",
+        "expiration": "2022-07-19 22:39:23",
         "hash": "43273307142659105600903549593297681659205114449280678035136018918836131630690",
         "name": "hierba",
-        "owner": "not owned"
+        "owner": "AUCTION_GRACE"
     },
     "high-quality": {
         "available": false,
@@ -6815,7 +6857,7 @@
         "expiration": "null",
         "hash": "85381066642159978646838763237089799950796617640752733495427766797649077014736",
         "name": "hombre-lobo",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "hombrelobo": {
         "available": false,
@@ -6892,7 +6934,7 @@
         "expiration": "null",
         "hash": "95444766683227284401914963131338590846521254540161850990423448847178491171967",
         "name": "humanitario",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "humano": {
         "available": false,
@@ -7018,7 +7060,7 @@
         "expiration": "null",
         "hash": "36615336619929702531548238842350060343538406586452955520350118408330738468685",
         "name": "idioto",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "ignacio": {
         "available": false,
@@ -7088,7 +7130,7 @@
         "expiration": "null",
         "hash": "63092951248906463596692008165534336855777176629792834927205335299684772287843",
         "name": "importas",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "impredecible": {
         "available": false,
@@ -7123,14 +7165,14 @@
         "expiration": "null",
         "hash": "32445849687165355998083099509720014312694873449093437162075646255928027651439",
         "name": "indeciso",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "independientel": {
         "available": true,
         "expiration": "null",
         "hash": "2968360852165962816569101029110928951283870973468760738659282469745047660664",
         "name": "independientel",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "indiana": {
         "available": false,
@@ -7165,7 +7207,7 @@
         "expiration": "null",
         "hash": "28942439310009501246993023418512875857688908466534643250159149544603275136453",
         "name": "infanteria",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "infantería": {
         "available": false,
@@ -7179,7 +7221,7 @@
         "expiration": "null",
         "hash": "32340981022310413428511984396295769607450018983241844765977309185533766352432",
         "name": "infernoexotic",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "infinito": {
         "available": false,
@@ -7298,7 +7340,7 @@
         "expiration": "null",
         "hash": "66618252804382245511648360899396793709608893160465372946284758912141564078576",
         "name": "invasión",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "inversion": {
         "available": false,
@@ -7431,7 +7473,7 @@
         "expiration": "2026-10-18 16:56:22",
         "hash": "107896135869735002475357440063554578807842392237447019220182359934865973797043",
         "name": "italia",
-        "owner": "0xaAC9B0a1a753D02f957571a5C59f39604c4f68A1"
+        "owner": "0x7FcE43C4015E227663ae3a970A093Ec8fa2ADA73"
     },
     "ivan": {
         "available": false,
@@ -7494,14 +7536,14 @@
         "expiration": "null",
         "hash": "14345555731563397180182565151727681307028256237979192917581285401924611650160",
         "name": "jaguarknight",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "jaguarwarrior": {
         "available": true,
         "expiration": "null",
         "hash": "81367891075258405933318202926401558312417718421467487291543997541444222165302",
         "name": "jaguarwarrior",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "jamaal": {
         "available": false,
@@ -7543,7 +7585,7 @@
         "expiration": "null",
         "hash": "16119576842215360362277827666179280002268102032519730205835277456069328914012",
         "name": "jaquins",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "jatt": {
         "available": false,
@@ -7560,11 +7602,11 @@
         "owner": "0xFA894794fac19fFC7944ca8dd1E301662Be94196"
     },
     "jayde": {
-        "available": false,
+        "available": true,
         "expiration": "2022-07-30 06:59:08",
         "hash": "101904360121881030726223962286327696701360392176806445579590833596669840238046",
         "name": "jayde",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "jazmin": {
         "available": false,
@@ -7592,14 +7634,14 @@
         "expiration": "null",
         "hash": "74856432483084561872843232197057190880771168628259852627270306692551675096773",
         "name": "jefa-de-jefas",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "jefadejefas": {
         "available": true,
         "expiration": "null",
         "hash": "70923767689159489830539349485669757223645867498858228298698243945194604594843",
         "name": "jefadejefas",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "jefas": {
         "available": false,
@@ -7620,7 +7662,7 @@
         "expiration": "null",
         "hash": "15265887698317280175260684510971049458494766666858307110736990925528638579622",
         "name": "jefe-de-jefes",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "jefedejefes": {
         "available": false,
@@ -7648,7 +7690,7 @@
         "expiration": "null",
         "hash": "36431007246366086596016635473598298891017236116718232468664069868840613735681",
         "name": "jeronimol",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "jerusalem": {
         "available": false,
@@ -8077,13 +8119,6 @@
         "name": "kimberlyclark",
         "owner": "0x516F381d6C94110CDE63F3266B779065525096f7"
     },
-    "kimberlyclarkcorporation": {
-        "available": true,
-        "expiration": "null",
-        "hash": "52089485895044609270476934296232246531917968774602394032948987850334680263874",
-        "name": "kimberlyclarkcorporation",
-        "owner": "not owned"
-    },
     "kimmie": {
         "available": false,
         "expiration": "2023-10-05 23:29:11",
@@ -8103,7 +8138,7 @@
         "expiration": "null",
         "hash": "88372579259235409882169713227579654138208776568735208090708184148565416563500",
         "name": "king-of-kings",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "king-size": {
         "available": false,
@@ -8166,7 +8201,7 @@
         "expiration": "2022-10-23 17:35:31",
         "hash": "3608132580245782840085030637437934028617566934691354163982375754543383814733",
         "name": "kingslayer",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "koopa": {
         "available": false,
@@ -8243,7 +8278,7 @@
         "expiration": "null",
         "hash": "73473846641308516570157469332956635266728624759855932553519116927054556249940",
         "name": "lahache",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "lamashtu": {
         "available": false,
@@ -8285,7 +8320,7 @@
         "expiration": "2024-02-21 05:14:05",
         "hash": "52583219279462013851405041523852386003667900110515849892210715821638733135800",
         "name": "lays",
-        "owner": "0x17173778266Dfc902531e87bF8067741014dB260"
+        "owner": "0xCCbc3E6D22C4e9E2209323C1fb5fab912DFB8050"
     },
     "leaders": {
         "available": false,
@@ -8369,7 +8404,7 @@
         "expiration": "null",
         "hash": "115564039103078110368602201107238072516208920427223975460476989308592982991906",
         "name": "leonalado",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "leonardo": {
         "available": false,
@@ -8439,7 +8474,7 @@
         "expiration": "null",
         "hash": "19107070252124398935724764755493099233519914570795876394301706280456667353531",
         "name": "leónalado",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "libertad": {
         "available": false,
@@ -8495,7 +8530,7 @@
         "expiration": "null",
         "hash": "99421586368599543729247271159823305206765085430186300020585606721904145193420",
         "name": "lightforged",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "lili": {
         "available": false,
@@ -8558,7 +8593,7 @@
         "expiration": "null",
         "hash": "31333853732935890765026654503242349914051545704846823812225249986295517821060",
         "name": "linnormr",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "lion": {
         "available": false,
@@ -8579,7 +8614,7 @@
         "expiration": "null",
         "hash": "95939204241138602386124417586658575716443502109319570525845009349342192589575",
         "name": "liung",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "livy": {
         "available": false,
@@ -8593,7 +8628,7 @@
         "expiration": "null",
         "hash": "3010145964305432544544922290613456802072365234458640484325108996569015328006",
         "name": "llora",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "llorar": {
         "available": false,
@@ -8607,11 +8642,11 @@
         "expiration": "null",
         "hash": "19400601149462292354284592936829273929320685370646457352156322270801345485604",
         "name": "lloro",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "lobe": {
         "available": false,
-        "expiration": "2022-11-01 22:03:43",
+        "expiration": "2022-11-11 20:59:59",
         "hash": "56946829260456622182927401685763282032154973313089649471926296619629905799294",
         "name": "lobe",
         "owner": "0x63A93f5843aD57d756097ef102A2886F05c7a29c"
@@ -8691,7 +8726,7 @@
         "expiration": "null",
         "hash": "47935289325250137078765199008088801640264194162403197566095392712027410765910",
         "name": "losdragones",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "losestadosunidos": {
         "available": false,
@@ -8894,14 +8929,14 @@
         "expiration": "null",
         "hash": "55026285132600949482108500972983914559942714928352412149916372853659259966805",
         "name": "magic-curse",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "magiccurse": {
         "available": true,
         "expiration": "null",
         "hash": "38243781363984931264369415920967347212591680052886680111038723680893325783167",
         "name": "magiccurse",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "maite": {
         "available": false,
@@ -9188,7 +9223,7 @@
         "expiration": "null",
         "hash": "97208864650339555645065884481922182392030787153734972874063561826494168642413",
         "name": "maríaalejandra",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "maríacamila": {
         "available": false,
@@ -9510,7 +9545,7 @@
         "expiration": "2022-09-30 03:21:09",
         "hash": "88566952765118806015566003433681213425191674648767529463294326430527108370624",
         "name": "mijo",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "mil": {
         "available": false,
@@ -9538,7 +9573,7 @@
         "expiration": "null",
         "hash": "110395241564420622180174662533521705539561857792606337708402073313535288587731",
         "name": "militaryelite",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "miller": {
         "available": false,
@@ -9643,7 +9678,7 @@
         "expiration": "null",
         "hash": "71670224947741195098737567635116295338526188664061938972397823076369099442290",
         "name": "mitologias",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "mitologico": {
         "available": false,
@@ -9664,14 +9699,14 @@
         "expiration": "null",
         "hash": "82747280766927771933991198385934264545913090845168517253590657745099545325742",
         "name": "mitologías",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "mitológico": {
         "available": true,
         "expiration": "null",
         "hash": "86316716319093683696646374266393472649314160556577338078012601767645350368925",
         "name": "mitológico",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "miércoles": {
         "available": false,
@@ -9734,7 +9769,7 @@
         "expiration": "null",
         "hash": "77141840020837124121934660187466884770654705208264066582911766108537440517057",
         "name": "monstruodellagoness",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "montevideo": {
         "available": false,
@@ -10049,7 +10084,7 @@
         "expiration": "null",
         "hash": "62551007292160088157537884102504029697816179933574422626369305303418223528303",
         "name": "necahual",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "necro": {
         "available": false,
@@ -10063,21 +10098,21 @@
         "expiration": "null",
         "hash": "109694637690839556494773648433437520295462003269290325701866637844663387352638",
         "name": "necrofago",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "necrophage": {
         "available": true,
         "expiration": "null",
         "hash": "30442103710072083616042601677740779782886322318227536639038093431057908763732",
         "name": "necrophage",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "necrófago": {
         "available": true,
         "expiration": "null",
         "hash": "66000488956726856688879916326897008916006484272923424913037612669706087296398",
         "name": "necrófago",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "negocio": {
         "available": false,
@@ -10147,7 +10182,7 @@
         "expiration": "2022-08-08 16:23:32",
         "hash": "95525855425310244328337074642711525521343681161147797628952776324851448775561",
         "name": "neta",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "network": {
         "available": false,
@@ -10245,7 +10280,7 @@
         "expiration": "null",
         "hash": "10372492502894872630902499029300801318219118137404594481348669359056808400479",
         "name": "nimodo",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "nomadic": {
         "available": false,
@@ -10350,7 +10385,7 @@
         "expiration": "null",
         "hash": "53721874948840217796195844627567122660634383129340986041180137824207886355012",
         "name": "nrgwenya",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "nueve": {
         "available": false,
@@ -10371,7 +10406,7 @@
         "expiration": "null",
         "hash": "73275878017745903027866648413817822599490760706052654290526975098865454533945",
         "name": "obstinado",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "ocelotl": {
         "available": false,
@@ -10504,7 +10539,7 @@
         "expiration": "null",
         "hash": "53784649505103900533786371605498402346022671272656362272616591112178422645696",
         "name": "ohtli",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "oklahoma": {
         "available": false,
@@ -10546,7 +10581,7 @@
         "expiration": "null",
         "hash": "52188336135798633241061023512843481328036868520723421810801413486750740947362",
         "name": "omán",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "on-site": {
         "available": false,
@@ -10613,10 +10648,10 @@
     },
     "orcs": {
         "available": false,
-        "expiration": "2022-10-17 16:12:46",
+        "expiration": "2023-10-17 22:01:58",
         "hash": "62452534375656358526659933988522730953756095405889110805002653680499596935477",
         "name": "orcs",
-        "owner": "Domain in grace or auction."
+        "owner": "0xCa812530A5A97f2cfb321fBD6F40Da292E9F2045"
     },
     "orge": {
         "available": false,
@@ -10630,7 +10665,7 @@
         "expiration": "null",
         "hash": "28526810960891175413568383699380699237759241839084932506594668073289747556284",
         "name": "ormr",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "osopardo": {
         "available": false,
@@ -10700,14 +10735,14 @@
         "expiration": "null",
         "hash": "76511095387903770609683084142677420066992515278644434999545166714439007840173",
         "name": "padrisimo",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "padrísimo": {
         "available": true,
         "expiration": "null",
         "hash": "28297847652636777814693948856761035080537911106784535789890723231709736730525",
         "name": "padrísimo",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "paedophile": {
         "available": false,
@@ -10763,7 +10798,7 @@
         "expiration": "2022-10-27 03:30:47",
         "hash": "66766844460254336883963837359450268804195260682772869832468426465633074524458",
         "name": "pakistaní",
-        "owner": "0x47417c04607445401d54b68E644eF76C67dbf0c1"
+        "owner": "AUCTION_GRACE"
     },
     "pakistán": {
         "available": false,
@@ -10777,7 +10812,7 @@
         "expiration": "2022-10-23 13:46:42",
         "hash": "27825684273493649200252210816094480953962605916715631602547754245119118366888",
         "name": "palatine",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "palmero": {
         "available": false,
@@ -10805,7 +10840,7 @@
         "expiration": "null",
         "hash": "76947222099409685386602467527345064723853267266106629719734905360635114630005",
         "name": "paper-clip",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "parasaurolophus": {
         "available": false,
@@ -10847,7 +10882,7 @@
         "expiration": "null",
         "hash": "58590801869756563356335514890784594691605710806859973974369793025994675235798",
         "name": "pastillero",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "patrician": {
         "available": false,
@@ -10994,7 +11029,7 @@
         "expiration": "null",
         "hash": "36856736787695973935383803421943507301139607114350740730599426541037772058722",
         "name": "pepsicoalimentos",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "perico": {
         "available": false,
@@ -11218,7 +11253,7 @@
         "expiration": "null",
         "hash": "82763933239157696710248062545663149893837182066983129618216483906191388594987",
         "name": "polvoblanco",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "pontifex": {
         "available": false,
@@ -11274,7 +11309,7 @@
         "expiration": "null",
         "hash": "6869028004160815055637312986625151234750767641877568800571544194015948585492",
         "name": "portaaviones",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "portugues": {
         "available": false,
@@ -11442,7 +11477,7 @@
         "expiration": "null",
         "hash": "64147313046598352737961505868230811165317807704547926481321614657382881509893",
         "name": "prospecto",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "prospectos": {
         "available": false,
@@ -11484,7 +11519,7 @@
         "expiration": "2022-09-12 20:35:53",
         "hash": "100985228467848838870081592653873611923052383246039968425899144138323539741197",
         "name": "ptolemy",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "publicitar": {
         "available": false,
@@ -11666,7 +11701,7 @@
         "expiration": "null",
         "hash": "110528495259397454665102157232098138627889467859466364783108850555689492550124",
         "name": "raptorex",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "ratero": {
         "available": false,
@@ -11729,14 +11764,14 @@
         "expiration": "null",
         "hash": "25729955873010012587936085569733263050879369786964340417062047279312422601068",
         "name": "rebujao",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "rebujito": {
         "available": true,
         "expiration": "null",
         "hash": "36225691247109601786688113112841994097949053762404836768772925762615558845314",
         "name": "rebujito",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "reclutar": {
         "available": false,
@@ -11757,7 +11792,7 @@
         "expiration": "2022-08-05 08:49:38",
         "hash": "13060596234321730841127307523270514436565530454702730904939339063061150612115",
         "name": "record-breaking",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "recruitment": {
         "available": false,
@@ -11890,7 +11925,7 @@
         "expiration": "null",
         "hash": "35446588611963870880761988627826219517673800369924569794141886363455911680064",
         "name": "republicadominicana\t",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "republicanism": {
         "available": false,
@@ -11911,7 +11946,7 @@
         "expiration": "null",
         "hash": "4266945665247955839017130753983254157599270519875869882068432671742202467335",
         "name": "repúblicadominicana\t",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "reservado": {
         "available": false,
@@ -12065,7 +12100,7 @@
         "expiration": "2023-11-03 08:26:51",
         "hash": "77900386042292570768272646453854801430797296753485154248941117573291332057701",
         "name": "rojo",
-        "owner": "0x03d276d40979a7DBcdE3af4Df3543d253c11771B"
+        "owner": "0x591fCb2A7C68BBCC3D7871cD8dEC496fF5589AbF"
     },
     "rola": {
         "available": false,
@@ -12079,7 +12114,7 @@
         "expiration": "null",
         "hash": "72500293792214056062005635261633192981867120442989096245167886472903152152711",
         "name": "rolas",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "roma": {
         "available": false,
@@ -12163,7 +12198,7 @@
         "expiration": "null",
         "hash": "54850200819722820763377636694611807058400326408201293201926883257187886496861",
         "name": "sabuesoinfernal",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "sadness": {
         "available": false,
@@ -12338,7 +12373,7 @@
         "expiration": "null",
         "hash": "112340206269682696470990057439601656896607762002208018693729168547708200845473",
         "name": "sarasofía",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "saturn": {
         "available": false,
@@ -12569,7 +12604,7 @@
         "expiration": "null",
         "hash": "31930505096874408041266467972767194471126176846995580929181538171105066771269",
         "name": "sexcriminal",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "sexfiend": {
         "available": false,
@@ -12632,14 +12667,14 @@
         "expiration": "2022-09-19 15:42:09",
         "hash": "104797372045489930586159870380828898237993014169038695508387768909502958750022",
         "name": "shenlong",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "shipboy": {
         "available": true,
         "expiration": "null",
         "hash": "35325049940285850788718753606920161481757383504052167393159535072915881863739",
         "name": "shipboy",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "shiva": {
         "available": false,
@@ -12751,7 +12786,7 @@
         "expiration": "null",
         "hash": "17632724551028531293533111894374394745722039800524867046020726903244151970096",
         "name": "singapurense",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "sirena": {
         "available": false,
@@ -13021,7 +13056,7 @@
     },
     "stalin": {
         "available": false,
-        "expiration": "2022-11-06 05:23:28",
+        "expiration": "2023-02-05 12:50:46",
         "hash": "39364040772881081779895585460039816926564370798849499010987045612079392612582",
         "name": "stalin",
         "owner": "0x634f64Dd7BD1126AE40e94d7deb723433b4843E5"
@@ -13094,7 +13129,7 @@
         "expiration": "null",
         "hash": "85951063760474681786156948865608933365718545471394449746715973885024062942609",
         "name": "stromgarde",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "strong-arm": {
         "available": false,
@@ -13213,7 +13248,7 @@
         "expiration": "2022-10-12 04:20:36",
         "hash": "115215540761338544854824830021672022087542766049906340252681197733556174425789",
         "name": "sur",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "sureste": {
         "available": false,
@@ -13255,14 +13290,14 @@
         "expiration": "null",
         "hash": "44795882973663940504986726961430112365426271657765357724562822429139115597619",
         "name": "tah-neen",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "tailandes": {
         "available": true,
         "expiration": "null",
         "hash": "699630198524448500221354771941495378609605032832974260299753596497184471185",
         "name": "tailandes",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "tailandia": {
         "available": false,
@@ -13276,7 +13311,7 @@
         "expiration": "null",
         "hash": "34637108432170575282324679126308891668120993921532523315406415570135451136780",
         "name": "tailandés",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "tan": {
         "available": false,
@@ -13367,7 +13402,7 @@
         "expiration": "null",
         "hash": "65139817696208682115973247036102944324573788059181429472142011034382809805119",
         "name": "temeroso",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "temperamental": {
         "available": false,
@@ -13451,7 +13486,7 @@
         "expiration": "null",
         "hash": "87433603617039736444125058325729766051168645562104028471432689818057649792256",
         "name": "theeverchosen",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "theintercept": {
         "available": false,
@@ -13472,7 +13507,7 @@
         "expiration": "null",
         "hash": "40895447223857024048563605527924296622948784296554401369604865828126660919966",
         "name": "thersites",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "thiago": {
         "available": false,
@@ -13500,21 +13535,21 @@
         "expiration": "null",
         "hash": "93420557676336089999020766349715606471094269115363151302166418546690972390347",
         "name": "thrakos",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "threat-of-violence": {
         "available": true,
         "expiration": "null",
         "hash": "24567032802256785911496637286375904038789164306505235263147024025155500626907",
         "name": "threat-of-violence",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "threatofviolence": {
         "available": true,
         "expiration": "null",
         "hash": "62653393267094414338272525806477030871289135614985841422059749824273294288044",
         "name": "threatofviolence",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "tianlong": {
         "available": false,
@@ -13598,7 +13633,7 @@
         "expiration": "2023-06-12 19:39:20",
         "hash": "53519003572707725862924790715896986070415639985823467563610074384670089494304",
         "name": "tigresa",
-        "owner": "0x58632868ca39D0F829Efb95e77c42e4A00dA5a69"
+        "owner": "0x5464cDeAB1a4DCa805D16FD507004077D75Cae49"
     },
     "time-saving": {
         "available": false,
@@ -13619,7 +13654,7 @@
         "expiration": "null",
         "hash": "48203199746276407973226877892866883729205674735178738445506826853665439535976",
         "name": "tinnin",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "tinto": {
         "available": false,
@@ -13808,7 +13843,7 @@
         "expiration": "null",
         "hash": "36997716135321889401361121688842891023139155586157209382021681515952469270408",
         "name": "tribunusplebis",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "triceratops": {
         "available": false,
@@ -13920,7 +13955,7 @@
         "expiration": "2022-10-18 08:51:27",
         "hash": "92429321489075765742314470645693475840659667281582877957059662578570265990741",
         "name": "tutoría",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "typhon": {
         "available": false,
@@ -13969,7 +14004,7 @@
         "expiration": "2022-10-27 03:30:47",
         "hash": "55312063619303559790954659227774888361859756379575467981355271488931793748262",
         "name": "ucranio",
-        "owner": "0x47417c04607445401d54b68E644eF76C67dbf0c1"
+        "owner": "AUCTION_GRACE"
     },
     "ufctickets": {
         "available": false,
@@ -13983,7 +14018,7 @@
         "expiration": "2022-09-06 21:59:24",
         "hash": "68639727453800289176782903888506281190763254315644947443855248800525438175717",
         "name": "ulises",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "ulysses": {
         "available": false,
@@ -14004,7 +14039,7 @@
         "expiration": "null",
         "hash": "16863267065442183066785261956522599570887506893029439191294279541848007345452",
         "name": "unaraya",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "unbelievable": {
         "available": false,
@@ -14060,7 +14095,7 @@
         "expiration": "null",
         "hash": "31728861224104277534937180094165424067684145510649686194579956939604445725830",
         "name": "unktena",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "unlabeled": {
         "available": false,
@@ -14074,7 +14109,7 @@
         "expiration": "null",
         "hash": "66888040467051875750609405377702866564190038065196430829413428231371290415993",
         "name": "untiro",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "uprising": {
         "available": false,
@@ -14200,11 +14235,11 @@
         "expiration": "null",
         "hash": "93268488335624584880998651970457395117096058438354878921134728496898614064845",
         "name": "vanidoso",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "vaquero": {
         "available": false,
-        "expiration": "2023-07-03 07:44:07",
+        "expiration": "2024-07-02 13:33:19",
         "hash": "99252176939718536834799564732512871477664259766636890276584287741986206831922",
         "name": "vaquero",
         "owner": "0xbB8bD7091721838C05c5CFa9235f64267e1c576b"
@@ -14221,7 +14256,7 @@
         "expiration": "2022-09-17 22:13:58",
         "hash": "79228552075928710988175622760584277169779177551912377207929494892932405823169",
         "name": "vassals",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "vatican": {
         "available": false,
@@ -14368,14 +14403,14 @@
         "expiration": "null",
         "hash": "29920700569085564568848912604029959243221597272164242651383347247197178409452",
         "name": "verdeazulado",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "veterana": {
         "available": true,
         "expiration": "null",
         "hash": "42454527883321916868963086834809875807265378533602280511171390619976066379450",
         "name": "veterana",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "veterano": {
         "available": false,
@@ -14389,21 +14424,21 @@
         "expiration": "null",
         "hash": "100111635339075252763788609020522792619125123888638455883285420053540736962012",
         "name": "viaappia",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "viaflaminia": {
         "available": true,
         "expiration": "null",
         "hash": "41310458519896152267069332243831515478110817951541284922325760129180318121215",
         "name": "viaflaminia",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "vialatina": {
         "available": true,
         "expiration": "null",
         "hash": "48795517295109236760084535308256664294380274357117889507180575609584242264320",
         "name": "vialatina",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "vicente": {
         "available": false,
@@ -14459,7 +14494,7 @@
         "expiration": "null",
         "hash": "4094245825161965657067849082182861199766293269145346733942834702932860813109",
         "name": "violeto",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "virgo": {
         "available": false,
@@ -14637,18 +14672,18 @@
         "owner": "0xc786d7Bb4f1c703201fD62c21184e85544A5Bb78"
     },
     "wilmer": {
-        "available": false,
+        "available": true,
         "expiration": "2022-07-27 12:26:16",
         "hash": "61001837072118485555369288925423767921074186332442142894922442776770327326121",
         "name": "wilmer",
-        "owner": "Domain in grace or auction."
+        "owner": "AUCTION_GRACE"
     },
     "windhammer": {
         "available": true,
         "expiration": "null",
         "hash": "97856683917747218899921309781387138087820488249520531440020679341049677090728",
         "name": "windhammer",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "wines": {
         "available": false,
@@ -14662,7 +14697,7 @@
         "expiration": "null",
         "hash": "43473617339713167368132192075843254964120278620999964844233387814595991573773",
         "name": "wingedlion",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "wizkhalifa": {
         "available": false,
@@ -14676,7 +14711,7 @@
         "expiration": "null",
         "hash": "41004498827398305471938402633466234573704190137103159782727269639588913299410",
         "name": "wnbatickets",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "wolverine": {
         "available": false,
@@ -14869,7 +14904,7 @@
     },
     "zodiaco": {
         "available": false,
-        "expiration": "2024-07-02 06:48:36",
+        "expiration": "2025-07-02 12:37:48",
         "hash": "20281559531103031300447438684615649887671161957434652844577399172110768164779",
         "name": "zodiaco",
         "owner": "0xbB8bD7091721838C05c5CFa9235f64267e1c576b"
@@ -14942,7 +14977,7 @@
         "expiration": "null",
         "hash": "61172453987030846289907665502801996485766649055628510571783675193639690876570",
         "name": "ádan",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "águila": {
         "available": false,
@@ -14984,7 +15019,7 @@
         "expiration": "null",
         "hash": "55051783499140387791490812277024069900590102347429412008391413774997032785641",
         "name": "æthelflæd",
-        "owner": "not owned"
+        "owner": "FREE"
     },
     "éxtasis": {
         "available": false,

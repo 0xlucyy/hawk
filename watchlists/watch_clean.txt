@@ -157,6 +157,9 @@ associates
 association
 astrologa
 astrologo
+astronaut
+astronauta
+astronauto
 astróloga
 astrólogo
 asuncion
@@ -480,6 +483,9 @@ cortés
 cos
 cosec
 cosine
+cosmonaut
+cosmonauta​
+cosmonauto
 cot
 country
 courtside
@@ -1152,7 +1158,6 @@ kidrock
 killerbee
 kilo
 kimberlyclark
-kimberlyclarkcorporation
 kimmie
 king
 king-of-kings

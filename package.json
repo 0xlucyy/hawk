@@ -8,8 +8,9 @@
   },
   "scripts": {
     "setup": "python3 -m venv venv && . venv/bin/activate && pip install -r requirements.txt",
-    "test": "pytest -v --cov=backend backend/tests/",
-    "test-full": "pytest -v --cov-report xml:backend/tests/reports/xml/cov.xml --cov-report html:backend/tests/reports/html --cov=backend backend/tests/"
+    "test-cov": "pytest -v --cov=backend backend/tests/",
+    "test-full": "pytest -v --cov-report xml:backend/tests/reports/xml/cov.xml --cov-report html:backend/tests/reports/html --cov=backend backend/tests/",
+    "test": "rm hawk.db && pytest -v"
   },
   "repository": {
     "type": "git",

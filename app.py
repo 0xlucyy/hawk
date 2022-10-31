@@ -13,12 +13,6 @@ dictConfig(set_logger())
 # Define Flask Application.
 app = Flask(
     __name__,
-    template_folder='frontend/templates',
-    static_url_path='/frontend/static',
-    static_folder = "frontend/static"
-    # template_folder='frontend/templates',
-    # static_url_path='/frontend/static',
-    # static_folder = "frontend/static"
 )
 cors = CORS(app)
 
@@ -32,7 +26,6 @@ else:
 
 # Configure DB
 db = SQLAlchemy(app)
-
 
 if __name__ == '__main__':
     # Route Imports

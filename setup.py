@@ -26,7 +26,8 @@ setup(
             "build_watchlist = backend.src.scripts:build_watchlist",
             "clean_file = backend.src.scripts:clean_file",
             "create_database = backend.src.scripts:create_database",
-            "populate_db = backend.src.scripts:populate_db",
+            "populate_domains = backend.src.scripts:populate_domains",
+            "populate_markets = backend.src.scripts:populate_markets",
         ]
     }
 )

@@ -1,0 +1,51 @@
+{
+    "ensvision": {
+        "name": "ensvision",
+        "address": "",
+        "notes": "",
+        "base_url": "https://www.ens.vision/",
+        "explore_url": "https://www.ens.vision/name/DOMAIN_NAME"
+    },
+    "looksrare": {
+        "name": "looksrare",
+        "address": "0xf4d2888d29d722226fafa5d9b24f9164c092421e",
+        "notes": "https://docs.looksrare.org/developers/public-api-documentation",
+        "base_url": "https://looksrare.org/",
+        "explore_url": "https://looksrare.org/collections/ENS_BASE_REGISTRAR_CONTRACT/DOMAIN_HASH"
+    },
+    "opensea": {
+        "name": "opensea",
+        "address": "",
+        "notes": "Need api key",
+        "base_url": "https://opensea.io/",
+        "explore_url": "https://opensea.io/assets/ethereum/ENS_BASE_REGISTRAR_CONTRACT/DOMAIN_HASH"
+    },
+    "x2y2": {
+        "name": "x2y2",
+        "address": "",
+        "notes": "https://x2y2.readme.io/reference/introduction",
+        "base_url": "https://x2y2.io/",
+        "explore_url": "https://x2y2.io/eth/ENS_BASE_REGISTRAR_CONTRACT/DOMAIN_HASH"
+    },
+    "rarible": {
+        "name": "rarible",
+        "address": "",
+        "notes": "https://docs.rarible.org/api-reference/#",
+        "base_url": "https://rarible.com/",
+        "explore_url": "https://rarible.com/token/ENS_BASE_REGISTRAR_CONTRACT:DOMAIN_HASH?tab=overview"
+    },
+    "reservoirmarket": {
+        "name": "reservoirmarket",
+        "address": "",
+        "notes": "https://docs.reservoir.tools/docs",
+        "base_url": "https://www.reservoir.market/",
+        "explore_url": "https://www.reservoir.market/ENS_BASE_REGISTRAR_CONTRACT/DOMAIN_HASH"
+    },
+    "etherscan": {
+        "name": "etherscan",
+        "address": "",
+        "notes": "https://docs.etherscan.io/",
+        "base_url": "https://etherscan.io/",
+        "explore_url": "https://etherscan.io/nft/ENS_BASE_REGISTRAR_CONTRACT/DOMAIN_HASH"
+    }
+}

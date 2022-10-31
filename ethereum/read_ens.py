@@ -42,55 +42,35 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
                 available(int(payload[domain]['hash'])).call()
         payload[domain]['available'] = bool(avail)
 
-        if bool(avail) == True: # Domain can be minted right now.
+        try: # Get domain expiration.
+            expires = contract_instance.functions.\
+                        nameExpires(int(payload[domain]['hash'])).call()
+        except(Exception) as e:
+            app.logger.error(f'NameExpires_Error on {domain} - Hash {payload[domain]["hash"]}')
             payload[domain]['expiration'] = 'null'
-            payload[domain]['owner'] = 'not owned'
-        else: # Domain is either expiring, in grace, or being held.
-            try: # Get domain expiration.
-                expires = contract_instance.functions.\
-                          nameExpires(int(payload[domain]['hash'])).call()
-            except(Exception) as e:
-                app.logger.error(f'NameExpires_Error on {domain} - Hash {payload[domain]["hash"]}')
-                fails.append(domain)
-            else: # From int timestamp to datetime.datetime object.
-                # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
-                payload[domain]['expiration'] = datetime.fromtimestamp(expires)
+            fails.append(domain)
+        else: # From int timestamp to datetime.datetime object.
+            # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
+            payload[domain]['expiration'] = datetime.fromtimestamp(expires) if expires != 0 else 'null'
 
-            try: # Get domain owner.
-                owner = contract_instance.functions.\
-                        ownerOf(int(payload[domain]['hash'])).call()
-            except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
-                payload[domain]['owner'] = app.config['ENS_GRACE_AUCTION']
-                app.logger.error(f'OwnerOf_Error on {domain} - Hash {payload[domain]["hash"]}')
-                fails.append(domain)
-            else:
-                payload[domain]['owner'] = str(owner)
-
-    # fails = fail_queue(fails, contract_instance, payload)
+        try: # Get domain owner.
+            owner = contract_instance.functions.\
+                    ownerOf(int(payload[domain]['hash'])).call()
+        except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
+            if payload[domain]['expiration'] != 'null':
+                payload[domain]['owner'] = app.config['DOMAIN_IN_AUCTION_GRACE']
+            else: # payload[domain]['expiration'] == 'null'
+                payload[domain]['owner'] = app.config['DOMAIN_IS_FREE']
+            app.logger.error(f'OwnerOf_Error on {domain} - ' \
+                             f'Hash {payload[domain]["hash"]} - ' \
+                             f'Status {payload[domain]["owner"]}')
+            fails.append(domain)
+        else:
+            payload[domain]['owner'] = str(owner)
     
     app.logger.info(f"Domain metadata aquired...")
     app.logger.info(f'Fail Total {len(fails)} - Fail Queue {fails}')
 
     return payload
 
-
-# def fail_queue(fail_que, contract, payload) -> list:
-#     failed = []
-#     for domain in fail_que:
-#         try:
-#             # Get domain expiration.
-#             expires = contract.nameExpires(int(payload[domain]['hash']))
-#             payload[domain]['expiration'] = expires
-#         except(Exception) as e:
-#             app.logger.error(f'NameExpires_Error on {domain}. Hash: {payload[domain]["hash"]}')
-#             failed.append(domain)
-
-#         try:
-#             # Get domain owner.
-#             owner = contract.ownerOf(int(payload[domain]['hash']))
-#             payload[domain]['owner'] = owner
-#         except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp);
-#             payload[domain]['owner'] = app.config['ENS_GRACE_AUCTION']
-#             app.logger.error(f'OwnerOf_Error on {domain} - Hash {payload[domain]["hash"]}')
-#             failed.append(domain)
-#     return failed
+# ens_claw({})

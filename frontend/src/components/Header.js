@@ -6,12 +6,18 @@ import { Link } from "react-router-dom"
 export default class _Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {activeItem: this.props.active};
     this.handleItemClick = this.props.handler.bind(this);
   }
 
+  handleItem = async (e, { name }) => {
+    await this.setState({ activeItem: name });
+    console.log(`HEADER: ${this.state.activeItem}`);
+    await this.props.handler;
+  }
+
   render() {
-    const { activeItem } = this.state
+    const { activeItem } = this.props.active
 
     return (
       <div>

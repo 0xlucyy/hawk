@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Menu, Button, Card, Container } from 'semantic-ui-react'
-import { NavLink, withRouter } from 'react-router-dom'
+import { Input, Menu, Button, Card, Container, Image } from 'semantic-ui-react'
 import Deck from './Deck.js'
 
 export default class Home extends Component {
@@ -64,6 +63,11 @@ export default class Home extends Component {
             labelPosition='left'>
             handleDismiss!
     </Button>
+
+    {/* <Image
+        floated='right'
+        src='./hawk.png'
+    /> */}
     
     < div style = {{margin: 100}}>
     <Container>

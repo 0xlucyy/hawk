@@ -7,6 +7,7 @@ from backend.utils.exceptions import (
     DomainModelDataTypeError
 
 )
+from dateutil.relativedelta import relativedelta
 # import pdb; pdb.set_trace()
 
 
@@ -19,7 +20,12 @@ class Domains(Base, Lockable):
     hash = db.Column(db.VARCHAR(100), unique=True, nullable=False)
     owner = db.Column(db.String(100), nullable=False)
     available = db.Column(db.Boolean, nullable=False)
+    # When expiration ends, grace starts.
     expiration = db.Column(db.DATETIME, nullable=True)
+    # When grace ends, auction starts.
+    grace = db.Column(db.DATETIME, nullable=True)
+    # When auction ends, domain can be reg'ed by anyone w/o fee.
+    auction = db.Column(db.DATETIME, nullable=True)
 
     # db.relationships
     orders = db.relationship('Orders', backref='domains') # 1 domain to many orders
@@ -41,12 +47,19 @@ class Domains(Base, Lockable):
         self.owner = owner
         self.hash = hash
         self.available = available
-        self.expiration = datetime.strptime(
-            expiration, app.config['DATETIME_STR_FORMAT']
-        ) if expiration != 'null' else None
         self._created_at = datetime.now()
         self._updated_at = datetime.now()
         self._last_activity_at = datetime.now()
+
+        self.expiration = datetime.strptime(
+            expiration, app.config['DATETIME_STR_FORMAT']
+        ) if expiration != 'null' else None
+        self.grace = (self.expiration + relativedelta( \
+            days=app.config['ENS_GRACE_PERIOD'])) \
+            if self.expiration != None else None
+        self.auction = (self.grace + relativedelta( \
+            days=app.config['ENS_AUCTION_PERIOD'])) \
+            if self.grace != None else None
 
     def __repr__(self):
         return f'Domain {self.id}: {self.name}'
@@ -80,17 +93,40 @@ class Domains(Base, Lockable):
         return domains
 
     @classmethod
-    def domains_by_expiration(cls, order: str = 'asc'):
+    def all_domains(cls, order='asc'):
         '''
-        returns domains from those expiring first to those
-        expiring last.
+        returns all domains, from those expiring first to
+        those expiring last.
         '''
-        if order != 'asc' and order != 'desc':
-            return []
-        domains = cls.query.filter(
-            Domains.expiration
-        ).order_by(
+        domains = cls.query.order_by(
             Domains.expiration.asc() if order == 'asc' else Domains.expiration.desc()
+        ).all()
+        return domains
+
+    @classmethod
+    def expired(cls):
+        '''
+        returns all domains which have expired.
+        Returned domains can be free to register,
+        in grace, or in auction.
+        '''
+        domains = cls.query.filter(
+            Domains.expiration < datetime.now() # Expiration in past.
+        ).order_by(
+            Domains.expiration.asc()
+        ).all()
+        return domains
+
+    @classmethod
+    def auctions(cls):
+        '''
+        After grace expiration, before 21 day auction
+        '''
+        domains = cls.query.filter(
+            Domains.grace < datetime.now(), # Grace already expired
+            Domains.auction > datetime.now() # Auction still on going
+        ).order_by(
+            Domains.auction.asc()
         ).all()
         return domains
 
@@ -100,13 +136,21 @@ class Markets(Base, Lockable):
     __tablename__ = 'markets'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
+    name = db.Column(db.VARCHAR(100), nullable=False)
+    base_url = db.Column(db.VARCHAR(100), nullable=False)
+    explore_url = db.Column(db.VARCHAR(100), nullable=False)
+    address = db.Column(db.VARCHAR(100), nullable=True)
+    notes = db.Column(db.VARCHAR(300), nullable=True)
 
     # db.relationships
     orders = db.relationship('Orders', backref='markets') # 1 market to many orders
 
-    def __init__(self, name):
+    def __init__(self, name, base_url, explore_url, address, notes):
         self.name = name
+        self.base_url = base_url
+        self.explore_url = explore_url
+        self.address = address
+        self.notes = notes
 
     def __repr__(self):
         return f'Market {self.id}: {self.name}'
