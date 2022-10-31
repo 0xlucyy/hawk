@@ -64,7 +64,7 @@ def expiringDomains():
         return jsonify({
             'total': len(expiring),
             'expiring_within': days,
-            'domains': [domain.__dict__ for domain in expiring],
+            'expiring_domains': [domain.__dict__ for domain in expiring],
             'status_code': 200
         })
 

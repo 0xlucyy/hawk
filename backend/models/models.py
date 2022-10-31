@@ -24,7 +24,7 @@ class Domains(Base, Lockable):
     expiration = db.Column(db.DATETIME, nullable=True)
     # When grace ends, auction starts.
     grace = db.Column(db.DATETIME, nullable=True)
-    # When auction ends, domain can be reg'ed by anyone w/o fee.
+    # When auction ends, domain goes to free_pool.
     auction = db.Column(db.DATETIME, nullable=True)
 
     # db.relationships

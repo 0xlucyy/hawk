@@ -439,7 +439,7 @@ duendecito
 duendes
 dueño
 dungeon
-dwarfe
+dwarf
 dylan
 dystopunk
 e-games
@@ -1699,7 +1699,6 @@ Como
 Tonto
 Tonta
 Idiota
-Idioto 
 King
 Emperor 
 Sultan
@@ -1846,7 +1845,6 @@ contigo
 ángel
 diamante
 Alma
-Diamante
 Dulce
 Guitarra
 Guitarras 
@@ -2084,3 +2082,12 @@ astronauta
 astronauto
 cosmonaut
 astronaut
+ferocity
+iron
+steel
+ore
+oro
+gold
+silver
+diamond
+infantry

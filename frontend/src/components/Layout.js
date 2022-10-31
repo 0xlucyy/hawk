@@ -49,14 +49,14 @@ export default class Layout extends Component {
                         style={{ top: "auto", height: "auto", width: "100%" }}
                     >
                         {(calculations.percentagePassed * 100).toFixed() < 10 ? null : (
-                            <Sticky offset={5} context={contextRef} bottomOffset={0} style={{ marginLeft: '10px' }}>
+                            <Sticky offset={5} context={contextRef} bottomOffset={0} style={{ marginLeft: '100px' }}>
                                 <a href="#topOfPage">Top of Page</a>
                             </Sticky>
                         )}
                     </Rail>
 
                     {/* This is required for all future props. */}
-                    <Container>
+                    <Container fluid='true' textAlign='center'>
                         {this.props.children}
                     </Container>
 

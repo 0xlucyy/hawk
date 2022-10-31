@@ -18,10 +18,11 @@ export default class Home extends Component {
       expiring_in = async (e, value) => {
         e.preventDefault();
         console.log(`Searching with ${this.state.days} days`)
-        const response = await fetch(`http://127.0.0.1:5000/api/v1/expiring?days=${this.state.days}`);
+        // const response = await fetch(`http://127.0.0.1:5000/api/v1/expiringDomains?days=${this.state.days}`);
+        const response = await fetch(`http://127.0.0.1:5000/api/v1/expiredDomains`);
         const payload = await response.json();
         this.setState({ payload });
-        // console.log(payload);
+        // console.log(`payload: ${JSON.stringify(payload)}`);
         return payload;
       };
     
@@ -33,7 +34,6 @@ export default class Home extends Component {
           error: true,
           errorMessage: ''
         });
-        console.log(`activeItem: ${this.state.activeItem}`);
         // console.log(`Days: ${this.state.days}`);
         // console.log(`payload: ${JSON.stringify(this.state.payload)}`);
         // console.log(`error message: ${this.state.errorMessage}`);
@@ -64,18 +64,13 @@ export default class Home extends Component {
             handleDismiss!
     </Button>
 
-    {/* <Image
-        floated='right'
-        src='./hawk.png'
-    /> */}
-    
-    < div style = {{margin: 100}}>
-    <Container>
+    < div style = {{marginTop: 100}}>
+    <Container fluid='true'>
         <div>
-        <Card.Group itemsPerRow="4" textAlign="center" className='domains'>
+        <Card.Group itemsPerRow="5" textAlign="center" className='domains'>
             {this.state.payload == null ? (<div>Load data...</div>) : 
             (
-                this.state.payload.expiring_domains.map(domain => 
+                this.state.payload.domains.map(domain => 
                     // console.log(`WORKING?: ${JSON.stringify(domain)}`)
                     <Deck payload={domain}/>
                 )

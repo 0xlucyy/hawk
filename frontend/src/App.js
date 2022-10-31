@@ -53,8 +53,8 @@ class App extends React.Component {
     const { activeItem } = this.state
 
     return (
-      <Segment inverted vertical style={{ margin: '20em 0em 0em', padding: '5em 0em' }}>
-        <Container className="App" id="App" textAlign="center">
+      <Segment inverted vertical >
+        <Container className="App" id="App" textAlign="center" fluid={true}>
           <Layout>
 
             {/* <Input 
@@ -70,11 +70,11 @@ class App extends React.Component {
               dismissError!
             </Button> */}
 
-            <Grid divided inverted stackable>
-              <Grid.Column width={4}>
-                <Header handler={this.handleActiveItem} active={this.state.activeItem}/>
+            <Grid divided inverted stackable stretched>
+              <Grid.Column width={2} style={{left: '15px'}}>
+                <Header handler={this.handleActiveItem} active={this.state.activeItem} />
               </Grid.Column>
-              <Grid.Column width={12}>
+              <Grid.Column width={14} fluid='true'>
                 {
                   this.state.activeItem === 'home' ? (<Home />) : (null)
                 }

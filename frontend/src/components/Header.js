@@ -21,18 +21,18 @@ export default class _Header extends Component {
 
     return (
       <div>
-        <Header
-          inverted
-          as='h2'
-          attached='top'
-          textAlign='center'
-          className='header'
-          color='green'
-        >
-          ENS Hawk
-        </Header>
-
         <Menu inverted pointing vertical>
+          <Header
+            inverted
+            as='h2'
+            attached='top'
+            textAlign='center'
+            className='header'
+            color='green'
+          >
+            ENS Hawk
+          </Header>
+
           <Menu.Item
             as={Link}
             to="/"
