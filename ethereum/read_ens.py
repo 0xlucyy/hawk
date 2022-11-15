@@ -34,13 +34,22 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
         address=app.config["ENS_BASE_REGISTRAR_MAINNET"],
     )
 
+    # import pdb; pdb.set_trace()
+    # Change files to ETH_Reg....json
+    # # Returns premium cost only, ensure domain is in auction when called.
+    # fee = contract_instance.functions.rentPrice('alce', 1).call()
+    # eth_fee = w3_obj.w3.fromWei(fee, 'ether')
+
     app.logger.info(f"Gathering metadata on {len(payload_copy.keys())} domains...")
     # Iterate through all domains.
     for domain in payload_copy.keys():
-        payload[domain]['name'] = str(domain)
-        avail = contract_instance.functions.\
-                available(int(payload[domain]['hash'])).call()
-        payload[domain]['available'] = bool(avail)
+        try:
+            payload[domain]['name'] = str(domain)
+            avail = contract_instance.functions.\
+                    available(int(payload[domain]['hash'])).call()
+            payload[domain]['available'] = bool(avail)
+        except(Exception) as e:
+            app.logger.error(f'available on {domain} - Hash {payload[domain]["hash"]}')
 
         try: # Get domain expiration.
             expires = contract_instance.functions.\
@@ -57,13 +66,9 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
             owner = contract_instance.functions.\
                     ownerOf(int(payload[domain]['hash'])).call()
         except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
-            if payload[domain]['expiration'] != 'null':
-                payload[domain]['owner'] = app.config['DOMAIN_IN_AUCTION_GRACE']
-            else: # payload[domain]['expiration'] == 'null'
-                payload[domain]['owner'] = app.config['DOMAIN_IS_FREE']
+            payload[domain]['owner'] = 'THROW'
             app.logger.error(f'OwnerOf_Error on {domain} - ' \
-                             f'Hash {payload[domain]["hash"]} - ' \
-                             f'Status {payload[domain]["owner"]}')
+                             f'Hash {payload[domain]["hash"]} - ')
             fails.append(domain)
         else:
             payload[domain]['owner'] = str(owner)
@@ -73,4 +78,4 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 
     return payload
 
-# ens_claw({})
+ens_claw({})

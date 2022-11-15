@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import Header from './Header.js';
 // import Footer from './Footer.js';
 // import Head from 'next/head';
-import { Container, Visibility, Sticky, Rail } from 'semantic-ui-react';
+import { Container, Visibility, Sticky, Rail, Button } from 'semantic-ui-react';
 
 
 export default class Layout extends Component {
@@ -45,18 +45,25 @@ export default class Layout extends Component {
                     <Rail
                         internal
                         position="left"
-                        attached
-                        style={{ top: "auto", height: "auto", width: "100%" }}
+                        // attached
+                        style={{ top: "auto", height: "auto", width: "auto" }}
                     >
-                        {(calculations.percentagePassed * 100).toFixed() < 10 ? null : (
-                            <Sticky offset={5} context={contextRef} bottomOffset={0} style={{ marginLeft: '100px' }}>
-                                <a href="#topOfPage">Top of Page</a>
+                        {(calculations.percentagePassed * 100).toFixed() < 5 ? null : (
+                            <Sticky offset={10} context={contextRef}>
+                                <Button 
+                                    color='black'
+                                    // compact
+                                    className="icon"
+                                    as='a'
+                                    href='#topOfPage'
+                                >top of page</Button>
                             </Sticky>
                         )}
                     </Rail>
 
                     {/* This is required for all future props. */}
-                    <Container fluid='true' textAlign='center'>
+                    {/* <Container fluid='true' textAlign='center'> */}
+                    <Container textAlign='center'>
                         {this.props.children}
                     </Container>
 

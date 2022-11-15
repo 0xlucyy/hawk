@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Image, Progress, Popup } from 'semantic-ui-react'
+import { Table, Button, Progress } from 'semantic-ui-react'
 
 const free_to_register = 'green'
 const in_grace = 'yellow'
@@ -8,7 +8,7 @@ const in_auction = 'red'
 // Expiration -> 90 days of grace -> 21 days of auction -> free_pool
 function ratio(payload) {
     const today = new Date();
-const start = new Date(payload.payload.expiration);
+    const start = new Date(payload.payload.expiration);
     const end = new Date(payload.payload.auction);
     const p = Math.round(((today - start) / (end - start)) * 100);
     return p;
@@ -25,16 +25,16 @@ function days_between(date1, date2) {
     const minutes = Math.floor((differenceMs / 1000 / 60) % 60);
     const hours = Math.floor((differenceMs / 1000 / 60 / 60) % 24);
 
-    let day_str = days + " day" + (days > 1 ? "s " : "")
-    let hr_str = hours + ' hour' + (hours > 1 ? "s " : "")
-    let min_str = minutes + " minute" + (minutes > 1 ? "s " : "")
+    let day_str = days + "D:"
+    let hr_str = hours + 'H:'
+    let min_str = minutes + "M"
 
-    const total = (days > 1 ? day_str : "") + (hours > 1 ? hr_str : "") + " & " + (minutes > 1 ? min_str : "")
+    const total = (days > 1 ? day_str : "") + (hours > 1 ? hr_str : "") + (minutes > 1 ? min_str : "")
 
     return total
 }
 
-function card_footer(payload) {
+function row_footer(payload) {
     const now = new Date();
     const auction = new Date(payload.payload.auction);
     const grace = new Date(payload.payload.grace);
@@ -45,18 +45,17 @@ function card_footer(payload) {
     }
     else if (now < auction & now > grace) {
         const auction = new Date(payload.payload.auction);
-        return `Auction expires in ${days_between(auction, now)}`
+        return `Auction end: ${days_between(auction, now)}`
     }
     else if (now > expiration & now < grace) {
         const grace = new Date(payload.payload.grace);
-        return `Grace expires in ${days_between(grace, now)}`
+        return `Grace ends: ${days_between(grace, now)}`
     }
     else {
         const expiration = new Date(payload.payload.expiration);
         return `Expires in ${days_between(expiration, now)}`
     }
 }
-
 
 function color(payload) {
     const now = new Date();
@@ -73,34 +72,21 @@ function color(payload) {
     else if (now > expiration & now < grace) {
         return in_grace
     }
-    // else {
-    //     return hodl
-    // }
 }
 
-function Deck(payload) {
+function Row(payload) {
     return (
-    <Card centered style={{width: '250px', height: '520px'}} >
-        {/* {console.log(`Deck payload 1: ${JSON.stringify(payload.payload)}`)} */}
-        <Card.Content>
-            <Image
-                // centered
-                src='./hawk.png'
-                size='medium'
-            />
-            <Card.Header textAlign='center' as='h1'>{payload.payload.name}.eth</Card.Header>
-            <Card.Meta>Expiration: {payload.payload.expiration}</Card.Meta>
-            <Card.Description>
-            Status: {payload.payload.status}
-            </Card.Description>
-        </Card.Content>
-
-        <Card.Content style={{'background-color': color(payload)}}>
-        <Progress percent={ratio(payload)} progress>{card_footer(payload)}</Progress>
-        </Card.Content>
-
-    </Card>
+    <Table.Row >
+        <Table.Cell style = {{'color': color(payload)}}>{payload.payload.name}</Table.Cell>
+        <Table.Cell style = {{'color': color(payload)}}>{payload.payload.status}</Table.Cell>
+        <Table.Cell style = {{'color': color(payload)}}>{(payload.payload.expiration == null ? 'Free to register' : payload.payload.expiration)}</Table.Cell>
+        <Table.Cell style = {{'color': color(payload)}}>{(payload.payload.grace == null ? 'Free to register' : payload.payload.grace)}</Table.Cell>
+        <Table.Cell style = {{'color': color(payload)}}>{(payload.payload.auction == null ? 'Free to register' : payload.payload.auction)}</Table.Cell>
+        <Table.Cell style = {{'color': color(payload)}}>{(payload.payload.owner == 'FREE' ? 'no_owner' : (payload.payload.owner).substr(0, 13))}</Table.Cell>
+        <Table.Cell style = {{'color': color(payload)}}>{row_footer(payload)}</Table.Cell>
+        <Table.Cell></Table.Cell>
+    </Table.Row>
     )
   }
 
-  export default Deck
+  export default Row

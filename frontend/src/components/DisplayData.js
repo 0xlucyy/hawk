@@ -19,7 +19,7 @@ function DisplayData(data) {
             <Table.Body>
             <Table.Row>
                 <Table.Cell>
-                <Label ribbon>First</Label>
+                <Label>First</Label>
                 </Table.Cell>
                 <Table.Cell>Cell</Table.Cell>
                 <Table.Cell>Cell</Table.Cell>

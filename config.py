@@ -36,12 +36,23 @@ class _Base(object):
     DATETIME_STR_FORMAT = '%Y-%m-%d %H:%M:%S'
     ENS_GRACE_PERIOD = 90 # days
     ENS_AUCTION_PERIOD = 21 # days
-    # ENS Basic Registrar contract ownerOf reverts
-    # when domain is in auction/grace.
-    DOMAIN_IN_AUCTION_GRACE = 'AUCTION_GRACE'
-    DOMAIN_IS_FREE = 'FREE'
-    # Order model formatter
-    ORDERS = ''
+
+    # Domain statuses
+    DOMAIN_STATUS_FREE = 'FREE'
+    DOMAIN_STATUS_IN_GRACE = 'IN_GRACE'
+    DOMAIN_STATUS_IN_AUCTION = 'IN_AUCTION'
+    DOMAIN_STATUS_HODLING = 'BEING_HELD'
+
+    # Hodl'ing
+    # Expiration
+    # Grace
+    # Auction
+    # free
+
+    # Domain can be held by someone
+    # Domain can be registered by anyone
+    # domain can be in grace
+    # domain can be in auction
 
     # Deployments.
     ETH_REGISTRAR_CONTROLLER_MAINNET = Web3.toChecksumAddress("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5")

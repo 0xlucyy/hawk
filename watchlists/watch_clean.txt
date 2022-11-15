@@ -18,6 +18,7 @@ acuerdo
 acuerdos
 adam
 adan
+adolfo
 adrian
 adriana
 adrián
@@ -46,6 +47,7 @@ akbar
 alameda
 alan
 alas
+alba
 alce
 aldo
 alegre
@@ -61,8 +63,10 @@ alexa
 alexander
 alexanderthegreat
 alffred
+alfonso
 alfredthegreat
 aliado
+alicia
 all-in
 all-knowing
 all-powerful
@@ -72,7 +76,9 @@ allosaurus
 allsaints
 alma
 almirante
+alondra
 alonso
+alpha
 alumno
 alumnos
 alvaro
@@ -93,6 +99,7 @@ ametralladora
 amor
 américa
 ana
+anabel
 anapaula
 anarchy
 anasofia
@@ -103,6 +110,7 @@ anfetas
 angel
 angola
 ankylosaurus
+anna
 annabel
 anthony
 anti-aircraft
@@ -144,6 +152,7 @@ artillería
 artistica
 artistico
 artists
+arturo
 artística
 artístico
 asaakira
@@ -219,6 +228,7 @@ batsignal
 bautista
 bebe
 bebé
+beds
 beelzebub
 behemot
 behemoth
@@ -235,6 +245,7 @@ benjamin
 benjamín
 bermuda
 best-known
+beta
 betrayer
 bianca
 biblia
@@ -245,6 +256,7 @@ bimbo
 biohazard
 bitchass
 bitcoinstandard
+black
 blackbeard
 blacklivesmatter
 blackmagic
@@ -290,6 +302,7 @@ bruno
 buenosaires
 bull
 bullrunning
+bully
 buscador
 busy
 buttcoin
@@ -335,6 +348,7 @@ cariñoso
 carla
 carlos
 carmack
+carmen
 carne
 carnotaurus
 carolina
@@ -415,6 +429,7 @@ civil
 civilian
 clara
 claro
+claudia
 clavos
 clean-cut
 cleopatra
@@ -429,6 +444,7 @@ cocaina
 cocaína
 cockatrice
 coco
+code
 cohete
 cohetes
 cold-shoulder
@@ -499,8 +515,10 @@ cristina
 cristobal
 cristóbal
 cromwell
+crown
 cruda
 crudo
+cruz
 cry
 crypto
 cryptoadvisors
@@ -535,8 +553,11 @@ danny
 dante
 danés
 dargon
+dario
 darkforged
 darwin
+data
+daughter
 david
 davidbeckham
 davis
@@ -558,6 +579,7 @@ demandas
 democracy
 democracynow
 democraticparty
+demonia
 demonio
 demonionecrofago
 demonionecrófago
@@ -572,6 +594,7 @@ diabolic
 diabolical
 diagnosis
 diamante
+diamond
 diciembre
 dictatorship
 diddykong
@@ -589,6 +612,7 @@ dinamarca
 dinero
 dinosaur
 dios
+diosa
 diplomatico
 diplomático
 disciplinado
@@ -649,7 +673,7 @@ dueno
 dueño
 dulce
 dungeon
-dwarfe
+dwarf
 dylan
 dystopunk
 e-games
@@ -658,8 +682,10 @@ eaglewarrior
 earth
 earworm
 east
+eastside
 easyinsure
 ecomerce
+edgar
 edmundo
 eduardo
 egipto
@@ -700,6 +726,8 @@ enigmatic
 entregar
 equinsuocha
 eric
+erick
+erik
 ernesto
 ernie
 escila
@@ -789,6 +817,7 @@ fenrir
 fernanda
 fernando
 ferocidad
+ferocity
 feroz
 fiereza
 fierro
@@ -843,6 +872,8 @@ galactic
 gamesa
 gandhi
 ganglord
+gangsta
+gangster
 garcia
 gargoyle
 gasstation
@@ -866,6 +897,7 @@ getlong
 ghidorah
 ghoul
 gigante
+gilberto
 gloton
 glotón
 gnome
@@ -879,6 +911,7 @@ godofwar
 godzilla
 goebbels
 goku
+gold
 goldenage
 golpe
 goma
@@ -912,6 +945,7 @@ guillermo
 guitarra
 guitarras
 guiverno
+gun
 gustavo
 guthrum
 géminis
@@ -941,6 +975,7 @@ heinekenméxico
 helicoptero
 helicóptero
 hellhound
+her
 hermana
 hermano
 hermosa
@@ -962,7 +997,9 @@ high-rise
 high-tech
 highelf
 highway
+hija
 hijo
+him
 hindustanunilever
 hip-hop
 hiphop
@@ -971,6 +1008,7 @@ hipogrifo
 hippocampus
 hippodrome
 hippogriff
+his
 hispania
 hitler
 hogwarts
@@ -1004,9 +1042,10 @@ ice-cold
 ice-cream
 icici
 icicibank
+icon
+icono
 idesofmarch
 idiota
-idioto
 ignacio
 iker
 iliad
@@ -1029,8 +1068,10 @@ industries
 infancia
 infanteria
 infantería
+infantry
 infernoexotic
 infinito
+info
 informatica
 infosys
 ingles
@@ -1056,6 +1097,7 @@ irak
 iran
 irene
 irlanda
+iron
 ironforge
 ironman
 irán
@@ -1065,9 +1107,11 @@ isabel
 isabella
 isellm
 isidora
+island
 italia
 ivan
 ivanna
+izan
 i❤ny
 jabali
 jackalope
@@ -1125,6 +1169,7 @@ juana
 juandavid
 juandiego
 juanesteban
+juanita
 juanjose
 juanjosé
 juanmanuel
@@ -1234,6 +1279,7 @@ llora
 llorar
 lloro
 lobe
+lobos
 lochnessmonster
 logs
 lola
@@ -1257,17 +1303,21 @@ lucas
 lucia
 luciana
 luciano
+lucifer
 lucía
 luigi
 luis
 lujuria
+lula
 luna
 lunes
 lung
+lupe
 léo
 lóng
 l❤ve
 machina
+machinegun
 maestra
 maestro
 maga
@@ -1288,6 +1338,7 @@ manuela
 maquinaria
 marca
 marcas
+marco
 maria
 mariaalejandra
 mariacamila
@@ -1297,6 +1348,7 @@ mariajosé
 mariana
 mariangel
 mariapaula
+maricela
 marieantoinette
 marina
 mario
@@ -1477,6 +1529,7 @@ noroeste
 north
 northeast
 northkorea
+northside
 northwest
 novecientos
 noventa
@@ -1485,6 +1538,7 @@ nrgwenya
 nueve
 numbers
 obstinado
+ocean
 ocelotl
 ochenta
 ocho
@@ -1520,9 +1574,15 @@ orange
 orbia
 orc
 orcs
+ore
 orge
 ormr
+oro
+osa
+osas
+oso
 osopardo
+osos
 osvaldo
 oxigeno
 oxxo
@@ -1558,8 +1618,10 @@ patriot
 patron
 patrona
 patrulla
+paul
 paula
 paulina
+payload
 payto
 peach
 pedro
@@ -1588,6 +1650,7 @@ pija
 pijo
 piloto
 pinche
+pink
 piscis
 piso
 pisos
@@ -1598,8 +1661,10 @@ plata
 pluto
 pluton
 plutón
+poder
 poderosa
 poderoso
+pokeball
 polen
 polis
 politician
@@ -1649,6 +1714,7 @@ puertorico
 puesto
 punk
 punkbitch
+purple
 puta
 pyramid-of-the-moon
 pyramid-of-the-sun
@@ -1672,6 +1738,7 @@ raptor
 raptorex
 ratero
 rattlesnake
+raul
 ravenna
 rayo
 razor
@@ -1712,8 +1779,11 @@ responsable
 retriever
 reunion
 reunión
+rex
+reynaldo
 rhapsody
 ricardo
+ricaro
 ricky
 rico
 right
@@ -1724,15 +1794,20 @@ robotic
 rock-n-roll
 rockets
 rocknroll
+rod
 rodrigo
+rogelio
+roger
 roja
 rojo
 rola
 rolas
 roma
+roman
 rome
 romina
 rong
+rose
 ruben
 run-in
 runner-up
@@ -1766,8 +1841,10 @@ santos
 sara
 sarasofia
 sarasofía
+satan
 saturn
 saturno
+satán
 sboi
 schemer
 scientist
@@ -1775,6 +1852,7 @@ scorpion
 screenwriter
 screenwriters
 scylla
+sea
 sebastian
 sebastián
 sec
@@ -1818,7 +1896,9 @@ shyguy
 siete
 sigmaalimentos
 sign-in
+signal
 silvana
+silver
 simba
 simon
 simón
@@ -1845,11 +1925,13 @@ softwareengineer
 solana
 soldado
 somalia
+son
 sonreir
 sonreír
 sophie
 south
 southeast
+southside
 southwest
 spanishempire
 special
@@ -1865,6 +1947,7 @@ spot-check
 squirting
 stalin
 statebankofindia
+steel
 stefano
 stegosaurus
 stephan
@@ -1894,6 +1977,7 @@ sur
 sureste
 surgeon
 suroeste
+susana
 synthetic
 sábado
 tah-neen
@@ -1954,7 +2038,9 @@ tip-off
 tipper
 tiranosauriorex
 tissue
+titan
 titancompany
+titán
 toad
 tomas
 tomb
@@ -2000,6 +2086,7 @@ u-turn
 ucrania
 ucranio
 ufctickets
+ufo
 ulises
 ulysses
 un-american
@@ -2084,13 +2171,16 @@ warm-up
 warmaker
 wasp
 waterstone
+wave
 weaponize
 well-informed
 werewolf
 wessex
 west
+westside
 wey
 whiro
+white
 wildhammer
 williams
 williamtheconqueror

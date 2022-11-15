@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import ErrorPage from "./components/ErrorPage.js";
-import Contact from "./components/Contact";
+import Home from "./components/Home";
 import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
@@ -20,7 +20,7 @@ const _router = createBrowserRouter([
   },
   {
     path: "contacts/:contactId",
-    element: <Contact />,
+    element: <Home />,
   },
 ]);
 

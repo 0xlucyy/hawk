@@ -20,5 +20,5 @@ function hash(value) {
     }
 }
 
-// hash('tutoría')
+// hash('foo')
 data.forEach(hash);

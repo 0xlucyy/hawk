@@ -5,7 +5,9 @@ from backend.models._lockable import Lockable
 from sqlalchemy import func
 from backend.utils.exceptions import (
     DomainModelDataTypeError
-
+)
+from backend.utils.utils import (
+    domain_status
 )
 from dateutil.relativedelta import relativedelta
 # import pdb; pdb.set_trace()
@@ -20,12 +22,13 @@ class Domains(Base, Lockable):
     hash = db.Column(db.VARCHAR(100), unique=True, nullable=False)
     owner = db.Column(db.String(100), nullable=False)
     available = db.Column(db.Boolean, nullable=False)
-    # When expiration ends, grace starts.
+    # expiration = time expiration ends.
     expiration = db.Column(db.DATETIME, nullable=True)
-    # When grace ends, auction starts.
+    # grace = time grace ends.
     grace = db.Column(db.DATETIME, nullable=True)
-    # When auction ends, domain goes to free_pool.
+    # auction = time auction ends.
     auction = db.Column(db.DATETIME, nullable=True)
+    status = db.Column(db.VARCHAR(50), nullable=False)
 
     # db.relationships
     orders = db.relationship('Orders', backref='domains') # 1 domain to many orders
@@ -60,6 +63,8 @@ class Domains(Base, Lockable):
         self.auction = (self.grace + relativedelta( \
             days=app.config['ENS_AUCTION_PERIOD'])) \
             if self.grace != None else None
+        
+        self.status = domain_status(self.expiration, self.grace, self.auction)
 
     def __repr__(self):
         return f'Domain {self.id}: {self.name}'
@@ -163,6 +168,17 @@ class Markets(Base, Lockable):
         markets = cls.query.filter(Markets.name == name).first()
         return markets
 
+    @classmethod
+    def all_markets(cls, order='asc'):
+        '''
+        returns all markets, from those expiring first to
+        those expiring last.
+        '''
+        # import pdb; pdb.set_trace()
+        markets = cls.query.order_by(
+            Markets.name.asc() if order == 'asc' else Markets.name.desc()
+        ).all()
+        return markets
 
 class Orders(Base, Lockable):
     '''   '''

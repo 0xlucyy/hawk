@@ -7,26 +7,25 @@ import {
   Card,
   Container,
   Segment,
-  Grid
+  Grid,
+  Header
 } from 'semantic-ui-react'
 import Layout from './components/Layout.js';
 import Home from './components/Home.js';
-import Header from './components/Header.js';
+import _Header from './components/Header.js';
+import _Table from './components/Table.js';
 import Deck from './components/Deck.js';
-import Contact from './components/Contact.js';
 import DisplayData from './components/DisplayData.js';
 import { Route, Routes } from "react-router-dom"
 
 class App extends React.Component {
   state = {
+    activeDataFormat: 'card', // table
     activeItem: 'home',
     payload: null,
     loading: false,
     timeout: 30,
     days: 0,
-
-    // Markets
-    // looksrare: `https://www.ens.vision/name/${DOMAIN_NAME}`,
 
     // Error
     error: false,
@@ -38,6 +37,21 @@ class App extends React.Component {
     await this.setState({ activeItem: name })
     console.log(`activeItem App:handleItem: ${this.state.activeItem}`);
   }
+
+  expiring_in = async (e, value) => {
+    e.preventDefault();
+    console.log(`Searching with ${this.state.days} days`)
+    const myHeaders = new Headers({
+        'Content-Type': 'application/json',
+        'X-Custom-Header': 'ProcessThisImmediately'
+      });          
+    // const response = await fetch(`http://127.0.0.1:5000/api/v1/expiringDomains?days=${this.state.days}`);
+    const response = await fetch(`http://127.0.0.1:5000/api/v1/expiredDomains`, {headers: myHeaders});
+    // const response = await fetch(`http://127.0.0.1:5000/api/v1/allDomains?order=asc`);
+    const payload = await response.json();
+    await this.setState({ payload });
+    return payload;
+  };
 
   dismissError = async (e, value) => {
     e.preventDefault();
@@ -53,39 +67,37 @@ class App extends React.Component {
     const { activeItem } = this.state
 
     return (
-      <Segment inverted vertical >
-        <Container className="App" id="App" textAlign="center" fluid={true}>
-          <Layout>
+      <Layout>
+      <div className="App" id="App">
+        <Grid >
+          
+          <Grid.Row columns={3}>
+            <Grid.Column>
+              <_Header handler={this.handleActiveItem}/>
+            </Grid.Column>
+            <Grid.Column>
+            </Grid.Column>
+            <Grid.Column>
+            </Grid.Column>
+          </Grid.Row>
 
-            {/* <Input 
-              placeholder="activeItem"
-              onChange={ (event) => {
-                  this.setState({ activeItem: event.target.value });
-              }}
-              >
-            </Input> */}
-            {/* <Button onClick={this.dismissError}
-              className="icon"
-              labelPosition='left'>
-              dismissError!
-            </Button> */}
+          <Grid.Row>
+            <Grid.Column>
+              {
+                this.state.activeItem === 'home' ? (<_Table />) : (null)
+              }
+              {
+                this.state.activeItem === 'expiring' ? (<Home />) : (null)
+              }
+              {
+                this.state.activeItem === 'all' ? (<_Table />) : (null)
+              }
+            </Grid.Column>
+          </Grid.Row>
 
-            <Grid divided inverted stackable stretched>
-              <Grid.Column width={2} style={{left: '15px'}}>
-                <Header handler={this.handleActiveItem} active={this.state.activeItem} />
-              </Grid.Column>
-              <Grid.Column width={14} fluid='true'>
-                {
-                  this.state.activeItem === 'home' ? (<Home />) : (null)
-                }
-                {
-                  this.state.activeItem === 'expiring' ? (<DisplayData />) : (null)
-                }
-              </Grid.Column>
-            </Grid>
-          </Layout>
-        </Container>
-      </Segment>
+        </Grid>
+      </div>
+      </Layout>
     )
   }
 }

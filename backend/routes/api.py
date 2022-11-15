@@ -17,6 +17,7 @@ from backend.models.models import *
 from backend.utils.utils import (
     post_to_db,
     is_db_live,
+    domain_status
 )
 
 
@@ -48,8 +49,6 @@ def health():
 @app.route(f'{app.config["API_URI"]}/expiringDomains', methods=['GET'])
 def expiringDomains():
     days = request.args.get('days')
-
-    '''  '''
     try:
         app.logger.info(f'Expiring over the next {days} days.')
         expiring = Domains.expiring(int(days))
@@ -71,7 +70,6 @@ def expiringDomains():
 @app.route(f'{app.config["API_URI"]}/allDomains', methods=['GET'])
 def allDomains():
     _order = request.args.get('order')
-
     if _order != 'asc' and _order != 'desc':
         return jsonify({
             'success': False,
@@ -123,8 +121,41 @@ def liveAuction():
             'status_code': 200
         })
 
+
+@app.route(f'{app.config["API_URI"]}/allMarkets', methods=['GET'])
+def allMarkets():
+    _order = request.args.get('order')
+    if _order != 'asc' and _order != 'desc':
+        return jsonify({
+            'success': False,
+            'status_code': 400,
+            'err': 'Order must be `asc` or `desc`.'
+        })
+    try:
+        data = {}
+        all = Markets.all_markets(order=_order)
+        for markets in all:
+            data[markets.__dict__['name']] = markets.__dict__
+    except(Exception) as e:
+        app.logger.error(f'Error: {e}')
+        return log_error(error=e)
+    else:
+        return jsonify({
+            'total': len(all),
+            'order': _order,
+            'markets': data,
+            'status_code': 200
+        })
+
 # for param in request.args:
 #     if param != 'type' and param != 'page' and param !='search':
 #             opportunities = opportunities.filter(
-#                 getattr(ENS, param) == request.args.get(param)
+#                 getattr(Domains, param) == request.args.get(param)
 #             )
+
+# import pdb; pdb.set_trace()
+
+# for domain in all:
+#     status = domain_status(domain.expiration, domain.grace, domain.auction)
+#     setattr(domain, 'status', status)
+# post_to_db(domain) # Posting last one posts whole chain.

@@ -1,6 +1,8 @@
+from datetime import datetime
 import sys
 import json
 import csv
+from turtle import onclick
 import unicodedata
 from typing import Tuple
 from MySQLdb import _mysql
@@ -162,4 +164,18 @@ def stringify(attribute: object) -> str:
 	except:
 		return attribute
 
-# create_database()
+def domain_status(expiration, grace, auction):
+    now = datetime.now()
+    if expiration == None:
+        return app.config["DOMAIN_STATUS_FREE"]
+
+    if now < expiration: # Domain has not expired & is hodl'ed.
+        return app.config["DOMAIN_STATUS_HODLING"]
+    else: # domain is expired - Free, in grace, or in auction.
+        if now > auction: # Auction is over.
+            return app.config["DOMAIN_STATUS_FREE"]
+        else: # domain is expired & either in grace, or auction.
+            if now > grace: # Grace period is over.
+                return app.config["DOMAIN_STATUS_IN_AUCTION"]
+            else: # Grace period is not over.
+                return app.config["DOMAIN_STATUS_IN_GRACE"]
