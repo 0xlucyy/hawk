@@ -20,5 +20,5 @@ function hash(value) {
     }
 }
 
-// hash('foo')
+// hash('lobo')
 data.forEach(hash);

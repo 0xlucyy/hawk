@@ -6,11 +6,10 @@ from flask import jsonify
 
 
 def log_error(error=None):
-    # import pdb; pdb.set_trace()
     try:
         err_msg = error.msg 
     except Exception as e: 
-        err_msg = error._message
+        err_msg = error
 
     try:
         status = error.status_code 

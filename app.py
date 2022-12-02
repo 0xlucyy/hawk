@@ -34,12 +34,13 @@ if __name__ == '__main__':
 
     # Model Imports
     from backend.models.models import *
-    # import pdb; pdb.set_trace()
 
     # Create all tables.
     db.create_all()
+
     # Custom JSON Encoder.
     app.json_encoder = JSONEncoder
     # app.json_provider_class = JSONEncoder 
     # app.json = JSONEncoder
+
     app.run(debug=True)

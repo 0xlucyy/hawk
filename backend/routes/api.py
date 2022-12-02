@@ -1,3 +1,4 @@
+import json
 from app import (
     app,
     db
@@ -146,6 +147,35 @@ def allMarkets():
             'markets': data,
             'status_code': 200
         })
+
+
+@app.route(f'{app.config["API_URI"]}/getPremium', methods=['GET'])
+def refreshDomains():
+    from ethereum.read_ens import get_premium
+
+    _domain = request.args.get('domain')
+    _duration = request.args.get('duration', 1)
+    try:
+        data = get_premium(_domain, _duration)
+        # import pdb; pdb.set_trace()
+    except(Exception) as e:
+        app.logger.error(f'Error: {e}')
+        return log_error(error=e)
+    else:
+        return {'premium_in_eth': data}
+
+
+# @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['PUT', 'PATCH'])
+# def refreshDomains():
+#     from ethereum.read_ens import ens_claw
+
+#     with open(f"{app.config['WATCH_LOCATION']}.json", 'r', encoding='utf8') as outfile:
+#         data = json.load(outfile)
+#     import pdb; pdb.set_trace()
+#     data = ens_claw(payload=data)
+#     import pdb; pdb.set_trace()
+#     print('SAVE MOCK INNTO DATA')
+
 
 # for param in request.args:
 #     if param != 'type' and param != 'page' and param !='search':

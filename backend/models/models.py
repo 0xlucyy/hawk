@@ -83,7 +83,7 @@ class Domains(Base, Lockable):
         return domain if domain != None else False
 
     @classmethod
-    def expiring(cls, expires_in_days: int = None):
+    def expiring(cls, expires_in_days: int = 10):
         '''
         returns only expiring domains, from those expiring
         first to those expiring last.
@@ -111,12 +111,12 @@ class Domains(Base, Lockable):
     @classmethod
     def expired(cls):
         '''
-        returns all domains which have expired.
-        Returned domains can be free to register,
-        in grace, or in auction.
+        returned domains which have expired but have yet
+        to leave auction.
         '''
         domains = cls.query.filter(
-            Domains.expiration < datetime.now() # Expiration in past.
+            Domains.expiration < datetime.now(), # Expiration in past.
+            Domains.auction > datetime.now() # Auction already expired.
         ).order_by(
             Domains.expiration.asc()
         ).all()
