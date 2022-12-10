@@ -2097,6 +2097,9 @@ osa
 osos
 osas
 lobos
+lobo
+loba
+lobas
 black
 white
 purple
@@ -2416,4 +2419,3 @@ monstruo
 monster
 metralleta
 submachinegun
-

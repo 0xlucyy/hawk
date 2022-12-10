@@ -150,7 +150,7 @@ def allMarkets():
 
 
 @app.route(f'{app.config["API_URI"]}/getPremium', methods=['GET'])
-def refreshDomains():
+def getPremium():
     from ethereum.read_ens import get_premium
 
     _domain = request.args.get('domain')
@@ -163,6 +163,19 @@ def refreshDomains():
         return log_error(error=e)
     else:
         return {'premium_in_eth': data}
+
+
+@app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['GET'])
+def refreshDomains():
+    # from ethereum.read_ens import get_premium
+    try:
+        print('test')
+        # import pdb; pdb.set_trace()
+    except(Exception) as e:
+        app.logger.error(f'Error: {e}')
+        return log_error(error=e)
+    else:
+        return {'test': 'data'}
 
 
 # @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['PUT', 'PATCH'])

@@ -68,7 +68,30 @@ class Domains(Base, Lockable):
 
     def __repr__(self):
         return f'Domain {self.id}: {self.name}'
-    
+
+    @classmethod
+    def get_times_and_status(cls, _expiration: str = None):
+        '''
+        Grace & Auction expirations are calculated based off
+        the expiration value received from ENS_Base_Registrar
+        contract, function nameExpires.
+
+
+        '''
+        
+        expiration = datetime.strptime(
+            _expiration, app.config['DATETIME_STR_FORMAT']
+        ) if _expiration != 'null' else None
+        grace = (expiration + relativedelta( \
+            days=app.config['ENS_GRACE_PERIOD'])) \
+            if expiration != None else None
+        auction = (grace + relativedelta( \
+            days=app.config['ENS_AUCTION_PERIOD'])) \
+            if grace != None else None
+        status = domain_status(expiration, grace, auction)
+        return {'grace':grace, 'auction':auction, 'status':status}
+        # return domain if domain != None else False
+
     @classmethod
     def domain_exists(cls, domain_name: str = None):
         '''

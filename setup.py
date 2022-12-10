@@ -27,7 +27,10 @@ setup(
             "clean_file = backend.src.scripts:clean_file",
             "create_database = backend.src.scripts:create_database",
             "populate_domains = backend.src.scripts:populate_domains",
+            "update_domains = backend.src.scripts:update_domains",
+            "refresh_domains = backend.src.scripts:refresh_domains",            
             "populate_markets = backend.src.scripts:populate_markets",
+            "clean_slate = backend.src.scripts:clean_slate",
         ]
     }
 )

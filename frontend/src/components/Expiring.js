@@ -3,7 +3,7 @@ import { Input, Menu, Button, Card, Container, Image, Popup } from 'semantic-ui-
 import Deck from './Deck.js'
 // console.log(`data: ${JSON.stringify(markets)}`)
 
-export default class Home extends Component {
+export default class Expiring extends Component {
     state = {
         payload: null,
         expiringin_payload: null,
@@ -92,11 +92,11 @@ export default class Home extends Component {
     < div style = {{marginTop: 100}}>
     <Container>
         <div>
-        <Card.Group itemsPerRow="5" textAlign="center" className='domains'>
-            {this.state.expired_payload == null ? (<div>Load data...</div>) : 
+        <Card.Group itemsPerRow="5" textAlign="center" className='domains' style={{width:'1000px', height:'500px'}}>
+            {this.state.expired_payload == null ? (<div></div>) : 
             (
                 this.state.expired_payload.domains.map(domain => (
-                  <Card centered style={{width: '250px', height: '520px'}}>
+                  <Card centered >
                     <Card.Content extra>
                     <div className='ui three buttons' id='card_header'>
                     {/* {console.log(`MARKETS: ${JSON.stringify(this.state.markets)}`)} */}
@@ -169,7 +169,7 @@ export default class Home extends Component {
             )
             }
 
-            {this.state.expiringin_payload == null ? (<div>Load data...</div>) : 
+            {this.state.expiringin_payload == null ? (<div></div>) : 
             (
                 this.state.expiringin_payload.expiring_domains.map(domain => (
                   <Card centered style={{width: '250px', height: '520px'}}>

@@ -8,6 +8,7 @@ from typing import Tuple
 from MySQLdb import _mysql
 from app import app, db
 from sqlalchemy.sql import text
+from sqlalchemy.exc import IntegrityError
 from backend.utils.exceptions import (
     DatabaseError
 )
@@ -90,10 +91,11 @@ def get_tx_pool_content(w3: Web3 = None):
 def get_tx_pool_status(w3: Web3 = None):
     return w3.geth.txpool.status()
 
-def post_to_db(data):
-    from sqlalchemy.exc import IntegrityError
+def post_to_db(data=None, just_commit=False):
+    # import pdb; pdb.set_trace()
     try:
-        db.session.add(data)
+        if(just_commit == False):
+            db.session.add(data)
         db.session.commit()
     except IntegrityError as IE:
         db.session.rollback()

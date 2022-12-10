@@ -11,7 +11,7 @@ import {
   Header
 } from 'semantic-ui-react'
 import Layout from './components/Layout.js';
-import Home from './components/Home.js';
+import Home from './components/Expiring.js';
 import _Header from './components/Header.js';
 import _Table from './components/Table.js';
 import Deck from './components/Deck.js';

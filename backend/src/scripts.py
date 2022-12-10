@@ -1,13 +1,17 @@
+import subprocess
 import json
 import sys
+import time
 from xml import dom
+from datetime import datetime
 from MySQLdb import _mysql
 from backend.utils.utils import (
     apply_hashes_to_payload,
     tilde_identifier,
     remove_accents,
     post_to_db,
-    app
+    app,
+    db
 )
 from ethereum.read_ens import ens_claw
 from backend.models import models
@@ -81,9 +85,7 @@ def build_watchlist():
     # Dumps WATCH_LOCATION.csv into payload - Domain name & domain hash.
     payload = apply_hashes_to_payload(payload)
     payload = ens_claw(payload)
-    # import pdb; pdb.set_trace()
     with open(f"{app.config['WATCH_LOCATION']}.json", 'w', encoding='utf8') as outfile:
-        # import pdb; pdb.set_trace()
         json.dump(payload, outfile, indent=4, sort_keys=True, ensure_ascii=False, default=str)
 
 
@@ -97,7 +99,10 @@ def clean_file(file: str = None):
         Run `clean_file watch` in terminal.
     '''
     if file == None:
-        file = sys.argv[1]
+        try:
+            file = sys.argv[1]
+        except Exception as e:
+            file = 'watch'
     app.logger.info(f"Reading {app.config['DOMAIN_WATCH_FOLDER']}/{file}.txt ...")
 
     # Read from uncleaned file.
@@ -151,3 +156,93 @@ def create_database():
 
     # #Closing the connection
     db_connection.close()
+
+def clean_slate():
+    '''
+        Watchlist file is a single line text file.
+        Default is located in /watchlist/watch.txt
+
+        Programatic version of READ.ME ## Getting started
+        section.
+    '''
+    start_time = time.time()
+    get_hashes_cmd = 'node ethereum/normalize.js >> watchlists/watch_clean.csv'
+
+    clean_file()
+    subprocess.run(['sh', '-c', get_hashes_cmd])
+    build_watchlist()
+    create_database()
+    db.create_all()
+    populate_domains()
+    populate_markets()
+
+    print("--- %.2f seconds ---" % (time.time() - start_time))
+
+def update_domains():
+    '''
+        Full update on domains. Default source of domains
+        is watchlists/watch.txt.
+    '''
+    start_time = time.time()
+    get_hashes_cmd = 'node ethereum/normalize.js >> watchlists/watch_clean.csv'
+
+    clean_file()
+    subprocess.run(['sh', '-c', get_hashes_cmd])
+    build_watchlist()
+    refresh_domains()
+
+    print("--- %.2f seconds ---" % (time.time() - start_time))
+
+
+def refresh_domains():
+    '''
+        Partial update on domains. Default source of domains
+        is watchlists/watch_clean.json.
+    '''
+    build_watchlist()
+    with open(f"{app.config['WATCH_LOCATION']}.json", 'r', encoding='utf8') as outfile:
+        payload = json.load(outfile)
+    
+    domains_createad = 0
+    domains_updated = 0
+    failed = 0
+    failed_named = []
+    # keys are cols from domain table.
+    update_keys = ['owner', 'available', 'expiration']
+    
+    for domain_name, domain_metadata in payload.items():
+        app.logger.info(f"Working on {domain_name}...")
+        try:
+            domain = models.Domains.query.filter(
+                models.Domains.name == domain_name
+            ).first()
+        except Exception as error:
+            app.logger.error(error)
+            failed += 1
+            failed_named.append(domain_name)
+            continue
+
+        try:
+            if domain is not None: # domain exists in db.
+                for key in update_keys:
+                    setattr(domain, key, payload[domain_name][key]) if key != 'expiration' else setattr(domain, key, (payload[domain_name][key]).upper())
+                setattr(domain, '_updated_at', datetime.now())
+                time_and_status = models.Domains.get_times_and_status(payload[domain_name]['expiration'])
+                for key,value in time_and_status.items():
+                    try:
+                        setattr(domain, key, value)
+                    except Exception as error:
+                        print(error)
+                post_to_db(just_commit=True)
+                domains_updated += 1
+            else: # domain does not exist in db.
+                new_domain = models.Domains(**domain_metadata)
+                post_to_db(data=new_domain)
+                domains_createad += 1
+        except DomainModelDataTypeError as DMDTE:
+            app.logger.error(DMDTE)
+            failed += 1
+            failed_named.append(domain_name)
+    print(f"Total domains created: {domains_createad} - " \
+                    f"Total domains updated: {domains_updated} - " \
+                    f"Total failed: {failed}")
