@@ -11,10 +11,10 @@ import {
   Header
 } from 'semantic-ui-react'
 import Layout from './components/Layout.js';
-import Home from './components/Expiring.js';
+import Expiring from './components/Expiring.js';
 import _Header from './components/Header.js';
 import _Table from './components/Table.js';
-import Deck from './components/Deck.js';
+import Deck from './components/Card.js';
 import DisplayData from './components/DisplayData.js';
 import { Route, Routes } from "react-router-dom"
 
@@ -87,7 +87,7 @@ class App extends React.Component {
                 this.state.activeItem === 'home' ? (<_Table />) : (null)
               }
               {
-                this.state.activeItem === 'expiring' ? (<Home />) : (null)
+                this.state.activeItem === 'expiring' ? (<Expiring />) : (null)
               }
               {
                 this.state.activeItem === 'all' ? (<_Table />) : (null)
