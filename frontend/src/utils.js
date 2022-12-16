@@ -103,11 +103,22 @@ function handleName(payload) {
   let _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
   // return <Label size='big' style={{'color': 'orange', 'backgroundColor':'transparent'}} as='a' target='_blank' href={_href}>{payload.payload.name}.eth</Label>
   return <Label size='big' style={{'color': 'orange', 'backgroundColor':'transparent'}}>{payload.payload.name}.eth</Label>
-  
 }
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function handleOwner(payload) {
+  // {(payload.payload.owner == 'THROW' ? 'no_owner' : (payload.payload.owner).substr(0, 13))}
+  if (payload.payload.owner == 'NEVER_BEEN_MINTED') {
+    return <div>Never been minted</div>
+  } else {
+    let _href = 'https://etherscan.io/address/' + payload.payload.owner
+    return <div as='a' target='_blank' href={_href}>{(payload.payload.owner).substr(0, 13)}</div>
+  }
+  console.log(`Owner: ${payload.payload.owner}`)
+  console.log(`Owner Substr: ${(payload.payload.owner).substr(0, 13)}`)
 }
 
 export {
@@ -116,5 +127,6 @@ export {
   handleColor,
   handleFooter,
   handleName,
+  handleOwner,
   capitalizeFirstLetter,
 }

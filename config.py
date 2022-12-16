@@ -26,7 +26,13 @@ class _Base(object):
     # Ethereum network connections.
     MAINNET_PROVIDER = os.environ.get("MAINNET_PROVIDER")
     ROPSTEN_PROVIDER = os.environ.get("ROPSTEN_PROVIDER")
-    INFURA_PROVIDER = os.environ.get("INFURA_PROVIDER")
+    # INFURA_PROVIDER = os.environ.get("INFURA_PROVIDER")
+    
+    # GraphQL
+    GRAPHQL_API_KEY = os.environ.get("GRAPHQL_API_KEY")
+    GRAPHQL_ENS_URL = f"https://gateway.thegraph.com/api/{GRAPHQL_API_KEY}/subgraphs/id/EjtE3sBkYYAwr45BASiFp8cSZEvd1VHTzzYFvJwQUuJx"
+
+
 
     # Clean watch list settings.
     SPANISH_TILDES = ['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ']

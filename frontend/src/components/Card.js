@@ -81,7 +81,6 @@ function handleCardHeader(markets, domain) {
 
 const HandleCardContext = (payload) => {
     const [premium, setPremium] = useState([]);
-    const [rates, setRates] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
@@ -89,11 +88,6 @@ const HandleCardContext = (payload) => {
                 if (payload.payload.status === 'IN_AUCTION') {
                     const res = await axios.get(`http://127.0.0.1:5000/api/v1/getPremium?domain=${payload.payload.name}&duration=1`);
                     setPremium(res.data);
-
-                    const rates = await axios.get(`https://api.coinbase.com/v2/exchange-rates?currency=ETH`);
-                    console.log(`rates: ${JSON.stringify(rates)}`)
-                    // console.log(`rates: ${JSON.stringify(rates.data.data.rates.USD)}`)
-                    setRates(rates.data.data.rates.USD);
                 }
             } catch (err) {
                 console.log(err);
@@ -105,7 +99,7 @@ const HandleCardContext = (payload) => {
     if (payload.payload.status === 'IN_AUCTION') {
         if (premium.premium_in_eth != null) {
             let eth_price = premium.premium_in_eth.slice(0, 6)
-            let usd_price = (rates * premium.premium_in_eth).toFixed(2)
+            let usd_price = (payload.rates.data.rates.USD * premium.premium_in_eth).toFixed(2)
             return <div style={{ 'color': 'green' }}>
                 Premium: {(premium.premium_in_eth == null ? (null) : (`${eth_price}ETH | ${usd_price.toLocaleString()}USD`))}
             </div>
@@ -124,9 +118,12 @@ const HandleCardContext = (payload) => {
 
 function _Card(payload) {
     // console.log(`I AM HERE PAYLOAD: ${JSON.stringify(payload)}`)
+    // console.log(`2: ${JSON.stringify(payload.rates)}`)
+    // console.log(`2: ${JSON.stringify(payload.rates.data.rates.USD)}`)
+
     return (
         <div>
-        <Card style={{height:'450px'}}>
+        <Card style={{height:'440px'}}>
             {/* {console.log(`Deck payload 1: ${JSON.stringify(payload.payload)}`)} */}
             <Card.Content >
                 <Image
@@ -153,4 +150,5 @@ function _Card(payload) {
 export {
     _Card,
     HandleCardContext,
+    handleCardHeader
   }

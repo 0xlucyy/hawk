@@ -84,7 +84,7 @@ class App extends React.Component {
           <Grid.Row>
             <Grid.Column>
               {
-                this.state.activeItem === 'home' ? (<_Table />) : (null)
+                this.state.activeItem === 'home' ? (<Expiring />) : (null)
               }
               {
                 this.state.activeItem === 'expiring' ? (<Expiring />) : (null)

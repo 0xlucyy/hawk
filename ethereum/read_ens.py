@@ -2,20 +2,24 @@ import json
 import copy
 from typing import Dict
 from datetime import datetime, timezone
-# from web3 import Web3
+from ethereum._base import Web3_Base#, app
+from web3.exceptions import TimeExhausted, ContractLogicError
+from web3.contract import ConciseContract
 from backend.utils.utils import (
     BASIC_TRANSACTION,
     SIGN_SEND_WAIT,
     Web3,
     app
 )
-from ethereum._base import Web3_Base#, app
-from web3.exceptions import TimeExhausted, ContractLogicError
-from web3.contract import ConciseContract
-
+from graphql.queries import (
+  DOMAIN_OWNER,
+)
+from graphql.main import (
+  make_graphql_request,
+)
 # import pdb; pdb.set_trace()
 
-
+# Very upstread. changes to this need to be throught about a little
 def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     '''
     Gathers owner, expiration, & availability data 
@@ -59,7 +63,7 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
             owner = base_registrar_contract.functions.\
                     ownerOf(int(payload[domain]['hash'])).call()
         except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
-            payload[domain]['owner'] = 'THROW'
+            payload[domain]['owner'] = get_owner_graphql(domain)
             app.logger.error(f'OwnerOf_Error on {domain} - ' \
                              f'Hash {payload[domain]["hash"]} - ')
             fails.append(domain)
@@ -70,7 +74,6 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     app.logger.info(f'Fail Total {len(fails)} - Fail Queue {fails}')
 
     return payload
-
 
 def get_premium(domain_name: str = None, years: int = 1):
     '''
@@ -85,10 +88,24 @@ def get_premium(domain_name: str = None, years: int = 1):
         address=app.config["ETH_REGISTRAR_CONTROLLER_MAINNET"],
     )
 
-    # import pdb; pdb.set_trace()
     # Returns premium cost only, ensure domain is in auction when called.
     fee = eth_registrar_contract.functions.rentPrice(domain_name, int(years)).call()
     eth_fee = w3_obj.w3.fromWei(fee, 'ether')
     return eth_fee
 
-# get_premium()
+def get_owner_graphql(domain_name: str = None):
+    '''
+    Some domains have never had an owner because they have
+    never been minted.
+    '''
+    app.logger.info(f'Querying graphql for owner on domain: {domain_name}...')
+    resp = make_graphql_request('DOMAIN_OWNER', domain_name)
+    owners = resp['data']['data']['domains']
+    if owners == []:
+        return "NEVER_BEEN_MINTED"
+    else:
+        return owners[0]['owner']['id']
+
+def reset_provider():
+    reset = Web3_Base()
+    print('Reset...')

@@ -157,7 +157,6 @@ def getPremium():
     _duration = request.args.get('duration', 1)
     try:
         data = get_premium(_domain, _duration)
-        # import pdb; pdb.set_trace()
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
@@ -165,17 +164,33 @@ def getPremium():
         return {'premium_in_eth': data}
 
 
-@app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['GET'])
-def refreshDomains():
-    # from ethereum.read_ens import get_premium
+# @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['GET'])
+# def refreshDomains():
+#     # from ethereum.read_ens import get_premium
+#     try:
+#         print('test')
+#     except(Exception) as e:
+#         app.logger.error(f'Error: {e}')
+#         return log_error(error=e)
+#     else:
+#         return {'test': 'data'}
+
+
+@app.route(f'{app.config["API_URI"]}/getGraphData', methods=['GET'])
+def getGraphData():
+    from graphql.main import make_graphql_request
+    _target = request.args.get('target')
+    _domainName = request.args.get('domainName')
+    import pdb; pdb.set_trace()
     try:
-        print('test')
-        # import pdb; pdb.set_trace()
+        resp = make_graphql_request(_target, _domainName)
+        resp['name'] = _domainName
+        resp['queryTarget'] = _target
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
     else:
-        return {'test': 'data'}
+        return resp
 
 
 # @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['PUT', 'PATCH'])

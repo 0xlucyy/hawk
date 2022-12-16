@@ -75,10 +75,7 @@ class Domains(Base, Lockable):
         Grace & Auction expirations are calculated based off
         the expiration value received from ENS_Base_Registrar
         contract, function nameExpires.
-
-
         '''
-        
         expiration = datetime.strptime(
             _expiration, app.config['DATETIME_STR_FORMAT']
         ) if _expiration != 'null' else None

@@ -48,7 +48,7 @@ export default class Layout extends Component {
                         // attached
                         style={{ top: "auto", height: "auto", width: "auto" }}
                     >
-                        {(calculations.percentagePassed * 100).toFixed() < 1.5 ? null : (
+                        {(calculations.percentagePassed * 100).toFixed() < 2 ? null : (
                             <Sticky offset={10} context={contextRef}>
                                 <Button 
                                     color='black'

@@ -1,12 +1,34 @@
 
+000
+0000
 0666
+111
+1111
+123
+222
+2222
+333
+3333
+369
 420mph
+444
+4444
 50-50
 50cent
+555
+5555
 666
 6660
+6666
+777
+7777
+888
+8888
+999
+9999
 aaron
 aarón
+abc
 abigail
 abril
 academia
@@ -46,11 +68,14 @@ agustina
 agustín
 ah-teen
 ahorros
+air
 airbender
+aire
 airs
 airways
 aitana
 akbar
+ala
 alameda
 alan
 alanna
@@ -256,6 +281,7 @@ bebe
 bebé
 beds
 beelzebub
+beginning
 behemot
 behemoth
 belgica
@@ -291,6 +317,7 @@ blackbeard
 blacklivesmatter
 blackmagic
 blackpearl
+blair
 blanca
 blanco
 bleak
@@ -324,6 +351,7 @@ bravery
 breakfast
 breederscup
 brine
+brisa
 britanico
 británico
 brontosaurus
@@ -331,6 +359,7 @@ bronzebeard
 brown
 brujah
 bruno
+budlight
 buenosaires
 bull
 bullrunning
@@ -375,6 +404,7 @@ capitana
 capitoline
 capitán
 capricornio
+cara
 caracas
 carbon
 carbón
@@ -395,6 +425,7 @@ carrillo
 carvajal
 carvana
 casusbelli
+cat
 catalina
 catan
 catorce
@@ -417,6 +448,7 @@ centroamerica
 centroamérica
 cerbero
 cerberus
+cerveza
 chamba
 chameleon
 chanel
@@ -523,6 +555,7 @@ comprensivo
 concealed-weapons
 concreto
 conflicto
+conquer
 conservation
 constanza
 constelacion
@@ -612,6 +645,7 @@ danés
 dargon
 dario
 darkforged
+darth
 darthbane
 darthmaul
 darthvader
@@ -689,11 +723,13 @@ distrust
 divert
 divine
 doce
+dog
 dolor
 dolores
 domicilio
 domingo
 domingos
+dominic
 donald
 donkeykong
 dooku
@@ -792,6 +828,7 @@ emojis
 emperor
 empresa
 empresas
+end
 enemigo
 energetico
 energético
@@ -911,6 +948,7 @@ fifty-fifty
 figueroa
 filipinas
 filipino
+fin
 financiar
 fingers
 finlandes
@@ -976,6 +1014,7 @@ garcia
 gargoyle
 gasp
 gasstation
+gato
 gaul
 gauls
 gaylord
@@ -1378,6 +1417,7 @@ knight
 koopa
 kotakmahindrabank
 kotaku
+krabby
 kraken
 kristie
 kruger
@@ -1511,6 +1551,7 @@ magic
 magic-curse
 magiccurse
 maite
+makeup
 mala
 malcom
 maldonado
@@ -1525,6 +1566,7 @@ mankind
 mannuel
 manuel
 manuela
+maquillaje
 maquinaria
 marca
 marcas
@@ -1538,6 +1580,7 @@ mariacamila
 mariafernanda
 mariajose
 mariajosé
+mariam
 mariana
 mariangel
 mariapaula
@@ -1647,9 +1690,12 @@ mlbtickets
 mlstickets
 modelo
 mofo
+mogul
+mona
 monarchy
 mongol
 mongól
+mono
 monster
 monstro
 monstruo
@@ -1803,6 +1849,7 @@ olivares
 olive
 olivia
 oman
+omega
 omán
 on-site
 once
@@ -1887,6 +1934,7 @@ pepe
 pepsicoalimentos
 percy
 perico
+perra
 perro
 persa
 perseus
@@ -1912,6 +1960,10 @@ pistola
 pixie
 planos
 plata
+player1
+player2
+player3
+player7
 pluto
 pluton
 plutón
@@ -1949,6 +2001,7 @@ pre-emptive
 pre-existing
 pre-workout
 president-elect
+presidente
 presupuesto
 prettygirl
 prince
@@ -2082,6 +2135,7 @@ rosa
 rosada
 rose
 roy
+royalrumble
 ruben
 run-in
 runner-up
@@ -2198,6 +2252,9 @@ sittingbull
 six-foot
 six-pack
 skateboard
+skt1
+sktelecomt1
+sktt1
 small-business
 smallbusiness
 smartlife
@@ -2210,6 +2267,7 @@ socorro
 sofia
 software
 softwareengineer
+sol
 solana
 soldado
 soledad
@@ -2265,6 +2323,7 @@ sudáfrica
 sudán
 sue
 suecia
+suelo
 suiza
 sulla
 sultan
@@ -2295,6 +2354,7 @@ tataconsultancyservices
 tauren
 tauro
 tcs
+tecate
 ted
 tegucigalpa
 telcel
@@ -2465,6 +2525,7 @@ vialatina
 vicente
 victor
 victoria
+viento
 viernes
 vino
 vinte
@@ -2514,6 +2575,7 @@ williamtheconqueror
 willie
 willis
 wilmer
+wind
 windhammer
 wine
 wines
@@ -2528,6 +2590,7 @@ wordofgod
 worgen
 world-famous
 worldfair
+wrestlemania
 writers
 wuzetian
 wyoming
@@ -2535,6 +2598,7 @@ wyvern
 x-ray
 ximena
 xoxoxo
+xyz
 yaotl
 year-end
 yellow

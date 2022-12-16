@@ -178,71 +178,73 @@ def clean_slate():
 
     print("--- %.2f seconds ---" % (time.time() - start_time))
 
-def update_domains():
-    '''
-        Full update on domains. Default source of domains
-        is watchlists/watch.txt.
-    '''
-    start_time = time.time()
-    get_hashes_cmd = 'node ethereum/normalize.js >> watchlists/watch_clean.csv'
 
-    clean_file()
-    subprocess.run(['sh', '-c', get_hashes_cmd])
-    build_watchlist()
-    refresh_domains()
+## TODO ensure scripts below work as intended.
+# def update_domains():
+#     '''
+#         Full update on domains. Default source of domains
+#         is watchlists/watch.txt.
+#     '''
+#     start_time = time.time()
+#     get_hashes_cmd = 'node ethereum/normalize.js >> watchlists/watch_clean.csv'
 
-    print("--- %.2f seconds ---" % (time.time() - start_time))
+#     clean_file()
+#     subprocess.run(['sh', '-c', get_hashes_cmd])
+#     build_watchlist()
+#     refresh_domains()
+
+#     print("--- %.2f seconds ---" % (time.time() - start_time))
 
 
-def refresh_domains():
-    '''
-        Partial update on domains. Default source of domains
-        is watchlists/watch_clean.json.
-    '''
-    build_watchlist()
-    with open(f"{app.config['WATCH_LOCATION']}.json", 'r', encoding='utf8') as outfile:
-        payload = json.load(outfile)
+# def refresh_domains():
+#     '''
+#         Partial update on domains. Default source of domains
+#         is watchlists/watch_clean.json.
+#     '''
+#     build_watchlist()
+#     with open(f"{app.config['WATCH_LOCATION']}.json", 'r', encoding='utf8') as outfile:
+#         payload = json.load(outfile)
     
-    domains_createad = 0
-    domains_updated = 0
-    failed = 0
-    failed_named = []
-    # keys are cols from domain table.
-    update_keys = ['owner', 'available', 'expiration']
+#     domains_createad = 0
+#     domains_updated = 0
+#     failed = 0
+#     failed_named = []
+#     # keys are cols from domain table.
+#     update_keys = ['owner', 'available', 'expiration']
     
-    for domain_name, domain_metadata in payload.items():
-        app.logger.info(f"Working on {domain_name}...")
-        try:
-            domain = models.Domains.query.filter(
-                models.Domains.name == domain_name
-            ).first()
-        except Exception as error:
-            app.logger.error(error)
-            failed += 1
-            failed_named.append(domain_name)
-            continue
+#     for domain_name, domain_metadata in payload.items():
+#         app.logger.info(f"Working on {domain_name}...")
+#         try:
+#             domain = models.Domains.query.filter(
+#                 models.Domains.name == domain_name
+#             ).first()
+#         except Exception as error:
+#             app.logger.error(error)
+#             failed += 1
+#             failed_named.append(domain_name)
+#             continue
 
-        try:
-            if domain is not None: # domain exists in db.
-                for key in update_keys:
-                    setattr(domain, key, payload[domain_name][key]) if key != 'expiration' else setattr(domain, key, (payload[domain_name][key]).upper())
-                setattr(domain, '_updated_at', datetime.now())
-                time_and_status = models.Domains.get_times_and_status(payload[domain_name]['expiration'])
-                for key,value in time_and_status.items():
-                    try:
-                        setattr(domain, key, value)
-                    except Exception as error:
-                        print(error)
-                post_to_db(just_commit=True)
-                domains_updated += 1
-            else: # domain does not exist in db.
-                new_domain = models.Domains(**domain_metadata)
-                post_to_db(data=new_domain)
-                domains_createad += 1
-        except DomainModelDataTypeError as DMDTE:
-            app.logger.error(DMDTE)
-            failed += 1
-            failed_named.append(domain_name)
-    print(f"Total domains created: {domains_createad} - " \
-                    f"Total domains updated: {domains_updated} - " \
-                    f"Total failed: {failed}")
+#         try:
+#             if domain is not None: # domain exists in db.
+#                 for key in update_keys:
+#                     setattr(domain, key, payload[domain_name][key]) if key != 'expiration' else setattr(domain, key, (payload[domain_name][key]).upper())
+#                 setattr(domain, '_updated_at', datetime.now())
+#                 time_and_status = models.Domains.get_times_and_status(payload[domain_name]['expiration'])
+#                 for key,value in time_and_status.items():
+#                     try:
+#                         setattr(domain, key, value)
+#                     except Exception as error:
+#                         print(error)
+#                 post_to_db(just_commit=True)
+#                 domains_updated += 1
+#             else: # domain does not exist in db.
+#                 new_domain = models.Domains(**domain_metadata)
+#                 post_to_db(data=new_domain)
+#                 domains_createad += 1
+#         except DomainModelDataTypeError as DMDTE:
+#             app.logger.error(DMDTE)
+#             failed += 1
+#             failed_named.append(domain_name)
+#     print(f"Total domains created: {domains_createad} - " \
+#                     f"Total domains updated: {domains_updated} - " \
+#                     f"Total failed: {failed}")

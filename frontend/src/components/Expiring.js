@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Input, Menu, Button, Card, Container, Image, Popup, Progress } from 'semantic-ui-react'
-import {_Card, HandleCardContext} from './Card.js'
+import {_Card, HandleCardContext, handleCardHeader} from './Card.js'
 // console.log(`data: ${JSON.stringify(markets)}`)
 
 
@@ -23,7 +23,7 @@ export default class Expiring extends Component {
     hidden: true,
   };
 
-  load_market_data = async (e, value) => {
+  load_market_data = async () => {
     if (this.state.markets === null) {
       console.log(`Loading market data....`)
       let response = await fetch(`http://127.0.0.1:5000/api/v1/allMarkets?order=asc`);
@@ -32,75 +32,48 @@ export default class Expiring extends Component {
     }
   }
 
-  // get_premium_data = async (e, value) => {
-  //   e.preventDefault();
-  //   let premium = {}
-  //   let rates = null
-
-  //   try {
-  //     if (this.state.payload.status === 'IN_AUCTION') {
-  //         console.log(`Getting premium for ${value}`)
-  //         let response = await fetch(`http://127.0.0.1:5000/api/v1/getPremium?domain=${value}&duration=1`);
-  //         premium = await response.json();
-  //         console.log(`premium: ${JSON.stringify(premium)}`)
-  //         this.setState({premium});
-
-  //         rates = await fetch(`https://api.coinbase.com/v2/exchange-rates?currency=ETH`);
-  //         console.log(`rates: ${JSON.stringify(rates.data.data.rates.USD)}`)
-  //         this.setState({rates: rates.data.data.rates.USD});
-  //     }
-  //   } catch (err) {
-  //       console.log(err);
-  //   }
-
-  //   if (this.state.payload.status === 'IN_AUCTION') {
-  //     // console.log(`rates: ${JSON.stringify(rates.data.rates.USD.slice(0,7))}`)
-  //     if (premium.premium_in_eth != null) {
-  //         let eth_price = premium.premium_in_eth.slice(0, 6)
-  //         let usd_price = (rates * premium.premium_in_eth).toFixed(2)
-  //         return <div style={{ 'color': 'green' }}>
-  //             Premium: {(premium.premium_in_eth == null ? (null) : (`${eth_price}ETH | ${usd_price.toLocaleString()}USD`))}
-  //         </div>
-  //     }
-  //   } else if (this.state.payload.status === 'IN_GRACE') {
-  //       return `Grace Expires: ${this.state.payload.grace}`
-  //   } else if (this.state.payload.status === 'BEING_HELD') {
-  //       return `Expiration: ${this.state.payload.expiration}`
-  //   } else if (this.state.payload.status === 'FREE') {
-  //       return `FREE`
-  //   }
-  //   return `ERROR`
-  // }
+  load_rates_data = async () => {
+    if (this.state.rates == null) {
+      console.log(`Loading rates data from coinbase....`)
+      let response = await fetch(`https://api.coinbase.com/v2/exchange-rates?currency=ETH`);
+      const rates = await response.json();
+      this.setState({ rates });
+      // console.log(`Loaded Rates Data: ${JSON.stringify(rates)}`)
+    }
+  }
 
   expired = async (e, value) => {
     e.preventDefault();
     await this.load_market_data()
+    await this.load_rates_data()
 
     console.log(`Loading expired domain data....`)
     let response = await fetch(`http://127.0.0.1:5000/api/v1/expiredDomains`);
     const expired_payload = await response.json();
-    await this.setState({ expiringin_payload: null });
-    await this.setState({ expired_payload });
+    this.setState({ expiringin_payload: null });
+    this.setState({ expired_payload });
   };
 
   expiring_in = async (e, value) => {
     e.preventDefault();
     if (this.state.days === null) {
-      await this.setState({ days: 10 });
+      this.setState({ days: 10 });
     }
     await this.load_market_data()
+    await this.load_rates_data()
 
     console.log(`Loading expiring domains within ${this.state.days} days....`)
     let response = await fetch(`http://127.0.0.1:5000/api/v1/expiringDomains?days=${this.state.days}`);
     const expiringin_payload = await response.json();
-    await this.setState({ expired_payload: null });
-    await this.setState({ expiringin_payload });
+
+    this.setState({ expired_payload: null });
+    this.setState({ expiringin_payload });
   };
 
   handleDismiss = async (e, value) => {
     e.preventDefault();
     console.log(`handleDismiss`);
-    await this.setState({ 
+    this.setState({
       hidden: false,
       error: true,
       errorMessage: ''
@@ -206,7 +179,7 @@ export default class Expiring extends Component {
                     />
                     </div>
                     </Card.Content>
-                    <_Card payload={domain} key={domain.name}/>
+                    <_Card payload={domain} key={domain.name} rates={this.state.rates}/>
                   </Card>
                 )
               )
@@ -218,12 +191,11 @@ export default class Expiring extends Component {
                 this.state.expiringin_payload.expiring_domains.map(domain => (
                   // <Card centered style={{width: '250px', height: '520px'}}>
                   <Card centered fluid>
-                    {/* <Card.Content extra> */}
-                    {/* <div className='ui four buttons' id='card_header'> */}
+                    <Card.Content extra>
+                    <div className='ui four buttons' id='card_header'>
                     {/* {console.log(`MARKETS: ${JSON.stringify(this.state.markets)}`)} */}
                     {/* {handleCardHeader(this.state.markets.markets, domain)} */}
-                    <handleCardHeader markets={this.state.markets.markets} domain={domain}/>
-                    {/* <Popup
+                    <Popup
                         inverted
                         on='hover'
                         position='top center'
@@ -282,11 +254,10 @@ export default class Expiring extends Component {
                           target='_blank'
                           circular
                       />}
-                    /> */}
-                    {/* </div> */}
-                    {/* </Card.Content> */}
-                    <_Card payload={domain} key={domain.name} />
-                    {/* {_Card(domain)} */}
+                    />
+                    </div>
+                    </Card.Content>
+                    <_Card payload={domain} key={domain.name} rates={this.state.rates}/>
                   </Card>
                 )
               )

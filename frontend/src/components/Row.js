@@ -7,7 +7,9 @@ import {
     handleStatus,
     handleColor,
     handleFooter,
-    handleName}
+    handleName,
+    handleOwner
+}
 from "../utils.js"
 
 
@@ -57,23 +59,26 @@ function Row(payload) {
     return (
     <Table.Row >
         <Table.Cell>
-            {handleName(payload)}</Table.Cell>
+            {handleName(payload)}
+        </Table.Cell>
 
         <Table.Cell style = {{'color': handleColor(payload)}}>
-            {handleStatus(payload)}</Table.Cell>
+            {handleStatus(payload)}
+        </Table.Cell>{/* Status column */}
 
         <Table.Cell style = {{'color': handleColor(payload)}}>
             {HandleCardContext(payload)}
-        </Table.Cell>
+        </Table.Cell>{/* Context column */}
 
         <Table.Cell textAlign={'middle'} collapsing={true} style = {{'color': handleColor(payload)}}>
-            {handleFooter(payload, 'row')}</Table.Cell>
+            {handleFooter(payload, 'row')}
+        </Table.Cell>{/* Info column */}
 
         <Table.Cell style = {{'color': handleColor(payload)}}>
-            {(payload.payload.owner == 'FREE' ? 'no_owner' : (payload.payload.owner).substr(0, 13))}
-        </Table.Cell>
+            {handleOwner(payload, 'row')}
+        </Table.Cell>{/* Owner column */}
         
-        <Table.Cell></Table.Cell>
+        {/* <Table.Cell></Table.Cell> */}
     </Table.Row>
     )
   }
