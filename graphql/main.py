@@ -48,7 +48,8 @@ def make_graphql_request(query_target: str = None, domain_name: str = None):
       url = DOMAIN_OWNER.replace('labelName:"_NAME"', f'labelName:"{domain_name}"')
       response = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": url})
     else:
-      return {'msg':'invalid query_target value', 'valid_values':'domain,history', 'type':'str', 'optional':False}
+      valid_values = ['DOMAIN_ECO', 'REGISTRATIONS','DOMAIN_OWNER']
+      return {'msg':'invalid query_target value', 'valid_values':valid_values, 'type':'str', 'optional':False}
 
     app.logger.info(f'Query status code {response.status_code}...')
     return {'status_code': response.status_code, 'data': response.json()}

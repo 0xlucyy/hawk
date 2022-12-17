@@ -157,11 +157,17 @@ def getPremium():
     _duration = request.args.get('duration', 1)
     try:
         data = get_premium(_domain, _duration)
+        # import pdb; pdb.set_trace()
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
     else:
-        return {'premium_in_eth': data}
+        if len(_domain) == 3:
+            return {'premium_in_eth': data, 'legnth_cost_per_year': app.config["THREE_LETTER"], 'years': _duration}
+        elif len(_domain) == 4:
+            return {'premium_in_eth': data, 'legnth_cost_per_year': app.config["FOUR_LETTER"], 'years': _duration}
+        else:
+            return {'premium_in_eth': data, 'legnth_cost_per_year': app.config["MORE_THEN_FOUR_LETTERS"], 'years': _duration}
 
 
 # @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['GET'])
@@ -181,7 +187,7 @@ def getGraphData():
     from graphql.main import make_graphql_request
     _target = request.args.get('target')
     _domainName = request.args.get('domainName')
-    import pdb; pdb.set_trace()
+
     try:
         resp = make_graphql_request(_target, _domainName)
         resp['name'] = _domainName

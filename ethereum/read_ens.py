@@ -47,6 +47,7 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
             payload[domain]['available'] = bool(avail)
         except(Exception) as e:
             app.logger.error(f'available on {domain} - Hash {payload[domain]["hash"]}')
+            payload[domain]['available'] = False
 
         try: # Get domain expiration.
             expires = base_registrar_contract.functions.\
@@ -63,10 +64,10 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
             owner = base_registrar_contract.functions.\
                     ownerOf(int(payload[domain]['hash'])).call()
         except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
-            payload[domain]['owner'] = get_owner_graphql(domain)
             app.logger.error(f'OwnerOf_Error on {domain} - ' \
-                             f'Hash {payload[domain]["hash"]} - ')
+                            f'Hash {payload[domain]["hash"]} - ')
             fails.append(domain)
+            payload[domain]['owner'] = get_owner_graphql(domain)
         else:
             payload[domain]['owner'] = str(owner)
     
@@ -98,14 +99,19 @@ def get_owner_graphql(domain_name: str = None):
     Some domains have never had an owner because they have
     never been minted.
     '''
-    app.logger.info(f'Querying graphql for owner on domain: {domain_name}...')
-    resp = make_graphql_request('DOMAIN_OWNER', domain_name)
-    owners = resp['data']['data']['domains']
-    if owners == []:
-        return "NEVER_BEEN_MINTED"
-    else:
-        return owners[0]['owner']['id']
+    try:
+        app.logger.info(f'Querying graphql for owner on domain: {domain_name}...')
+        resp = make_graphql_request('DOMAIN_OWNER', domain_name)
+        owners = resp['data']['data']['domains']
+        if owners == []:
+            return "NEVER_BEEN_MINTED"
+        else:
+            return owners[0]['owner']['id']
+    except Exception as error:
+        app.logger.error(f'get_owner_graphql error: {error}')
+        return 'ERROR'
 
 def reset_provider():
+    # import pdb; pdb.set_trace()
     reset = Web3_Base()
     print('Reset...')

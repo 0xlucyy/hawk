@@ -1,8 +1,8 @@
 from datetime import datetime
-import sys
+# import sys
 import json
 import csv
-from turtle import onclick
+# from turtle import onclick
 import unicodedata
 from typing import Tuple
 from MySQLdb import _mysql
@@ -17,7 +17,7 @@ from web3 import (
 )
 from web3.exceptions import (
     TimeExhausted,
-    ContractLogicError
+    # ContractLogicError
 )
 # import pdb; pdb.set_trace()
 
@@ -171,12 +171,12 @@ def domain_status(expiration, grace, auction):
     if expiration == None:
         return app.config["DOMAIN_STATUS_FREE"]
 
-    if now < expiration: # Domain has not expired & is hodl'ed.
+    if now < expiration: # Domain has not expired.
         return app.config["DOMAIN_STATUS_HODLING"]
-    else: # domain is expired - Free, in grace, or in auction.
+    else: # domain is expired. Either in Free, in grace, or in auction.
         if now > auction: # Auction is over.
             return app.config["DOMAIN_STATUS_FREE"]
-        else: # domain is expired & either in grace, or auction.
+        else: # domain is expired. it is either in grace or in auction.
             if now > grace: # Grace period is over.
                 return app.config["DOMAIN_STATUS_IN_AUCTION"]
             else: # Grace period is not over.

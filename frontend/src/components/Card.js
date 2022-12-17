@@ -79,6 +79,13 @@ function handleCardHeader(markets, domain) {
     </div>
 }
 
+// function handlePremium(premium) {
+//     return <div style={{ 'color': 'green' }}>
+//         Premium: {(premium.premium_in_eth == null ? (null) : (`${eth_price}ETH | ${usd_premium.toLocaleString()}USD`))}
+//     </div>
+//   }
+  
+
 const HandleCardContext = (payload) => {
     const [premium, setPremium] = useState([]);
 
@@ -98,10 +105,20 @@ const HandleCardContext = (payload) => {
 
     if (payload.payload.status === 'IN_AUCTION') {
         if (premium.premium_in_eth != null) {
-            let eth_price = premium.premium_in_eth.slice(0, 6)
-            let usd_price = (payload.rates.data.rates.USD * premium.premium_in_eth).toFixed(2)
+            let eth_premium = premium.premium_in_eth.slice(0, 6)
+            let eth_len_premium = ((premium.legnth_cost_per_year * premium.years) / payload.rates.data.rates.USD) + parseFloat(eth_premium)
+            let usd_premium = ((payload.rates.data.rates.USD * premium.premium_in_eth) + (premium.legnth_cost_per_year * premium.years))
+
+            let eth_total = premium.legnth_cost_per_year
+            
+            console.log(`DOMAIN: ${payload.payload.name}`)
+            // console.log(`eth_premium: ${eth_premium}`)
+            // console.log(`eth_len_premium: ${eth_len_premium}`)
+            // console.log(`usd_premium: ${usd_premium}`)
+            console.log(`TYPE eth_len_premium: ${typeof(eth_len_premium)}`)
+
             return <div style={{ 'color': 'green' }}>
-                Premium: {(premium.premium_in_eth == null ? (null) : (`${eth_price}ETH | ${usd_price.toLocaleString()}USD`))}
+                Premium: {(premium.premium_in_eth == null ? (null) : (`${eth_len_premium.toFixed(4)}ETH | ${usd_premium.toLocaleString()}USD`))}
             </div>
         }
     } else if (payload.payload.status === 'IN_GRACE') {

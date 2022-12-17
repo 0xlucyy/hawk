@@ -55,6 +55,7 @@ def populate_domains():
     index = 0
     for domain, domain_metadata in payload.items():
         try:
+            # print(f"domain: {domain}. meta: {domain_metadata}")
             new_domain = models.Domains(**domain_metadata)
         except DomainModelDataTypeError as DMDTE:
             app.logger.error(DMDTE)
@@ -154,7 +155,8 @@ def create_database():
     # db_connection.query("SHOW DATABASES")
     # results = db_connection.use_result()
 
-    # #Closing the connection
+    # Creating all tables, then closing the connection.
+    db.create_all()
     db_connection.close()
 
 def clean_slate():
@@ -172,7 +174,7 @@ def clean_slate():
     subprocess.run(['sh', '-c', get_hashes_cmd])
     build_watchlist()
     create_database()
-    db.create_all()
+    # db.create_all()
     populate_domains()
     populate_markets()
 

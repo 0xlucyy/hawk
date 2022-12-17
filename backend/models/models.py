@@ -87,7 +87,6 @@ class Domains(Base, Lockable):
             if grace != None else None
         status = domain_status(expiration, grace, auction)
         return {'grace':grace, 'auction':auction, 'status':status}
-        # return domain if domain != None else False
 
     @classmethod
     def domain_exists(cls, domain_name: str = None):

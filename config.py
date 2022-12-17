@@ -49,6 +49,11 @@ class _Base(object):
     DOMAIN_STATUS_IN_AUCTION = 'IN_AUCTION'
     DOMAIN_STATUS_HODLING = 'BEING_HELD'
 
+    # ENS length costs in USD
+    THREE_LETTER = 640 # six hundred & forty USD per year extra
+    FOUR_LETTER = 160 # one hundreds & sixty USD per year extra
+    MORE_THEN_FOUR_LETTERS = 5 # Five dollars USD per year extra
+
     # Hodl'ing
     # Expiration
     # Grace

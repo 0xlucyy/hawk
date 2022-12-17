@@ -50,7 +50,7 @@ const HandleCardContext = (payload) => {
     } else if (payload.payload.status === 'BEING_HELD') {
         return `Expiration: ${payload.payload.expiration}`
     } else if (payload.payload.status === 'FREE') {
-        return <div></div>
+        return 'FREE'
     }
     return `ERROR`
 }
