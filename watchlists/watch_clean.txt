@@ -32,7 +32,7 @@
 111
 1111
 123
-1⃣2⃣
+1⃣2⃣.eth
 222
 2222
 2pac
@@ -2256,7 +2256,7 @@ loba
 lobas
 lobe
 lobo
-lobo
+lobo.eth
 lobos
 loca
 lochnessmonster
@@ -2292,7 +2292,7 @@ lsd
 luana
 luca
 lucas
-lucas🚀
+lucas🚀.eth
 lucia
 luciana
 luciano
@@ -3096,7 +3096,7 @@ raditz
 rafa
 rafael
 rafaela
-raffy🚴‍♂️
+raffy🚴‍♂️.eth
 raichu
 raiden
 raider
@@ -4078,10 +4078,10 @@ zubat
 éxtasis
 órale
 ٢٧٥
-⌐◨‐◨
-ニョロゾ
+⌐◨‐◨.eth
+ニョロゾ.eth
 噴火龍
-𓃵𓃵𓃵
+𓃵𓃵𓃵.eth
 👑scott
 👨
 💩💩💩💩

@@ -1,5 +1,10 @@
-const ethers = require('ethers')
-const fs = require('fs');
+// const ethers = require('ethers')
+// const fs = require('fs');
+
+import { ethers } from 'ethers';
+import fs from 'fs';
+
+import { normalize, hash } from './ens_utils.js';
 
 const BigNumber = ethers.BigNumber
 const utils = ethers.utils
@@ -10,15 +15,31 @@ try {
     console.log('Error:', e.stack);
 }
 
-function hash(value) {
-    try {  
-        const labelHash = utils.keccak256(utils.toUtf8Bytes(value))
-        const tokenId = BigNumber.from(labelHash).toString()
-        console.log(value + "," + tokenId)
-    } catch(e) {
-        console.log('Error:', e.stack);
-    }
-}
+// try {  
+//   var data = [
+    // 'RaFFY🚴‍♂️.eTh',
+    // '-dragón.eth',
+    // 'ニョロゾ.eth',
+    // 'faceboоk.eth',
+    // '💩💩💩💩',
+    // '👨',
+    // 'facebook.eth',
+    // 'lobo.eth',
+    // '٢٧٥',
+    // '👑scott',
+    // 'lucas🚀.eth',
+    // '𓃵𓃵𓃵.eth',
+    // '⌐◨‐◨.eth',
+    // '1⃣2⃣.eth',
+//   ]
+// } catch(e) {
+//   console.log('Error:', e.stack);
+// }
 
-// hash('lobo')
+// hash('👨️')
 data.forEach(hash);
+
+// normalize('👨')
+// data.forEach(normalize);
+
+// data.forEach(unicode_checker)

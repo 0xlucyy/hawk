@@ -34,32 +34,53 @@ export default class _Table extends React.Component {
         loading: false,
         timeout: 30,
         days: 0,
+        markets: null,
+        rates: null,
     
         // Error related.
         error: false,
         errorMessage: '',
         hidden: true,
     };
+    load_market_data = async () => {
+        if (this.state.markets === null) {
+            console.log(`Loading market data....`)
+            let response = await fetch(`http://127.0.0.1:5000/api/v1/allMarkets?order=asc`);
+            const markets = await response.json();
+            this.setState({ markets });
+        }
+    }
+    
+    load_rates_data = async () => {
+        if (this.state.rates == null) {
+            console.log(`Loading rates data from coinbase....`)
+            let response = await fetch(`https://api.coinbase.com/v2/exchange-rates?currency=ETH`);
+            const rates = await response.json();
+            this.setState({ rates });
+        }
+    }
 
-    _request = async (e, value) => {
-        // e.preventDefault();
+    load_all_domains = async (e, value) => {
+        e.preventDefault();
         this.setState({ loading: true });
-        const myHeaders = new Headers({
-            'Content-Type': 'application/json',
-            'X-Custom-Header': 'ProcessThisImmediately'
-          });
+
+        // await this.load_market_data()
+        await this.load_rates_data()
+
         const response = await fetch(`http://127.0.0.1:5000/api/v1/allDomains?order=asc`);
         const payload = await response.json();
+
         this.setState({ payload });
         this.setState({ loading: false });
-        console.log(`payload: ${JSON.stringify(this.state.payload)}`);
+        // console.log(`payload: ${JSON.stringify(this.state.payload)}`);
+
         return payload;
     };
 
     render() {
     return (
     <div id="_table">
-    <Button onClick={this._request}
+    <Button onClick={this.load_all_domains}
             className="icon"
             color="black"
             loading={this.state.loading}>
@@ -84,7 +105,7 @@ export default class _Table extends React.Component {
                 this.state.payload.domains.map(domain => 
                     // console.log(`WORKING?: ${JSON.stringify(domain)}`)
                     // console.log('1212121')
-                    <_Row payload={domain} key={domain.name}/>
+                    <_Row payload={domain} key={domain.name} rates={this.state.rates}/>
                 )
             )
         }

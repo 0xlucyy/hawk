@@ -14,8 +14,7 @@ import Layout from './components/Layout.js';
 import Expiring from './components/Expiring.js';
 import _Header from './components/Header.js';
 import _Table from './components/Table.js';
-import Deck from './components/Card.js';
-import DisplayData from './components/DisplayData.js';
+import BulkSearch from './components/BulkSearch';
 import { Route, Routes } from "react-router-dom"
 
 class App extends React.Component {
@@ -33,25 +32,14 @@ class App extends React.Component {
     hidden: true,
   };
 
+  // This links Header.js to this.state.activeItem by
+  // passing this function as a handler variable to
+  // _Header component.
   handleActiveItem = async (e, { name }) => {
     await this.setState({ activeItem: name })
     console.log(`activeItem App:handleItem: ${this.state.activeItem}`);
   }
 
-  expiring_in = async (e, value) => {
-    e.preventDefault();
-    console.log(`Searching with ${this.state.days} days`)
-    const myHeaders = new Headers({
-        'Content-Type': 'application/json',
-        'X-Custom-Header': 'ProcessThisImmediately'
-      });          
-    // const response = await fetch(`http://127.0.0.1:5000/api/v1/expiringDomains?days=${this.state.days}`);
-    const response = await fetch(`http://127.0.0.1:5000/api/v1/expiredDomains`, {headers: myHeaders});
-    // const response = await fetch(`http://127.0.0.1:5000/api/v1/allDomains?order=asc`);
-    const payload = await response.json();
-    await this.setState({ payload });
-    return payload;
-  };
 
   dismissError = async (e, value) => {
     e.preventDefault();
@@ -91,6 +79,9 @@ class App extends React.Component {
               }
               {
                 this.state.activeItem === 'all' ? (<_Table />) : (null)
+              }
+              {
+                this.state.activeItem === 'bulk search' ? (<BulkSearch />) : (null)
               }
             </Grid.Column>
           </Grid.Row>

@@ -9,6 +9,12 @@ load_dotenv(dotenv_path)
 
 # import pdb; pdb.set_trace()
 
+'''
+    Domain can be held by someone
+    Domain can be registered by anyone
+    domain can be in grace
+    domain can be in auction
+'''
 class _Base(object):
     APP_NAME = 'hawk'
     GAS_INCREASE = .1
@@ -26,13 +32,10 @@ class _Base(object):
     # Ethereum network connections.
     MAINNET_PROVIDER = os.environ.get("MAINNET_PROVIDER")
     ROPSTEN_PROVIDER = os.environ.get("ROPSTEN_PROVIDER")
-    # INFURA_PROVIDER = os.environ.get("INFURA_PROVIDER")
     
     # GraphQL
     GRAPHQL_API_KEY = os.environ.get("GRAPHQL_API_KEY")
     GRAPHQL_ENS_URL = f"https://gateway.thegraph.com/api/{GRAPHQL_API_KEY}/subgraphs/id/EjtE3sBkYYAwr45BASiFp8cSZEvd1VHTzzYFvJwQUuJx"
-
-
 
     # Clean watch list settings.
     SPANISH_TILDES = ['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ']
@@ -50,27 +53,16 @@ class _Base(object):
     DOMAIN_STATUS_HODLING = 'BEING_HELD'
 
     # ENS length costs in USD
-    THREE_LETTER = 640 # six hundred & forty USD per year extra
-    FOUR_LETTER = 160 # one hundreds & sixty USD per year extra
-    MORE_THEN_FOUR_LETTERS = 5 # Five dollars USD per year extra
+    THREE_LETTER = 640 # six hundred & forty USD per year.
+    FOUR_LETTER = 160 # one hundreds & sixty USD per year.
+    MORE_THEN_FOUR_LETTERS = 5 # Five dollars USD per year.
 
-    # Hodl'ing
-    # Expiration
-    # Grace
-    # Auction
-    # free
-
-    # Domain can be held by someone
-    # Domain can be registered by anyone
-    # domain can be in grace
-    # domain can be in auction
-
-    # Deployments.
+    # ENS contract deployments.
     ETH_REGISTRAR_CONTROLLER_MAINNET = Web3.toChecksumAddress("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5")
     ENS_BASE_REGISTRAR_MAINNET = Web3.toChecksumAddress("0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85")
-    # DYSTOPUNKS_V2_MAINNET = Web3.toChecksumAddress("0xbEA8123277142dE42571f1fAc045225a1D347977")
 
-    LOOKSRARE_API_KEY = os.environ.get("LOOKSRARE_API_KEY")
+    # ENS Metadata service.
+    ENS_META_SERVICE = "https://metadata.ens.domains/mainnet/{eth_network}/{domain_hash}/"
 
     # Logging.
     LOGGING_DEBUG_LOCATION = os.path.dirname(__file__) + '/debug.log'

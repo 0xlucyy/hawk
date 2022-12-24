@@ -31,7 +31,6 @@ setup(
             # "refresh_domains = backend.src.scripts:refresh_domains",            
             "populate_markets = backend.src.scripts:populate_markets",
             "clean_slate = backend.src.scripts:clean_slate",
-            "reset_provider = ethereum.read_ens:reset_provider",
         ]
     }
 )

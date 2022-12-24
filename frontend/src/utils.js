@@ -34,7 +34,7 @@ function days_between(date1, date2, view) {
     let day_str = days + " day" + (days > 1 ? "s " : "")
     let hr_str = hours + ' hour' + (hours > 1 ? "s " : "")
     let min_str = minutes + " minute" + (minutes > 1 ? "s " : "")
-    data = (days > 1 ? day_str : "") + (hours > 1 ? hr_str : "") + " & " + (minutes > 1 ? min_str : "")
+    data = (days > 1 ? day_str : "") + (hours > 1 ? hr_str : "") + (minutes > 1 ? ` &  ${minutes} minutes` : "")
   }
   return data
 }
@@ -121,6 +121,25 @@ function handleOwner(payload) {
   console.log(`Owner Substr: ${(payload.payload.owner).substr(0, 13)}`)
 }
 
+function handlePremium(payload, premium) {
+  if (payload.payload.status === 'IN_AUCTION') {
+    if (premium.premium_in_eth != null) {
+        let eth_premium = ((premium.legnth_cost_per_year * premium.years) / payload.rates.data.rates.USD) + parseFloat(premium.premium_in_eth)
+        let usd_premium = ((payload.rates.data.rates.USD * premium.premium_in_eth) + (premium.legnth_cost_per_year * premium.years))
+        return <div style={{ 'color': 'green' }}>
+            Premium: {(premium.premium_in_eth == null ? (null) : (`${eth_premium.toFixed(4)}ETH | ${usd_premium.toFixed(2)}USD`))}
+        </div>
+    }
+  } else if (payload.payload.status === 'IN_GRACE') {
+      return `Grace Expires: ${payload.payload.grace}`
+  } else if (payload.payload.status === 'BEING_HELD') {
+      return `Expiration: ${payload.payload.expiration}`
+  } else if (payload.payload.status === 'FREE') {
+      return `FREE`
+  }
+  return `ERROR`
+}
+
 export {
   handleRatio,
   handleStatus,
@@ -128,5 +147,6 @@ export {
   handleFooter,
   handleName,
   handleOwner,
+  handlePremium,
   capitalizeFirstLetter,
 }

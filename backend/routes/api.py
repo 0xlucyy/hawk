@@ -20,8 +20,6 @@ from backend.utils.utils import (
     is_db_live,
     domain_status
 )
-
-
 # import pdb; pdb.set_trace()
 
 
@@ -157,7 +155,6 @@ def getPremium():
     _duration = request.args.get('duration', 1)
     try:
         data = get_premium(_domain, _duration)
-        # import pdb; pdb.set_trace()
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
@@ -168,18 +165,6 @@ def getPremium():
             return {'premium_in_eth': data, 'legnth_cost_per_year': app.config["FOUR_LETTER"], 'years': _duration}
         else:
             return {'premium_in_eth': data, 'legnth_cost_per_year': app.config["MORE_THEN_FOUR_LETTERS"], 'years': _duration}
-
-
-# @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['GET'])
-# def refreshDomains():
-#     # from ethereum.read_ens import get_premium
-#     try:
-#         print('test')
-#     except(Exception) as e:
-#         app.logger.error(f'Error: {e}')
-#         return log_error(error=e)
-#     else:
-#         return {'test': 'data'}
 
 
 @app.route(f'{app.config["API_URI"]}/getGraphData', methods=['GET'])
@@ -197,6 +182,50 @@ def getGraphData():
         return log_error(error=e)
     else:
         return resp
+
+
+@app.route(f'{app.config["API_URI"]}/domains', methods=['GET'])
+def getListOfDomains():
+    import pdb; pdb.set_trace()
+
+
+    # List of domains
+    _order = request.args.get('domains')
+
+
+    if _order != 'asc' and _order != 'desc':
+        return jsonify({
+            'success': False,
+            'status_code': 400,
+            'err': 'Order must be `asc` or `desc`.'
+        })
+    try:
+        data = {}
+        all = Markets.all_markets(order=_order)
+        for markets in all:
+            data[markets.__dict__['name']] = markets.__dict__
+    except(Exception) as e:
+        app.logger.error(f'Error: {e}')
+        return log_error(error=e)
+    else:
+        return jsonify({
+            'total': len(all),
+            'order': _order,
+            'markets': data,
+            'status_code': 200
+        })
+
+
+# @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['GET'])
+# def refreshDomains():
+#     # from ethereum.read_ens import get_premium
+#     try:
+#         print('test')
+#     except(Exception) as e:
+#         app.logger.error(f'Error: {e}')
+#         return log_error(error=e)
+#     else:
+#         return {'test': 'data'}
 
 
 # @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['PUT', 'PATCH'])

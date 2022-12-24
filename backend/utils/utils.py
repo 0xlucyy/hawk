@@ -1,8 +1,7 @@
 from datetime import datetime
-# import sys
+import idna
 import json
 import csv
-# from turtle import onclick
 import unicodedata
 from typing import Tuple
 from MySQLdb import _mysql
@@ -31,7 +30,6 @@ def BASIC_TRANSACTION(w3: Web3 = None, address: str = None) -> dict:
     print(f"From: {address}")
     print(f"Nonce: {w3.eth.get_transaction_count(address)}")
 
-    # import pdb; pdb.set_trace()
     return {
         'nonce': w3.eth.get_transaction_count(address),
         'from': address,
@@ -45,7 +43,6 @@ Returns:
 '''
 def SIGN_SEND_WAIT(w3: Web3 = None, transaction: dict = None, FLOWERS_PRIV_KEY: str = None) -> Tuple[bool, str]:
     signed_tx = w3.eth.account.sign_transaction(transaction, FLOWERS_PRIV_KEY)
-    # import pdb; pdb.set_trace()
 
     try:
         tx_hash = w3.eth.send_raw_transaction(transaction=signed_tx.rawTransaction)
@@ -181,3 +178,26 @@ def domain_status(expiration, grace, auction):
                 return app.config["DOMAIN_STATUS_IN_AUCTION"]
             else: # Grace period is not over.
                 return app.config["DOMAIN_STATUS_IN_GRACE"]
+
+# https://stackoverflow.com/a/51141941
+def validation(name: str = None):
+    '''
+    True = valid
+    False = Failed validation
+    '''
+    try:
+        # import pdb; pdb.set_trace()
+
+        # if name.isascii() == False or name.isprintable() == False:
+        #     print(f'{name} contains non-ascii characters.')
+        #     return False
+
+        test = idna.encode(name, uts46=True, transitional=False, std3_rules=True)
+        return True
+    except Exception as error:
+        if 'must not start or end with a hyphen' in str(error.args):
+            return True
+        if "must be directionality L, R or AL" in str(error.args):
+            pass
+        print('FAILING', error)
+        return False

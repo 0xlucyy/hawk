@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { Button, Card, Image, Progress, Popup, Label } from 'semantic-ui-react'
 import {
+    handlePremium,
     handleRatio,
     handleStatus,
     handleColor,
@@ -79,12 +80,6 @@ function handleCardHeader(markets, domain) {
     </div>
 }
 
-// function handlePremium(premium) {
-//     return <div style={{ 'color': 'green' }}>
-//         Premium: {(premium.premium_in_eth == null ? (null) : (`${eth_price}ETH | ${usd_premium.toLocaleString()}USD`))}
-//     </div>
-//   }
-  
 
 const HandleCardContext = (payload) => {
     const [premium, setPremium] = useState([]);
@@ -103,32 +98,7 @@ const HandleCardContext = (payload) => {
         fetchData();
     }, []);
 
-    if (payload.payload.status === 'IN_AUCTION') {
-        if (premium.premium_in_eth != null) {
-            let eth_premium = premium.premium_in_eth.slice(0, 6)
-            let eth_len_premium = ((premium.legnth_cost_per_year * premium.years) / payload.rates.data.rates.USD) + parseFloat(eth_premium)
-            let usd_premium = ((payload.rates.data.rates.USD * premium.premium_in_eth) + (premium.legnth_cost_per_year * premium.years))
-
-            let eth_total = premium.legnth_cost_per_year
-            
-            console.log(`DOMAIN: ${payload.payload.name}`)
-            // console.log(`eth_premium: ${eth_premium}`)
-            // console.log(`eth_len_premium: ${eth_len_premium}`)
-            // console.log(`usd_premium: ${usd_premium}`)
-            console.log(`TYPE eth_len_premium: ${typeof(eth_len_premium)}`)
-
-            return <div style={{ 'color': 'green' }}>
-                Premium: {(premium.premium_in_eth == null ? (null) : (`${eth_len_premium.toFixed(4)}ETH | ${usd_premium.toLocaleString()}USD`))}
-            </div>
-        }
-    } else if (payload.payload.status === 'IN_GRACE') {
-        return `Grace Expires: ${payload.payload.grace}`
-    } else if (payload.payload.status === 'BEING_HELD') {
-        return `Expiration: ${payload.payload.expiration}`
-    } else if (payload.payload.status === 'FREE') {
-        return `FREE`
-    }
-    return `ERROR`
+    return handlePremium(payload, premium)
 }
 
 
@@ -169,3 +139,16 @@ export {
     HandleCardContext,
     handleCardHeader
   }
+
+
+// TODO DappNode REMOTE
+// [Interface]
+// PrivateKey = kIncvnBH8XGDv3UX9zyV7fcpfxqrvZblwpkAjDQ1O2k=
+// ListenPort = 51820
+// Address = 10.24.0.5/32
+// DNS = 172.33.1.2, 10.20.0.2
+
+// [Peer]
+// PublicKey = tbwLVl0wS46u0JNsfDZDPo7K3KSRY+gyvmvqDPrItgQ=
+// AllowedIPs = 172.33.0.0/16, 10.20.0.0/24
+// Endpoint = 65ebd1c1e30d76c0.dyndns.dappnode.io:51820

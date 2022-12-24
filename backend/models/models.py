@@ -29,6 +29,7 @@ class Domains(Base, Lockable):
     # auction = time auction ends.
     auction = db.Column(db.DATETIME, nullable=True)
     status = db.Column(db.VARCHAR(50), nullable=False)
+    
 
     # db.relationships
     orders = db.relationship('Orders', backref='domains') # 1 domain to many orders

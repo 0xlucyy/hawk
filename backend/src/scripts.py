@@ -174,7 +174,6 @@ def clean_slate():
     subprocess.run(['sh', '-c', get_hashes_cmd])
     build_watchlist()
     create_database()
-    # db.create_all()
     populate_domains()
     populate_markets()
 

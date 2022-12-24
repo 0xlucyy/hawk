@@ -38,6 +38,9 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     )
 
     app.logger.info(f"Gathering metadata on {len(payload_copy.keys())} domains...")
+
+    # import pdb; pdb.set_trace()
+
     # Iterate through all domains.
     for domain in payload_copy.keys():
         try:
@@ -89,10 +92,14 @@ def get_premium(domain_name: str = None, years: int = 1):
         address=app.config["ETH_REGISTRAR_CONTROLLER_MAINNET"],
     )
 
+    # w3_obj.w3.eth.get_code(app.config["ETH_REGISTRAR_CONTROLLER_MAINNET"])
+    # import pdb; pdb.set_trace()
+
     # Returns premium cost only, ensure domain is in auction when called.
     fee = eth_registrar_contract.functions.rentPrice(domain_name, int(years)).call()
     eth_fee = w3_obj.w3.fromWei(fee, 'ether')
     return eth_fee
+
 
 def get_owner_graphql(domain_name: str = None):
     '''
@@ -110,8 +117,3 @@ def get_owner_graphql(domain_name: str = None):
     except Exception as error:
         app.logger.error(f'get_owner_graphql error: {error}')
         return 'ERROR'
-
-def reset_provider():
-    # import pdb; pdb.set_trace()
-    reset = Web3_Base()
-    print('Reset...')

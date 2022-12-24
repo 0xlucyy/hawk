@@ -50,12 +50,19 @@ export default class _Header extends Component {
           />
           <Menu.Item
             as={Link}
-            to="/contacts/1"
-            name='contact'
+            to="/"
+            name='bulk search'
+            // active={this.state.activeItem === 'all'}
+            onClick={this.handleItemClick}
+          />
+          {/* <Menu.Item
+            as={Link}
+            to="/name"
+            name='names'
             // active={this.state.activeItem === 'contact'}
             onClick={this.handleItemClick}
             // target='_blank'
-          />
+          /> */}
         </Menu>
       </div>
     )

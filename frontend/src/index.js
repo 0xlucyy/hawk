@@ -19,7 +19,7 @@ const _router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "contacts/:contactId",
+    path: "name/:nameStr",
     element: <Expiring />,
     errorElement: <ErrorPage />
   },
