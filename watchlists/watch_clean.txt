@@ -32,13 +32,14 @@
 111
 1111
 123
-1⃣2⃣.eth
+1⃣2⃣
 222
 2222
 2pac
 333
 3333
 369
+420
 420mph
 444
 4444
@@ -224,6 +225,7 @@ apollo
 apolo
 apophis
 appraisal
+apr
 apuesta
 aquila
 arabe
@@ -320,6 +322,7 @@ attila
 audio
 auditoria
 auditoría
+aug
 augustus
 aula
 aulas
@@ -603,6 +606,7 @@ canadá
 cancer
 candy-ass
 candyass
+cannabis
 canon
 canvas
 capitan
@@ -621,6 +625,7 @@ carcare
 carina
 carinoso
 cariñoso
+carl
 carla
 carlos
 carmack
@@ -1004,6 +1009,7 @@ deadoralive
 deadzone
 dean
 debaucher
+dec
 deceiver
 decepticon
 decepticons
@@ -1088,6 +1094,7 @@ divebomb
 divert
 divine
 divinity
+dmt
 doa
 doce
 doctor
@@ -1158,12 +1165,17 @@ dream
 dreamhack
 dreki
 drifter
+droga
+drogas
 dronehub
 dropmail
 drowzee
+drug
 drugdealer
 druglord
 druglords
+drugs
+drugz
 druk
 dryice
 duchess
@@ -1384,6 +1396,7 @@ favorite
 favorito
 fearow
 feathers
+feb
 febrero
 felicidad
 felipe
@@ -1970,6 +1983,7 @@ jaime
 jamaal
 jamal
 jameson
+jan
 janis
 japon
 japones
@@ -2079,6 +2093,7 @@ jugadora2
 jugo
 juice
 juicy
+jul
 julia
 julian
 juliana
@@ -2086,6 +2101,7 @@ julieta
 julio
 juliuscaesar
 julián
+jun
 juneteenth
 jungle
 junio
@@ -2106,6 +2122,7 @@ kappa
 kappasigma
 kara
 karina
+karl
 karlmarx
 katana
 katanas
@@ -2256,7 +2273,6 @@ loba
 lobas
 lobe
 lobo
-lobo.eth
 lobos
 loca
 lochnessmonster
@@ -2292,7 +2308,7 @@ lsd
 luana
 luca
 lucas
-lucas🚀.eth
+lucas🚀
 lucia
 luciana
 luciano
@@ -2372,6 +2388,7 @@ manuel
 manuela
 maquillaje
 maquinaria
+mar
 marble
 marc
 marca
@@ -2397,6 +2414,8 @@ maribelle
 maricela
 marie
 marieantoinette
+marihuana
+marijuana
 marina
 mario
 mariscal
@@ -2721,6 +2740,7 @@ northstar
 northwest
 noticia
 noticias
+nov
 nova
 novecientos
 noventa
@@ -2743,6 +2763,7 @@ ocelotl
 ochenta
 ocho
 ochocientos
+oct
 octagon
 octane
 octavian
@@ -2950,6 +2971,7 @@ planeta
 planetario
 planetary
 planos
+plants
 plasma
 plata
 player
@@ -3046,6 +3068,7 @@ prácticas
 próximo
 psyche
 psycho
+psychoactive
 psychos
 psyduck
 pterodactyl
@@ -3096,7 +3119,7 @@ raditz
 rafa
 rafael
 rafaela
-raffy🚴‍♂️.eth
+raffy🚴‍♂️
 raichu
 raiden
 raider
@@ -3348,6 +3371,7 @@ sempiterno
 senor
 sensei
 sentimental
+sept
 septiembre
 serapis
 serena
@@ -4015,6 +4039,7 @@ wrestlemania
 writers
 wulf
 wuzetian
+wwe
 wyatt
 wyoming
 wyvern
@@ -4032,6 +4057,7 @@ yellow
 yellowboy
 yellowgirl
 yellowsub
+yerba
 yeti
 yoda
 yogibear
@@ -4078,10 +4104,14 @@ zubat
 éxtasis
 órale
 ٢٧٥
-⌐◨‐◨.eth
-ニョロゾ.eth
+⌐◨‐◨
+❤️‍🔥
+ニョロゾ
 噴火龍
-𓃵𓃵𓃵.eth
+𓃵𓃵𓃵
 👑scott
 👨
 💩💩💩💩
+🤵‍♂️
+🧞‍♂️
+🧟‍♂️

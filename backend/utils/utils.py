@@ -125,6 +125,10 @@ def remove_accents(word):
     return only_ascii
 
 def apply_hashes_to_payload(payload : dict = None):
+    '''
+    Adds hash values to payload object. Hash values are
+    in csv format in default WATCH_LOCATION ie /watchlists/watch_clean.csv
+    '''
     with open(f"{app.config['WATCH_LOCATION']}.csv") as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
@@ -178,26 +182,3 @@ def domain_status(expiration, grace, auction):
                 return app.config["DOMAIN_STATUS_IN_AUCTION"]
             else: # Grace period is not over.
                 return app.config["DOMAIN_STATUS_IN_GRACE"]
-
-# https://stackoverflow.com/a/51141941
-def validation(name: str = None):
-    '''
-    True = valid
-    False = Failed validation
-    '''
-    try:
-        # import pdb; pdb.set_trace()
-
-        # if name.isascii() == False or name.isprintable() == False:
-        #     print(f'{name} contains non-ascii characters.')
-        #     return False
-
-        test = idna.encode(name, uts46=True, transitional=False, std3_rules=True)
-        return True
-    except Exception as error:
-        if 'must not start or end with a hyphen' in str(error.args):
-            return True
-        if "must be directionality L, R or AL" in str(error.args):
-            pass
-        print('FAILING', error)
-        return False

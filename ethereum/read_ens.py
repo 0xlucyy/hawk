@@ -1,14 +1,10 @@
 import json
 import copy
 from typing import Dict
-from datetime import datetime, timezone
+from datetime import datetime
 from ethereum._base import Web3_Base#, app
 from web3.exceptions import TimeExhausted, ContractLogicError
-from web3.contract import ConciseContract
 from backend.utils.utils import (
-    BASIC_TRANSACTION,
-    SIGN_SEND_WAIT,
-    Web3,
     app
 )
 from graphql.queries import (
@@ -43,7 +39,7 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 
     # Iterate through all domains.
     for domain in payload_copy.keys():
-        try:
+        try: # Get domain availability.
             payload[domain]['name'] = str(domain)
             avail = base_registrar_contract.functions.\
                     available(int(payload[domain]['hash'])).call()

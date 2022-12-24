@@ -29,3 +29,9 @@
 - backend: get domain url for all markets for a single domain. - DONE
 - backend : ability to refresh domain metadata - DONE
 - backend: add graphql
+
+
+loba - 
+morado - 
+famo - 
+dargon - 

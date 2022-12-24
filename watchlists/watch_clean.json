@@ -237,6 +237,13 @@
         "name": "123",
         "owner": "0xF5F8977348f592DB9773C373fEf5bE362D103776"
     },
+    "1⃣2⃣": {
+        "available": false,
+        "expiration": "2023-04-30 06:11:02",
+        "hash": "64241191934010702443472475791956514902375083157551127055920368789172252006391",
+        "name": "1⃣2⃣",
+        "owner": "0x857F58B6Afde4bcBe9B86409242C146F0d0dE31C"
+    },
     "222": {
         "available": false,
         "expiration": "2026-03-12 21:26:24",
@@ -278,6 +285,13 @@
         "hash": "52674246454311231044848362597821255709814842811973841949598213661006461440956",
         "name": "369",
         "owner": "0x0C8bdC6A21A2b98F4f7C6958BE1b128Df1aa3c5B"
+    },
+    "420": {
+        "available": false,
+        "expiration": "2024-02-11 07:05:18",
+        "hash": "94736767533134284253521293152475747151420365730613395656447772496431745586837",
+        "name": "420",
+        "owner": "0xCc4B82909DE7E48af075c36e614C2f56C39b5828"
     },
     "420mph": {
         "available": false,
@@ -1133,6 +1147,13 @@
         "name": "alpha",
         "owner": "0xf25343A7cf6D38f5913A5f79924989aCca66eA5D"
     },
+    "alphamale": {
+        "available": false,
+        "expiration": "2031-12-29 18:59:42",
+        "hash": "104834961225149090322635875724243710964598110620347067525018843221312286929658",
+        "name": "alphamale",
+        "owner": "0x197005E6a0F3ED1f3B43Ff6e56F972179Fe0ac96"
+    },
     "alumno": {
         "available": false,
         "expiration": "2025-05-08 12:48:01",
@@ -1567,6 +1588,13 @@
         "name": "appraisal",
         "owner": "0xa7383918cbd43a73d2391A09fdd429b832b2E2F6"
     },
+    "apr": {
+        "available": false,
+        "expiration": "2023-09-05 14:19:58",
+        "hash": "51710016748691802371356882056228467454795871140216405229607671835206086078100",
+        "name": "apr",
+        "owner": "0x6cC6F59f7016A83E1D7c5FaD30CDD8C4cDb4aad1"
+    },
     "apuesta": {
         "available": false,
         "expiration": "2032-01-15 11:09:45",
@@ -1824,7 +1852,7 @@
         "expiration": "2022-12-16 22:49:59",
         "hash": "95837944114682326351179490391931095739296439641128748200090609538827124017762",
         "name": "artillería",
-        "owner": "0x74c9a75435b9973b90783b70a7e3923c309c72f9"
+        "owner": "NEVER_BEEN_MINTED"
     },
     "artistica": {
         "available": false,
@@ -2238,6 +2266,13 @@
         "hash": "33291997322974203282803975036815982244680587784695163829752068016097484591717",
         "name": "auditoría",
         "owner": "0x84faF1F993D2261a6a6Dc53047719a5815719877"
+    },
+    "aug": {
+        "available": false,
+        "expiration": "2024-08-26 16:31:24",
+        "hash": "75958480284524554810633550897160997678390846330996804397947974437040712511794",
+        "name": "aug",
+        "owner": "0x7545B2c2d2EBea24b58355bC49d8bE04aED3fcB6"
     },
     "augustus": {
         "available": false,
@@ -2785,6 +2820,13 @@
         "name": "beelzebub",
         "owner": "0x5b1E7840E97dae8B716317965534fADB490580A1"
     },
+    "beers": {
+        "available": false,
+        "expiration": "2023-10-17 15:45:37",
+        "hash": "85821939987126279483492336565873650732469902976703131177564344640385074951696",
+        "name": "beers",
+        "owner": "0xd13d1aF572aBdE7a64C823416A1Dd121c14772cA"
+    },
     "beginning": {
         "available": false,
         "expiration": "2027-11-15 01:52:39",
@@ -3008,6 +3050,13 @@
         "hash": "51000864650247258827480857294070839396419052714736661087063548218827493809599",
         "name": "biblico",
         "owner": "0x40Fc97039b8056ED3A6cd456C39814e830d0A390"
+    },
+    "bier": {
+        "available": false,
+        "expiration": "2023-05-31 18:25:38",
+        "hash": "47059916772279872344860504971996266248714793339792417937079187293043538043926",
+        "name": "bier",
+        "owner": "0xF8ebE2B23eD74beE2b35da9De63c2380902B7Cb5"
     },
     "big": {
         "available": false,
@@ -4213,6 +4262,13 @@
         "name": "candyass",
         "owner": "0xF4580A1f39dBDd9b03103741604a3a92F5b9A5C8"
     },
+    "cannabis": {
+        "available": false,
+        "expiration": "2031-05-04 09:01:12",
+        "hash": "99873839913468718609291884388665715073029123419394720029144479044618939187513",
+        "name": "cannabis",
+        "owner": "0x3Badf67beED39f264D1D64F61385fe590F7ac24d"
+    },
     "canon": {
         "available": false,
         "expiration": "2023-03-04 02:18:46",
@@ -4338,6 +4394,13 @@
         "hash": "38510602170666107909117582087944095521267963322108769798686217462496837897960",
         "name": "cariñoso",
         "owner": "0x4a473f08c88aEc7F73C020B8e23c0e9C1b7463e9"
+    },
+    "carl": {
+        "available": false,
+        "expiration": "2023-10-25 13:14:13",
+        "hash": "67957425076840854098295307899694692229668465146239765691946674164214156524421",
+        "name": "carl",
+        "owner": "0xA9350E3b4Ad3f22bab136cfEf999C132eAD3bCA3"
     },
     "carla": {
         "available": false,
@@ -4508,11 +4571,11 @@
         "owner": "0x89f42ccb1B90103A4b886Cc8ee01979492808079"
     },
     "catmom": {
-        "available": true,
-        "expiration": "2022-09-04 20:56:24",
+        "available": false,
+        "expiration": "2023-12-24 13:56:35",
         "hash": "15030506663354928702311530162239594325836190257840402841027670455933137822497",
         "name": "catmom",
-        "owner": "0x6ba21ab6ace4088f40baaae295e2e44ba9e5fa93"
+        "owner": "0x6076e7a3c8A5cDea207284e69b028Bb14e3dc9e3"
     },
     "catorce": {
         "available": false,
@@ -5310,7 +5373,7 @@
         "expiration": "2022-10-16 18:27:18",
         "hash": "104589832383420351263904356505772901463677157271879236512562015297454350491030",
         "name": "ciudaddepanama",
-        "owner": "0x8481ecdf553abf62f8782de3697b0459ed276a79"
+        "owner": "NEVER_BEEN_MINTED"
     },
     "ciudaddepanamá": {
         "available": true,
@@ -6881,11 +6944,11 @@
         "owner": "0x3Dc4676697CD8817C4aE0c0639f8525ee37dB7be"
     },
     "dastardly": {
-        "available": true,
-        "expiration": "2022-09-04 09:34:36",
+        "available": false,
+        "expiration": "2028-12-22 22:40:59",
         "hash": "107475168895299095144208515290690590008215834454684028589667379403771583775253",
         "name": "dastardly",
-        "owner": "0x304cb7c3a9a79d11fb6f12b7c7b6519060137288"
+        "owner": "0x0141B2A64e1586528f87E4344Cb95556E1225C56"
     },
     "data": {
         "available": false,
@@ -7019,6 +7082,13 @@
         "hash": "85239225934832190253113543399621156687926186045826321079955372171513658252629",
         "name": "debaucher",
         "owner": "0x31559B74a172c7B19b51843F05bDF15B0A9AF56a"
+    },
+    "dec": {
+        "available": false,
+        "expiration": "2025-05-31 22:15:56",
+        "hash": "103601924682907006367073138113732791246677174971425205036455503509478601205915",
+        "name": "dec",
+        "owner": "0xcd5e3e155B375a6A60Ea2f2b63ce1298FbC16c02"
     },
     "deceiver": {
         "available": false,
@@ -7377,6 +7447,13 @@
         "name": "diciembre",
         "owner": "0x02Fa71cBb4B1b990A475deb370d0Aa42aA43503b"
     },
+    "dictator": {
+        "available": false,
+        "expiration": "2027-05-04 09:55:12",
+        "hash": "105825329220709300172048872141039861316483033589643485813166822988158262808521",
+        "name": "dictator",
+        "owner": "0x768f7e7be72bfb7aeb771DD51823914fAf1E2d75"
+    },
     "dictatorship": {
         "available": false,
         "expiration": "2023-05-04 08:14:39",
@@ -7600,6 +7677,13 @@
         "hash": "30046258807157418518316420084786551834004195212313661876247767995666852438960",
         "name": "divinity",
         "owner": "0xE2FaA63f2351c6F2b88659f2fFfC2167172D329a"
+    },
+    "dmt": {
+        "available": false,
+        "expiration": "2023-10-02 21:23:46",
+        "hash": "61191724025562820792994716036189179207856237819303175541227702121432135923985",
+        "name": "dmt",
+        "owner": "0x08a8D54604Fe9ac667c7731364A097C2d6F3FCCD"
     },
     "doa": {
         "available": false,
@@ -8043,11 +8127,11 @@
         "owner": "0x5271a5510d2d455ca047928934497CAdD5D231Ab"
     },
     "drape": {
-        "available": true,
-        "expiration": "2022-09-04 10:19:26",
+        "available": false,
+        "expiration": "2023-12-23 17:23:11",
         "hash": "106128870086111854150835593820448291483827658904810334006356907344956486913716",
         "name": "drape",
-        "owner": "0xc514b67a5225cbeaf64f4c5b4e370d3f63d7a50b"
+        "owner": "0xe30c07B5243e161040206c3518D26Ba0a3c35182"
     },
     "draque": {
         "available": false,
@@ -8091,6 +8175,20 @@
         "name": "drifter",
         "owner": "0x82eB45562F991329ED2867F43fc60F0Ba52C3Dab"
     },
+    "droga": {
+        "available": false,
+        "expiration": "2025-06-23 18:56:28",
+        "hash": "41322575987003247415251680563340760151107469556929874703251366372830125764030",
+        "name": "droga",
+        "owner": "0xbB8bD7091721838C05c5CFa9235f64267e1c576b"
+    },
+    "drogas": {
+        "available": false,
+        "expiration": "2023-10-18 07:14:12",
+        "hash": "96578827961011732486568376403430030223222779401941895817285328880068327824999",
+        "name": "drogas",
+        "owner": "0xC480C3FD10d8965EB74B9B53ee65Bea24B2a6A73"
+    },
     "dronehub": {
         "available": false,
         "expiration": "2023-05-04 10:27:36",
@@ -8111,6 +8209,13 @@
         "hash": "110025711245789315205579580600526814602578695452377390667275977267908650755103",
         "name": "drowzee",
         "owner": "0xc6c2D5EE69745a1e9f2D1A06E0EF0788bD924302"
+    },
+    "drug": {
+        "available": false,
+        "expiration": "2023-08-04 01:47:09",
+        "hash": "51454467704477337437008833751415023628295563412199098245272269977155016085043",
+        "name": "drug",
+        "owner": "0x7193b82899461a6aC45B528d48d74355F54E7F56"
     },
     "drugdealer": {
         "available": false,
@@ -8133,6 +8238,20 @@
         "name": "druglords",
         "owner": "0xee73889696d1b1Abd1978AC2b4F03514b164492D"
     },
+    "drugs": {
+        "available": false,
+        "expiration": "2023-10-18 18:57:30",
+        "hash": "104853902754344159199145365027680601052991249889518245038363704460777674293077",
+        "name": "drugs",
+        "owner": "0xDe5eefF1c5ee49b028Eda99eb916550f6908efdc"
+    },
+    "drugz": {
+        "available": false,
+        "expiration": "2026-06-14 19:22:38",
+        "hash": "87144318858550404240572147658936174542794689547086520950967497892803739203212",
+        "name": "drugz",
+        "owner": "0x358EfDff791021c8a343FDf373872041229c27C1"
+    },
     "druk": {
         "available": true,
         "expiration": "null",
@@ -8146,6 +8265,13 @@
         "hash": "103073959729436500604739652783223396273613207837753118060094580886585898630937",
         "name": "dryice",
         "owner": "0xE2FaA63f2351c6F2b88659f2fFfC2167172D329a"
+    },
+    "duchess": {
+        "available": false,
+        "expiration": "2023-09-11 09:48:13",
+        "hash": "13321252292766894282717879446156394399478160763146345845733989021072678984704",
+        "name": "duchess",
+        "owner": "0xe68e8cC7FF772b026C062b9Cc28246676D044947"
     },
     "duende": {
         "available": false,
@@ -8188,6 +8314,13 @@
         "hash": "76259913207177644525050185603891232123042498831484577840970448919901220655555",
         "name": "dugtrio",
         "owner": "0x69b468C3f5C92907c7eF6cbbc6B84fD2e735d0CB"
+    },
+    "duke": {
+        "available": false,
+        "expiration": "2025-11-07 16:24:55",
+        "hash": "43741478492074503478135488680275866771179532090527286086944179422684355848569",
+        "name": "duke",
+        "owner": "0x78d9f7747BfB3B06e10e2fa7a99c0209955eDa1b"
     },
     "dulce": {
         "available": false,
@@ -8999,7 +9132,7 @@
         "expiration": "2022-11-28 18:25:54",
         "hash": "69255610233619386750928164706444530036740823030545957458713683863782282149844",
         "name": "eslovaquia",
-        "owner": "NEVER_BEEN_MINTED"
+        "owner": "0x5247299421a3ff724c41582e5a44c6551d135fd3"
     },
     "eslovenia": {
         "available": false,
@@ -9666,6 +9799,13 @@
         "name": "feathers",
         "owner": "0xeD47015Bb8080B9399f9D0ddFc427B9Cee2CaAB1"
     },
+    "feb": {
+        "available": false,
+        "expiration": "2023-12-11 23:20:11",
+        "hash": "37118193944790803849879112794230018722232052348639704076153913816534232212763",
+        "name": "feb",
+        "owner": "0xa6F95ffA23cA53d33390F3Ad6d1dA06F8A456CCf"
+    },
     "febrero": {
         "available": false,
         "expiration": "2024-10-23 19:55:27",
@@ -9867,7 +10007,7 @@
         "expiration": "2025-04-19 09:52:40",
         "hash": "94970330039486145159429173807544597198886704041289323023200825635642811662413",
         "name": "finlandes",
-        "owner": "0x79612688e3bBf578CEE4D29600979be08Ab67c91"
+        "owner": "0x20e69B772b3C55c548E02eB919E9b691D8390757"
     },
     "finlandia": {
         "available": false,
@@ -9881,7 +10021,7 @@
         "expiration": "2022-10-27 00:02:23",
         "hash": "66380930654286483079192678025887488076636090559694707590125081590611131320975",
         "name": "finlandés",
-        "owner": "0x47417c04607445401d54b68e644ef76c67dbf0c1"
+        "owner": "NEVER_BEEN_MINTED"
     },
     "finn": {
         "available": false,
@@ -10899,11 +11039,11 @@
         "owner": "0x7E1c3bfE92FE956c813C1AcC75c010381d5D96B7"
     },
     "gettingpaid": {
-        "available": true,
-        "expiration": "2022-09-04 07:21:17",
+        "available": false,
+        "expiration": "2023-12-24 02:04:47",
         "hash": "27554678179679682918902068073880602893021002797648665442201765220122766791492",
         "name": "gettingpaid",
-        "owner": "0x4646647eebcdc111c4282502acacfc3988620531"
+        "owner": "0x8f09B7205954C645B784c50FB492286FcA01872B"
     },
     "ghidorah": {
         "available": false,
@@ -12921,6 +13061,13 @@
         "name": "ian",
         "owner": "0xeb44773738817fD36E05AF578f6Ef72e4eE6C7E2"
     },
+    "ice": {
+        "available": false,
+        "expiration": "2025-02-20 19:25:03",
+        "hash": "114634764129858780793785012415384191989474055222778743180468491066996235917559",
+        "name": "ice",
+        "owner": "0x12A048306d8D0Ad3F0A4b87a16f224cb6862bCD2"
+    },
     "ice-cold": {
         "available": false,
         "expiration": "2023-05-18 19:50:08",
@@ -13390,6 +13537,13 @@
         "name": "intuitivo",
         "owner": "0xcf00447be1626e3bBb75BE14e32c47e454a07bee"
     },
+    "invader": {
+        "available": false,
+        "expiration": "2022-11-01 20:07:52",
+        "hash": "10181000276244139967810229511738801505506201883323501478411892967059514391785",
+        "name": "invader",
+        "owner": "0xecd19550e2505d1fe3a1a96896ae4f1c08b10a44"
+    },
     "invasion": {
         "available": false,
         "expiration": "2024-09-14 21:04:14",
@@ -13753,6 +13907,13 @@
         "hash": "108837963758773938523695554534000615244911914790885958703077042113334333185070",
         "name": "jameson",
         "owner": "0x0109731B26B26b33De264DcE92c8C7Aa882Da613"
+    },
+    "jan": {
+        "available": false,
+        "expiration": "2024-02-04 13:42:57",
+        "hash": "114583604393215775459468301289512364740765854338150995721479231186789264185488",
+        "name": "jan",
+        "owner": "0xcB3f62C3BE664AA923517B97eaB2a97e262De825"
     },
     "janis": {
         "available": false,
@@ -14517,6 +14678,13 @@
         "name": "juicy",
         "owner": "0xe2faa63f2351c6f2b88659f2fffc2167172d329a"
     },
+    "jul": {
+        "available": false,
+        "expiration": "2022-11-07 15:15:54",
+        "hash": "57211805784429243405327086257048493811506658289904343549342163680560375747151",
+        "name": "jul",
+        "owner": "0xa9c183324bb94d0ba0a7b31cde7418a35e27639c"
+    },
     "julia": {
         "available": false,
         "expiration": "2026-09-28 22:14:54",
@@ -14565,6 +14733,13 @@
         "hash": "89630862967831116662210928772787459297107987037731610451963514310485188420727",
         "name": "julián",
         "owner": "0xbd70d89667A3E1bD341AC235259c5f2dDE8172A9"
+    },
+    "jun": {
+        "available": false,
+        "expiration": "2023-11-13 13:18:11",
+        "hash": "53813042913610157550547339857858796870578549388014459785371290831045407456252",
+        "name": "jun",
+        "owner": "0xc7B69727847f0eb2a51E58a1A266b782205e300c"
     },
     "juneteenth": {
         "available": false,
@@ -14705,6 +14880,13 @@
         "hash": "99216635805121203419215882581559581083649487240998963870905395971882906016159",
         "name": "karina",
         "owner": "0x9aE806a05F5D4A27414D2625d545298f3Eeb214C"
+    },
+    "karl": {
+        "available": false,
+        "expiration": "2024-10-26 02:27:22",
+        "hash": "89541239344111740999311316101264378167532450061615138087574142660138466571261",
+        "name": "karl",
+        "owner": "0xD6962436884EE452a2c53C84b0fD7c0ca8887876"
     },
     "karlmarx": {
         "available": false,
@@ -15604,10 +15786,10 @@
     },
     "linda": {
         "available": false,
-        "expiration": "2023-02-01 12:15:05",
+        "expiration": "2027-02-01 11:31:53",
         "hash": "23542730146829546315505495124829649934073029422885691127455919928284239031447",
         "name": "linda",
-        "owner": "0xe92c9Ed9e227364De07AC4f0A2F929a0374d6F9D"
+        "owner": "0x76cD3f746e85f370D1153232f8D910021abB5648"
     },
     "lindo": {
         "available": false,
@@ -15862,11 +16044,11 @@
         "owner": "0x84faF1F993D2261a6a6Dc53047719a5815719877"
     },
     "lootshop": {
-        "available": true,
-        "expiration": "2022-09-03 21:35:01",
+        "available": false,
+        "expiration": "2023-12-23 19:25:59",
         "hash": "55279962999694551818507136437662888717268824486786723323591762195690086606562",
         "name": "lootshop",
-        "owner": "0x9214442171055696a44301871b3dd207a84a2878"
+        "owner": "0xa8B09c62b0dF11874F6dD9eB18E395C777eF4C05"
     },
     "lord": {
         "available": false,
@@ -16000,6 +16182,13 @@
         "hash": "81240358592192920722127710026264561089078557677711667155994100615405771703534",
         "name": "lucas",
         "owner": "0x0CC545E75e606EE26E44276428Fe6e736bcB904d"
+    },
+    "lucas🚀": {
+        "available": false,
+        "expiration": "2027-03-02 14:49:49",
+        "hash": "30178050112123013544592122639009766875220416570878864573735756176874214216480",
+        "name": "lucas🚀",
+        "owner": "0x6a58905d03ea2229Dce61c0cB0E6364Bb030E24f"
     },
     "lucia": {
         "available": false,
@@ -16554,6 +16743,13 @@
         "name": "maquinaria",
         "owner": "0xbea25c42521ff05aD95BC5d52e08f87016Ab982E"
     },
+    "mar": {
+        "available": false,
+        "expiration": "2023-08-12 22:45:41",
+        "hash": "23550433206357988250707791848435684884677736682543580726035294853671126523974",
+        "name": "mar",
+        "owner": "0x653223a381fBbE16ddb1EC44C7a1c31ffFFBb1E9"
+    },
     "marble": {
         "available": false,
         "expiration": "2023-02-26 20:53:50",
@@ -16728,6 +16924,20 @@
         "hash": "49018391387294156962974566439745063458430638954030893012734706147533972360688",
         "name": "marieantoinette",
         "owner": "0xa102864dB5DBd92b07B3B946cAF57015799248f8"
+    },
+    "marihuana": {
+        "available": false,
+        "expiration": "2031-11-29 18:09:16",
+        "hash": "104061627811311976336215596054068346176099609563150293338387011763997047686544",
+        "name": "marihuana",
+        "owner": "0xe729CCf01DB7dF463F304279FC14ab585Fb668b1"
+    },
+    "marijuana": {
+        "available": false,
+        "expiration": "2023-05-04 10:27:36",
+        "hash": "102494896165888143849360959272525790305516727187866012598682160226594314852628",
+        "name": "marijuana",
+        "owner": "0x51ABa267A6e8e1E76B44183a73E881D73A102F26"
     },
     "marina": {
         "available": false,
@@ -18292,10 +18502,10 @@
     },
     "nancy": {
         "available": false,
-        "expiration": "2022-10-15 20:31:48",
+        "expiration": "2024-10-15 08:10:12",
         "hash": "60412658372580140652462540868694435045728018758109735712183449273528253692158",
         "name": "nancy",
-        "owner": "0x00bec19a4149ec55ab8582ac7914b5a928a6e8f8"
+        "owner": "0x00Bec19a4149eC55AB8582Ac7914b5a928A6e8F8"
     },
     "naomi": {
         "available": false,
@@ -18997,6 +19207,13 @@
         "name": "noticias",
         "owner": "0x496aF8962245435445FB9ED8aea20Cb8ccca1bB3"
     },
+    "nov": {
+        "available": true,
+        "expiration": "2022-09-18 13:39:54",
+        "hash": "76338021615844943871942863296786023820798260665782400973431914383878457494980",
+        "name": "nov",
+        "owner": "0x966a5a75b428dedba5ab1ce887db3307ed2832bb"
+    },
     "nova": {
         "available": false,
         "expiration": "2025-08-27 08:02:18",
@@ -19150,6 +19367,13 @@
         "hash": "41871661662043565980122300964895594336406090250774300260931930688294049322932",
         "name": "ochocientos",
         "owner": "0xf2A5d9C71dDc45Ca98476d39F3dfC2f16DCCaB68"
+    },
+    "oct": {
+        "available": false,
+        "expiration": "2023-04-16 18:23:30",
+        "hash": "58752050930831250663675656606407141852988352833969773492242815164690321572305",
+        "name": "oct",
+        "owner": "0x384973Ce79c352aD766F56672BABec85e897f234"
     },
     "octagon": {
         "available": false,
@@ -19702,7 +19926,7 @@
         "expiration": "2022-09-03 21:05:01",
         "hash": "6945767922624197797273722354580025480128585785685325108872019970629429316698",
         "name": "p0w",
-        "owner": "NEVER_BEEN_MINTED"
+        "owner": "0xe2b28729949aa0b31997d2251567181c22354725"
     },
     "pablo": {
         "available": false,
@@ -19828,7 +20052,7 @@
         "expiration": "2022-11-20 12:51:35",
         "hash": "56620364430996407559136475178662493381032445498704226581850745569033737645781",
         "name": "palamino",
-        "owner": "0x9769a99cadb5ded048057a50b1ca61e4c4954cda"
+        "owner": "NEVER_BEEN_MINTED"
     },
     "palatine": {
         "available": false,
@@ -20537,6 +20761,20 @@
         "name": "pixie",
         "owner": "0x0C8bdC6A21A2b98F4f7C6958BE1b128Df1aa3c5B"
     },
+    "pizza": {
+        "available": false,
+        "expiration": "2041-10-14 04:21:56",
+        "hash": "19317736443486173356902146909528788640250823166821845648111631096379111265363",
+        "name": "pizza",
+        "owner": "0x8F51f2bdBAa3a10ae0FAC783Ab7EC86CFB11ae58"
+    },
+    "pizzas": {
+        "available": false,
+        "expiration": "2026-09-28 10:01:51",
+        "hash": "94070729440126882523880960531336468219616746167559011920232517432234373349813",
+        "name": "pizzas",
+        "owner": "0xA72Dd12B9329E6eFE095C030f361131604A79586"
+    },
     "plagueis": {
         "available": false,
         "expiration": "2023-11-05 16:23:59",
@@ -20585,6 +20823,13 @@
         "hash": "105704645530794086473480663654903534352416975561214984848088689891724304296075",
         "name": "planos",
         "owner": "0xeDa90C508B950ba7b63227B9B4B56Ba5b9df0313"
+    },
+    "plants": {
+        "available": false,
+        "expiration": "2024-01-27 12:40:59",
+        "hash": "49978550371268717866151119533158018936138678804376570395257321606672980680471",
+        "name": "plants",
+        "owner": "0xE2FaA63f2351c6F2b88659f2fFfC2167172D329a"
     },
     "plasma": {
         "available": false,
@@ -21258,12 +21503,19 @@
         "name": "psycho",
         "owner": "0x54A1D0b29257A97064a1832bEaA517D8ccd7cfd8"
     },
+    "psychoactive": {
+        "available": false,
+        "expiration": "2024-10-16 22:00:24",
+        "hash": "101680745823804109219666013439836434678221251334655995931668441498936133777875",
+        "name": "psychoactive",
+        "owner": "0x447AbD628e7A3158bD64DFa8d9aE78Be9FF851FB"
+    },
     "psychos": {
-        "available": true,
-        "expiration": "2022-09-05 09:20:54",
+        "available": false,
+        "expiration": "2023-12-23 16:42:11",
         "hash": "61280440787620829374719950468314616013498052432606504073315141155672738809991",
         "name": "psychos",
-        "owner": "0x62358d0bc84709e4eaf3596b3843375f35e3ee0e"
+        "owner": "0x0D107291C0B5c7b63DF3D811734Bb41970Bd219f"
     },
     "psyduck": {
         "available": false,
@@ -21608,6 +21860,13 @@
         "name": "rafaela",
         "owner": "0xB2189572A8f77b301c8a286Ea5179ec50CA8e46e"
     },
+    "raffy🚴‍♂": {
+        "available": true,
+        "expiration": "null",
+        "hash": "43557756896963158439643441295218944949324108754057316856528147326593547187619",
+        "name": "raffy🚴‍♂",
+        "owner": "NEVER_BEEN_MINTED"
+    },
     "raichu": {
         "available": false,
         "expiration": "2043-06-19 09:23:36",
@@ -21879,7 +22138,7 @@
         "expiration": "2022-08-05 08:49:38",
         "hash": "13060596234321730841127307523270514436565530454702730904939339063061150612115",
         "name": "record-breaking",
-        "owner": "0xaf8982f6cce4f34bcc606a96ef380ae20a500286"
+        "owner": "NEVER_BEEN_MINTED"
     },
     "recruitment": {
         "available": false,
@@ -22077,6 +22336,13 @@
         "name": "republica",
         "owner": "0x496aF8962245435445FB9ED8aea20Cb8ccca1bB3"
     },
+    "republicadominicana": {
+        "available": false,
+        "expiration": "2022-11-10 12:28:11",
+        "hash": "107412855965132987145467484771349536670836555822635194212776878446446569452154",
+        "name": "republicadominicana",
+        "owner": "0xfe5d64fd76b4f98b31c5aaeab6a714754247f55d"
+    },
     "republicadominicana\t": {
         "available": true,
         "expiration": "null",
@@ -22096,6 +22362,13 @@
         "expiration": "2023-07-04 01:28:59",
         "hash": "103240596158937390110150537893430350198534284065342598898923289565200276124023",
         "name": "república",
+        "owner": "0x276Fa4EA29F4F0C8141c4494bA8C91daE2E8C7a6"
+    },
+    "repúblicadominicana": {
+        "available": false,
+        "expiration": "2023-05-24 18:43:31",
+        "hash": "113878861758127991351561933162808196102957909691435462714782153645946337667920",
+        "name": "repúblicadominicana",
         "owner": "0x276Fa4EA29F4F0C8141c4494bA8C91daE2E8C7a6"
     },
     "repúblicadominicana\t": {
@@ -23365,6 +23638,13 @@
         "name": "sentimental",
         "owner": "0x8Ae871e595D477d9fAD8B6b5f074AF03a0d4b48a"
     },
+    "sept": {
+        "available": false,
+        "expiration": "2024-10-22 13:46:05",
+        "hash": "61456873007581256166489758105371730618565780262737845564701219040589577750420",
+        "name": "sept",
+        "owner": "0x3c5b49620F4e613eC5C3dfc70Fb22323c4B7D523"
+    },
     "septiembre": {
         "available": false,
         "expiration": "2024-09-18 22:13:20",
@@ -23595,6 +23875,13 @@
         "hash": "93609844369491142482732528037650755078371225579737674576968666644401177341575",
         "name": "shawn",
         "owner": "0x0314cc74e461d881BA3B5c93Bba34CC81e4f7004"
+    },
+    "sheik": {
+        "available": false,
+        "expiration": "2026-10-17 15:44:35",
+        "hash": "57152349356342953935827666645446541037193883277163679706193727597522485537700",
+        "name": "sheik",
+        "owner": "0xaAC9B0a1a753D02f957571a5C59f39604c4f68A1"
     },
     "shelby": {
         "available": false,
@@ -24002,6 +24289,13 @@
         "name": "sleepy",
         "owner": "0xbB0D4ccf4e095a2D6A9A2BEE2985a703c1Ca9B69"
     },
+    "slice": {
+        "available": false,
+        "expiration": "2024-10-17 14:04:10",
+        "hash": "97137858351489317529580482301301932350246428399479404754317655581544837799248",
+        "name": "slice",
+        "owner": "0x19d74f3Ab452B027C0ff27612F611477F0A3b1ad"
+    },
     "slick": {
         "available": false,
         "expiration": "2031-10-19 07:16:42",
@@ -24326,7 +24620,7 @@
     },
     "sonia": {
         "available": false,
-        "expiration": "2024-10-17 13:02:59",
+        "expiration": "2025-01-01 14:59:59",
         "hash": "63303461481944158890529287591142423142902612604456391231222130486905765277556",
         "name": "sonia",
         "owner": "0xC6058667a57374cd350280Fcf06a5f0517682BEB"
@@ -24554,6 +24848,13 @@
         "hash": "39610773056302356021037230138037513417400604410035582945616342209829261491010",
         "name": "spinosaurus",
         "owner": "0xa102864dB5DBd92b07B3B946cAF57015799248f8"
+    },
+    "spirits": {
+        "available": false,
+        "expiration": "2027-12-31 13:44:24",
+        "hash": "44801432468894316332939201724657600108820731284647731712716484422499053578613",
+        "name": "spirits",
+        "owner": "0x18C6045651826824FEBBD39d8560584078d1b247"
     },
     "splinter": {
         "available": false,
@@ -24829,11 +25130,11 @@
         "owner": "0xAFb4631f6d7712885c6c8f917566839d5AB07E9F"
     },
     "stgeorge": {
-        "available": true,
-        "expiration": "2022-09-05 23:06:37",
+        "available": false,
+        "expiration": "2026-12-24 03:48:11",
         "hash": "11226441157796409721516317738919287437725393815910889785492839314551764217867",
         "name": "stgeorge",
-        "owner": "0x6ad728afecf9e08a6d383e3422f58dc72d9ec2db"
+        "owner": "0x8a1e82145eab037Bd4b66f9273a495fDAE3449E1"
     },
     "stick": {
         "available": false,
@@ -25953,7 +26254,7 @@
         "expiration": "2022-11-09 13:06:35",
         "hash": "47914409407324754919384404965412913242653408038510867359420371308571371021729",
         "name": "tiranosauriorex",
-        "owner": "0x866b719d3b7d79838492426b6c35fa14eb94f955"
+        "owner": "NEVER_BEEN_MINTED"
     },
     "tissue": {
         "available": false,
@@ -26520,7 +26821,7 @@
         "expiration": "2022-10-27 03:30:47",
         "hash": "55312063619303559790954659227774888361859756379575467981355271488931793748262",
         "name": "ucranio",
-        "owner": "0x47417c04607445401d54b68e644ef76c67dbf0c1"
+        "owner": "NEVER_BEEN_MINTED"
     },
     "ufctickets": {
         "available": false,
@@ -27684,6 +27985,20 @@
         "name": "whitney",
         "owner": "0xA06B01381c267318f2D65F05bE343c7A2e224713"
     },
+    "widowmaker": {
+        "available": false,
+        "expiration": "2026-11-30 06:47:38",
+        "hash": "26514355867369191175346773979266386450016502929465750739076945386987152054773",
+        "name": "widowmaker",
+        "owner": "0x20A521c141b677F716d0299aA2954ceACF41CE8B"
+    },
+    "widowswail": {
+        "available": false,
+        "expiration": "2024-10-20 04:45:11",
+        "hash": "25569941189582303929718279662859711809530648223966816197311650924608526486074",
+        "name": "widowswail",
+        "owner": "0x4840836d78fF1d350409c3191deb5653Ba615c92"
+    },
     "wigglytuff": {
         "available": false,
         "expiration": "2028-10-18 13:09:44",
@@ -27999,6 +28314,13 @@
         "name": "wuzetian",
         "owner": "0x751949ca0E82Da14f6cE1161640684F284e87Ba2"
     },
+    "wwe": {
+        "available": false,
+        "expiration": "2025-11-17 01:59:30",
+        "hash": "10710836309298643403612487231934898602050299298000903387232033723302146459691",
+        "name": "wwe",
+        "owner": "0x4506a964D283F16878cbC420691E8Aaf5264db47"
+    },
     "wyatt": {
         "available": false,
         "expiration": "2030-01-29 17:24:20",
@@ -28117,6 +28439,13 @@
         "hash": "28184623249160683647887622451969374871255987573163914644811463274227231078341",
         "name": "yellowsub",
         "owner": "0xc6310184aC79C902846910285185340877970425"
+    },
+    "yerba": {
+        "available": false,
+        "expiration": "2027-08-31 05:18:14",
+        "hash": "32877207145136175127096276465953236326135094646934623549859661588294083138477",
+        "name": "yerba",
+        "owner": "0xb9c7E24ec201D75FA68DAA32Caf5B8C6289F5aAc"
     },
     "yeti": {
         "available": false,
@@ -28417,7 +28746,7 @@
         "expiration": "null",
         "hash": "55051783499140387791490812277024069900590102347429412008391413774997032785641",
         "name": "æthelflæd",
-        "owner": "ERROR"
+        "owner": "NEVER_BEEN_MINTED"
     },
     "éxtasis": {
         "available": false,
@@ -28433,11 +28762,88 @@
         "name": "órale",
         "owner": "0xF63E7E364bA2A8cE99c34563A9768B3BAfF65D1a"
     },
+    "٢٧٥": {
+        "available": false,
+        "expiration": "2022-12-25 21:59:59",
+        "hash": "38154591281008733621286987835336287064525162997859768946862535925887627290941",
+        "name": "٢٧٥",
+        "owner": "0x729236B720004aA2DA7210Ba3598B0CEe819D31b"
+    },
+    "⌐◨-◨": {
+        "available": false,
+        "expiration": "2025-01-04 11:00:58",
+        "hash": "111440747936573806392167052078801952303595836080754646941339900940965969244004",
+        "name": "⌐◨-◨",
+        "owner": "0x8714995306176D047E93B7875533f66AE471BCd6"
+    },
+    "❤‍🔥": {
+        "available": false,
+        "expiration": "2026-04-06 11:36:51",
+        "hash": "70203494473185011749162917261093001292032343422501773942763791298769033156657",
+        "name": "❤‍🔥",
+        "owner": "0x92A6088EebB1378CD38908CcF15C144824a5f870"
+    },
+    "ニョロゾ": {
+        "available": false,
+        "expiration": "2023-05-07 11:09:57",
+        "hash": "15019674185610603800586186880213980623019319084997452732022316600094664769400",
+        "name": "ニョロゾ",
+        "owner": "0x2812A0AeEe5704d807FF458cBDbdE2333537D09F"
+    },
     "噴火龍": {
         "available": true,
         "expiration": "2022-08-30 00:47:35",
         "hash": "107072533212854071523150770408861463995844413203888874627579194200605538593979",
         "name": "噴火龍",
         "owner": "0x363bf79b2d8cef74ba0e6d9b55358f8f20ade65a"
+    },
+    "𓃵𓃵𓃵": {
+        "available": false,
+        "expiration": "2023-02-23 18:23:46",
+        "hash": "79518048046213397035511856972683034771581954563008659947105029621890541688495",
+        "name": "𓃵𓃵𓃵",
+        "owner": "0x4c74C24dcf82DBbc8292756564F6e50c563b3E24"
+    },
+    "👑scott": {
+        "available": false,
+        "expiration": "2023-08-29 09:05:59",
+        "hash": "64840451424813119965039312275532048665195006563706088587827865599694495698342",
+        "name": "👑scott",
+        "owner": "0x089a47D4E571C69981474A285Ff72C20E7C8c61E"
+    },
+    "👨": {
+        "available": true,
+        "expiration": "null",
+        "hash": "18691182906881243476570377400025373651340968566442542165827436543585022072869",
+        "name": "👨",
+        "owner": "NEVER_BEEN_MINTED"
+    },
+    "💩💩💩💩": {
+        "available": false,
+        "expiration": "2028-04-02 11:57:24",
+        "hash": "4164227677270001784192907749454061501086806960337643588439453199160543025855",
+        "name": "💩💩💩💩",
+        "owner": "0xDE3ba1B41e6c612a3Ca3213B84bdaf598dfFdb9b"
+    },
+    "🤵‍♂": {
+        "available": false,
+        "expiration": "2023-01-10 23:58:16",
+        "hash": "46665173014366248493605482582884039596762559752880516603781102463731374721503",
+        "name": "🤵‍♂",
+        "owner": "0x122AE5C7a359AF768fa0C86146fe1af24E14a845"
+    },
+    "🧞‍♂": {
+        "available": false,
+        "expiration": "2023-11-09 11:10:19",
+        "hash": "110120399707195275590141217185989396681003663219061649505282705672934612755810",
+        "name": "🧞‍♂",
+        "owner": "0xFB0FBfB5EC04d6C1c96a27d755dD2DB221C9a20A"
+    },
+    "🧟‍♂": {
+        "available": false,
+        "expiration": "2023-10-18 22:31:37",
+        "hash": "60101518116808787070514203899984315848329671935229557843660023777305252126884",
+        "name": "🧟‍♂",
+        "owner": "0xf26d4A8e7CfB78B72BC4c95f9c8d2010E4186b1c"
     }
 }
