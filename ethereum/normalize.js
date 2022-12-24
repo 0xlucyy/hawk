@@ -1,13 +1,6 @@
-// const ethers = require('ethers')
-// const fs = require('fs');
-
-import { ethers } from 'ethers';
 import fs from 'fs';
-
 import { normalize, hash } from './ens_utils.js';
 
-const BigNumber = ethers.BigNumber
-const utils = ethers.utils
 
 try {  
     var data = fs.readFileSync('watchlists/watch_clean.txt').toString().split("\n");
@@ -36,10 +29,9 @@ try {
 //   console.log('Error:', e.stack);
 // }
 
-// hash('👨️')
+
+// hash('👩‍🔬')
 data.forEach(hash);
 
-// normalize('👨')
+// normalize('lobo')
 // data.forEach(normalize);
-
-// data.forEach(unicode_checker)

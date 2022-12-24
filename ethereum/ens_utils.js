@@ -25,7 +25,7 @@ function hash(name) {
       console.log(normalized + "," + tokenId)
     }
   } catch(e) {
-    console.log('Error:', e.stack, "Name: ", name);
+    // console.log('Error:', e.stack, "Name: ", name);
   }
 }
 
