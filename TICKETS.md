@@ -16,8 +16,9 @@
 
 #### Doing
 - backend : endpt which takes a list of domains and returns metadata. Search db, if domain exists, return its metadata along with all the rest. if domain in list is not in db, grab metadata from eth, save into db, and return all metadata.
-  - This includes input validation of strings. 
-  - https://docs.ens.domains/frequently-asked-questions#what-about-foreign-characters-what-about-upper-case-letters-is-any-unicode-character-valid
+  - This includes input validation of strings - DONE
+    - https://github.com/adraffy/ensip-norm
+    - https://github.com/adraffy/ens-normalize.js
 
 #### Hold/Backlog
 - frontend: toggle between Deck/Cards and Table
