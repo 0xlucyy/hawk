@@ -37,7 +37,6 @@ def make_graphql_request(query_target: str = None, domain_name: str = None):
                   f'Target: {query_target}\n' \
                   f'LableName: {domain_name} ...')
   try:
-
     if query_target == "DOMAIN_ECO":
       url = DOMAIN_ECO.replace('labelName:"_NAME"', f'labelName:"{domain_name}"')
       response = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": url})
@@ -56,6 +55,6 @@ def make_graphql_request(query_target: str = None, domain_name: str = None):
   except requests.exceptions.RequestException as err:
     raise GraphQLRequestError(msg="Error requesting graphql.") from err
 
-# make_graphql_request(query_target='DOMAIN_ECO', domain_name='lobo')
+# print(make_graphql_request(query_target='DOMAIN_ECO', domain_name='lobo'))
 # make_graphql_request(query_target='REGISTRATIONS', domain_name='lobo')
 # make_graphql_request(query_target='DOMAIN_OWNER', domain_name='lobo')

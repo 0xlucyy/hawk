@@ -35,7 +35,15 @@ export default class BulkSearch extends Component {
 
   process_text = () => {
     if (this.state.bulk_search_text !== null) {
-      console.log(`data: ${JSON.stringify(this.state.bulk_search_text)}`)
+      // console.log(`data: ${JSON.stringify(this.state.bulk_search_text)}`)
+
+      var cleaned = (this.state.bulk_search_text.replace(/\n/g,',')).trim();
+
+      console.log(`data: ${JSON.stringify(cleaned)}`)
+      // data: "lobo\ntoro\ntest" LOOKS LIKE THIS
+      // 2453,5674,23426,1235,lobo SEND LIKE THIS
+
+      // http://127.0.0.1:5000/api/v1/bulkSearch
     } else {
       console.log("text is null yo!")
     }
@@ -65,7 +73,7 @@ export default class BulkSearch extends Component {
         this.state.activeButton === 'bulkSearch' ? (
           <Form>
             <TextArea
-              placeholder='Enter your ENS domain names'
+              placeholder='Enter one ENS domain per line'
               style={{'backgroundColor':'black', 'color':'white'}}
               type="text"
               value={this.state.bulk_search_text}

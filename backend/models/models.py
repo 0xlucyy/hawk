@@ -22,14 +22,14 @@ class Domains(Base, Lockable):
     hash = db.Column(db.VARCHAR(100), unique=True, nullable=False)
     owner = db.Column(db.String(100), nullable=False)
     available = db.Column(db.Boolean, nullable=False)
+    status = db.Column(db.VARCHAR(50), nullable=False)
+
     # expiration = time expiration ends.
     expiration = db.Column(db.DATETIME, nullable=True)
     # grace = time grace ends.
     grace = db.Column(db.DATETIME, nullable=True)
     # auction = time auction ends.
     auction = db.Column(db.DATETIME, nullable=True)
-    status = db.Column(db.VARCHAR(50), nullable=False)
-    
 
     # db.relationships
     orders = db.relationship('Orders', backref='domains') # 1 domain to many orders
@@ -79,7 +79,7 @@ class Domains(Base, Lockable):
         '''
         expiration = datetime.strptime(
             _expiration, app.config['DATETIME_STR_FORMAT']
-        ) if _expiration != 'null' else None
+        ) if _expiration.lower() != 'null' else None
         grace = (expiration + relativedelta( \
             days=app.config['ENS_GRACE_PERIOD'])) \
             if expiration != None else None

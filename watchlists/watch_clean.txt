@@ -491,11 +491,13 @@ bolt
 bomba
 bombardero
 bombshell
+bonaparte
 bonecollector
 bonecrusher
 boogeyman
 boot
 boots
+booty
 bose
 boss
 bostaff
@@ -576,6 +578,7 @@ caesar
 caesarion
 cafe
 café
+calabera
 calderon
 caliente
 califa
@@ -608,7 +611,9 @@ candy-ass
 candyass
 cannabis
 canon
+cantina
 canvas
+capitalist
 capitan
 capitana
 capitoline
@@ -826,6 +831,7 @@ commander
 commodus
 commonwealth
 communism
+communist
 como
 compa
 compadre
@@ -923,6 +929,7 @@ cruz
 cry
 crypto
 cryptoadvisors
+cryptoaf
 cryptodeity
 cryptogod
 cryptome
@@ -1008,6 +1015,7 @@ deadmansswitch
 deadoralive
 deadzone
 dean
+death
 debaucher
 dec
 deceiver
@@ -1052,6 +1060,7 @@ despoiler
 destructor
 destruir
 devastator
+devil
 dewgong
 diablo
 diabolic
@@ -1291,6 +1300,7 @@ ernesto
 ernie
 erode
 escila
+esclavo
 escorpio
 escorpion
 escorpión
@@ -1436,6 +1446,7 @@ fisica
 flamenco
 flare
 flareon
+flashpoint
 flask
 flee
 flintstone
@@ -1825,6 +1836,7 @@ horoscopo
 horse
 horsea
 horses
+horus
 horóscopo
 hose
 hospital
@@ -2145,7 +2157,11 @@ kia
 kiara
 kid
 kidrock
+kill
+killer
 killerbee
+kills
+killz
 kilo
 kimberlyclark
 kimberlyclarkcorporation
@@ -2241,6 +2257,7 @@ libra
 libro
 libros
 lickitung
+life
 life-giving
 life-sized
 light
@@ -2358,6 +2375,7 @@ magic-curse
 magiccurse
 magikarp
 magmar
+magnate
 magnemite
 magneton
 magnus
@@ -2451,6 +2469,7 @@ massachusetts
 master
 masterroshi
 mastretta
+matador
 mateo
 mathematics
 matias
@@ -2472,8 +2491,10 @@ mecha
 medici
 medicine
 medusa
+mega
 megacuck
 megalodon
+megaman
 megatron
 meghan
 melania
@@ -2610,6 +2631,7 @@ mrsatan
 much
 muchas
 muchos
+muerte
 mufasa
 mugshot
 muk
@@ -2620,6 +2642,8 @@ mundial
 mundo
 municion
 munición
+murder
+murderer
 murk
 muscles
 museums
@@ -2787,6 +2811,7 @@ ohtli
 oklahoma
 old-fashioned
 oldguard
+oligarch
 oligarchy
 olivares
 olive
@@ -2980,6 +3005,8 @@ player2
 player3
 player7
 plaza
+pleb
+plebs
 pluto
 pluton
 plutón
@@ -3177,6 +3204,7 @@ reina
 reinas
 reinounido
 rejoin
+rekt
 relation
 relianceindustries
 renata
@@ -3262,6 +3290,7 @@ runner-up
 rusia
 ruso
 russell
+rusty
 ruth
 ryu
 sabado
@@ -3296,6 +3325,7 @@ sanjuan
 sansalvador
 santa
 santaclaus
+santamuerte
 santana
 santiago
 santino
@@ -3458,8 +3488,11 @@ six-pack
 skateboard
 sktelecomt1
 sktt1
+skull
 skywalker
+slave
 slaver
+slaverevolt
 slavetrader
 slaving
 sleep
@@ -3763,6 +3796,7 @@ tonta
 tonto
 tony
 toolkits
+toothfairy
 torch
 toro
 torpedo
@@ -3806,6 +3840,7 @@ tucker
 tuesday
 tundra
 tupac
+turbo
 turco
 turquia
 turquiose
@@ -3839,6 +3874,7 @@ unbelievable
 unbiased
 undead
 undertaker
+unforgiven
 unicorn
 unicornio
 unidad
@@ -3922,6 +3958,7 @@ vicky
 victor
 victoria
 victreebel
+vida
 videl
 viento
 viernes
@@ -3979,6 +4016,7 @@ weedle
 weepinbell
 weezing
 well-informed
+wellington
 werewolf
 wesley
 wessex
@@ -4037,6 +4075,7 @@ wormhole
 wormtongue
 wrestlemania
 writers
+wtf
 wulf
 wuzetian
 wwe

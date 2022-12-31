@@ -13,7 +13,7 @@ from backend.utils.utils import (
     app,
     db
 )
-from ethereum.read_ens import ens_claw
+from ethereum.read_ens import ens_claw, ens_claw_update_domains
 from backend.models import models
 from sqlalchemy.exc import IntegrityError
 from backend.utils.exceptions import (
@@ -49,13 +49,13 @@ def populate_markets():
 
 def populate_domains(file: str = app.config['WATCH_LOCATION']):
     '''
-    Assumes all domains are not in the dictionary.
+    Assumes all domains are not in db.
     '''
     with open(f"{file}.json", 'r', encoding='utf8') as outfile:
         payload = json.load(outfile)
     
+    added = []
     failed = []
-    index = 0
     for domain, domain_metadata in payload.items():
         try:
             # print(f"domain: {domain}. meta: {domain_metadata}")
@@ -65,16 +65,18 @@ def populate_domains(file: str = app.config['WATCH_LOCATION']):
             app.logger.error(DMDTE)
             failed.append(domain)
             continue
+
         try:
             post_to_db(new_domain)
         except IntegrityError as IE: # DB duplicate collision
             app.logger.error(IE)
             failed.append(domain)
             continue
-        index += 1
-    app.logger.info(f"Total success: {index} - " \
+        added.append(new_domain)
+    app.logger.info(f"Total success: {len(added)} - " \
                     f"Total failed: {len(failed)}" \
                     f" - {failed}")
+    return added
 
 
 def build_watchlist():
@@ -164,6 +166,7 @@ def create_database():
     db.create_all()
     db_connection.close()
 
+
 def clean_slate():
     '''
         Watchlist file is a single line text file.
@@ -175,9 +178,13 @@ def clean_slate():
     start_time = time.time()
     get_hashes_cmd = 'node ethereum/normalize.js >> watchlists/watch_clean.csv'
 
-    # clean_file()
-    # subprocess.run(['sh', '-c', get_hashes_cmd])
-    # build_watchlist()
+    # Clean CSV file
+    f = open(f"{app.config['WATCH_LOCATION']}.csv", "w+")
+    f.close()
+
+    clean_file()
+    subprocess.run(['sh', '-c', get_hashes_cmd])
+    build_watchlist()
     create_database()
     populate_domains()
     populate_markets()
@@ -211,10 +218,6 @@ def refresh_domains():
         Partial update on domains. Default source of domains
         is watchlists/watch_clean.json.
     '''
-    build_watchlist()
-    with open(f"{app.config['WATCH_LOCATION']}.json", 'r', encoding='utf8') as outfile:
-        payload = json.load(outfile)
-    
     domains_createad = 0
     domains_updated = 0
     failed = 0
@@ -222,39 +225,42 @@ def refresh_domains():
     # keys are cols from domain table.
     update_keys = ['owner', 'available', 'expiration']
     
-    for domain_name, domain_metadata in payload.items():
-        app.logger.info(f"Working on {domain_name}...")
-        try:
-            domain = models.Domains.query.filter(
-                models.Domains.name == domain_name
-            ).first()
-        except Exception as error:
-            app.logger.error(error)
-            failed += 1
-            failed_named.append(domain_name)
-            continue
+    domains = models.Domains.query.all()
 
-        try:
-            if domain is not None: # domain exists in db.
-                for key in update_keys:
-                    setattr(domain, key, payload[domain_name][key]) if key != 'expiration' else setattr(domain, key, (payload[domain_name][key]).upper())
-                setattr(domain, '_updated_at', datetime.now())
-                time_and_status = models.Domains.get_times_and_status(payload[domain_name]['expiration'])
-                for key,value in time_and_status.items():
-                    try:
-                        setattr(domain, key, value)
-                    except Exception as error:
-                        print(error)
-                post_to_db(just_commit=True)
-                domains_updated += 1
-            else: # domain does not exist in db.
-                new_domain = models.Domains(**domain_metadata)
-                post_to_db(data=new_domain)
-                domains_createad += 1
-        except DomainModelDataTypeError as DMDTE:
-            app.logger.error(DMDTE)
-            failed += 1
-            failed_named.append(domain_name)
-    print(f"Total domains created: {domains_createad} - " \
-                    f"Total domains updated: {domains_updated} - " \
-                    f"Total failed: {failed}")
+    ens_claw_update_domains(domains)
+
+    # for domain in domains:
+    #     app.logger.info(f"Working on {domain.name}...")
+    #     try:
+    #         import pdb; pdb.set_trace()
+    #         ens_claw_update_domains(domain)
+    #     except Exception as error:
+    #         app.logger.error(error)
+    #         failed += 1
+    #         failed_named.append(domain.name)
+    #         continue
+
+    #     try:
+    #         if domain is not None: # domain exists in db.
+    #             for key in update_keys:
+    #                 setattr(domain, key, payload[domain_name][key]) if key != 'expiration' else setattr(domain, key, (payload[domain_name][key]).upper())
+    #             setattr(domain, '_updated_at', datetime.now())
+    #             time_and_status = models.Domains.get_times_and_status(payload[domain_name]['expiration'])
+    #             for key,value in time_and_status.items():
+    #                 try:
+    #                     setattr(domain, key, value)
+    #                 except Exception as error:
+    #                     print(error)
+    #             post_to_db(just_commit=True)
+    #             domains_updated += 1
+    #         else: # domain does not exist in db.
+    #             new_domain = models.Domains(**domain_metadata)
+    #             post_to_db(data=new_domain)
+    #             domains_createad += 1
+    #     except DomainModelDataTypeError as DMDTE:
+    #         app.logger.error(DMDTE)
+    #         failed += 1
+    #         failed_named.append(domain_name)
+    # print(f"Total domains created: {domains_createad} - " \
+    #                 f"Total domains updated: {domains_updated} - " \
+    #                 f"Total failed: {failed}")

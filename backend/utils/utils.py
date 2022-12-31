@@ -21,7 +21,6 @@ from web3.exceptions import (
 # import pdb; pdb.set_trace()
 
 
-
 def BASIC_TRANSACTION(w3: Web3 = None, address: str = None) -> dict:
     import pdb; pdb.set_trace()
 

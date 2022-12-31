@@ -124,8 +124,8 @@ function handleOwner(payload) {
 function handlePremium(payload, premium) {
   if (payload.payload.status === 'IN_AUCTION') {
     if (premium.premium_in_eth != null) {
-        let eth_premium = ((premium.legnth_cost_per_year * premium.years) / payload.rates.data.rates.USD) + parseFloat(premium.premium_in_eth)
-        let usd_premium = ((payload.rates.data.rates.USD * premium.premium_in_eth) + (premium.legnth_cost_per_year * premium.years))
+        let eth_premium = ((premium.cost_per_year * premium.years) / payload.rates.data.rates.USD) + parseFloat(premium.premium_in_eth)
+        let usd_premium = ((payload.rates.data.rates.USD * premium.premium_in_eth) + (premium.cost_per_year * premium.years))
         return <div style={{ 'color': 'green' }}>
             Premium: {(premium.premium_in_eth == null ? (null) : (`${eth_premium.toFixed(4)}ETH | ${usd_premium.toFixed(2)}USD`))}
         </div>

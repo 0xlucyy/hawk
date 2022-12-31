@@ -39,6 +39,7 @@
 333
 3333
 369
+420
 420mph
 444
 4444
@@ -224,6 +225,7 @@ apollo
 apolo
 apophis
 appraisal
+apr
 apuesta
 aquila
 arabe
@@ -320,6 +322,7 @@ attila
 audio
 auditoria
 auditoría
+aug
 augustus
 aula
 aulas
@@ -488,11 +491,13 @@ bolt
 bomba
 bombardero
 bombshell
+bonaparte
 bonecollector
 bonecrusher
 boogeyman
 boot
 boots
+booty
 bose
 boss
 bostaff
@@ -573,6 +578,7 @@ caesar
 caesarion
 cafe
 café
+calabera
 calderon
 caliente
 califa
@@ -603,8 +609,11 @@ canadá
 cancer
 candy-ass
 candyass
+cannabis
 canon
+cantina
 canvas
+capitalist
 capitan
 capitana
 capitoline
@@ -621,6 +630,7 @@ carcare
 carina
 carinoso
 cariñoso
+carl
 carla
 carlos
 carmack
@@ -821,6 +831,7 @@ commander
 commodus
 commonwealth
 communism
+communist
 como
 compa
 compadre
@@ -918,6 +929,7 @@ cruz
 cry
 crypto
 cryptoadvisors
+cryptoaf
 cryptodeity
 cryptogod
 cryptome
@@ -1003,7 +1015,9 @@ deadmansswitch
 deadoralive
 deadzone
 dean
+death
 debaucher
+dec
 deceiver
 decepticon
 decepticons
@@ -1046,6 +1060,7 @@ despoiler
 destructor
 destruir
 devastator
+devil
 dewgong
 diablo
 diabolic
@@ -1088,6 +1103,7 @@ divebomb
 divert
 divine
 divinity
+dmt
 doa
 doce
 doctor
@@ -1158,12 +1174,17 @@ dream
 dreamhack
 dreki
 drifter
+droga
+drogas
 dronehub
 dropmail
 drowzee
+drug
 drugdealer
 druglord
 druglords
+drugs
+drugz
 druk
 dryice
 duchess
@@ -1279,6 +1300,7 @@ ernesto
 ernie
 erode
 escila
+esclavo
 escorpio
 escorpion
 escorpión
@@ -1384,6 +1406,7 @@ favorite
 favorito
 fearow
 feathers
+feb
 febrero
 felicidad
 felipe
@@ -1423,6 +1446,7 @@ fisica
 flamenco
 flare
 flareon
+flashpoint
 flask
 flee
 flintstone
@@ -1812,6 +1836,7 @@ horoscopo
 horse
 horsea
 horses
+horus
 horóscopo
 hose
 hospital
@@ -1970,6 +1995,7 @@ jaime
 jamaal
 jamal
 jameson
+jan
 janis
 japon
 japones
@@ -2079,6 +2105,7 @@ jugadora2
 jugo
 juice
 juicy
+jul
 julia
 julian
 juliana
@@ -2086,6 +2113,7 @@ julieta
 julio
 juliuscaesar
 julián
+jun
 juneteenth
 jungle
 junio
@@ -2106,6 +2134,7 @@ kappa
 kappasigma
 kara
 karina
+karl
 karlmarx
 katana
 katanas
@@ -2128,7 +2157,11 @@ kia
 kiara
 kid
 kidrock
+kill
+killer
 killerbee
+kills
+killz
 kilo
 kimberlyclark
 kimberlyclarkcorporation
@@ -2224,6 +2257,7 @@ libra
 libro
 libros
 lickitung
+life
 life-giving
 life-sized
 light
@@ -2255,7 +2289,6 @@ lloyd
 loba
 lobas
 lobe
-lobo
 lobo
 lobos
 loca
@@ -2342,6 +2375,7 @@ magic-curse
 magiccurse
 magikarp
 magmar
+magnate
 magnemite
 magneton
 magnus
@@ -2372,6 +2406,7 @@ manuel
 manuela
 maquillaje
 maquinaria
+mar
 marble
 marc
 marca
@@ -2397,6 +2432,8 @@ maribelle
 maricela
 marie
 marieantoinette
+marihuana
+marijuana
 marina
 mario
 mariscal
@@ -2432,6 +2469,7 @@ massachusetts
 master
 masterroshi
 mastretta
+matador
 mateo
 mathematics
 matias
@@ -2453,8 +2491,10 @@ mecha
 medici
 medicine
 medusa
+mega
 megacuck
 megalodon
+megaman
 megatron
 meghan
 melania
@@ -2591,6 +2631,7 @@ mrsatan
 much
 muchas
 muchos
+muerte
 mufasa
 mugshot
 muk
@@ -2601,6 +2642,8 @@ mundial
 mundo
 municion
 munición
+murder
+murderer
 murk
 muscles
 museums
@@ -2721,6 +2764,7 @@ northstar
 northwest
 noticia
 noticias
+nov
 nova
 novecientos
 noventa
@@ -2743,6 +2787,7 @@ ocelotl
 ochenta
 ocho
 ochocientos
+oct
 octagon
 octane
 octavian
@@ -2766,6 +2811,7 @@ ohtli
 oklahoma
 old-fashioned
 oldguard
+oligarch
 oligarchy
 olivares
 olive
@@ -2950,6 +2996,7 @@ planeta
 planetario
 planetary
 planos
+plants
 plasma
 plata
 player
@@ -2958,6 +3005,8 @@ player2
 player3
 player7
 plaza
+pleb
+plebs
 pluto
 pluton
 plutón
@@ -3046,6 +3095,7 @@ prácticas
 próximo
 psyche
 psycho
+psychoactive
 psychos
 psyduck
 pterodactyl
@@ -3154,6 +3204,7 @@ reina
 reinas
 reinounido
 rejoin
+rekt
 relation
 relianceindustries
 renata
@@ -3239,6 +3290,7 @@ runner-up
 rusia
 ruso
 russell
+rusty
 ruth
 ryu
 sabado
@@ -3273,6 +3325,7 @@ sanjuan
 sansalvador
 santa
 santaclaus
+santamuerte
 santana
 santiago
 santino
@@ -3348,6 +3401,7 @@ sempiterno
 senor
 sensei
 sentimental
+sept
 septiembre
 serapis
 serena
@@ -3434,8 +3488,11 @@ six-pack
 skateboard
 sktelecomt1
 sktt1
+skull
 skywalker
+slave
 slaver
+slaverevolt
 slavetrader
 slaving
 sleep
@@ -3739,6 +3796,7 @@ tonta
 tonto
 tony
 toolkits
+toothfairy
 torch
 toro
 torpedo
@@ -3782,6 +3840,7 @@ tucker
 tuesday
 tundra
 tupac
+turbo
 turco
 turquia
 turquiose
@@ -3815,6 +3874,7 @@ unbelievable
 unbiased
 undead
 undertaker
+unforgiven
 unicorn
 unicornio
 unidad
@@ -3898,6 +3958,7 @@ vicky
 victor
 victoria
 victreebel
+vida
 videl
 viento
 viernes
@@ -3955,6 +4016,7 @@ weedle
 weepinbell
 weezing
 well-informed
+wellington
 werewolf
 wesley
 wessex
@@ -4015,6 +4077,7 @@ wrestlemania
 writers
 wulf
 wuzetian
+wwe
 wyatt
 wyoming
 wyvern
@@ -4032,6 +4095,7 @@ yellow
 yellowboy
 yellowgirl
 yellowsub
+yerba
 yeti
 yoda
 yogibear
@@ -4079,41 +4143,14 @@ zubat
 órale
 ٢٧٥
 ⌐◨‐◨
+❤️‍🔥
 ニョロゾ
 噴火龍
 𓃵𓃵𓃵
 👑scott
 👨
 💩💩💩💩
-karl
-carl
-yerba
-marihuana
-marijuana
-psychoactive
-drug
-drugs
-drugz
-cannabis
-plants
-droga
-drogas
-wwe
-dmt
-420
-🧟‍♂️
-dec
-jan
-feb
-mar
-apr
-may
-jun
-jul
-aug
-sept
-oct
-nov
 🤵‍♂️
 🧞‍♂️
-❤️‍🔥
+🧟‍♂️
+wtf
