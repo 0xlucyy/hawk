@@ -49,6 +49,11 @@ export default class BulkSearch extends Component {
     }
   }
 
+  clear = () => {
+    // this.state.bulk_search_text.value.target = '';
+    this.setState({bulk_search_text: null});
+  }
+
   render() {
     return (
       <div className="BulkSearch" id="bulksearch" class="ui hidden section divider">
@@ -71,16 +76,20 @@ export default class BulkSearch extends Component {
 
       {
         this.state.activeButton === 'bulkSearch' ? (
-          <Form>
+          <Form class="ui form">
             <TextArea
               placeholder='Enter one ENS domain per line'
               style={{'backgroundColor':'black', 'color':'white'}}
               type="text"
               value={this.state.bulk_search_text}
+              defaultValue={this.state.bulk_search_text}
               onChange={ (event) => {
                 this.text_value(event)
               }}
             />
+            <Button class="ui reset button">
+              clear
+            </Button>
           </Form>
         ) : (<div/>)
       }
@@ -93,11 +102,14 @@ export default class BulkSearch extends Component {
           onClick={this.process_text}
           loading={this.state.loading}>search
         </Button>
-        <Button>
-          Clear
+        <Button onClick={this.clear}>
+          clear
         </Button>
         </Button.Group>
       </div>
+
+
+
 
     </div>
     )

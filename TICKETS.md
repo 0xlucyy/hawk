@@ -18,7 +18,7 @@
 
 #### Doing
 - frontend: bulkSearch page.
-- backend: update all domains in database.
+
 
 
 #### Hold/Backlog
@@ -35,3 +35,4 @@
   - This includes input validation of strings - DONE
     - https://github.com/adraffy/ensip-norm
     - https://github.com/adraffy/ens-normalize.js
+- backend: update all domains in database. - solved with script `refresh_domains`.

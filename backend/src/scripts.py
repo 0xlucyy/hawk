@@ -218,15 +218,7 @@ def refresh_domains():
         Partial update on domains. Default source of domains
         is watchlists/watch_clean.json.
     '''
-    domains_createad = 0
-    domains_updated = 0
-    failed = 0
-    failed_named = []
-    # keys are cols from domain table.
-    update_keys = ['owner', 'available', 'expiration']
-    
     domains = models.Domains.query.all()
-
     ens_claw_update_domains(domains)
 
     # for domain in domains:
