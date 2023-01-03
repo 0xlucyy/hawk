@@ -112,9 +112,8 @@ def ens_claw_update_domains(domains):
             expires = None
         else: # From int timestamp to datetime.datetime object.
             # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
-            expires = datetime.fromtimestamp(expires) if expires != 'null' else None
+            expires = datetime.fromtimestamp(expires) if expires.lower() != 'null' else None
 
-        # import pdb; pdb.set_trace()
         times = Domains.get_times_and_status(_expiration=expires.strftime(app.config['DATETIME_STR_FORMAT']))
         domain.owner = owner
         domain.available = avail

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Form, TextArea, Header, Button } from 'semantic-ui-react'
+import { Form, TextArea, Header, Button, Divider } from 'semantic-ui-react'
 import {_Card, HandleCardContext, handleCardHeader} from './Card.js'
+// import fetch from 'node-fetch';
 // console.log(`data: ${JSON.stringify(markets)}`)
 
 
@@ -9,7 +10,7 @@ export default class BulkSearch extends Component {
     payload: null,
     activeButton: 'bulkSearch',
     loading: false,
-    bulk_search_text: null,
+    bulk_search_text: '',
 
     // Error related.
     error: false,
@@ -17,42 +18,41 @@ export default class BulkSearch extends Component {
     hidden: true,
   };
 
-  handle_bulk_search = () => {
+  set_bulk_search = () => {
     this.setState({ activeButton: 'bulkSearch' });
   }
 
-  handle_file_search = () => {
+  set_file_search = () => {
     this.setState({ activeButton: 'fileSearch' });
   }
 
-  text_value = (event) => {
-    if (event.target.value === "") {
-      this.setState({bulk_search_text: null});
-    } else {
-      this.setState({bulk_search_text: event.target.value});
-    }
+  set_text_value = (event) => {
+    this.setState({bulk_search_text: event.target.value});
   }
 
-  process_text = () => {
-    if (this.state.bulk_search_text !== null) {
+  process_text = async (e) => {
+    e.preventDefault();
+    if (this.state.bulk_search_text !== '') {
       // console.log(`data: ${JSON.stringify(this.state.bulk_search_text)}`)
-
       var cleaned = (this.state.bulk_search_text.replace(/\n/g,',')).trim();
+      console.log(`Searching for: ${JSON.stringify(cleaned)}`)
 
-      console.log(`data: ${JSON.stringify(cleaned)}`)
-      // data: "lobo\ntoro\ntest" LOOKS LIKE THIS
-      // 2453,5674,23426,1235,lobo SEND LIKE THIS
+      const params = new URLSearchParams();
+      params.append('domains', cleaned);
 
-      // http://127.0.0.1:5000/api/v1/bulkSearch
+      const response = await fetch('http://127.0.0.1:5000/api/v1/bulkSearch', {method: 'POST', body: params});
+      const search_results = await response.json();
+
+      await console.log(`Search results: ${JSON.stringify(search_results)}`)
     } else {
-      console.log("text is null yo!")
+      console.log("text is '' yo!")
     }
   }
 
-  clear = () => {
-    // this.state.bulk_search_text.value.target = '';
-    this.setState({bulk_search_text: null});
+  clear_search_text = () => {
+    this.setState({bulk_search_text: ''});
   }
+
 
   render() {
     return (
@@ -60,14 +60,15 @@ export default class BulkSearch extends Component {
         
       <Button.Group fluid>
         <Button
-          onClick={this.handle_bulk_search}
+          onClick={this.set_bulk_search}
           positive={this.state.activeButton == 'bulkSearch'}>Bulk Search
         </Button>
         
         <Button.Or />
 
         <Button
-          onClick={this.handle_file_search}
+          secondary
+          onClick={this.set_file_search}
           positive={this.state.activeButton == 'fileSearch'}>Load from File
         </Button>
       </Button.Group>
@@ -84,33 +85,26 @@ export default class BulkSearch extends Component {
               value={this.state.bulk_search_text}
               defaultValue={this.state.bulk_search_text}
               onChange={ (event) => {
-                this.text_value(event)
+                this.set_text_value(event)
               }}
             />
-            <Button class="ui reset button">
-              clear
-            </Button>
+
+            <Button.Group fluid>
+              <Button
+                primary
+                onClick={this.process_text}
+                loading={this.state.loading}>search
+              </Button>
+              
+              <Button
+                secondary
+                onClick={this.clear_search_text}>
+                clear
+              </Button>
+            </Button.Group>
           </Form>
         ) : (<div/>)
       }
-
-      <div class="ui hidden section divider"></div>
-
-      <div>
-      <Button.Group fluid>
-        <Button
-          onClick={this.process_text}
-          loading={this.state.loading}>search
-        </Button>
-        <Button onClick={this.clear}>
-          clear
-        </Button>
-        </Button.Group>
-      </div>
-
-
-
-
     </div>
     )
   }

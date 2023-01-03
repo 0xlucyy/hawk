@@ -187,7 +187,7 @@ def getGraphData():
         return resp
 
 
-@app.route(f'{app.config["API_URI"]}/bulkSearch', methods=['GET'])
+@app.route(f'{app.config["API_URI"]}/bulkSearch', methods=['GET', 'POST'])
 def bulkSearch():
     '''
     Accepts a string list of domain names, seperated by commas.
@@ -200,7 +200,7 @@ def bulkSearch():
     _domains = (request.form.get('domains')).split(',')
 
     try:
-        total = []
+        found = []
         not_found = []
         invalid = []
 
@@ -217,36 +217,46 @@ def bulkSearch():
             if data == False: # Domain not in db.
                 not_found.append(_domain)
             else: # Domain found in db.
-                total.append(data)
-        app.logger.info(f"total: {total}. not_found: {not_found}")
+                found.append(data)
+
+        app.logger.info(f"found: {found}. not_found: {not_found}")
 
         # If some names not present in db, add them to db.
         if len(not_found) > 0:
             # Clean CSV file - needed due to python/node interchange.
             f = open(f"{app.config['WATCH_LOCATION']}.csv", "w+")
             f.close()
+            
+            query_list = []
+            for domain in not_found: # single quotes needed for cmd argv
+                query_list.append(f"'{domain}'")
 
             # nameprep/ens validation on words.
-            get_hashes_cmd = f'node ethereum/normalize.js {" ".join(not_found)} >> watchlists/watch_clean.csv'
+            get_hashes_cmd = f"node ethereum/normalize.js {' '.join(query_list)} >> watchlists/watch_clean.csv"
             subprocess.run(['sh', '-c', get_hashes_cmd])
 
             build_watchlist() # Read from created json file.
             added = populate_domains() # Populate with new domains
-            total.extend(added)
+    
+            found.extend(added)
 
             app.logger.info(f"added: {added}")
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
     else:
-        for _domain in total:
+        for _domain in found:
             for key in not_wanted:
-                del _domain.__dict__[key]
+                try:
+                    del _domain.__dict__[key]
+                except:
+                    pass
+        import pdb; pdb.set_trace()
         return jsonify({
             'added': not_found,
             'invalid': invalid,
-            'added_total': len(not_found),
-            'domains': [domain.__dict__ for domain in total],
+            'added_found': len(not_found),
+            'domains': [domain.__dict__ for domain in found],
             'status_code': 200
         })
 
