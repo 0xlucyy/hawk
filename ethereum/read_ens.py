@@ -1,12 +1,15 @@
 import json
+import subprocess
 import copy
-from typing import Dict
+from web3 import Web3
+from typing import Dict, List
 from datetime import datetime
 from ethereum._base import Web3_Base#, app
 from web3.exceptions import TimeExhausted, ContractLogicError
 from backend.utils.utils import (
     app,
-    post_to_db
+    post_to_db,
+    apply_hashes_to_payload
 )
 from graphql.main import (
   make_graphql_request,
@@ -26,7 +29,7 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     fails = []
 
     ## Load abi from https://etherscan.io/address/0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85#code
-    abiFile = json.load(open('./ethereum/ENS_Base_Registrar.json'))
+    abiFile = json.load(open('./ethereum/abis/ENS_Base_Registrar.json'))
     abi = abiFile['abi']
     base_registrar_contract = w3_obj.w3.eth.contract(
         abi=abi,
@@ -79,7 +82,7 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 def ens_claw_update_domains(domains):
     w3_obj = Web3_Base()
 
-    abiFile = json.load(open('./ethereum/ENS_Base_Registrar.json'))
+    abiFile = json.load(open('./ethereum/abis/ENS_Base_Registrar.json'))
     abi = abiFile['abi']
     base_registrar_contract = w3_obj.w3.eth.contract(
         abi=abi,
@@ -112,7 +115,7 @@ def ens_claw_update_domains(domains):
             expires = None
         else: # From int timestamp to datetime.datetime object.
             # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
-            expires = datetime.fromtimestamp(expires) if expires.lower() != 'null' else None
+            expires = datetime.fromtimestamp(expires) if str(expires).lower() != 'null' else None
 
         times = Domains.get_times_and_status(_expiration=expires.strftime(app.config['DATETIME_STR_FORMAT']))
         domain.owner = owner
@@ -131,20 +134,74 @@ def get_premium(domain_name: str = None, years: int = 1):
     '''
     w3_obj = Web3_Base()
 
-    abiFile = json.load(open('./ethereum/ETH_Registrar_Controller.json'))
+    abiFile = json.load(open('./ethereum/abis/ETH_Registrar_Controller.json'))
     abi = abiFile['abi']
     eth_registrar_contract = w3_obj.w3.eth.contract(
         abi=abi,
-        address=app.config["ETH_REGISTRAR_CONTROLLER_MAINNET"],
+        address=app.config["ENS_ETH_REGISTRAR_CONTROLLER_MAINNET"],
     )
-
-    # w3_obj.w3.eth.get_code(app.config["ETH_REGISTRAR_CONTROLLER_MAINNET"])
-    # import pdb; pdb.set_trace()
 
     # Returns premium cost only, ensure domain is in auction when called.
     fee = eth_registrar_contract.functions.rentPrice(domain_name, int(years)).call()
     eth_fee = w3_obj.w3.fromWei(fee, 'ether')
     return eth_fee
+
+
+def get_reverse_record(addresses: List[str] = None):
+    '''
+    Returns reverse record, ens domain set to address.
+    '''
+    # If addresses is not a list, return.
+    if not isinstance(addresses, list):
+        return {'error': 'addresses must be a list of string addresses'}
+
+    w3_obj = Web3_Base()
+
+    abiFile = json.load(open('./ethereum/abis/ENS_Reverse_Records.json'))
+    abi = abiFile['abi']
+    eth_registrar_contract = w3_obj.w3.eth.contract(
+        abi=abi,
+        address=app.config["ENS_REVERSE_RECORDS_MAINNET"],
+    )
+
+    cleaned = []
+    records = {}
+    for address in addresses:
+        try:
+            clean = address.replace('\n',  '').replace("'", "").replace('"', "")
+            clean = Web3.toChecksumAddress(clean.strip())
+            cleaned.append(clean)
+        except Exception as error:
+            pass
+
+    # Returns premium cost only, ensure domain is in auction when called.
+    rr = eth_registrar_contract.functions.getNames(cleaned).call()
+
+    for index, clean in enumerate(cleaned):
+        # Clean csv file & normalization placeholder.
+        f = open(f"{app.config['WATCH_LOCATION']}.csv", "w+")
+        f.close()
+        normalized_rr = {}
+        # Plug into cmd reverse record without .eth end.
+        get_hashes_cmd = f"node ethereum/normalize.js '{rr[index][:-4]}' >> watchlists/watch_clean.csv"
+        # Run normalization on reverse record.
+        subprocess.run(['sh', '-c', get_hashes_cmd])
+        # Using this to scrap results from csv file.
+        normalized_rr = apply_hashes_to_payload({})
+
+        import pdb; pdb.set_trace()
+
+        # Pair address with ens domain reverse record.
+        records[clean] = list(normalized_rr.keys())[0]
+
+    data = {'reverse_records': records}
+    import pdb; pdb.set_trace()
+    return data
+
+# get_reverse_record([
+    # '0x8714995306176D047E93B7875533f66AE471BCd6',
+    # '0xf26d4A8e7CfB78B72BC4c95f9c8d2010E4186b1c'
+# ])
 
 def get_owner_graphql(domain_name: str = None):
     '''

@@ -43,7 +43,7 @@ export default class BulkSearch extends Component {
       const response = await fetch('http://127.0.0.1:5000/api/v1/bulkSearch', {method: 'POST', body: params});
       const search_results = await response.json();
 
-      await console.log(`Search results: ${JSON.stringify(search_results)}`)
+      console.log(`Search results: ${JSON.stringify(search_results)}`)
     } else {
       console.log("text is '' yo!")
     }

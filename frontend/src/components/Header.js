@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Header, Image } from 'semantic-ui-react'
+import { Menu, Header, Input } from 'semantic-ui-react'
 import { Link } from "react-router-dom"
 
 
@@ -8,6 +8,34 @@ export default class _Header extends Component {
     super(props);
     // this.state = {activeItem: this.props.active};
     this.handleItemClick = this.props.handler.bind(this);
+    // this.active_item = this.props.active;
+  }
+
+  state = {
+    gas_costs: null,
+    // active_item: null,
+
+    // Error related.
+    error: false,
+    errorMessage: '',
+    hidden: true,
+  };
+
+  load_gas_costs = async (e, value) => {
+    e.preventDefault();
+
+    console.log(`Loading gas costs from etherscan....`)
+    let response = await fetch(`http://127.0.0.1:5000/api/v1/getETHGasCosts`);
+    const gas_costs = await response.json();
+    this.setState({ gas_costs });
+  };
+
+  another_try = async (e, value) => {
+    console.log(`value: ${value}`)
+    console.log(`JSON: ${JSON.stringify(value.name)}`)
+    e.preventDefault();
+    // <div>{await this.handleItemClick()}</div>
+    this.setState({ active_item: value.name })
   }
 
   render() {
@@ -15,17 +43,16 @@ export default class _Header extends Component {
 
     return (
       <div id='header'>
-        <Menu inverted vertical>
-          <Header
-            inverted
+        <Menu inverted>
+
+          <Menu.Item
             as='h2'
+            style={{ 'color':'green'}}
             attached='top'
             textAlign='center'
             className='header'
-            color='green'
-          >
-            ENS Hawk API
-          </Header>
+            name='ENS HAWK'
+          />
 
           <Menu.Item
             as={Link}
@@ -52,9 +79,17 @@ export default class _Header extends Component {
             as={Link}
             to="/"
             name='bulk search'
-            // active={this.state.activeItem === 'all'}
+            active={this.state.active_item === 'bulk search'}
             onClick={this.handleItemClick}
-          />
+            // {...this.another_try}'
+            // onClick={this.another_try}
+          />{this.another_try}
+          <Menu.Menu position='right'>
+            <Menu.Item>
+              <Input icon='search' placeholder='Search...' />
+            </Menu.Item>
+          </Menu.Menu>
+
           {/* <Menu.Item
             as={Link}
             to="/name"

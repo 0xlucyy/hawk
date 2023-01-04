@@ -218,8 +218,10 @@ def refresh_domains():
         Partial update on domains. Default source of domains
         is watchlists/watch_clean.json.
     '''
+    start_time = time.time()
     domains = models.Domains.query.all()
     ens_claw_update_domains(domains)
+    print("--- %.2f seconds ---" % (time.time() - start_time))
 
     # for domain in domains:
     #     app.logger.info(f"Working on {domain.name}...")

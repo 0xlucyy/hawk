@@ -1,23 +1,28 @@
 import subprocess
-import json
+import requests
+# import json
+from ethereum.read_ens import (
+    get_premium,
+    get_reverse_record
+)
 from flask import (
     request,
     jsonify
 )
 from backend.utils.exceptions import (
-    ProviderMissing,
-    ProviderOffline,
+    # ProviderMissing,
+    # ProviderOffline,
     DataBaseOffline,
     DatabaseError,
     log_error
 )
 from backend.models.models import *
 from backend.utils.utils import (
-    post_to_db,
+    # post_to_db,
     is_db_live,
-    domain_status,
+    # domain_status,
     app,
-    db
+    # db
 )
 from backend.src.scripts import (
     build_watchlist,
@@ -152,7 +157,7 @@ def allMarkets():
 
 @app.route(f'{app.config["API_URI"]}/getPremium', methods=['GET'])
 def getPremium():
-    from ethereum.read_ens import get_premium
+    # from ethereum.read_ens import get_premium
 
     _domain = request.args.get('domain')
     _duration = request.args.get('duration', 1)
@@ -185,6 +190,29 @@ def getGraphData():
         return log_error(error=e)
     else:
         return resp
+
+@app.route(f'{app.config["API_URI"]}/getETHGasCosts', methods=['GET'])
+def getETHGasCosts():
+    url = f'https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey={app.config["ETHERSCAN_TOKEN"]}'
+    try:
+        resp = requests.get(url)
+    except(Exception) as e:
+        app.logger.error(f'Error: {e}')
+        return log_error(error=e)
+    else:
+        return resp.json()
+
+
+@app.route(f'{app.config["API_URI"]}/getReverseRecords', methods=['GET'])
+def getReverseRecords():
+    _addresses = (request.form.get('addresses')).split(',')
+    try:
+        resp = get_reverse_record(_addresses)
+    except(Exception) as e:
+        app.logger.error(f'Error: {e}')
+        return log_error(error=e)
+    else:
+        return resp.json()
 
 
 @app.route(f'{app.config["API_URI"]}/bulkSearch', methods=['GET', 'POST'])

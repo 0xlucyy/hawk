@@ -15,7 +15,7 @@ import Expiring from './components/Expiring.js';
 import _Header from './components/Header.js';
 import _Table from './components/Table.js';
 import BulkSearch from './components/BulkSearch';
-import { Route, Routes } from "react-router-dom"
+// import { Route, Routes } from "react-router-dom"
 
 class App extends React.Component {
   state = {
@@ -36,6 +36,7 @@ class App extends React.Component {
   // passing this function as a handler variable to
   // _Header component.
   handleActiveItem = async (e, { name }) => {
+    e.preventDefault();
     await this.setState({ activeItem: name })
     console.log(`activeItem App:handleItem: ${this.state.activeItem}`);
   }
@@ -57,18 +58,12 @@ class App extends React.Component {
     return (
       <Layout>
       <div className="App" id="App">
-        <Grid >
-          
-          <Grid.Row columns={3}>
-            <Grid.Column>
-              <_Header handler={this.handleActiveItem}/>
-            </Grid.Column>
-            <Grid.Column>
-            </Grid.Column>
-            <Grid.Column>
-            </Grid.Column>
-          </Grid.Row>
+        <_Header handler={this.handleActiveItem}/>
 
+        <div class="ui hidden section divider"></div>
+        <div class="ui hidden section divider"></div>
+
+        <Grid >
           <Grid.Row>
             <Grid.Column>
               {
@@ -85,7 +80,6 @@ class App extends React.Component {
               }
             </Grid.Column>
           </Grid.Row>
-
         </Grid>
       </div>
       </Layout>

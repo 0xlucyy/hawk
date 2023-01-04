@@ -28,7 +28,7 @@ export default class Expiring extends Component {
       console.log(`Loading market data....`)
       let response = await fetch(`http://127.0.0.1:5000/api/v1/allMarkets?order=asc`);
       const markets = await response.json();
-      this.setState({ markets });
+      await this.setState({ markets });
     }
   }
 
@@ -37,7 +37,7 @@ export default class Expiring extends Component {
       console.log(`Loading rates data from coinbase....`)
       let response = await fetch(`https://api.coinbase.com/v2/exchange-rates?currency=ETH`);
       const rates = await response.json();
-      this.setState({ rates });
+      await this.setState({ rates });
       // console.log(`Loaded Rates Data: ${JSON.stringify(rates)}`)
     }
   }
@@ -50,8 +50,8 @@ export default class Expiring extends Component {
     console.log(`Loading expired domain data....`)
     let response = await fetch(`http://127.0.0.1:5000/api/v1/expiredDomains`);
     const expired_payload = await response.json();
-    this.setState({ expiringin_payload: null });
-    this.setState({ expired_payload });
+    await this.setState({ expiringin_payload: null });
+    await this.setState({ expired_payload });
   };
 
   expiring_in = async (e, value) => {
@@ -66,14 +66,14 @@ export default class Expiring extends Component {
     let response = await fetch(`http://127.0.0.1:5000/api/v1/expiringDomains?days=${this.state.days}`);
     const expiringin_payload = await response.json();
 
-    this.setState({ expired_payload: null });
-    this.setState({ expiringin_payload });
+    await this.setState({ expired_payload: null });
+    await this.setState({ expiringin_payload });
   };
 
   handleDismiss = async (e, value) => {
     e.preventDefault();
     console.log(`handleDismiss`);
-    this.setState({
+    await this.setState({
       hidden: false,
       error: true,
       errorMessage: ''
@@ -84,7 +84,6 @@ export default class Expiring extends Component {
   render() {
     return (
     <div className="Home" id="home">
-    <h2 style = {{color: "green"}}> ENS Hawk </h2>
 
     <Input 
       error={this.state.error}
