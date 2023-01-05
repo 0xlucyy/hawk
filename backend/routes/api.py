@@ -203,7 +203,7 @@ def getETHGasCosts():
         return resp.json()
 
 
-@app.route(f'{app.config["API_URI"]}/getReverseRecords', methods=['GET'])
+@app.route(f'{app.config["API_URI"]}/getReverseRecords', methods=['GET', 'POST'])
 def getReverseRecords():
     _addresses = (request.form.get('addresses')).split(',')
     try:
@@ -212,13 +212,14 @@ def getReverseRecords():
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
     else:
-        return resp.json()
+        return resp
 
 
 @app.route(f'{app.config["API_URI"]}/bulkSearch', methods=['GET', 'POST'])
 def bulkSearch():
     '''
-    Accepts a string list of domain names, seperated by commas.
+    Accepts a string of domain names, seperated by commas.
+    Ex. "lobo,toro,testing,r2-d2"
     Returns all found domains.
     '''
     # import pdb; pdb.set_trace()
@@ -247,6 +248,9 @@ def bulkSearch():
             else: # Domain found in db.
                 found.append(data)
 
+        # Dedup list of not found, as a precaution.
+        not_found = list(dict.fromkeys(not_found))
+
         app.logger.info(f"found: {found}. not_found: {not_found}")
 
         # If some names not present in db, add them to db.
@@ -267,23 +271,23 @@ def bulkSearch():
             added = populate_domains() # Populate with new domains
     
             found.extend(added)
-
             app.logger.info(f"added: {added}")
+            import pdb; pdb.set_trace()
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
     else:
+        # Remove unwanted model fields.
         for _domain in found:
             for key in not_wanted:
                 try:
                     del _domain.__dict__[key]
                 except:
                     pass
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         return jsonify({
             'added': not_found,
             'invalid': invalid,
-            'added_found': len(not_found),
             'domains': [domain.__dict__ for domain in found],
             'status_code': 200
         })

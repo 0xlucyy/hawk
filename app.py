@@ -7,7 +7,8 @@ from logging.config import dictConfig
 # import pdb; pdb.set_trace()
 
 
-# Set logging conditions.
+# Set logging conditions
+# https://flask.palletsprojects.com/en/2.2.x/logging/#basic-configuration
 dictConfig(set_logger())
 
 # Define Flask Application.

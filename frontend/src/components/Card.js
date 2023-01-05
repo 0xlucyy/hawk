@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { Button, Card, Image, Progress, Popup, Label } from 'semantic-ui-react'
+import { Button, Card, Image, Progress, Popup, Label, Icon } from 'semantic-ui-react'
 import {
     handlePremium,
     handleRatio,
@@ -11,74 +11,6 @@ import {
     handleName}
 from "../utils.js"
 
-function handleCardHeader(markets, domain) {
-    // console.log(`I AM HERE B: ${JSON.stringify(markets)}`)
-    // console.log(`domain: ${JSON.stringify(domain)}`)
-    return <div>
-    <Card.Content extra>
-    <Popup
-        inverted
-        on='hover'
-        position='top center'
-        size='small'
-        content='Opensea'
-        trigger={<Image
-            src='./opensea.png'
-            as='a'
-            size='small'
-            href={markets.opensea.base_url + '/assets/ethereum/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
-            target='_blank'
-            circular
-        />}
-    />
-    <Popup
-        inverted
-        on='hover'
-        position='top center'
-        size='small'
-        content='ENS Vision'
-        trigger={<Image
-            src='./ensvision.jpg'
-            as='a'
-            size='small'
-            href={markets.ensvision.base_url + '/name/' + domain.name}
-            target='_blank'
-            circular
-        />}
-    />
-    <Popup
-        inverted
-        on='hover'
-        position='top center'
-        size='small'
-        content='LooksRare'
-        trigger={<Image
-            src='./looksrare.jpg'
-            as='a'
-            size='small'
-            href={markets.looksrare.base_url + '/collections/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
-            target='_blank'
-            circular
-        />}
-    />
-    <Popup
-      inverted
-      on='hover'
-      position='top center'
-      size='small'
-      content='Etherscan'
-      trigger={<Image
-          src='./etherscan.webp'
-          as='a'
-          size='small'
-          href={markets.etherscan.base_url + '/nft/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
-          target='_blank'
-          circular
-      />}
-    />
-    </Card.Content>
-    </div>
-}
 
 
 const HandleCardContext = (payload) => {
@@ -137,7 +69,6 @@ function _Card(payload) {
 export {
     _Card,
     HandleCardContext,
-    handleCardHeader
   }
 
 

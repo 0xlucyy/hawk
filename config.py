@@ -71,7 +71,7 @@ class _Base(object):
     # Logging.
     LOGGING_DEBUG_LOCATION = os.path.dirname(__file__) + '/debug.log'
     LOGGING_FORMAT = '[%(levelname)s] - %(name)s - %(asctime)s - %(funcName)s::%(lineno)d - %(message)s'
-    LOGGING_LEVEL =  logging.ERROR
+    LOGGING_LEVEL =  logging.INFO
     SQLALCHEMY_ECHO = False
 
 
@@ -115,7 +115,7 @@ def set_logger():
                 'class': 'logging.StreamHandler',
                 'stream': 'ext://flask.logging.wsgi_errors_stream',
                 'formatter': 'default',
-                'level'    : 'ERROR'
+                'level'    : 'INFO'
             },
             'DEBUG_FILE': {
                 'class' : 'logging.FileHandler',

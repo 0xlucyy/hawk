@@ -117,8 +117,8 @@ function handleOwner(payload) {
     let _href = 'https://etherscan.io/address/' + payload.payload.owner
     return <div as='a' target='_blank' href={_href}>{(payload.payload.owner).substr(0, 13)}</div>
   }
-  console.log(`Owner: ${payload.payload.owner}`)
-  console.log(`Owner Substr: ${(payload.payload.owner).substr(0, 13)}`)
+  // console.log(`Owner: ${payload.payload.owner}`)
+  // console.log(`Owner Substr: ${(payload.payload.owner).substr(0, 13)}`)
 }
 
 function handlePremium(payload, premium) {

@@ -159,7 +159,7 @@ def get_reverse_record(addresses: List[str] = None):
 
     abiFile = json.load(open('./ethereum/abis/ENS_Reverse_Records.json'))
     abi = abiFile['abi']
-    eth_registrar_contract = w3_obj.w3.eth.contract(
+    ens_reverse_records_contract = w3_obj.w3.eth.contract(
         abi=abi,
         address=app.config["ENS_REVERSE_RECORDS_MAINNET"],
     )
@@ -174,34 +174,31 @@ def get_reverse_record(addresses: List[str] = None):
         except Exception as error:
             pass
 
-    # Returns premium cost only, ensure domain is in auction when called.
-    rr = eth_registrar_contract.functions.getNames(cleaned).call()
+    # Get reverse records from ens contract.
+    rr = ens_reverse_records_contract.functions.getNames(cleaned).call()
 
     for index, clean in enumerate(cleaned):
         # Clean csv file & normalization placeholder.
         f = open(f"{app.config['WATCH_LOCATION']}.csv", "w+")
         f.close()
         normalized_rr = {}
-        # Plug into cmd reverse record without .eth end.
-        get_hashes_cmd = f"node ethereum/normalize.js '{rr[index][:-4]}' >> watchlists/watch_clean.csv"
-        # Run normalization on reverse record.
-        subprocess.run(['sh', '-c', get_hashes_cmd])
-        # Using this to scrap results from csv file.
-        normalized_rr = apply_hashes_to_payload({})
 
-        import pdb; pdb.set_trace()
-
-        # Pair address with ens domain reverse record.
-        records[clean] = list(normalized_rr.keys())[0]
+        try:
+            # Plug into cmd reverse record without .eth end.
+            get_hashes_cmd = f"node ethereum/normalize.js '{rr[index][:-4]}' >> watchlists/watch_clean.csv"
+            # Run normalization on reverse record.
+            subprocess.run(['sh', '-c', get_hashes_cmd])
+            # Using this to scrap results from csv file.
+            normalized_rr = apply_hashes_to_payload({})
+            # Pair address with ens domain reverse record.
+            records[clean] = list(normalized_rr.keys())[0]
+        except Exception as error:
+            records[clean] = None
+            app.logger.error(f"error in get_reverse_record: {error}")
 
     data = {'reverse_records': records}
-    import pdb; pdb.set_trace()
     return data
 
-# get_reverse_record([
-    # '0x8714995306176D047E93B7875533f66AE471BCd6',
-    # '0xf26d4A8e7CfB78B72BC4c95f9c8d2010E4186b1c'
-# ])
 
 def get_owner_graphql(domain_name: str = None):
     '''

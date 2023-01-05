@@ -22,8 +22,6 @@ from web3.exceptions import (
 
 
 def BASIC_TRANSACTION(w3: Web3 = None, address: str = None) -> dict:
-    import pdb; pdb.set_trace()
-
     print(f"Gas price: {w3.fromWei(w3.eth.gas_price, 'gwei')}")
     print(f"Max Priority fee per gas: {w3.fromWei(w3.eth.max_priority_fee, 'gwei')}")
     print(f"From: {address}")
@@ -88,7 +86,6 @@ def get_tx_pool_status(w3: Web3 = None):
     return w3.geth.txpool.status()
 
 def post_to_db(data=None, just_commit=False):
-    # import pdb; pdb.set_trace()
     try:
         if(just_commit == False):
             db.session.add(data)

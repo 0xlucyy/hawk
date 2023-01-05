@@ -46,7 +46,6 @@ def populate_markets():
                     f"Total failed: {len(failed)}" \
                     f" - {failed}")
 
-
 def populate_domains(file: str = app.config['WATCH_LOCATION']):
     '''
     Assumes all domains are not in db.
@@ -57,9 +56,8 @@ def populate_domains(file: str = app.config['WATCH_LOCATION']):
     added = []
     failed = []
     for domain, domain_metadata in payload.items():
+        # import pdb; pdb.set_trace()
         try:
-            # print(f"domain: {domain}. meta: {domain_metadata}")
-            # import pdb; pdb.set_trace()
             new_domain = models.Domains(**domain_metadata)
         except DomainModelDataTypeError as DMDTE:
             app.logger.error(DMDTE)
@@ -77,7 +75,6 @@ def populate_domains(file: str = app.config['WATCH_LOCATION']):
                     f"Total failed: {len(failed)}" \
                     f" - {failed}")
     return added
-
 
 def build_watchlist():
     '''

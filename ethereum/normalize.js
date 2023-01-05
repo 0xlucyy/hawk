@@ -20,8 +20,8 @@ try {
     console.log('Error:', e.stack);
 }
 
-hash('🧟\u200d♂')
-// data.forEach(hash);
+// hash('🧟\u200d♂')
+data.forEach(hash);
 
 // console.log(normalize('$Lobo'))
 // data.forEach(normalize);

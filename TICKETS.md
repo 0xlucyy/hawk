@@ -9,7 +9,7 @@
 - backend : add domain sales history to each domain
 - backend : search for domains in db with either starts_with or ends_with
 - backend : fix backend logger, make info actually useful
-- backend : resolve addresses to their ENS domains
+
 
 - frontend: Home should include stats of total domains tracked, how many in each state (grace,expired,auction,free).
 - frontend: pagination
@@ -19,7 +19,7 @@
 
 #### Doing
 - frontend: bulkSearch page.
-
+- backend: resolve addresses to their ENS domains
 
 
 #### Hold/Backlog
