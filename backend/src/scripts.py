@@ -193,21 +193,21 @@ def clean_slate():
 
 
 
-# TODO ensure scripts below work as intended.
-def update_domains():
-    '''
-        Full update on domains. Default source of domains
-        is watchlists/watch.txt.
-    '''
-    start_time = time.time()
-    get_hashes_cmd = 'node ethereum/normalize.js >> watchlists/watch_clean.csv'
+# # TODO ensure scripts below work as intended.
+# def update_domains():
+#     '''
+#         Full update on domains. Default source of domains
+#         is watchlists/watch.txt.
+#     '''
+#     start_time = time.time()
+#     get_hashes_cmd = 'node ethereum/normalize.js >> watchlists/watch_clean.csv'
 
-    clean_file()
-    subprocess.run(['sh', '-c', get_hashes_cmd])
-    build_watchlist()
-    refresh_domains()
+#     clean_file()
+#     subprocess.run(['sh', '-c', get_hashes_cmd])
+#     build_watchlist()
+#     refresh_domains()
 
-    print("--- %.2f seconds ---" % (time.time() - start_time))
+#     print("--- %.2f seconds ---" % (time.time() - start_time))
 
 
 def refresh_domains():

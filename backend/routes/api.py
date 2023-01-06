@@ -70,7 +70,7 @@ def expiringDomains():
         return jsonify({
             'total': len(expiring),
             'expiring_within': days,
-            'expiring_domains': [domain.__dict__ for domain in expiring],
+            'domains': [domain.__dict__ for domain in expiring],
             'status_code': 200
         })
 
@@ -205,7 +205,9 @@ def getETHGasCosts():
 
 @app.route(f'{app.config["API_URI"]}/getReverseRecords', methods=['GET', 'POST'])
 def getReverseRecords():
+    # Ex of addresses: "toro,lobo,testing,domainNames"
     _addresses = (request.form.get('addresses')).split(',')
+
     try:
         resp = get_reverse_record(_addresses)
     except(Exception) as e:
@@ -222,8 +224,6 @@ def bulkSearch():
     Ex. "lobo,toro,testing,r2-d2"
     Returns all found domains.
     '''
-    # import pdb; pdb.set_trace()
-
     not_wanted = ['_created_at', '_last_activity_at', '_sa_instance_state', '_updated_at']
     # List of domains
     _domains = (request.form.get('domains')).split(',')
@@ -272,7 +272,6 @@ def bulkSearch():
     
             found.extend(added)
             app.logger.info(f"added: {added}")
-            import pdb; pdb.set_trace()
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
@@ -284,7 +283,6 @@ def bulkSearch():
                     del _domain.__dict__[key]
                 except:
                     pass
-        # import pdb; pdb.set_trace()
         return jsonify({
             'added': not_found,
             'invalid': invalid,

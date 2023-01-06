@@ -8,7 +8,8 @@ import {
     handleStatus,
     handleColor,
     handleFooter,
-    handleName}
+    handleName,
+    handleReverseRecord}
 from "../utils.js"
 
 
@@ -51,6 +52,7 @@ function _Card(payload) {
                     size='medium'
                 />
                 <Card.Header textAlign='center'>{handleName(payload)}</Card.Header>
+                <Card.Header textAlign='center'>{handleReverseRecord(payload)}</Card.Header>
                 <Card.Meta>{HandleCardContext(payload)}</Card.Meta>
                 <Card.Description>
                     {handleStatus(payload)}
@@ -60,6 +62,7 @@ function _Card(payload) {
             <Card.Content style={{ 'backgroundColor': handleColor(payload) }}>
                 <Progress percent={handleRatio(payload)} progress>{handleFooter(payload, "card")}</Progress>
             </Card.Content>
+
         </Card>
         </div>
     )

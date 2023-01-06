@@ -78,7 +78,6 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 
     return payload
 
-
 def ens_claw_update_domains(domains):
     w3_obj = Web3_Base()
 
@@ -151,6 +150,9 @@ def get_reverse_record(addresses: List[str] = None):
     '''
     Returns reverse record, ens domain set to address.
     '''
+    import time
+    start_time = time.time()
+
     # If addresses is not a list, return.
     if not isinstance(addresses, list):
         return {'error': 'addresses must be a list of string addresses'}
@@ -168,34 +170,28 @@ def get_reverse_record(addresses: List[str] = None):
     records = {}
     for address in addresses:
         try:
-            clean = address.replace('\n',  '').replace("'", "").replace('"', "")
-            clean = Web3.toChecksumAddress(clean.strip())
-            cleaned.append(clean)
+            clean = address.replace('\n',  '').replace("'", "").replace('"', "").strip()
+            clean = Web3.toChecksumAddress(clean)
+            cleaned.append(Web3.toChecksumAddress(clean))
         except Exception as error:
             pass
 
     # Get reverse records from ens contract.
     rr = ens_reverse_records_contract.functions.getNames(cleaned).call()
 
+    # Map cleaned addresses to their reverse record.
     for index, clean in enumerate(cleaned):
-        # Clean csv file & normalization placeholder.
-        f = open(f"{app.config['WATCH_LOCATION']}.csv", "w+")
-        f.close()
-        normalized_rr = {}
-
         try:
-            # Plug into cmd reverse record without .eth end.
-            get_hashes_cmd = f"node ethereum/normalize.js '{rr[index][:-4]}' >> watchlists/watch_clean.csv"
-            # Run normalization on reverse record.
-            subprocess.run(['sh', '-c', get_hashes_cmd])
-            # Using this to scrap results from csv file.
-            normalized_rr = apply_hashes_to_payload({})
-            # Pair address with ens domain reverse record.
-            records[clean] = list(normalized_rr.keys())[0]
+            if (rr[index][:-4] != None and rr[index][:-4] != ''):
+                records[clean] = rr[index][:-4]
+            else:
+                records[clean] = None
+            app.logger.info(f'Set RR for address {clean} to {rr[index][:-4]} ...')
         except Exception as error:
             records[clean] = None
-            app.logger.error(f"error in get_reverse_record: {error}")
+            app.logger.warning(f'No RR for address: {clean}...')
 
+    records['time'] = time.time() - start_time
     data = {'reverse_records': records}
     return data
 
@@ -206,13 +202,13 @@ def get_owner_graphql(domain_name: str = None):
     never been minted.
     '''
     try:
-        app.logger.info(f'Querying graphql for owner on domain: {domain_name}...')
         resp = make_graphql_request('DOMAIN_OWNER', domain_name)
-        owners = resp['data']['data']['domains']
-        if owners == []:
+        owner = resp['data']['data']['registrations'][0]['registrant']['id']
+        app.logger.info(f'Owner found from graphql query - {owner} ')
+        if owner == []:
             return "NEVER_BEEN_MINTED"
         else:
-            return owners[0]['owner']['id']
+            return owner
     except Exception as error:
         app.logger.error(f'get_owner_graphql error: {error}')
         return 'ERROR'

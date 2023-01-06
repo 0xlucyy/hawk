@@ -1,4 +1,4 @@
-import { Button, Label } from 'semantic-ui-react'
+import { Button, Label, Popup } from 'semantic-ui-react'
 
 const free_to_register = 'green'
 const in_grace = 'yellow'
@@ -44,17 +44,16 @@ function handleStatus(payload) {
   if (payload.payload.status === 'IN_AUCTION') {
       _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
       // let response = fetch(_href);
-      return <Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Domain in Auction!</Button>
+      return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Domain in Auction!</Button>} />
   } else if (payload.payload.status === 'IN_GRACE') {
       _href = `https://app.ens.domains/search/${payload.payload.name}`
-      return <Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Domain in Grace!</Button>
+      return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Domain in Grace!</Button>} />
   }  else if (payload.payload.status === 'BEING_HELD') {
       _href = `https://app.ens.domains/search/${payload.payload.name}`
-      return <Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Domain Being Held!</Button>
+      return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Domain Being Held!</Button>} />
   }
-
   _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
-  return <Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Claim</Button>
+  return <Popup position="bottom center" inverted on='hover' size="small"  content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Claim</Button>} />
 }
 
 function handleColor(payload) {
@@ -140,6 +139,16 @@ function handlePremium(payload, premium) {
   return `ERROR`
 }
 
+function handleReverseRecord(payload) {
+  // console.log(`handleReverseRecord: ${payload.rr}`)
+  console.log(`handleReverseRecord::Owner: ${payload.payload.owner}`)
+  console.log(`handleReverseRecord::Name: ${payload.payload.name}`)
+  console.log(`handleReverseRecord::rr: ${JSON.stringify(payload.rr)}`)
+
+  // let _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
+  return <Label size='medium' style={{'color': 'black', 'backgroundColor':'transparent'}}>Owner: {(payload.rr == null ? (payload.payload.owner).substr(0, 10) : (payload.rr).substr(0, 10))}{(payload.rr == null ? <div></div> : ".eth")}</Label>
+}
+
 export {
   handleRatio,
   handleStatus,
@@ -149,4 +158,5 @@ export {
   handleOwner,
   handlePremium,
   capitalizeFirstLetter,
+  handleReverseRecord,
 }

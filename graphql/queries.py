@@ -77,8 +77,9 @@ DOMAIN_EVENTS = '''
 
 DOMAIN_OWNER = '''
 {
-  domains(where:{labelName:"_NAME"},first:1,block:{number_gte:9380410}) {
-    owner {
+  registrations(where:{labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
+  {
+    registrant{
       id
     }
   }
@@ -88,7 +89,7 @@ DOMAIN_OWNER = '''
 
 REGISTRATIONS = '''
 {
-  registrations(where:{labelName: "_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
+  registrations(where:{labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
   {
     expiryDate
     registrationDate
@@ -105,7 +106,7 @@ REGISTRATIONS = '''
 '''
 
 REGISTRATION_EVENTS = '''
-  registrations(where:{labelName: "_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
+  registrations(where:{labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
   {
     events(orderBy: blockNumber) {
       blockNumber
@@ -116,7 +117,7 @@ REGISTRATION_EVENTS = '''
 '''
 
 REGISTRATION_META = '''
-  registrations(where: {labelName: "_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
+  registrations(where: {labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
   {
     expiryDate
     registrationDate

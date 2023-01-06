@@ -33,9 +33,7 @@ def make_graphql_request(query_target: str = None, domain_name: str = None):
     Returns:
         Returns 
   '''
-  app.logger.info(f'Querying graphql...\n' \
-                  f'Target: {query_target}\n' \
-                  f'LableName: {domain_name} ...')
+  app.logger.info(f'Querying graphql. Target: {query_target} .. LableName: {domain_name} ...')
   try:
     if query_target == "DOMAIN_ECO":
       url = DOMAIN_ECO.replace('labelName:"_NAME"', f'labelName:"{domain_name}"')

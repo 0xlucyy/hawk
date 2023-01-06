@@ -370,6 +370,7 @@ banglades
 bangladés
 bankofisrael
 banshee
+bao
 barackobama
 barba
 barbara
@@ -2307,6 +2308,8 @@ loot
 lootbag
 lootshop
 lord
+lordcommander
+lordgeneral
 lordprotector
 lorenzo
 loretta
@@ -3475,6 +3478,7 @@ simón
 sine
 singapur
 singapurense
+sinister
 siren
 sirena
 sirin
@@ -3486,6 +3490,7 @@ sittingbull
 six-foot
 six-pack
 skateboard
+skimask
 sktelecomt1
 sktt1
 skull
@@ -3969,6 +3974,7 @@ violet
 violeta
 violeto
 violin
+vip
 virgil
 virgina
 virgo
@@ -4075,6 +4081,7 @@ wormhole
 wormtongue
 wrestlemania
 writers
+wtf
 wulf
 wuzetian
 wwe
@@ -4153,4 +4160,3 @@ zubat
 🤵‍♂️
 🧞‍♂️
 🧟‍♂️
-wtf

@@ -1,7 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import { Input, Menu, Button, Card, Container, Image, Popup, Progress } from 'semantic-ui-react'
 import {_Card, HandleCardContext} from './Card.js'
+import {
+  handleReverseRecord}
+from "../utils.js"
 // console.log(`data: ${JSON.stringify(markets)}`)
+
+var async = require("async");
 
 
 export default class Expiring extends Component {
@@ -16,6 +21,8 @@ export default class Expiring extends Component {
     premium: null,
     rates: null,
     reverse_records: null,
+    days_until_expire_button_loading: false,
+    expired_button_loading: false,
 
     // Error related.
     error: false,
@@ -32,34 +39,16 @@ export default class Expiring extends Component {
     }
   }
 
-  load_reverse_record = async (value) => {
-    // if (this.state.reverse_records == null) {
-      // console.log(`Loading rr data....`)
-      // const params = new URLSearchParams();
-      // params.append('addresses', JSON.stringify(value));
-    
-      // let resp = await fetch('http://127.0.0.1:5000/api/v1/getReverseRecords', {method: 'POST', body: params});
-      // const reverse_records = await resp.json();
-      // await this.setState({ reverse_records });
-      let reverse_records = await value['owner']
-      // console.log(`RR: ${JSON.stringify(value)}`)
-      console.log(`Owner: ${reverse_records}`)
+  load_rr = async (addresses) => {
+    const params = new URLSearchParams();
+    params.append('addresses', addresses);
 
-      if (await this.state.reverse_records != null) {
-        console.log(`Setting reverse_records again`)
-        let str = this.state.reverse_records;
-        str += ',';
-        str += reverse_records;
-        // reverse_records = await (this.state.reverse_records + ',' + reverse_records)
-        await this.setState({ reverse_records: str });  
-      } else {
-        console.log(`FIRST TIME RR IS SET`)
-        console.log(`RR: ${JSON.stringify(value)}`)
-        await this.setState({ reverse_records });
-      }
-
-      console.log(`Records: ${JSON.stringify(this.state.reverse_records)}`)
-    // }
+    const response = await fetch('http://127.0.0.1:5000/api/v1/getReverseRecords', {method: 'POST', body: params});
+    const data = await response.json();
+    console.log(`Data: ${JSON.stringify(data)}`)
+    console.log(`reverse_records: ${JSON.stringify(data.reverse_records)}`)
+    console.log(`LookUp: ${JSON.stringify(data.reverse_records['0xE2FaA63f2351c6F2b88659f2fFfC2167172D329a'])}`)
+    await this.setState({ reverse_records: data });
   }
 
   load_rates_data = async () => {
@@ -74,21 +63,39 @@ export default class Expiring extends Component {
 
   expired = async (e, value) => {
     e.preventDefault();
+    await this.setState({ expired_button_loading: true})
+
     await this.load_market_data()
     await this.load_rates_data()
 
     console.log(`Loading expired domain data....`)
-    let response = await fetch(`http://127.0.0.1:5000/api/v1/expiredDomains`);
+    // let response = await fetch(`http://127.0.0.1:5000/api/v1/expiredDomains`);
+    let response = await fetch('http://127.0.0.1:5000/api/v1/liveAuction');
     const expired_payload = await response.json();
 
-    // await this.load_reverse_record('0xf26d4A8e7CfB78B72BC4c95f9c8d2010E4186b1c')
+    let owners = '';
+    async.forEachOf(expired_payload.domains, (value, key, callback) => {
+      // console.log(`v: ${JSON.stringify(value)}`)
+      // console.log(`k: ${JSON.stringify(key)}`)
+      if (value.owner !== undefined && value.owner !== null) {
+        owners += value.owner + ','
+      }
+      callback();
+    }, err => { if (err) console.error(err.message);}
+    );
+    console.log(`owners: ${owners}`)
 
+    await this.load_rr(owners)
     await this.setState({ expiringin_payload: null });
     await this.setState({ expired_payload });
+    await this.setState({ expired_button_loading: false})
   };
 
   expiring_in = async (e, value) => {
     e.preventDefault();
+
+    await this.setState({ days_until_expire_button_loading: true})
+
     if (this.state.days === null) {
       this.setState({ days: 3 });
     }
@@ -99,10 +106,21 @@ export default class Expiring extends Component {
     let response = await fetch(`http://127.0.0.1:5000/api/v1/expiringDomains?days=${this.state.days}`);
     const expiringin_payload = await response.json();
 
-    await expiringin_payload.expiring_domains.forEach(await this.load_reverse_record)
+    let owners = '';
+    // https://github.com/caolan/async#each
+    async.forEachOf(expiringin_payload.domains, (value, key, callback) => {
+      if (value.owner !== undefined && value.owner !== null) {
+        owners += value.owner + ','
+      }
+      callback();
+    }, err => { if (err) console.error(err.message);}
+    );
+    console.log(`owners: ${owners}`)
 
+    await this.load_rr(owners)
     await this.setState({ expired_payload: null });
     await this.setState({ expiringin_payload });
+    await this.setState({ days_until_expire_button_loading: false})
   };
 
   handleDismiss = async (e, value) => {
@@ -115,8 +133,8 @@ export default class Expiring extends Component {
     });
   };
 
-  test =  () => {
-    console.log(JSON.stringify(this.state.reverse_records))
+  test = () => {
+    console.log(this.state.reverse_records)
   };
 
 
@@ -135,12 +153,14 @@ export default class Expiring extends Component {
     </Input>
     <Button onClick={this.expiring_in}
             className="icon"
-            labelPosition='left'>
+            labelPosition='left'
+            loading={this.state.days_until_expire_button_loading}>
             Days until expiration
     </Button>
     <Button onClick={this.expired}
             className="icon"
-            labelPosition='left'>
+            labelPosition='left'
+            loading={this.state.expired_button_loading}>
             All Expired domains
     </Button>
 
@@ -155,86 +175,80 @@ export default class Expiring extends Component {
         <Card.Group itemsPerRow="5" textAlign="center" className='domains'>
             {this.state.expired_payload == null ? (<div></div>) : 
             (
-                this.state.expired_payload.domains.map(domain => (
-                  <Card centered fluid>
-                    <Card.Content extra>
-                    <div className='ui four buttons' id='card_header'>
-                    {/* {console.log(`MARKETS: ${JSON.stringify(this.state.markets)}`)} */}
-                    {/* <div>{HandleCardHeader(this.state.markets.markets, domain)}</div> */}
-                    <Popup
-                        inverted
-                        on='hover'
-                        position='top center'
+              this.state.expired_payload.domains.map(domain => (
+                <Card centered fluid>
+                  <Card.Content extra>
+                  <div className='ui four buttons' id='card_header'>
+                  <Popup
+                    inverted
+                    on='hover'
+                    position='top center'
+                    size='small'
+                    content='Opensea'
+                    trigger={<Image
+                        src='./opensea.png'
+                        as='a'
                         size='small'
-                        content='Opensea'
-                        trigger={<Image
-                            src='./opensea.png'
-                            as='a'
-                            size='small'
-                            href={this.state.markets.markets.opensea.base_url + '/assets/ethereum/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
-                            target='_blank'
-                            circular
-                        />}
-                    />
-                    <Popup
-                        inverted
-                        on='hover'
-                        position='top center'
+                        href={this.state.markets.markets.opensea.base_url + '/assets/ethereum/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
+                        target='_blank'
+                        circular
+                    />}
+                  />
+                  <Popup
+                    inverted
+                    on='hover'
+                    position='top center'
+                    size='small'
+                    content='ENS Vision'
+                    trigger={<Image
+                        src='./ensvision.jpg'
+                        as='a'
                         size='small'
-                        content='ENS Vision'
-                        trigger={<Image
-                            src='./ensvision.jpg'
-                            as='a'
-                            size='small'
-                            href={this.state.markets.markets.ensvision.base_url + '/name/' + domain.name}
-                            target='_blank'
-                            circular
-                        />}
-                    />
-                    <Popup
-                        inverted
-                        on='hover'
-                        position='top center'
+                        href={this.state.markets.markets.ensvision.base_url + '/name/' + domain.name}
+                        target='_blank'
+                        circular
+                    />}
+                  />
+                  <Popup
+                    inverted
+                    on='hover'
+                    position='top center'
+                    size='small'
+                    content='LooksRare'
+                    trigger={<Image
+                        src='./looksrare.jpg'
+                        as='a'
                         size='small'
-                        content='LooksRare'
-                        trigger={<Image
-                            src='./looksrare.jpg'
-                            as='a'
-                            size='small'
-                            href={this.state.markets.markets.looksrare.base_url + '/collections/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
-                            target='_blank'
-                            circular
-                        />}
-                    />
-                    <Popup
-                      inverted
-                      on='hover'
-                      position='top center'
-                      size='small'
-                      content='Etherscan'
-                      trigger={<Image
-                          src='./etherscan.webp'
-                          as='a'
-                          size='small'
-                          href={this.state.markets.markets.etherscan.base_url + '/nft/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
-                          target='_blank'
-                          circular
-                      />}
-                    />
-                    {console.log(JSON.stringify(this.state.reverse_records))}
-                    </div>
-                    </Card.Content>
-                    <_Card payload={domain} key={domain.name} rates={this.state.rates}/>
-                  </Card>
-                )
+                        href={this.state.markets.markets.looksrare.base_url + '/collections/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
+                        target='_blank'
+                        circular
+                    />}
+                  />
+                  <Popup
+                    inverted
+                    on='hover'
+                    position='top center'
+                    size='small'
+                    content='Etherscan'
+                    trigger={<Image
+                        src='./etherscan.webp'
+                        as='a'
+                        size='small'
+                        href={this.state.markets.markets.etherscan.base_url + '/nft/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
+                        target='_blank'
+                        circular
+                    />}
+                  />
+                  </div>
+                  </Card.Content>
+                  <_Card payload={domain} key={domain.name} rates={this.state.rates} rr={this.state.reverse_records.reverse_records[domain.owner]}/>
+                </Card>
               )
-            )
-            }
+            ))}
 
             {this.state.expiringin_payload == null ? (<div></div>) : 
             (
-              this.state.expiringin_payload.expiring_domains.map(domain => (
-                // <Card centered style={{width: '250px', height: '520px'}}>
+              this.state.expiringin_payload.domains.map(domain => (
                 <Card centered fluid>
                   <Card.Content extra>
                   <div className='ui four buttons' id='card_header'>
@@ -288,7 +302,7 @@ export default class Expiring extends Component {
                       on='hover'
                       position='top center'
                       size='small'
-                      content='Etherscane'
+                      content='Etherscan'
                       trigger={<Image
                           src='./etherscan.webp'
                           as='a'
@@ -300,7 +314,7 @@ export default class Expiring extends Component {
                     />
                   </div>
                   </Card.Content>
-                  <_Card payload={domain} key={domain.name} rates={this.state.rates}/>
+                  <_Card payload={domain} key={domain.name} rates={this.state.rates} rr={this.state.reverse_records.reverse_records[domain.owner]}/>
                 </Card>
               )
             )
