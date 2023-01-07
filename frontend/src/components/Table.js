@@ -2,31 +2,31 @@ import React from 'react'
 import { Table, Button } from 'semantic-ui-react'
 import _Row from './Row.js';
 
-// Expiration -> 90 days of grace -> 21 days of auction -> free_pool
-function ratio(payload) {
-    const today = new Date();
-    const start = new Date(payload.payload.expiration);
-    const end = new Date(payload.payload.auction);
-    const p = Math.round(((today - start) / (end - start)) * 100);
-    return p;
-}
+// // Expiration -> 90 days of grace -> 21 days of auction -> free_pool
+// function ratio(payload) {
+//     const today = new Date();
+//     const start = new Date(payload.payload.expiration);
+//     const end = new Date(payload.payload.auction);
+//     const p = Math.round(((today - start) / (end - start)) * 100);
+//     return p;
+// }
 
-function color(payload) {
-    const free_to_register = 'green'
-    const in_grace = 'yellow'
-    const in_auction = 'red'
-    const p = ratio(payload)
+// function color(payload) {
+//     const free_to_register = 'green'
+//     const in_grace = 'yellow'
+//     const in_auction = 'red'
+//     const p = ratio(payload)
 
-    if (p >= 100) {
-        return free_to_register
-    }
-    else if (p < 100 && p > 0) {
-        return in_auction
-    }
-    else if (p >= 0) {
-        return in_grace
-    }
-}
+//     if (p >= 100) {
+//         return free_to_register
+//     }
+//     else if (p < 100 && p > 0) {
+//         return in_auction
+//     }
+//     else if (p >= 0) {
+//         return in_grace
+//     }
+// }
 
 export default class _Table extends React.Component {
     state = {

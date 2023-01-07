@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Form, TextArea, Header, Button, Divider } from 'semantic-ui-react'
-import {_Card, HandleCardContext, handleCardHeader} from './Card.js'
+import { Form, TextArea, Button } from 'semantic-ui-react'
+import { HandleCardContext, handleCardHeader} from './Card.js'
 // import fetch from 'node-fetch';
 // console.log(`data: ${JSON.stringify(markets)}`)
 
@@ -61,7 +61,7 @@ export default class BulkSearch extends Component {
       <Button.Group fluid>
         <Button
           onClick={this.set_bulk_search}
-          positive={this.state.activeButton == 'bulkSearch'}>Bulk Search
+          positive={this.state.activeButton === 'bulkSearch'}>Bulk Search
         </Button>
         
         <Button.Or />
@@ -69,7 +69,7 @@ export default class BulkSearch extends Component {
         <Button
           secondary
           onClick={this.set_file_search}
-          positive={this.state.activeButton == 'fileSearch'}>Load from File
+          positive={this.state.activeButton === 'fileSearch'}>Load from File
         </Button>
       </Button.Group>
 

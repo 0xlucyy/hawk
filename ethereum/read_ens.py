@@ -206,9 +206,9 @@ def get_owner_graphql(domain_name: str = None):
         owner = resp['data']['data']['registrations'][0]['registrant']['id']
         app.logger.info(f'Owner found from graphql query - {owner} ')
         if owner == []:
-            return "NEVER_BEEN_MINTED"
+            return None
         else:
             return owner
     except Exception as error:
         app.logger.error(f'get_owner_graphql error: {error}')
-        return 'ERROR'
+        return app.config["ENS_BASE_REGISTRAR_MAINNET"]

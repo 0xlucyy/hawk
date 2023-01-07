@@ -10,7 +10,7 @@
 - backend : search for domains in db with either starts_with or ends_with
 - backend : fix backend logger, make info actually useful
 - backend : batch graphql calls
-
+- backend : automatic backup web3 provider if local node is offline
 
 - frontend: Home should include stats of total domains tracked, how many in each state (grace,expired,auction,free).
 - frontend: pagination
@@ -20,7 +20,6 @@
 
 #### Doing
 - frontend: bulkSearch page.
-- backend: resolve addresses to their ENS domains
 
 
 #### Hold/Backlog
@@ -38,3 +37,4 @@
     - https://github.com/adraffy/ensip-norm
     - https://github.com/adraffy/ens-normalize.js
 - backend: update all domains in database. - solved with script `refresh_domains`.
+- both: resolve addresses to their ENS domains

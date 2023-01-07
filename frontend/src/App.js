@@ -1,14 +1,14 @@
 import React from "react";
 import {
-  Button,
-  Input,
-  Form,
-  Message,
-  Card,
-  Container,
-  Segment,
+  // Button,
+  // Input,
+  // Form,
+  // Message,
+  // Card,
+  // Container,
+  // Segment,
   Grid,
-  Header
+  // Header
 } from 'semantic-ui-react'
 import Layout from './components/Layout.js';
 import Expiring from './components/Expiring.js';
@@ -53,7 +53,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { activeItem } = this.state
+    // const { activeItem } = this.state
 
     return (
       <Layout>

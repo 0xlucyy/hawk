@@ -23,6 +23,7 @@ from backend.utils.exceptions import (
 # import pdb; pdb.set_trace()
 
 
+# Owner address return in all LOWER CASE!
 def make_graphql_request(query_target: str = None, domain_name: str = None):
   '''
     Makes a request to

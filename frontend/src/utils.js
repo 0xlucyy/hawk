@@ -1,4 +1,5 @@
 import { Button, Label, Popup } from 'semantic-ui-react'
+import React from 'react';
 
 const free_to_register = 'green'
 const in_grace = 'yellow'
@@ -34,7 +35,7 @@ function days_between(date1, date2, view) {
     let day_str = days + " day" + (days > 1 ? "s " : "")
     let hr_str = hours + ' hour' + (hours > 1 ? "s " : "")
     let min_str = minutes + " minute" + (minutes > 1 ? "s " : "")
-    data = (days > 1 ? day_str : "") + (hours > 1 ? hr_str : "") + (minutes > 1 ? ` &  ${minutes} minutes` : "")
+    data = (days > 1 ? day_str : "") + (hours > 1 ? hr_str : "") + (minutes > 1 ? ` &  ${min_str} minutes` : "")
   }
   return data
 }
@@ -80,7 +81,7 @@ function handleFooter(payload, view) {
   const expiration = new Date(payload.payload.expiration);
 
   if (now > auction) { // domain is free to claim.
-      let _href = 'https://app.ens.domains/name/' + payload.payload.name + '.eth/register'
+      // let _href = 'https://app.ens.domains/name/' + payload.payload.name + '.eth/register'
       // return <Button as='a' target='_blank' href={_href} inverted circular style={{'background-color': 'grey'}}>Claim</Button>
       return <div>Free</div>
   }
@@ -99,7 +100,7 @@ function handleFooter(payload, view) {
 }
 
 function handleName(payload) {
-  let _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
+  // let _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
   // return <Label size='big' style={{'color': 'orange', 'backgroundColor':'transparent'}} as='a' target='_blank' href={_href}>{payload.payload.name}.eth</Label>
   return <Label size='big' style={{'color': 'orange', 'backgroundColor':'transparent'}}>{payload.payload.name}.eth</Label>
 }
@@ -108,10 +109,11 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+// This function is only employed in Row.js
 function handleOwner(payload) {
   // {(payload.payload.owner == 'THROW' ? 'no_owner' : (payload.payload.owner).substr(0, 13))}
-  if (payload.payload.owner == 'NEVER_BEEN_MINTED') {
-    return <div>Never been minted</div>
+  if (payload.payload.owner === '0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85') {
+    return <div>Can be minted!</div>
   } else {
     let _href = 'https://etherscan.io/address/' + payload.payload.owner
     return <div as='a' target='_blank' href={_href}>{(payload.payload.owner).substr(0, 13)}</div>
@@ -139,15 +141,30 @@ function handlePremium(payload, premium) {
   return `ERROR`
 }
 
-function handleReverseRecord(payload) {
-  // console.log(`handleReverseRecord: ${payload.rr}`)
-  console.log(`handleReverseRecord::Owner: ${payload.payload.owner}`)
-  console.log(`handleReverseRecord::Name: ${payload.payload.name}`)
-  console.log(`handleReverseRecord::rr: ${JSON.stringify(payload.rr)}`)
 
-  // let _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
-  return <Label size='medium' style={{'color': 'black', 'backgroundColor':'transparent'}}>Owner: {(payload.rr == null ? (payload.payload.owner).substr(0, 10) : (payload.rr).substr(0, 10))}{(payload.rr == null ? <div></div> : ".eth")}</Label>
+function handleReverseRecord(payload) {
+  let owner = null;
+  try {
+    console.log(`handleReverseRecord: ${JSON.stringify(payload.rr.reverse_records)}`)
+    console.log(`Name: ${payload.payload.name}`)
+    console.log(`Owner: ${payload.payload.owner}`)
+    // debugger;
+    let owner = payload.rr.reverse_records[payload.payload.owner]
+
+    if (owner === undefined) {
+      console.log(`[ACTION] Transforming keys to lower case ...`)
+      // This is required due to graphQL returning addr in lower
+      // https://discord.com/channels/438038660412342282/791443346304270346/1061360374907142234
+      const newObj = Object.fromEntries(
+        Object.entries(payload.rr.reverse_records).map(([k, v]) => [k.toLowerCase(), v])
+      );
+      owner = newObj[payload.payload.owner]
+    }
+
+    return <Label size='medium' style={{'color': 'black', 'backgroundColor':'transparent'}}>Owner: {(owner == null ? (payload.payload.owner).substr(0, 15) : (owner).substr(0, 15))}{(owner == null ? <div></div> : ".eth")}</Label>
+  } catch (e) {}
 }
+
 
 export {
   handleRatio,

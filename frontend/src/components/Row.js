@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { Table } from 'semantic-ui-react'
 import {
-    handleRatio,
+    // handleRatio,
     handleStatus,
     handleColor,
     handleFooter,

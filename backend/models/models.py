@@ -98,7 +98,8 @@ class Domains(Base, Lockable):
         Returns: backend.models.models.Domains or False
         '''
         domain = cls.query.filter(
-            func.lower(Domains.name) == func.lower(domain_name)
+            # func.lower(Domains.name) == func.lower(domain_name)
+            Domains.name == domain_name
         ).first()
         return domain if domain != None else False
 
@@ -135,8 +136,8 @@ class Domains(Base, Lockable):
         to leave auction.
         '''
         domains = cls.query.filter(
-            Domains.expiration < datetime.now(), # Expiration in past.
-            Domains.auction > datetime.now() # Auction already expired.
+            Domains.expiration <= datetime.now(), # Expiration in past.
+            Domains.auction > datetime.now() # Auction end in future.
         ).order_by(
             Domains.expiration.asc()
         ).all()

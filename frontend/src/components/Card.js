@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { Button, Card, Image, Progress, Popup, Label, Icon } from 'semantic-ui-react'
+import { Card, Image, Progress } from 'semantic-ui-react'
 import {
     handlePremium,
     handleRatio,
@@ -34,12 +34,32 @@ const HandleCardContext = (payload) => {
     return handlePremium(payload, premium)
 }
 
+// const HandleRR = (payload) => {
+//     const [rr, setRR] = useState([]);
+//     const [own, setOwn] = useState([]);
 
+//     useEffect(() => {
+//         async function middleware() {
+//             try {
+//                 await console.log(`Records: ${JSON.stringify(payload.rr.reverse_records)}`)
+//                 await setOwn(payload.payload.owner);
+//                 await setRR(payload.rr.reverse_records[own]);
+//             } catch (err) {
+//                 console.log(err);
+//             }
+//         }
+//         middleware();
+//     }, []);
+
+//     console.log(`Own: ${JSON.stringify(own)}`)
+//     console.log(`RR: ${JSON.stringify(rr)}`)
+//     return handleReverseRecord(rr)
+// }
 
 function _Card(payload) {
-    // console.log(`I AM HERE PAYLOAD: ${JSON.stringify(payload)}`)
-    // console.log(`2: ${JSON.stringify(payload.rates)}`)
-    // console.log(`2: ${JSON.stringify(payload.rates.data.rates.USD)}`)
+    // console.log(`Records: ${JSON.stringify(payload.rr.reverse_records)}`)
+    // console.log(`Owner: ${JSON.stringify(payload.payload.owner)}`)
+    // console.log(`Reverse Record: ${JSON.stringify(payload.rr.reverse_records[payload.payload.owner])}`)
 
     return (
         <div>
@@ -71,18 +91,5 @@ function _Card(payload) {
 // export default _Card
 export {
     _Card,
-    HandleCardContext,
+    // HandleCardContext,
   }
-
-
-// TODO DappNode REMOTE
-// [Interface]
-// PrivateKey = kIncvnBH8XGDv3UX9zyV7fcpfxqrvZblwpkAjDQ1O2k=
-// ListenPort = 51820
-// Address = 10.24.0.5/32
-// DNS = 172.33.1.2, 10.20.0.2
-
-// [Peer]
-// PublicKey = tbwLVl0wS46u0JNsfDZDPo7K3KSRY+gyvmvqDPrItgQ=
-// AllowedIPs = 172.33.0.0/16, 10.20.0.0/24
-// Endpoint = 65ebd1c1e30d76c0.dyndns.dappnode.io:51820
