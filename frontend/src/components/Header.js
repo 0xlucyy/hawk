@@ -47,7 +47,7 @@ export default class _Header extends Component {
 
           <Menu.Item
             as='h2'
-            style={{ 'color':'green'}}
+            style={{ 'color':'lightgreen'}}
             attached='top'
             textAlign='center'
             className='header'
