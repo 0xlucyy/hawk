@@ -23,6 +23,7 @@ export default class Expiring extends Component {
     reverse_records: null,
     days_until_expire_button_loading: false,
     expired_button_loading: false,
+    mini_mode: false, // controls avatar display
 
     // Error related.
     error: false,

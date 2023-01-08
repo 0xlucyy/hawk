@@ -11,6 +11,7 @@ export default class BulkSearch extends Component {
     activeButton: 'bulkSearch',
     loading: false,
     bulk_search_text: '',
+    post_search: false,
 
     // Error related.
     error: false,
@@ -77,10 +78,11 @@ export default class BulkSearch extends Component {
 
       {
         this.state.activeButton === 'bulkSearch' ? (
+
           <Form class="ui form">
             <TextArea
               placeholder='Enter one ENS domain per line'
-              style={{'backgroundColor':'black', 'color':'white'}}
+              style={{'backgroundColor':'black', 'color':'white', minHeight: 500}}
               type="text"
               value={this.state.bulk_search_text}
               defaultValue={this.state.bulk_search_text}

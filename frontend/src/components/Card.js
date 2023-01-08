@@ -13,7 +13,6 @@ import {
 from "../utils.js"
 
 
-
 const HandleCardContext = (payload) => {
     const [premium, setPremium] = useState([]);
 
@@ -34,27 +33,6 @@ const HandleCardContext = (payload) => {
     return handlePremium(payload, premium)
 }
 
-// const HandleRR = (payload) => {
-//     const [rr, setRR] = useState([]);
-//     const [own, setOwn] = useState([]);
-
-//     useEffect(() => {
-//         async function middleware() {
-//             try {
-//                 await console.log(`Records: ${JSON.stringify(payload.rr.reverse_records)}`)
-//                 await setOwn(payload.payload.owner);
-//                 await setRR(payload.rr.reverse_records[own]);
-//             } catch (err) {
-//                 console.log(err);
-//             }
-//         }
-//         middleware();
-//     }, []);
-
-//     console.log(`Own: ${JSON.stringify(own)}`)
-//     console.log(`RR: ${JSON.stringify(rr)}`)
-//     return handleReverseRecord(rr)
-// }
 
 function _Card(payload) {
     // console.log(`Records: ${JSON.stringify(payload.rr.reverse_records)}`)
@@ -63,7 +41,7 @@ function _Card(payload) {
 
     return (
         <div>
-        <Card style={{height:'440px'}}>
+        <Card style={{height:'450px'}}>
             {/* {console.log(`Deck payload 1: ${JSON.stringify(payload.payload)}`)} */}
             <Card.Content >
                 <Image
@@ -79,7 +57,7 @@ function _Card(payload) {
                 </Card.Description>
             </Card.Content>
 
-            <Card.Content style={{ 'backgroundColor': handleColor(payload) }}>
+            <Card.Content style={{ 'backgroundColor': handleColor(payload)}}>
                 <Progress percent={handleRatio(payload)} progress>{handleFooter(payload, "card")}</Progress>
             </Card.Content>
 
@@ -88,8 +66,6 @@ function _Card(payload) {
     )
 }
 
-// export default _Card
 export {
     _Card,
-    // HandleCardContext,
   }

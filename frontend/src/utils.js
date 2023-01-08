@@ -33,9 +33,9 @@ function days_between(date1, date2, view) {
     data = (days > 1 ? day_str : "") + (hours > 1 ? hr_str : "") + (minutes > 1 ? min_str : "")
   } else if(view === "card") {
     let day_str = days + " day" + (days > 1 ? "s " : "")
-    let hr_str = hours + ' hour' + (hours > 1 ? "s " : "")
-    let min_str = minutes + " minute" + (minutes > 1 ? "s " : "")
-    data = (days > 1 ? day_str : "") + (hours > 1 ? hr_str : "") + (minutes > 1 ? ` &  ${min_str} minutes` : "")
+    let hr_str = hours + ' hr' + (hours > 1 ? "s " : "")
+    let min_str = minutes + " min" + (minutes > 1 ? "s " : "")
+    data = (days > 1 ? day_str : "") + (hours > 1 ? hr_str : "") + (minutes > 1 ? ` &  ${min_str}` : "")
   }
   return data
 }
@@ -145,9 +145,6 @@ function handlePremium(payload, premium) {
 function handleReverseRecord(payload) {
   let owner = null;
   try {
-    console.log(`handleReverseRecord: ${JSON.stringify(payload.rr.reverse_records)}`)
-    console.log(`Name: ${payload.payload.name}`)
-    console.log(`Owner: ${payload.payload.owner}`)
     // debugger;
     let owner = payload.rr.reverse_records[payload.payload.owner]
 
