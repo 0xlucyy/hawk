@@ -71,7 +71,7 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
             fails.append(domain)
             payload[domain]['owner'] = get_owner_graphql(domain)
         else:
-            payload[domain]['owner'] = str(owner)
+            payload[domain]['owner'] = str(owner).lower()
     
     app.logger.info(f"Domain metadata aquired...")
     app.logger.info(f'Fail Total {len(fails)} - Fail Queue {fails}')
@@ -117,7 +117,7 @@ def ens_claw_update_domains(domains):
             expires = datetime.fromtimestamp(expires) if str(expires).lower() != 'null' else None
 
         times = Domains.get_times_and_status(_expiration=expires.strftime(app.config['DATETIME_STR_FORMAT']))
-        domain.owner = owner
+        domain.owner = owner.lower()
         domain.available = avail
         domain.expiration = expires if expires != 'null' else 'NULL'
         domain.auction = times['auction']
@@ -157,24 +157,29 @@ def get_reverse_record(addresses: List[str] = None):
     if not isinstance(addresses, list):
         return {'error': 'addresses must be a list of string addresses'}
 
-    w3_obj = Web3_Base()
-
-    abiFile = json.load(open('./ethereum/abis/ENS_Reverse_Records.json'))
-    abi = abiFile['abi']
-    ens_reverse_records_contract = w3_obj.w3.eth.contract(
-        abi=abi,
-        address=app.config["ENS_REVERSE_RECORDS_MAINNET"],
-    )
-
     cleaned = []
     records = {}
     for address in addresses:
         try:
-            clean = address.replace('\n',  '').replace("'", "").replace('"', "").strip()
+            clean = address.replace('\n',  '').replace("'", "").replace('"', "").strip().replace('null', '').lower()
             clean = Web3.toChecksumAddress(clean)
-            cleaned.append(Web3.toChecksumAddress(clean))
+            cleaned.append(clean)
         except Exception as error:
             pass
+
+    app.logger.info(f'[ACTION] Cleaned addresses: {cleaned} ...')
+
+    if len(cleaned) > 0:
+        w3_obj = Web3_Base()
+
+        abiFile = json.load(open('./ethereum/abis/ENS_Reverse_Records.json'))
+        abi = abiFile['abi']
+        ens_reverse_records_contract = w3_obj.w3.eth.contract(
+            abi=abi,
+            address=app.config["ENS_REVERSE_RECORDS_MAINNET"],
+        )
+    else:
+        return {'error': 'must supply at least 1 address'} 
 
     # Get reverse records from ens contract.
     rr = ens_reverse_records_contract.functions.getNames(cleaned).call()
@@ -183,15 +188,15 @@ def get_reverse_record(addresses: List[str] = None):
     for index, clean in enumerate(cleaned):
         try:
             if (rr[index][:-4] != None and rr[index][:-4] != ''):
-                records[clean] = rr[index][:-4]
+                records[clean.lower()] = (rr[index][:-4]).lower()
             else:
-                records[clean] = None
+                records[clean.lower()] = None
             app.logger.info(f'Set RR for address {clean} to {rr[index][:-4]} ...')
         except Exception as error:
             records[clean] = None
             app.logger.warning(f'No RR for address: {clean}...')
 
-    records['time'] = time.time() - start_time
+    # records['time'] = time.time() - start_time
     data = {'reverse_records': records}
     return data
 
@@ -208,7 +213,7 @@ def get_owner_graphql(domain_name: str = None):
         if owner == []:
             return None
         else:
-            return owner
+            return owner.lower()
     except Exception as error:
         app.logger.error(f'get_owner_graphql error: {error}')
         return app.config["ENS_BASE_REGISTRAR_MAINNET"]

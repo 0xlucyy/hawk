@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Input, Button, Card, Container, Image, Popup } from 'semantic-ui-react'
-import {_Card, HandleCardContext} from './Card.js'
-import {
-  handleReverseRecord}
-from "../utils.js"
+import {_Card} from './Card.js'
+// import {
+//   handleReverseRecord}
+// from "../utils.js"
 // console.log(`data: ${JSON.stringify(markets)}`)
 
 var async = require("async");
@@ -157,11 +157,11 @@ export default class Expiring extends Component {
             All Expired domains
     </Button>
 
-    <Button onClick={this.test}
+    {/* <Button onClick={this.test}
             className="icon"
             labelPosition='left'>
             test
-    </Button>
+    </Button> */}
     < div style = {{marginTop: 100}}>
     <Container>
         <div>

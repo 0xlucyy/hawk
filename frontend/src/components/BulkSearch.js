@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Form, TextArea, Button, Label, Input, Tab, Message, Icon } from 'semantic-ui-react'
-import { HandleCardContext, handleCardHeader} from './Card.js'
+import { Form, TextArea, Button, Label, Tab, Card, Icon, Image, Rating} from 'semantic-ui-react'
+import {
+  handleStatus,
+  handleName
+}
+from "../utils.js"
+var async = require("async");
 // import fetch from 'node-fetch';
 // console.log(`data: ${JSON.stringify(markets)}`)
 
@@ -13,15 +18,20 @@ export default class BulkSearch extends Component {
     loading: false,
     bulk_search_text: '',
     bulk_search_results: null,
-    post_search: false,
     file: null,
     fileName: null,
+    liked: null,
+    reverse_records: null,
 
     // Error related.
     error: false,
     errorMessage: '',
     hidden: true,
   };
+
+  test = () => {
+    console.log(JSON.stringify(this.state.reverse_records))
+  }
 
   set_bulk_search = () => {
     this.setState({ activeButton: 'bulkSearch' });
@@ -31,14 +41,17 @@ export default class BulkSearch extends Component {
     this.setState({ activeButton: 'fileSearch' });
   }
 
+  set_post_search =() => {
+    this.setState({ activeButton: 'postSearch' });
+  }
+
   set_text_value = (event) => {
     this.setState({bulk_search_text: event.target.value});
   }
 
-  process_text = async (e) => {
+  search = async (e) => {
     e.preventDefault();
     if (this.state.bulk_search_text !== '') {
-      // console.log(`data: ${JSON.stringify(this.state.bulk_search_text)}`)
       var cleaned = (this.state.bulk_search_text.replace(/\n/g,',')).trim();
       console.log(`[ACTION] Searching for: ${JSON.stringify(cleaned)} ...`)
 
@@ -48,11 +61,25 @@ export default class BulkSearch extends Component {
       const response = await fetch('http://127.0.0.1:5000/api/v1/bulkSearch', {method: 'POST', body: params});
       const search_results = await response.json();
 
-      await this.setState({bulk_search_results: search_results})
-      await this.setState({post_search: true})
+      // Extract owner addresses from search_results
+      // put owners together correctly
+      // set rr state
+      let owners = null
+      async.forEachOf(search_results.domains, (value, key, callback) => {
+        if (value.owner !== undefined && value.owner !== null) {
+          owners += value.owner + ','
+        }
+        callback();
+      }, err => { if (err) console.error(err.message);}
+      );
 
-      console.log(`[ACTION] Results: ${JSON.stringify(search_results)} ...`)
-      console.log(`[ACTION] Postsearch: ${JSON.stringify(this.state.post_search)} ...`)
+
+      await this.load_rr_data(owners)
+      await this.setState({bulk_search_results: search_results})
+      await this.setState({ activeButton: 'postSearch' });
+
+      console.log(`[ACTION] State set to postSearch ...`)
+      // console.log(`[ACTION] Postsearch: ${JSON.stringify(this.state.post_search)} ...`)
     } else {
       console.log("text is ''")
     }
@@ -60,6 +87,18 @@ export default class BulkSearch extends Component {
 
   clear_search_text = () => {
     this.setState({bulk_search_text: ''});
+  }
+
+  load_rr_data = async (addresses) => {
+    console.log(`[ACTION] Loading reverse records data ...`)
+    const params = new URLSearchParams();
+    params.append('addresses', addresses);
+
+    const response = await fetch('http://127.0.0.1:5000/api/v1/getReverseRecords', {method: 'POST', body: params});
+    const data = await response.json();
+    await this.setState({ reverse_records: data.reverse_records });
+    console.log(`[DATA] data: ${JSON.stringify(data.reverse_records)} ...`)
+    console.log(`[ACTION] Set reverse records data ...`)
   }
 
   print = (event) => {
@@ -113,8 +152,7 @@ export default class BulkSearch extends Component {
       {
         this.state.activeButton === 'bulkSearch' ? (
           <div>
-
-          <Form class="ui form" hidden={this.state.post_search}>
+          <Form class="ui form">
             <Button.Group fluid>
               <Button
                 onClick={this.set_bulk_search}
@@ -146,7 +184,7 @@ export default class BulkSearch extends Component {
             <Button.Group fluid>
               <Button
                 primary
-                onClick={this.process_text}
+                onClick={this.search}
                 loading={this.state.loading}>search
               </Button>
               
@@ -158,7 +196,11 @@ export default class BulkSearch extends Component {
             </Button.Group>
           </Form>
           </div>
-        ) : (
+        ) : (<div></div>)
+      }
+      {
+        this.state.activeButton === 'fileSearch' ? 
+        (
           <div>
             <Tab.Pane attached={false} inverted>
               <Label
@@ -178,58 +220,112 @@ export default class BulkSearch extends Component {
               <Form onSubmit={this.onFormSubmit}>
                 <Form.Field>
                 
-                <label style={{color: 'white'}}>File input & upload</label>
-                
-                <Button as="label" htmlFor="file" type="button" animated="fade">
-                  <Button.Content visible>
-                    <Icon name="file" />
-                  </Button.Content>
-                  <Button.Content hidden>Choose a File</Button.Content>
-                </Button>
-                
-                <input
-                  type="file"
-                  id="file"
-                  hidden
-                  onChange={this.fileChange}
-                />
-                <Form.Input
-                  fluid
-                  label="File Chosen: "
-                  placeholder="Use the above bar to browse your file system"
-                  readOnly
-                  value={this.state.fileName}
-                  // color='white'
-                  inverted
-                />
+                  <label style={{color: 'white'}}>File input & upload</label>
+                  
+                  <Button as="label" htmlFor="file" type="button" animated="fade">
+                    <Button.Content visible>
+                      <Icon name="file" />
+                    </Button.Content>
+                    <Button.Content hidden>Choose a File</Button.Content>
+                  </Button>
+                  
+                  <input
+                    type="file"
+                    id="file"
+                    hidden
+                    onChange={this.fileChange}
+                  />
+                  <Form.Input
+                    fluid
+                    label="File Chosen: "
+                    placeholder="Use the above bar to browse your file system"
+                    readOnly
+                    value={this.state.fileName}
+                    // color='white'
+                    inverted
+                  />
 
-                <Button style={{ marginTop: "20px" }} type="submit">
-                  Upload
-                </Button>
-              </Form.Field>
-            </Form>
-          </Tab.Pane>
-
-            {/* <Button
-              as="label"
-              htmlFor="file"
-              type="button"
-              circular
-              onClick={this.print}
-            >
-              Some button stuff
-            </Button>
-            <Input 
-              type="file"
-              id="file"
-              style={{ display: "hidden", color: "white" }}
-              value={this.state.file}
-              onChange={ (event) => {
-                this.setState({ file: event.target.files });
-              }}
-            /> */}
+                  <Button style={{ marginTop: "20px" }} type="submit">
+                    Upload
+                  </Button>
+                </Form.Field>
+              </Form>
+            </Tab.Pane>
           </div>
-        )
+        ) : (<div></div>)
+      }
+      {
+        this.state.activeButton === 'postSearch' ? 
+        (
+          <div>
+            {this.state.bulk_search_results !== null ? (
+            <div>
+              <Label
+                as='a'
+                color='green'
+                image
+                onClick={this.set_bulk_search}
+              >
+              <img src='hawk.png' /> Back to search
+              </Label>
+
+              <Label
+                as='a'
+                color='green'
+                image
+                onClick={this.test}
+              >
+              <img src='hawk.png' /> Test
+              </Label>
+
+              <Card.Group centered itemsPerRow="5" style={{ marginTop: "50px", textTransform: 'lowercase' }} className='domains'>
+                {this.state.bulk_search_results.domains.map(domain => (
+                  // <_Card payload={domain} key={domain.name}/>
+                  <Card style={{backgroundColor:'black'}}>
+                    <Card.Content>
+                      <Card.Header as="a" href='https://www.google.com' target="_blank" style={{color:'white'}}>
+                        <Label size='big' style={{'color': 'orange', 'backgroundColor':'transparent'}}>{domain.name}.eth</Label>
+                      </Card.Header>
+                      <Card.Meta style={{color:'white'}}>
+                        Owner:
+                        <a
+                          as='a'
+                          href={'https://etherscan.io/address/' + domain.owner}
+                          target='_blank'
+                          style={{color:'white'}}
+                        >
+                          {this.state.reverse_records[(domain.owner)] === null ? (" " + domain.owner.substr(0, 10)) : (' ' + this.state.reverse_records[(domain.owner)].substr(0, 10))}
+                          {this.state.reverse_records[(domain.owner)] === null ? '...':'.eth'}
+                        </a>
+                      </Card.Meta>
+                      <Card.Description style={{color:'white'}}>
+                        {handleStatus(domain)}
+                      </Card.Description>
+                    </Card.Content>
+                    <Rating
+                      style={{backgroundColor:'gray'}}
+                      icon='heart'
+                      onRate={(event) => {
+                        console.log(`i am a ratoooor`)
+                      }}
+                    />
+                    {/* <Button 
+                      toggle
+                      inverted
+                      content='Favourite'
+                      icon={{ color: 'red', name: 'like' }}
+                      as='a'
+                      onClick={(event) => (
+                        console.log('testing')
+                      )}
+                    /> */}
+                  </Card>    
+                ))}
+              </Card.Group>
+            </div>
+            ) : (<div></div>) }
+          </div>
+        ) : (<div></div>)
       }
     </div>
     )

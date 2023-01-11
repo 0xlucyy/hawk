@@ -219,10 +219,11 @@ def getETHGasCosts():
 @app.route(f'{app.config["API_URI"]}/getReverseRecords', methods=['GET', 'POST'])
 def getReverseRecords():
     # Ex of addresses: "toro,lobo,testing,domainNames"
-    _addresses = (request.form.get('addresses')).split(',')
+    not_clean_addresses = (request.form.get('addresses')).split(',')
 
     try:
-        resp = get_reverse_record(_addresses)
+        resp = get_reverse_record(not_clean_addresses)
+        app.logger.info(f"[API] resp: {resp}")
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
@@ -284,7 +285,7 @@ def bulkSearch():
             added = populate_domains() # Populate with new domains
     
             found.extend(added)
-            app.logger.info(f"added: {added}")
+            app.logger.info(f"found 2: {found}")
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
@@ -296,6 +297,7 @@ def bulkSearch():
                     del _domain.__dict__[key]
                 except:
                     pass
+        app.logger.info(f"found 3: {found}")
         return jsonify({
             'added': not_found,
             'invalid': invalid,

@@ -2,13 +2,10 @@
 
 #### Will do
 - backend : api limit
-- both : ability to add domains to watch from frontend. in a file, or single lined entry.
-- backend : Use ENS name on owners if domain is set for an address
 - backend : add a highest bid ever stats on each domain, in weth
 - backend : add domain mint value to each domain
 - backend : add domain sales history to each domain
 - backend : search for domains in db with either starts_with or ends_with
-- backend : fix backend logger, make info actually useful
 - backend : batch graphql calls
 - backend : automatic backup web3 provider if local node is offline
 
@@ -19,7 +16,7 @@
 
 
 #### Doing
-- frontend: bulkSearch page.
+- both: bulkSearch file upload.
 
 
 #### Hold/Backlog
@@ -38,3 +35,10 @@
     - https://github.com/adraffy/ens-normalize.js
 - backend: update all domains in database. - solved with script `refresh_domains`.
 - both: resolve addresses to their ENS domains
+- backend : fix backend logger, make info actually useful
+- backend : Use ENS name on owners if domain is set for an address
+- both : ability to add domains to watch from frontend. in a file, or single lined entry.
+- both : bulk search text input and post bulk search display
+  - reverse records for addresses
+  - mini view 
+  - heart button toggled

@@ -42,19 +42,29 @@ function days_between(date1, date2, view) {
 
 function handleStatus(payload) {
   let _href = null
+  // console.log(`payload is: ${payload}`)
+
+  try {
+    // Needed for BulkSearch postSearch page.
+    if (payload.payload === undefined) {
+      payload.payload = payload
+    }
+  } catch(e) {
+    console.log('[ACTION] Correcting payload ...')
+  }
   if (payload.payload.status === 'IN_AUCTION') {
       _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
       // let response = fetch(_href);
-      return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Domain in Auction!</Button>} />
+      return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>In Auction!</Button>} />
   } else if (payload.payload.status === 'IN_GRACE') {
       _href = `https://app.ens.domains/search/${payload.payload.name}`
-      return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Domain in Grace!</Button>} />
+      return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>In Grace!</Button>} />
   }  else if (payload.payload.status === 'BEING_HELD') {
       _href = `https://app.ens.domains/search/${payload.payload.name}`
-      return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Domain Being Held!</Button>} />
+      return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Being Held!</Button>} />
   }
   _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
-  return <Popup position="bottom center" inverted on='hover' size="small"  content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Claim</Button>} />
+  return <Popup position="bottom center" inverted on='hover' size="small"  content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Claim!</Button>} />
 }
 
 function handleColor(payload) {
@@ -143,23 +153,12 @@ function handlePremium(payload, premium) {
 
 
 function handleReverseRecord(payload) {
-  let owner = null;
+  let owner = payload.payload.owner;
   try {
     // debugger;
-    let owner = payload.rr.reverse_records[payload.payload.owner]
-
-    if (owner === undefined) {
-      console.log(`[ACTION] Transforming keys to lower case ...`)
-      // This is required due to graphQL returning addr in lower
-      // https://discord.com/channels/438038660412342282/791443346304270346/1061360374907142234
-      const newObj = Object.fromEntries(
-        Object.entries(payload.rr.reverse_records).map(([k, v]) => [k.toLowerCase(), v])
-      );
-      owner = newObj[payload.payload.owner]
-    }
-
-    return <Label size='medium' style={{'color': 'black', 'backgroundColor':'transparent'}}>Owner: {(owner == null ? (payload.payload.owner).substr(0, 15) : (owner).substr(0, 15))}{(owner == null ? <div></div> : ".eth")}</Label>
+    owner = payload.rr.reverse_records[payload.payload.owner]
   } catch (e) {}
+  return <Label size='medium' style={{'color': 'black', 'backgroundColor':'transparent'}}>Owner: {(owner == null ? (payload.payload.owner).substr(0, 15) : (owner).substr(0, 15))}{(owner == null ? <div></div> : ".eth")}</Label>
 }
 
 
