@@ -20,7 +20,7 @@ import BulkSearch from './components/BulkSearch';
 class App extends React.Component {
   state = {
     activeDataFormat: 'card', // table
-    activeItem: 'home',
+    activeItem: 'bulk search',
     payload: null,
     loading: false,
     timeout: 30,

@@ -14,7 +14,7 @@ var async = require("async");
 export default class BulkSearch extends Component {
   state = {
     payload: null,
-    activeButton: 'bulkSearch', // sets default landing page
+    activeButton: 'fileSearch', // sets default landing page
     loading: false,
     bulk_search_text: '',
     bulk_search_results: null,
@@ -30,7 +30,8 @@ export default class BulkSearch extends Component {
   };
 
   test = () => {
-    console.log(JSON.stringify(this.state.reverse_records))
+    console.log(`File: ${JSON.stringify(this.state.file)}`)
+    console.log(`File name: ${JSON.stringify(this.state.fileName)}`)
   }
 
   set_bulk_search = () => {
@@ -203,6 +204,17 @@ export default class BulkSearch extends Component {
         (
           <div>
             <Tab.Pane attached={false} inverted>
+
+            <Label
+                as='a'
+                color='green'
+                image
+                onClick={this.test}
+              >
+              <img src='hawk.png' /> Test
+              </Label>
+
+
               <Label
                 as='a'
                 color='green'
@@ -242,6 +254,7 @@ export default class BulkSearch extends Component {
                     readOnly
                     value={this.state.fileName}
                     // color='white'
+                    style={{color:'white'}}
                     inverted
                   />
 
@@ -267,15 +280,6 @@ export default class BulkSearch extends Component {
                 onClick={this.set_bulk_search}
               >
               <img src='hawk.png' /> Back to search
-              </Label>
-
-              <Label
-                as='a'
-                color='green'
-                image
-                onClick={this.test}
-              >
-              <img src='hawk.png' /> Test
               </Label>
 
               <Card.Group centered itemsPerRow="5" style={{ marginTop: "50px", textTransform: 'lowercase' }} className='domains'>
@@ -309,16 +313,6 @@ export default class BulkSearch extends Component {
                         console.log(`i am a ratoooor`)
                       }}
                     />
-                    {/* <Button 
-                      toggle
-                      inverted
-                      content='Favourite'
-                      icon={{ color: 'red', name: 'like' }}
-                      as='a'
-                      onClick={(event) => (
-                        console.log('testing')
-                      )}
-                    /> */}
                   </Card>    
                 ))}
               </Card.Group>
