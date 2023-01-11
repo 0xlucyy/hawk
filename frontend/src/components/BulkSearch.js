@@ -62,9 +62,6 @@ export default class BulkSearch extends Component {
       const response = await fetch('http://127.0.0.1:5000/api/v1/bulkSearch', {method: 'POST', body: params});
       const search_results = await response.json();
 
-      // Extract owner addresses from search_results
-      // put owners together correctly
-      // set rr state
       let owners = null
       async.forEachOf(search_results.domains, (value, key, callback) => {
         if (value.owner !== undefined && value.owner !== null) {
@@ -74,18 +71,17 @@ export default class BulkSearch extends Component {
       }, err => { if (err) console.error(err.message);}
       );
 
-
       await this.load_rr_data(owners)
       await this.setState({bulk_search_results: search_results})
       await this.setState({ activeButton: 'postSearch' });
 
       console.log(`[ACTION] State set to postSearch ...`)
-      // console.log(`[ACTION] Postsearch: ${JSON.stringify(this.state.post_search)} ...`)
     } else {
       console.log("text is ''")
     }
   }
 
+  // Only resets on frontend if value is '' not null
   clear_search_text = () => {
     this.setState({bulk_search_text: ''});
   }
@@ -102,11 +98,6 @@ export default class BulkSearch extends Component {
     console.log(`[ACTION] Set reverse records data ...`)
   }
 
-  print = (event) => {
-    console.log(`file name: ${this.state.fileName}`)
-    console.log(`file: ${JSON.stringify(this.state.file)}`)
-  }
-
   onFormSubmit = e => {
     e.preventDefault(); // Stop form submit
     console.log("[ACTION] Submitting form ...");
@@ -115,35 +106,35 @@ export default class BulkSearch extends Component {
 
   fileUpload = async file => {
     const formData = new FormData();
-    formData.append("file", file);
+    // formData.append("file", file, {filename: this.state.fileName, contentType: 'text/plain'});
+    formData.append("file", file, {filename: this.state.fileName, contentType: "multipart/form-data"});
+    let response
+
+    console.log(`Uploading file: ${JSON.stringify(file)}`)
 
     try {
-      axios.post("/file/upload/enpoint").then(response => {
-        console.log(response);
-        console.log(response.status);
-        // this.setState({ statusCode: response.status }, () => {
-        //   // console.log(
-        //   //   "This is the response status code --->",
-        //   //   this.state.statusCode
-        //   // );
-        // });
-      });
+      response = await fetch('http://127.0.0.1:5000/api/v1/handleSearchFile', {method: 'POST', body: formData});
     } catch (error) {
       console.error(Error(`Error uploading file ${error.message}`));
     }
+    console.log(`fileupload Resp: ${JSON.stringify(response.json())}`)
   };
 
-  fileChange = e => {
-    this.setState(
-      { file: e.target.files[0], fileName: e.target.files[0].name },
-      () => {
-        console.log(
-          "[ACTION] File chosen --->",
-          this.state.file,
-          console.log("File name  --->", this.state.fileName)
-        );
-      }
-    );
+  fileChange = async e => {
+    const reader = new FileReader()
+    reader.onload = async (e) => { 
+      const text = (e.target.result)
+      console.log(`Text: ${text} ...`)
+      alert(text)
+      await this.setState(
+        { file: text, fileName: e.target.files[0].name }
+      );
+    };
+    reader.readAsText(e.target.files[0])
+
+    // await this.setState(
+    //   { file: text, fileName: e.target.files[0].name }
+    // );
   };
 
 
@@ -249,13 +240,16 @@ export default class BulkSearch extends Component {
                   />
                   <Form.Input
                     fluid
-                    label="File Chosen: "
+                    // label="File Chosen: "
                     placeholder="Use the above bar to browse your file system"
                     readOnly
                     value={this.state.fileName}
                     // color='white'
                     style={{color:'white'}}
                     inverted
+                    onChange={ (event) => {
+                      this.setState({ days: event.target.value });
+                    }} 
                   />
 
                   <Button style={{ marginTop: "20px" }} type="submit">

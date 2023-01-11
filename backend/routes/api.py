@@ -28,6 +28,7 @@ from backend.src.scripts import (
     build_watchlist,
     populate_domains
 )
+import json
 # import pdb; pdb.set_trace()
 
 
@@ -220,7 +221,6 @@ def getETHGasCosts():
 def getReverseRecords():
     # Ex of addresses: "toro,lobo,testing,domainNames"
     not_clean_addresses = (request.form.get('addresses')).split(',')
-
     try:
         resp = get_reverse_record(not_clean_addresses)
         app.logger.info(f"[API] resp: {resp}")
@@ -304,6 +304,30 @@ def bulkSearch():
             'domains': [domain.__dict__ for domain in found],
             'status_code': 200
         })
+
+
+@app.route(f'{app.config["API_URI"]}/handleSearchFile', methods=['GET', 'POST'])
+def handleSearchFile():
+    bulk_seach_file = request.files.get('file')
+    data = bulk_seach_file.stream.readlines()
+    domains = []
+
+    for x in data:
+        # import pdb; pdb.set_trace()
+        word = x.decode("utf-8") 
+        word = word.replace('\n', '').strip()
+        domains.append((json.dumps(word, ensure_ascii=False).replace('"', "")))
+
+    import pdb; pdb.set_trace()
+
+    try:
+        resp = get_reverse_record(data)
+        app.logger.info(f"[API] resp: {resp}")
+    except(Exception) as e:
+        app.logger.error(f'Error: {e}')
+        return log_error(error=e)
+    else:
+        return resp
 
 
 # @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['GET'])
