@@ -16,7 +16,7 @@
 
 
 #### Doing
-- both: bulkSearch file upload.
+- both: bulkSearch file upload. check for file size and type.
 
 
 #### Hold/Backlog

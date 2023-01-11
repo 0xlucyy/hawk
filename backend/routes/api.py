@@ -309,25 +309,39 @@ def bulkSearch():
 @app.route(f'{app.config["API_URI"]}/handleSearchFile', methods=['GET', 'POST'])
 def handleSearchFile():
     bulk_seach_file = request.files.get('file')
+
+    if bulk_seach_file.mimetype != 'text/plain':
+        return {'error': 'Only text/plain files supported'}
+
     data = bulk_seach_file.stream.readlines()
     domains = []
+    not_printable = []
 
-    for x in data:
-        # import pdb; pdb.set_trace()
-        word = x.decode("utf-8") 
-        word = word.replace('\n', '').strip()
-        domains.append((json.dumps(word, ensure_ascii=False).replace('"', "")))
-
-    import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
+    # TODO Check for file type
+    # TODO Check for file size
 
     try:
-        resp = get_reverse_record(data)
-        app.logger.info(f"[API] resp: {resp}")
+        for x in data:
+            word = x.decode("utf-8").replace('\n', '').strip()
+            word = json.dumps(word, ensure_ascii=False).replace('"', "")
+            if word.isprintable() == True:
+                domains.append(word)
+            else:
+                not_printable.append(word)
+                app.logger.warning(f"[WARN] {word} is not printable ...")
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
-    else:
-        return resp
+
+    # try:
+    #     resp = get_reverse_record(data)
+    #     app.logger.info(f"[API] resp: {resp}")
+    # except(Exception) as e:
+    #     app.logger.error(f'Error: {e}')
+    #     return log_error(error=e)
+    # else:
+    return {'status_code': 200, 'domains': domains, "invalid": not_printable}
 
 
 # @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['GET'])

@@ -22,6 +22,7 @@ export default class BulkSearch extends Component {
     fileName: null,
     liked: null,
     reverse_records: null,
+    file_search_results: null,
 
     // Error related.
     error: false,
@@ -114,10 +115,11 @@ export default class BulkSearch extends Component {
 
     try {
       response = await fetch('http://127.0.0.1:5000/api/v1/handleSearchFile', {method: 'POST', body: formData});
+      console.log(`Resp: ${JSON.stringify(response)}`) 
+      console.log(`Resp: ${JSON.stringify(response.json())}`) 
     } catch (error) {
       console.error(Error(`Error uploading file ${error.message}`));
     }
-    console.log(`fileupload Resp: ${JSON.stringify(response.json())}`)
   };
 
   fileChange = async e => {
@@ -125,16 +127,13 @@ export default class BulkSearch extends Component {
     reader.onload = async (e) => { 
       const text = (e.target.result)
       console.log(`Text: ${text} ...`)
-      alert(text)
-      await this.setState(
-        { file: text, fileName: e.target.files[0].name }
-      );
+      // alert(text)
     };
     reader.readAsText(e.target.files[0])
 
-    // await this.setState(
-    //   { file: text, fileName: e.target.files[0].name }
-    // );
+    await this.setState(
+      { file: e.target.files[0], fileName: e.target.files[0].name }
+    );
   };
 
 
@@ -201,8 +200,7 @@ export default class BulkSearch extends Component {
                 color='green'
                 image
                 onClick={this.test}
-              >
-              <img src='hawk.png' /> Test
+              >Test
               </Label>
 
 
@@ -220,12 +218,12 @@ export default class BulkSearch extends Component {
 
               <div class="ui hidden section divider"></div>
 
-              <Form onSubmit={this.onFormSubmit}>
+              <Form onSubmit={this.onFormSubmit} inverted>
                 <Form.Field>
                 
-                  <label style={{color: 'white'}}>File input & upload</label>
+                  <label >File input & upload</label>
                   
-                  <Button as="label" htmlFor="file" type="button" animated="fade">
+                  <Button as="label" htmlFor="file" type="button" animated="fade" style={{color:'black'}}>
                     <Button.Content visible>
                       <Icon name="file" />
                     </Button.Content>
@@ -237,18 +235,21 @@ export default class BulkSearch extends Component {
                     id="file"
                     hidden
                     onChange={this.fileChange}
+                    // onChange={ (event) => {
+                    //   this.setState({ fileName: event.target.files[0].name, file: event.target.files[0] });
+                    // }} 
                   />
                   <Form.Input
                     fluid
-                    // label="File Chosen: "
+                    label="File Chosen"
                     placeholder="Use the above bar to browse your file system"
                     readOnly
                     value={this.state.fileName}
                     // color='white'
-                    style={{color:'white'}}
+                    // style={{color:'white'}}
                     inverted
                     onChange={ (event) => {
-                      this.setState({ days: event.target.value });
+                      this.setState({ fileName: event.target.files[0].name });
                     }} 
                   />
 
