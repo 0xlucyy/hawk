@@ -14,7 +14,7 @@ var async = require("async");
 export default class BulkSearch extends Component {
   state = {
     payload: null,
-    activeButton: 'fileSearch', // sets default landing page
+    activeButton: 'bulkSearch', // sets default landing page
     loading: false,
     bulk_search_text: '',
     bulk_search_results: null,
@@ -106,6 +106,7 @@ export default class BulkSearch extends Component {
   };
 
   fileUpload = async file => {
+    // debugger
     const formData = new FormData();
     // formData.append("file", file, {filename: this.state.fileName, contentType: 'text/plain'});
     formData.append("file", file, {filename: this.state.fileName, contentType: "multipart/form-data"});
@@ -123,13 +124,15 @@ export default class BulkSearch extends Component {
   };
 
   fileChange = async e => {
+    e.preventDefault(); // Stop form submit
     const reader = new FileReader()
-    reader.onload = async (e) => { 
-      const text = (e.target.result)
-      console.log(`Text: ${text} ...`)
-      // alert(text)
-    };
+    // reader.onload = async (e) => { 
+    //   const text = (e.target.result)
+    //   console.log(`Text: ${text} ...`)
+    //   // alert(text)
+    // };
     reader.readAsText(e.target.files[0])
+    // debugger
 
     await this.setState(
       { file: e.target.files[0], fileName: e.target.files[0].name }
@@ -154,8 +157,8 @@ export default class BulkSearch extends Component {
 
               <Button
                 secondary
-                onClick={this.set_file_search}
-                positive={this.state.activeButton === 'fileSearch'}>Load from File
+                // onClick={this.set_file_search}
+                positive={this.state.activeButton === 'fileSearch'}>Load from File (Coming Soon!)
               </Button>
             </Button.Group>
 

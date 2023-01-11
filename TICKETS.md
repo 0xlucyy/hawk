@@ -6,7 +6,6 @@
 - backend : add domain mint value to each domain
 - backend : add domain sales history to each domain
 - backend : search for domains in db with either starts_with or ends_with
-- backend : batch graphql calls
 - backend : automatic backup web3 provider if local node is offline
 
 - frontend: Home should include stats of total domains tracked, how many in each state (grace,expired,auction,free).
@@ -16,11 +15,13 @@
 
 
 #### Doing
-- both: bulkSearch file upload. check for file size and type.
+- backend : batch graphql calls
 
 
 #### Hold/Backlog
 - frontend: toggle between Deck/Cards and Table
+- frontend: bulkSearch file upload. check for file size and type.
+  - ISSUE: API recieving file contents, api is returning resp obj, but front end resp object missing resp from api.... weird bug
 
 
 #### Done
@@ -42,3 +43,4 @@
   - reverse records for addresses
   - mini view 
   - heart button toggled
+- backend: bulkSearch file upload endpoint. handles a text file.
