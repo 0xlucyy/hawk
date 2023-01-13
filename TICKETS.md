@@ -15,7 +15,7 @@
 
 
 #### Doing
-- backend : batch graphql calls
+
 
 
 #### Hold/Backlog
@@ -49,3 +49,5 @@
   - handles text file, single word per line.
   - verifies only text file is being sent
   - ensure that non-ascii is being read correctly
+- backend : batch graphql calls
+  - max total without subgraph fail is ~300

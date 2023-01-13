@@ -56,7 +56,6 @@ def populate_domains(file: str = app.config['WATCH_LOCATION']):
     added = []
     failed = []
     for domain, domain_metadata in payload.items():
-        # import pdb; pdb.set_trace()
         try:
             new_domain = models.Domains(**domain_metadata)
         except DomainModelDataTypeError as DMDTE:

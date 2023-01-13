@@ -37,6 +37,9 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     fails = []
 
     batched_graphql_calls = ''
+    batched_list = []
+    all_data = {}
+    index = 0
 
     ## Load abi from https://etherscan.io/address/0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85#code
     abiFile = json.load(open('./ethereum/abis/ENS_Base_Registrar.json'))
@@ -50,9 +53,20 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 
     # Iterate through all domains.
     for domain in payload_copy.keys():
+        ''' 
+            thegraphQL ens subgraph section.
+            subgraph cant handle more than 300 queries in one request.
+        '''
         url = DOMAIN_OWNER_BATCH.replace('labelName:"_NAME"', f'labelName:"{str(domain)}"').replace('_HASH', f'H{payload[domain]["hash"]}')
+        if index == 300:
+            batched_list.append(copy.deepcopy(batched_graphql_calls))
+            batched_graphql_calls = ''
+            index = -1 # Will adjust to 0
         batched_graphql_calls += url
 
+        '''
+            Gather metadata from smart contract section.
+        '''
         # Get domain name.
         payload[domain]['name'] = str(domain)
 
@@ -82,19 +96,38 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
             app.logger.error(f'OwnerOf_Error on {domain} - ' \
                             f'Hash {payload[domain]["hash"]} - ')
             fails.append(domain)
-            # batch calling graphql for owners, sent to none till then.
             payload[domain]['owner'] = None
         else:
             payload[domain]['owner'] = str(owner).lower()
+        index += 1
     
-    batched_graphql_calls = insert_str(batched_graphql_calls, '{', 1)
-    batched_graphql_calls = insert_str(batched_graphql_calls, '}', -1)
-    batched_graphql_calls = batched_graphql_calls.replace('\n\n\n\n', '\n')
-    resp = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": batched_graphql_calls})
-    data = resp.json()
+    # Append last few query calls & formalize queries for subgraph
+    batched_list.append(copy.deepcopy(batched_graphql_calls))
 
+    app.logger.info(f"[INFO] Making a total of {len(batched_list)} batched requests to thegraph ens subgraph ...")
+
+    # thegraphQL ens subgraph section
+    for batched_query in batched_list:
+        batched_query = insert_str(batched_query, '{', 1)
+        batched_query = insert_str(batched_query, '}', -1)
+        batched_query = batched_query.replace('\n\n\n\n', '\n')
+        app.logger.info(f"[ACTION] Making batched ens subgraph request ...")
+        resp = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": batched_query})
+        data = resp.json()
+        if 'error' not in data.keys():
+            all_data.update(copy.deepcopy(data['data']))
+        else:
+            app.logger.error(f"[ERROR] batched query failed. Error: {data}")
+
+    import pdb; pdb.set_trace()
+
+    # if 'error' not in data.keys():
     for domain in payload_copy.keys():
-        payload[domain]['owner'] = data['data'][f"H{payload[domain]['hash']}"][0]['registrant']['id']
+        try:
+            payload[domain]['owner'] = all_data[f"H{payload[domain]['hash']}"][0]['registrant']['id']
+        except Exception as err:
+            pass
+    import pdb; pdb.set_trace()
 
     app.logger.info(f"Domain metadata aquired...")
     app.logger.info(f'Fail Total {len(fails)} - Fail Queue {fails}')
@@ -217,6 +250,7 @@ def get_reverse_record(addresses: List[str] = None):
                 records[clean.lower()] = (rr[index][:-4]).lower()
             else:
                 records[clean.lower()] = None
+                # Set RR for address 0x822e70c9d887764e911ed43807E86cCA98f6A71c to 👨‍🦰 ...
             app.logger.info(f'Set RR for address {clean} to {rr[index][:-4]} ...')
         except Exception as error:
             records[clean] = None
@@ -242,4 +276,4 @@ def get_owner_graphql(domain_name: str = None):
             return owner.lower()
     except Exception as error:
         app.logger.error(f'get_owner_graphql error: {error}')
-        return app.config["ENS_BASE_REGISTRAR_MAINNET"]
+        return (app.config["ENS_BASE_REGISTRAR_MAINNET"]).lower()
