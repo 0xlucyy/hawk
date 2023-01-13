@@ -39,7 +39,8 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     batched_graphql_calls = ''
     batched_list = []
     all_data = {}
-    index = 0
+    failedIndex = 0
+    fails = []
 
     ## Load abi from https://etherscan.io/address/0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85#code
     abiFile = json.load(open('./ethereum/abis/ENS_Base_Registrar.json'))
@@ -54,23 +55,34 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     # Iterate through all domains.
     for domain in payload_copy.keys():
         ''' 
-            thegraphQL ens subgraph section.
             subgraph cant handle more than 300 queries in one request.
         '''
-        url = DOMAIN_OWNER_BATCH.replace('labelName:"_NAME"', f'labelName:"{str(domain)}"').replace('_HASH', f'H{payload[domain]["hash"]}')
-        if index == 300:
+        if failedIndex == 300:
             batched_list.append(copy.deepcopy(batched_graphql_calls))
             batched_graphql_calls = ''
-            index = -1 # Will adjust to 0
-        batched_graphql_calls += url
+            failedIndex = 0
 
         '''
             Gather metadata from smart contract section.
         '''
         # Get domain name.
         payload[domain]['name'] = str(domain)
+        
+        # Get domain owner.
+        try:
+            owner = base_registrar_contract.functions.\
+                    ownerOf(int(payload[domain]['hash'])).call()
+            payload[domain]['owner'] = str(owner).lower()
+        except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
+            app.logger.error(f"[ERROR] OwnerOf Name:{payload[domain]['name']} - Hash: {payload[domain]['hash']} ...")
+            payload[domain]['owner'] = None
+            url = DOMAIN_OWNER_BATCH.replace('labelName:"_NAME"', f'labelName:"{str(domain)}"').replace('_HASH', f'H{payload[domain]["hash"]}')
+            batched_graphql_calls += url
+            failedIndex += 1
+            fails.append(domain)
 
-        try: # Get domain availability.
+        # Get domain availability.
+        try:
             avail = base_registrar_contract.functions.\
                     available(int(payload[domain]['hash'])).call()
             payload[domain]['available'] = bool(avail)
@@ -78,35 +90,23 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
             app.logger.error(f'available on {domain} - Hash {payload[domain]["hash"]}')
             payload[domain]['available'] = False
 
-        try: # Get domain expiration.
+        # Get domain expiration.
+        try:
             expires = base_registrar_contract.functions.\
                         nameExpires(int(payload[domain]['hash'])).call()
         except(Exception) as e:
             app.logger.error(f'NameExpires_Error on {domain} - Hash {payload[domain]["hash"]}')
             payload[domain]['expiration'] = 'null'
-            fails.append(domain)
         else: # From int timestamp to datetime.datetime object.
             # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
             payload[domain]['expiration'] = datetime.fromtimestamp(expires) if expires != 0 else 'null'
 
-        try: # Get domain owner.
-            owner = base_registrar_contract.functions.\
-                    ownerOf(int(payload[domain]['hash'])).call()
-        except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
-            app.logger.error(f'OwnerOf_Error on {domain} - ' \
-                            f'Hash {payload[domain]["hash"]} - ')
-            fails.append(domain)
-            payload[domain]['owner'] = None
-        else:
-            payload[domain]['owner'] = str(owner).lower()
-        index += 1
-    
-    # Append last few query calls & formalize queries for subgraph
+    # Append last query calls, less than 300 in this batch.
     batched_list.append(copy.deepcopy(batched_graphql_calls))
 
     app.logger.info(f"[INFO] Making a total of {len(batched_list)} batched requests to thegraph ens subgraph ...")
 
-    # thegraphQL ens subgraph section
+    # Transformations and adjustments on bulk query, then request to ens subgraph.
     for batched_query in batched_list:
         batched_query = insert_str(batched_query, '{', 1)
         batched_query = insert_str(batched_query, '}', -1)
@@ -119,25 +119,25 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
         else:
             app.logger.error(f"[ERROR] batched query failed. Error: {data}")
 
-    import pdb; pdb.set_trace()
-
-    # if 'error' not in data.keys():
-    for domain in payload_copy.keys():
+    for domain in fails:
         try:
-            payload[domain]['owner'] = all_data[f"H{payload[domain]['hash']}"][0]['registrant']['id']
+            if all_data[f"H{payload[domain]['hash']}"] != []:
+                payload[domain]['owner'] = all_data[f"H{payload[domain]['hash']}"][0]['registrant']['id']
         except Exception as err:
             pass
-    import pdb; pdb.set_trace()
 
     app.logger.info(f"Domain metadata aquired...")
-    app.logger.info(f'Fail Total {len(fails)} - Fail Queue {fails}')
-
     return payload
 
 def insert_str(string, str_to_insert, index):
     return string[:index] + str_to_insert + string[index:]
 
 def ens_claw_update_domains(domains):
+    '''
+        Called in backend/src/scripts.py.
+        Params
+        - domains: db.Model.Domain .all() list
+    '''
     w3_obj = Web3_Base()
 
     abiFile = json.load(open('./ethereum/abis/ENS_Base_Registrar.json'))
@@ -147,15 +147,48 @@ def ens_claw_update_domains(domains):
         address=app.config["ENS_BASE_REGISTRAR_MAINNET"],
     )
 
+    '''
+        Have to prepare graphql data first.
+    '''
+    batched_graphql_calls = ''
+    batched_list = []
+    all_data = {}
+    index = 0
+
     for domain in domains:
-        print(f"Updating {domain.name} ...")
+        url = DOMAIN_OWNER_BATCH.replace('labelName:"_NAME"', f'labelName:"{str(domain.name)}"').replace('_HASH', f'H{domain.hash}')
+        if index == 300:
+            batched_list.append(copy.deepcopy(batched_graphql_calls))
+            batched_graphql_calls = ''
+            index = -1 # Will adjust to 0
+        batched_graphql_calls += url
+        index += 1
+        import pdb; pdb.set_trace()
+
+    for batched_query in batched_list:
+        batched_query = insert_str(batched_query, '{', 1)
+        batched_query = insert_str(batched_query, '}', -1)
+        batched_query = batched_query.replace('\n\n\n\n', '\n')
+        app.logger.info(f"[ACTION] Making batched ens subgraph request ...")
+        resp = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": batched_query})
+        data = resp.json()
+        if 'error' not in data.keys():
+            all_data.update(copy.deepcopy(data['data']))
+        else:
+            app.logger.error(f"[ERROR] batched query failed. Error: {data}")
+
+
+    for domain in domains:
+        app.logger.info(f"[INFO] Updating {domain.name} ...")
+
         try: # Get domain owner.
             owner = base_registrar_contract.functions.\
                     ownerOf(int(domain.hash)).call()
             owner = str(owner)
         except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
             app.logger.error(f'OwnerOf_Error on {domain.name} - Hash {domain.hash}')
-            owner = get_owner_graphql(domain.name)
+            # owner = get_owner_graphql(domain.name)
+            owner = None
 
         try: # Get domain availability.
             avail = base_registrar_contract.functions.\
