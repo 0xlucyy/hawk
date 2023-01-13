@@ -21,6 +21,8 @@
 #### Hold/Backlog
 - frontend: toggle between Deck/Cards and Table
 - frontend: bulkSearch file upload. check for file size and type.
+  - Check file size on frontend
+  - check file type on frontend
   - ISSUE: API recieving file contents, api is returning resp obj, but front end resp object missing resp from api.... weird bug
 
 
@@ -43,4 +45,7 @@
   - reverse records for addresses
   - mini view 
   - heart button toggled
-- backend: bulkSearch file upload endpoint. handles a text file.
+- backend: bulkSearch file upload endpoint
+  - handles text file, single word per line.
+  - verifies only text file is being sent
+  - ensure that non-ascii is being read correctly

@@ -191,6 +191,9 @@ def getPremium():
 
 @app.route(f'{app.config["API_URI"]}/getGraphData', methods=['GET'])
 def getGraphData():
+    '''
+    General graph search for queries in queries.py
+    '''
     from graphql.main import make_graphql_request
     _target = request.args.get('target')
     _domainName = request.args.get('domainName')
@@ -308,12 +311,15 @@ def bulkSearch():
 
 @app.route(f'{app.config["API_URI"]}/handleSearchFile', methods=['GET', 'POST'])
 def handleSearchFile():
+    '''
+    Accepts form txt data file. single line per work.
+    '''
     bulk_seach_file = request.files.get('file')
 
     if bulk_seach_file.mimetype != 'text/plain':
         return {'error': 'Only text/plain files supported'}
 
-    data = bulk_seach_file.stream.readlines()
+    payload = bulk_seach_file.stream.readlines()
     domains = []
     not_printable = []
 
@@ -322,14 +328,14 @@ def handleSearchFile():
     # TODO Check for file size
 
     try:
-        for x in data:
-            word = x.decode("utf-8").replace('\n', '').strip()
-            word = json.dumps(word, ensure_ascii=False).replace('"', "")
-            if word.isprintable() == True:
-                domains.append(word)
+        for domain in payload:
+            domain = domain.decode("utf-8").replace('\n', '').strip()
+            domain = json.dumps(domain, ensure_ascii=False).replace('"', "")
+            if domain.isprintable() == True:
+                domains.append(domain)
             else:
-                not_printable.append(word)
-                app.logger.warning(f"[WARN] {word} is not printable ...")
+                not_printable.append(domain)
+                app.logger.warning(f"[WARN] {domain} is not printable ...")
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)

@@ -15,6 +15,11 @@ from graphql.main import (
   make_graphql_request,
 )
 from backend.models.models import Domains
+from graphql.queries import (
+#   DOMAIN_ECO,
+#   REGISTRATIONS,
+  DOMAIN_OWNER,
+)
 # import pdb; pdb.set_trace()
 
 
@@ -23,10 +28,13 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     '''
     Gathers owner, expiration, & availability data 
     on domains.
+    Payload structure is outlined in watchlists/watch_clean.json
     '''
     w3_obj = Web3_Base()
     payload_copy = copy.deepcopy(payload)
     fails = []
+
+    batched_graphql_calls = ''
 
     ## Load abi from https://etherscan.io/address/0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85#code
     abiFile = json.load(open('./ethereum/abis/ENS_Base_Registrar.json'))
@@ -40,43 +48,73 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 
     # Iterate through all domains.
     for domain in payload_copy.keys():
+        # import pdb; pdb.set_trace()
+        url = DOMAIN_OWNER.replace('labelName:"_NAME"', f'labelName:"{str(domain)}"')
+        batched_graphql_calls += f'H{payload[domain]["hash"]}: {url}'
+        # batched_graphql_calls[f'H{payload[domain]["hash"]}'] = url
+
         # Get domain name.
         payload[domain]['name'] = str(domain)
 
-        try: # Get domain availability.
-            avail = base_registrar_contract.functions.\
-                    available(int(payload[domain]['hash'])).call()
-            payload[domain]['available'] = bool(avail)
-        except(Exception) as e:
-            app.logger.error(f'available on {domain} - Hash {payload[domain]["hash"]}')
-            payload[domain]['available'] = False
+        # try: # Get domain availability.
+        #     avail = base_registrar_contract.functions.\
+        #             available(int(payload[domain]['hash'])).call()
+        #     payload[domain]['available'] = bool(avail)
+        # except(Exception) as e:
+        #     app.logger.error(f'available on {domain} - Hash {payload[domain]["hash"]}')
+        #     payload[domain]['available'] = False
 
-        try: # Get domain expiration.
-            expires = base_registrar_contract.functions.\
-                        nameExpires(int(payload[domain]['hash'])).call()
-        except(Exception) as e:
-            app.logger.error(f'NameExpires_Error on {domain} - Hash {payload[domain]["hash"]}')
-            payload[domain]['expiration'] = 'null'
-            fails.append(domain)
-        else: # From int timestamp to datetime.datetime object.
-            # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
-            payload[domain]['expiration'] = datetime.fromtimestamp(expires) if expires != 0 else 'null'
+        # try: # Get domain expiration.
+        #     expires = base_registrar_contract.functions.\
+        #                 nameExpires(int(payload[domain]['hash'])).call()
+        # except(Exception) as e:
+        #     app.logger.error(f'NameExpires_Error on {domain} - Hash {payload[domain]["hash"]}')
+        #     payload[domain]['expiration'] = 'null'
+        #     fails.append(domain)
+        # else: # From int timestamp to datetime.datetime object.
+        #     # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
+        #     payload[domain]['expiration'] = datetime.fromtimestamp(expires) if expires != 0 else 'null'
 
-        try: # Get domain owner.
-            owner = base_registrar_contract.functions.\
-                    ownerOf(int(payload[domain]['hash'])).call()
-        except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
-            app.logger.error(f'OwnerOf_Error on {domain} - ' \
-                            f'Hash {payload[domain]["hash"]} - ')
-            fails.append(domain)
-            payload[domain]['owner'] = get_owner_graphql(domain)
-        else:
-            payload[domain]['owner'] = str(owner).lower()
+        # try: # Get domain owner.
+        #     owner = base_registrar_contract.functions.\
+        #             ownerOf(int(payload[domain]['hash'])).call()
+        # except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
+        #     app.logger.error(f'OwnerOf_Error on {domain} - ' \
+        #                     f'Hash {payload[domain]["hash"]} - ')
+        #     fails.append(domain)
+        #     payload[domain]['owner'] = get_owner_graphql(domain)
+        # else:
+        #     payload[domain]['owner'] = str(owner).lower()
     
+
+    test = '''{
+  HASH_NUMB: registrations(where:{labelName:"lobo", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
+  {
+    registrant{
+      id
+    }
+  }
+  HASH_NUMB2: registrations(where:{labelName:"r2-d2", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
+  {
+    registrant{
+      id
+    }
+  }
+}'''
+    batched_graphql_calls = insert_str(batched_graphql_calls, '{\n', 0)
+    batched_graphql_calls = insert_str(batched_graphql_calls, '\n}', -1)
+    batched_graphql_calls = batched_graphql_calls.strip('\n')
+    import requests
+    resp = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": test})
+    import pdb; pdb.set_trace()
+
     app.logger.info(f"Domain metadata aquired...")
     app.logger.info(f'Fail Total {len(fails)} - Fail Queue {fails}')
 
     return payload
+
+def insert_str(string, str_to_insert, index):
+    return string[:index] + str_to_insert + string[index:]
 
 def ens_claw_update_domains(domains):
     w3_obj = Web3_Base()
