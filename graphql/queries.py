@@ -88,12 +88,14 @@ DOMAIN_OWNER = '''
 # {'data': {'domains': [{'owner': {'id': '0x30321484937c8a5595a05fae7a698e2a2fc3e510'}}]}}
 
 DOMAIN_OWNER_BATCH = '''
-registrations(where:{labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
-{
-  registrant{
-    id
+
+  _HASH: registrations(where:{labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
+  {
+    registrant{
+      id
+    }
   }
-}
+
 '''
 
 REGISTRATIONS = '''

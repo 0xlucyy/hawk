@@ -236,6 +236,7 @@ arbok
 arcacontinental
 arcanine
 archaeopteryx
+archangel
 archduke
 archivo
 archivos
@@ -393,6 +394,7 @@ batería
 batman
 batsignal
 bautista
+bayonetta
 bb-8
 beast
 beaver
@@ -499,6 +501,7 @@ boogeyman
 boot
 boots
 booty
+bordeaux
 bose
 boss
 bostaff
@@ -509,6 +512,7 @@ botwars
 boudica
 bow
 bowser
+bowserjr
 boxing
 brachiosaurus
 brady
@@ -559,6 +563,7 @@ bumblebee
 buscador
 busy
 buttcoin
+butterfly
 butterfree
 buygift
 buzz
@@ -621,6 +626,7 @@ capitoline
 capitán
 capricornio
 captain
+captainfalcon
 captainginyu
 captainplanet
 cara
@@ -747,6 +753,7 @@ christine
 christopher
 christophercolumbus
 christy
+chrom
 chrono
 chub
 chuckschumer
@@ -766,6 +773,7 @@ cirugia
 cirugía
 cirujana
 cirujano
+citadel
 cityclub
 ciudaddeguatemala
 ciudaddemexico
@@ -788,6 +796,7 @@ cloack
 clog
 cloroxcompany
 close-up
+cloud
 cloud9
 cloudcenter
 clover
@@ -813,6 +822,7 @@ collection
 collective
 colleen
 colombia
+colossus
 columbus
 comadre
 comandante
@@ -847,6 +857,8 @@ concreto
 conflicto
 conner
 conquer
+conquerer
+conquers
 conservation
 constanza
 constelacion
@@ -882,6 +894,7 @@ coronado
 coronel
 corpus
 correa
+corrin
 cortes
 cortés
 cos
@@ -898,6 +911,7 @@ cot
 countdooku
 country
 courtside
+coyote
 cplusplus
 craft
 craig
@@ -919,6 +933,7 @@ cristobal
 cristóbal
 cromwell
 cronje
+cronos
 cross
 crouch
 crown
@@ -960,6 +975,8 @@ cyberpolicy
 cyberweapon
 cyclop
 cyclops
+cypher
+cypherpunk
 czech-republic
 czechrepublic
 cámara
@@ -970,6 +987,7 @@ cíclope
 cósmico
 daffyduck
 dagger
+daisy
 dakota
 dama
 damian
@@ -988,6 +1006,8 @@ dargon
 dario
 darkforged
 darkmatter
+darkpit
+darksamus
 darth
 darthbane
 darthmaul
@@ -1017,6 +1037,7 @@ deadoralive
 deadzone
 dean
 death
+deathstar
 debaucher
 dec
 deceiver
@@ -1058,6 +1079,7 @@ desierta
 desierto
 designers
 despoiler
+destroyer
 destructor
 destruir
 devastator
@@ -1073,6 +1095,7 @@ diana
 diciembre
 dictator
 dictatorship
+diddy
 diddykong
 diecinueve
 dieciocho
@@ -1171,10 +1194,12 @@ drakos
 drape
 draque
 dratini
+dreadnought
 dream
 dreamhack
 dreki
 drifter
+drmario
 droga
 drogas
 dronehub
@@ -1189,6 +1214,8 @@ drugz
 druk
 dryice
 duchess
+duckhunt
+dude
 duende
 duendecito
 duendes
@@ -1353,6 +1380,7 @@ excaliber
 excavar
 exclusive
 executive
+executor
 exeggcute
 exeggutor
 explosion
@@ -1430,12 +1458,15 @@ ficción
 fiereza
 fierro
 fifty-fifty
+fightclub
 figueroa
 filipinas
 filipino
 fin
+finalizer
 financiar
 fingers
+finisher
 finlandes
 finlandia
 finlandés
@@ -1491,8 +1522,11 @@ fren
 frenz
 fria
 friday
+friend
 friendly-looking
+friends
 frieza
+frigate
 frijolero
 frio
 frostborn
@@ -1544,6 +1578,7 @@ gandhi
 ganglord
 gangsta
 gangster
+ganondorf
 garcia
 garfield
 gargoyle
@@ -1587,6 +1622,7 @@ germania
 getlong
 gettingpaid
 ghidorah
+ghost
 ghoul
 giants
 gigante
@@ -1669,6 +1705,7 @@ green
 greg
 gregg
 gregory
+greninja
 greyson
 greywolf
 grievous
@@ -1727,6 +1764,7 @@ hammerhead
 han
 hand-made
 hannah
+hannibal
 hansel
 hansolo
 happybirthday
@@ -1828,9 +1866,11 @@ holandés
 hombre-lobo
 hombrelobo
 homekit
+homeone
 homer
 homersimpson
 honey
+hongkong
 hongos
 hornet
 horoscopo
@@ -1879,8 +1919,10 @@ ice
 ice-cold
 ice-cream
 iceage
+iceclimbers
 icecube
 icedragon
+iceman
 icici
 icicibank
 ick
@@ -1890,6 +1932,7 @@ idesofmarch
 idiota
 iglesias
 ignacio
+ike
 iker
 iliad
 illinois
@@ -1904,9 +1947,11 @@ impredecible
 impuesto
 impuestos
 imsure
+incineroar
 indeciso
 independientel
 indiana
+indianajones
 indigo
 industries
 inercia
@@ -1919,12 +1964,15 @@ inferno
 infernoexotic
 infierno
 infiernos
+infiltrator
 infinito
+inflation
 info
 informatica
 infosys
 ingles
 inglés
+inkling
 inmortal
 insaciable
 inscription
@@ -1965,6 +2013,7 @@ isaac
 isaacnewton
 isabel
 isabella
+isabelle
 isellm
 isidora
 island
@@ -1995,6 +2044,7 @@ jaguarwarrior
 jaime
 jamaal
 jamal
+jamesbond
 jameson
 jan
 janis
@@ -2103,6 +2153,7 @@ jugador2
 jugadora
 jugadora1
 jugadora2
+juggernaut
 jugo
 juice
 juicy
@@ -2147,6 +2198,7 @@ kazajistán
 keith
 kelpie
 kelvin
+ken
 kenia
 kennedy
 kenneth
@@ -2173,9 +2225,11 @@ king-of-kings
 king-size
 kingarthur
 kingboo
+kingdedede
 kingghidorah
 kingkai
 kingkong
+kingkrool
 kingler
 kingmaker
 kingofkings
@@ -2184,6 +2238,7 @@ kingofthejungle
 kingsguard
 kingslayer
 kingston
+kirby
 knew
 knight
 knucklehead
@@ -2198,6 +2253,7 @@ krabby
 kraft
 kraken
 krillin
+krishna
 kristie
 kristy
 kruger
@@ -2217,11 +2273,15 @@ laser
 lash
 last-minute
 lastjedi
+latina
+latino
 laura
 lauren
 lautaro
 law
 lawrence
+lawyer
+lawyers
 lays
 lazaro
 lazer
@@ -2275,10 +2335,12 @@ lindsay
 lindwurm
 lindwyrm
 lingo
+link
 linnormr
 lion
 lionheart
 lisa
+littlemac
 liung
 liveoak
 livy
@@ -2327,6 +2389,7 @@ lows
 lsd
 luana
 luca
+lucario
 lucas
 lucas🚀
 lucia
@@ -2334,6 +2397,7 @@ luciana
 luciano
 lucid
 lucifer
+lucina
 lucinda
 lucy
 lucía
@@ -2380,6 +2444,7 @@ magikarp
 magmar
 magnate
 magnemite
+magneto
 magneton
 magnus
 mago
@@ -2391,6 +2456,7 @@ mala
 malcom
 maldonado
 malena
+malevolence
 malgus
 mallory
 malo
@@ -2453,6 +2519,7 @@ mars
 marshall
 marte
 martes
+marth
 martin
 martina
 martinez
@@ -2516,9 +2583,11 @@ mercurio
 mercury
 meridian
 meridiano
+merkel
 mermaid
 merry
 meta
+metaknight
 metanfetamina
 metapod
 meteorite
@@ -2562,6 +2631,7 @@ mildred
 miles
 militaryelite
 milkyway
+millenniumfalcon
 miller
 millerlite
 mind-numbing
@@ -2628,6 +2698,7 @@ mota
 motherjones
 motion
 mouse
+mrgame&watch
 mrmine
 mrpopo
 mrsatan
@@ -2656,12 +2727,14 @@ musicbox
 mussolini
 mycelia
 mysterio
+mystique
 máximo
 méxico
 mía
 mítica
 música
 n64
+naboo
 nacionesunidas
 naga
 nahuatl
@@ -2701,6 +2774,7 @@ necrófago
 nectar
 negocio
 negocios
+negotiatior
 negra
 negro
 neha
@@ -2711,6 +2785,7 @@ neo
 neon
 neptune
 neptuno
+ness
 nestle
 neta
 network
@@ -2757,6 +2832,7 @@ nomames
 nomanches
 non-alcoholic
 non-violent
+nope
 noreste
 noroeste
 north
@@ -2816,6 +2892,7 @@ old-fashioned
 oldguard
 oligarch
 oligarchy
+olimar
 olivares
 olive
 oliver
@@ -2850,6 +2927,7 @@ orc
 orcs
 ore
 orge
+orgy
 origin
 ormr
 oro
@@ -2865,6 +2943,7 @@ otherlife
 otono
 otoño
 otto
+outrider
 owen
 owens
 oxigeno
@@ -2872,6 +2951,7 @@ oxxo
 oxígeno
 p0w
 pablo
+pac-man
 paciente
 pacientes
 padilla
@@ -2892,6 +2972,7 @@ palamino
 palatine
 palmero
 palpatine
+palutena
 pam
 pamela
 pan
@@ -2967,7 +3048,9 @@ photos
 physics
 pia
 piano
+picasso
 piccolo
+pichu
 pidgeot
 pidgeotto
 pidgey
@@ -2984,11 +3067,13 @@ pinche
 pinenuts
 pink
 pinsir
+piranhaplant
 piscis
 piso
 pisos
 pistola
 pistolas
+pit
 pixie
 pizza
 pizzas
@@ -3055,6 +3140,7 @@ pot
 potion
 potro
 pots
+power
 powers
 practicas
 practice
@@ -3119,6 +3205,7 @@ puta
 puto
 pyramid-of-the-moon
 pyramid-of-the-sun
+pyro
 python
 pythons
 púlsar
@@ -3184,6 +3271,7 @@ ready-made
 reagon
 rebeca
 rebecca
+rebelalliance
 rebujao
 rebujito
 reclutar
@@ -3244,10 +3332,12 @@ rhyhorn
 ricardo
 ricaro
 rice
+richter
 ricky
 rico
 riddle
 riddler
+ridley
 rig
 right
 rihanna
@@ -3259,7 +3349,9 @@ roberta
 roberto
 robertthebruce
 robin
+robot
 robotic
+robotics
 rock-n-roll
 rocket
 rockets
@@ -3279,9 +3371,11 @@ roman
 rome
 romina
 romo
+ronaldo
 rong
 rosa
 rosada
+rosalina&luma
 rose
 ross
 roxanna
@@ -3298,6 +3392,7 @@ ruth
 ryu
 sabado
 saber
+sabretooth
 sabrina
 sabuesoinfernal
 sacrifice
@@ -3319,6 +3414,7 @@ sam
 samantha
 sammy
 samuel
+samus
 sandshrew
 sandslash
 sangre
@@ -3371,6 +3467,7 @@ scooby
 scoobydoo
 scorpion
 scourge
+scream
 screenwriter
 screenwriters
 scripture
@@ -3457,6 +3554,7 @@ short-term
 shower
 shrapnel
 shrooms
+shulk
 shuttle
 shyguy
 sid
@@ -3469,11 +3567,13 @@ sigma
 sigmaalimentos
 sign-in
 signal
+silencer
 silvana
 silver
 silverbug
 simba
 simon
+simonbelmont
 simón
 sine
 singapur
@@ -3496,6 +3596,7 @@ sktt1
 skull
 skywalker
 slave
+slave1
 slaver
 slaverevolt
 slavetrader
@@ -3538,6 +3639,7 @@ softwareengineer
 sol
 solana
 solar
+solarsailer
 solarsystem
 solarwind
 soldado
@@ -3567,6 +3669,7 @@ spaceship
 spacesuit
 spacetime
 spade
+spaghetti
 spanish
 spanishempire
 spear
@@ -3603,7 +3706,10 @@ stalin
 stanley
 star
 starcraft
+stardestroyer
 stardust
+starfighter
+starfortress
 starlight
 starmie
 starry
@@ -3656,6 +3762,7 @@ sultan
 summer
 sun-kissed
 sunday
+sunfire
 sungod
 sungold
 superman
@@ -3665,6 +3772,7 @@ supernintendo
 supernova
 superpac
 supersexy
+supremacy
 supreme
 sur
 sureste
@@ -3732,18 +3840,22 @@ tequila
 terabyte
 terapia
 terapista
+terminator
 terra
 terraria
 terri
 terry
+tesla
 tesoro
 tess
 texan
 texans
 tezcatlipoca
 thanos
+thedude
 theeverchosen
 theintercept
+theo
 theodore
 therapy
 thersites
@@ -3763,6 +3875,7 @@ tiberius
 tiburon
 tiburón
 tickets
+tiefighter
 tien
 tienda
 tiendita
@@ -3801,6 +3914,7 @@ tonta
 tonto
 tony
 toolkits
+toonlink
 toothfairy
 torch
 toro
@@ -3812,6 +3926,7 @@ townhomes
 trabajador
 tracey
 traci
+tradefederation
 trailbreaker
 trainman
 travis
@@ -3968,6 +4083,7 @@ videl
 viento
 viernes
 vileplume
+villager
 vino
 vinte
 violet
@@ -4039,6 +4155,7 @@ whitney
 widowmaker
 widowswail
 wigglytuff
+wiifittrainer
 wildhammer
 will
 williams
@@ -4053,6 +4170,7 @@ windu
 wine
 wines
 wingedlion
+winklevoss
 winter
 winteriscoming
 wizard
@@ -4074,6 +4192,7 @@ woopig
 word-of-mouth
 wordofgod
 worgen
+world
 world-famous
 worldfair
 worm
@@ -4089,12 +4208,14 @@ wyatt
 wyoming
 wyvern
 x-ray
+x-wing
 xander
 xavier
 ximena
 xoxoxo
 xray
 xyz
+y-wing
 yamcha
 yaotl
 year-end
@@ -4110,6 +4231,7 @@ yolanda
 yoshi
 yottabyte
 youngking
+younglink
 youtubers
 yummi
 yummy
@@ -4124,6 +4246,7 @@ zeiss
 zelda
 zenith
 zeph
+zerosuitsamus
 zig
 zimbabue
 zimbabwe

@@ -21,8 +21,7 @@ domain watcher
 - Run `clean_file watch` to clean domain names; creates `watchlists/watch_clean.txt`.
 - Run `node ethereum/normalize.js >> watchlists/watch_clean.csv`; creates `watchlists/watch_clean.csv`.
 - Run `build_watchlist` to grab metadata of domain names by querying the Ethereum network; creates `watchlists/watch_clean.json`.
-- Run `create_database` to create `hawk` mysql database.
-- Run `python app.py` to create database tables. `TODO` Make this a script function + combine with create_database.
+- Run `create_database` to destroy existing hawk db if it exists, creates pristine `hawk` mysql database.
 - Run `populate_domains` to populate database with `watchlists/watch_clean.json` data.
 - Run `populate_markets` to populate database with `backend/utils/markets.json` data.
 
