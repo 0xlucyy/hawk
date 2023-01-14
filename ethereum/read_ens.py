@@ -10,17 +10,16 @@ from web3.exceptions import TimeExhausted, ContractLogicError
 from backend.utils.utils import (
     app,
     post_to_db,
-    apply_hashes_to_payload
+    insert_str
+)
+from backend.models.models import Domains
+# TheGraph ENS subgraph sectio
+from graphql.queries import (
+  DOMAIN_OWNER,
+  DOMAIN_OWNER_BATCH
 )
 from graphql.main import (
   make_graphql_request,
-)
-from backend.models.models import Domains
-from graphql.queries import (
-#   DOMAIN_ECO,
-#   REGISTRATIONS,
-  DOMAIN_OWNER,
-  DOMAIN_OWNER_BATCH
 )
 # import pdb; pdb.set_trace()
 
@@ -134,9 +133,6 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     app.logger.info(f"Domain metadata aquired...")
     return payload
 
-def insert_str(string, str_to_insert, index):
-    return string[:index] + str_to_insert + string[index:]
-
 def ens_claw_update_domains(domains):
     '''
         Called in backend/src/scripts.py.
@@ -152,37 +148,6 @@ def ens_claw_update_domains(domains):
         address=app.config["ENS_BASE_REGISTRAR_MAINNET"],
     )
 
-    '''
-        Have to prepare graphql data first.
-    '''
-    batched_graphql_calls = ''
-    batched_list = []
-    all_data = {}
-    index = 0
-
-    for domain in domains:
-        url = DOMAIN_OWNER_BATCH.replace('labelName:"_NAME"', f'labelName:"{str(domain.name)}"').replace('_HASH', f'H{domain.hash}')
-        if index == 300:
-            batched_list.append(copy.deepcopy(batched_graphql_calls))
-            batched_graphql_calls = ''
-            index = -1 # Will adjust to 0
-        batched_graphql_calls += url
-        index += 1
-        import pdb; pdb.set_trace()
-
-    for batched_query in batched_list:
-        batched_query = insert_str(batched_query, '{', 1)
-        batched_query = insert_str(batched_query, '}', -1)
-        batched_query = batched_query.replace('\n\n\n\n', '\n')
-        app.logger.info(f"[ACTION] Making batched ens subgraph request ...")
-        resp = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": batched_query})
-        data = resp.json()
-        if 'error' not in data.keys():
-            all_data.update(copy.deepcopy(data['data']))
-        else:
-            app.logger.error(f"[ERROR] batched query failed. Error: {data}")
-
-
     for domain in domains:
         app.logger.info(f"[INFO] Updating {domain.name} ...")
 
@@ -192,8 +157,8 @@ def ens_claw_update_domains(domains):
             owner = str(owner)
         except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
             app.logger.error(f'OwnerOf_Error on {domain.name} - Hash {domain.hash}')
-            # owner = get_owner_graphql(domain.name)
-            owner = None
+            owner = get_owner_graphql(domain.name)
+            # owner = None
 
         try: # Get domain availability.
             avail = base_registrar_contract.functions.\

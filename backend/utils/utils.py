@@ -163,6 +163,16 @@ def stringify(attribute: object) -> str:
 	except:
 		return attribute
 
+def insert_str(string, str_to_insert, index):
+    '''
+    Add character to any string
+    '''
+    try:
+        return string[:index] + str_to_insert + string[index:]
+    except Exception as error:
+        app.logger.error(f"Error: {error}")
+        return None
+
 def domain_status(expiration, grace, auction):
     now = datetime.now()
     if expiration == None:

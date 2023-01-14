@@ -1,8 +1,0 @@
-{
-  "domain.createdAt": "First mint ever - unix timestamp",
-  "registrations": {
-    "registrationDate": "Date domain was last registered",
-    "expiryDate": "Date domain expires.",
-    "registrant.id": "Address which last registered domain."
-  }
-}

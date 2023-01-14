@@ -16,6 +16,8 @@
 
 - backend/frontend: import all ens domains from a wallet, or group of wallets.
 
+- investigate whether its faster to get domain metadata from smart contracts or graphql. what conditions must be true to change our primary data source from ens smart contracts to thegraph ens subgraph protocol?
+
 
 #### Doing
 - backend : add domain history, such as mint value, transfers, sells.

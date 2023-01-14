@@ -19,6 +19,7 @@ from sqlalchemy.exc import IntegrityError
 from backend.utils.exceptions import (
     DomainModelDataTypeError
 )
+from dateutil.relativedelta import relativedelta
 # import pdb; pdb.set_trace()
 
 
@@ -155,9 +156,6 @@ def create_database():
 
     app.logger.info(f"Created {app.config['MYSQL_DB']} database...")
 
-    # db_connection.query("SHOW DATABASES")
-    # results = db_connection.use_result()
-
     # Creating all tables, then closing the connection.
     db.create_all()
     db_connection.close()
@@ -188,69 +186,26 @@ def clean_slate():
     print("--- %.2f seconds ---" % (time.time() - start_time))
 
 
-
-
-
-
-# # TODO ensure scripts below work as intended.
-# def update_domains():
-#     '''
-#         Full update on domains. Default source of domains
-#         is watchlists/watch.txt.
-#     '''
-#     start_time = time.time()
-#     get_hashes_cmd = 'node ethereum/normalize.js >> watchlists/watch_clean.csv'
-
-#     clean_file()
-#     subprocess.run(['sh', '-c', get_hashes_cmd])
-#     build_watchlist()
-#     refresh_domains()
-
-#     print("--- %.2f seconds ---" % (time.time() - start_time))
-
-
 def refresh_domains():
     '''
-        Partial update on domains. Default source of domains
-        is watchlists/watch_clean.json.
+        Updates all domains in domain table.
     '''
     start_time = time.time()
     domains = models.Domains.query.all()
     ens_claw_update_domains(domains)
     print("--- %.2f seconds ---" % (time.time() - start_time))
 
-    # for domain in domains:
-    #     app.logger.info(f"Working on {domain.name}...")
-    #     try:
-    #         import pdb; pdb.set_trace()
-    #         ens_claw_update_domains(domain)
-    #     except Exception as error:
-    #         app.logger.error(error)
-    #         failed += 1
-    #         failed_named.append(domain.name)
-    #         continue
 
-    #     try:
-    #         if domain is not None: # domain exists in db.
-    #             for key in update_keys:
-    #                 setattr(domain, key, payload[domain_name][key]) if key != 'expiration' else setattr(domain, key, (payload[domain_name][key]).upper())
-    #             setattr(domain, '_updated_at', datetime.now())
-    #             time_and_status = models.Domains.get_times_and_status(payload[domain_name]['expiration'])
-    #             for key,value in time_and_status.items():
-    #                 try:
-    #                     setattr(domain, key, value)
-    #                 except Exception as error:
-    #                     print(error)
-    #             post_to_db(just_commit=True)
-    #             domains_updated += 1
-    #         else: # domain does not exist in db.
-    #             new_domain = models.Domains(**domain_metadata)
-    #             post_to_db(data=new_domain)
-    #             domains_createad += 1
-    #     except DomainModelDataTypeError as DMDTE:
-    #         app.logger.error(DMDTE)
-    #         failed += 1
-    #         failed_named.append(domain_name)
-    # print(f"Total domains created: {domains_createad} - " \
-    #                 f"Total domains updated: {domains_updated} - " \
-    #                 f"Total failed: {failed}")
+def domain_auction_window():
+    '''
+
+    '''
+    start_time = datetime.now()
+    # Day that grace expires.
+    expiryDate_gte = start_time - relativedelta(days=120)
+    # Day that auction ends.
+    lessThan = start_time - relativedelta(days=app.config['ENS_GRACE_PERIOD'])
+    # import pdb; pdb.set_trace()
+    print(time.mktime(expiryDate_gte.timetuple()))
+    print(time.mktime(lessThan.timetuple()))
+domain_auction_window()

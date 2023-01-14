@@ -36,13 +36,13 @@ def make_graphql_request(query_target: str = None, domain_name: str = None):
   '''
   app.logger.info(f'Querying graphql. Target: {query_target} .. LableName: {domain_name} ...')
   try:
-    if query_target == "DOMAIN_ECO":
+    if query_target.upper() == "DOMAIN_ECO":
       url = DOMAIN_ECO.replace('labelName:"_NAME"', f'labelName:"{domain_name}"')
       response = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": url})
-    elif query_target == "REGISTRATIONS":
+    elif query_target.upper() == "REGISTRATIONS":
       url = REGISTRATIONS.replace('labelName:"_NAME"', f'labelName:"{domain_name}"')
       response = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": url})
-    elif query_target == "DOMAIN_OWNER":
+    elif query_target.upper() == "DOMAIN_OWNER":
       url = DOMAIN_OWNER.replace('labelName:"_NAME"', f'labelName:"{domain_name}"')
       response = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": url})
     else:

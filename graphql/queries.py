@@ -63,6 +63,7 @@ DOMAIN_RESOLVER = '''
 }
 '''
 
+# TODO Does not work, does not return sales.
 DOMAIN_EVENTS = '''
 {
   domains(where:{labelName:"_NAME"},first:1,block:{number_gte:9380410})

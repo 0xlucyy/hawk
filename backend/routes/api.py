@@ -192,7 +192,11 @@ def getPremium():
 @app.route(f'{app.config["API_URI"]}/getGraphData', methods=['GET'])
 def getGraphData():
     '''
-    General graph search for queries in queries.py
+    Generalized thegraph query'ing endpoint. 
+    
+    Ex./getGraphData?target=DOMAIN_ECO&domainName=lobo
+    
+    Possible targets: 
     '''
     from graphql.main import make_graphql_request
     _target = request.args.get('target')
@@ -207,6 +211,7 @@ def getGraphData():
         return log_error(error=e)
     else:
         return resp
+
 
 @app.route(f'{app.config["API_URI"]}/getETHGasCosts', methods=['GET'])
 def getETHGasCosts():

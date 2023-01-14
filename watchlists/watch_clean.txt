@@ -688,6 +688,7 @@ centaur
 centauro
 centauros
 centaurs
+center
 central
 centroafricana
 centroafricano
@@ -888,6 +889,7 @@ copérnico
 corea
 coreadelnorte
 coreadelsur
+cornerback
 cornpop
 corona
 coronado
@@ -1496,6 +1498,7 @@ forecasting
 forensic
 forever
 fortuna
+forward
 foton
 fotón
 fox
@@ -1646,6 +1649,7 @@ gloria
 gloton
 glotón
 gnome
+goal
 gobierno
 goblin
 goblins
@@ -1869,6 +1873,7 @@ homekit
 homeone
 homer
 homersimpson
+homerun
 honey
 hongkong
 hongos
@@ -2334,6 +2339,8 @@ lindo
 lindsay
 lindwurm
 lindwyrm
+linebacker
+linemen
 lingo
 link
 linnormr
@@ -3103,6 +3110,8 @@ poder
 poderosa
 poderoso
 point
+pointguard
+pointman
 poison
 pokeball
 pokemon
@@ -3141,6 +3150,7 @@ potion
 potro
 pots
 power
+powerforward
 powers
 practicas
 practice
@@ -3211,6 +3221,7 @@ pythons
 púlsar
 quantum
 quark
+quarterback
 quasar
 queen-size
 queenofthejungle
@@ -3384,6 +3395,7 @@ royalrumble
 ruben
 run-in
 runner-up
+runningback
 rusia
 ruso
 russell
@@ -3397,6 +3409,7 @@ sabrina
 sabuesoinfernal
 sacrifice
 sadness
+safety
 sagitario
 sahara
 sai
@@ -3548,6 +3561,7 @@ shockwave
 shoe
 shoes
 shooting
+shootingguard
 shootingstar
 shop
 short-term
@@ -3615,6 +3629,7 @@ slut
 sluty
 small-business
 smallbusiness
+smallforward
 smalls
 smartideas
 smartlife
@@ -3883,6 +3898,7 @@ tierra
 tifon
 tifón
 tiger
+tightend
 tigre
 tigres
 tigresa
@@ -3922,6 +3938,7 @@ torpedo
 torus
 toss-up
 totalitarianism
+touchdown
 townhomes
 trabajador
 tracey
