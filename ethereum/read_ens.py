@@ -31,6 +31,11 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     Gathers owner, expiration, & availability data 
     on domains.
     Payload structure is outlined in watchlists/watch_clean.json
+    Payload should always contain at least name and hash values
+    of a domain.
+    
+    Params:
+    - payload: 
     '''
     w3_obj = Web3_Base()
     payload_copy = copy.deepcopy(payload)

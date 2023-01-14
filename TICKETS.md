@@ -3,19 +3,25 @@
 #### Will do
 - backend : api limit
 - backend : add a highest bid ever stats on each domain, in weth
-- backend : add domain mint value to each domain
-- backend : add domain sales history to each domain
+- backend : display any current bids on doamins
 - backend : search for domains in db with either starts_with or ends_with
 - backend : automatic backup web3 provider if local node is offline
+
+- eth : explore SIWE
+- eth : explore hosting this app on eth.limo
+- eth : explore how to reg domains with metamask
 
 - frontend: Home should include stats of total domains tracked, how many in each state (grace,expired,auction,free).
 - frontend: pagination
 
-- both: import all ens domains from a wallet, or group of wallets.
+- backend/frontend: import all ens domains from a wallet, or group of wallets.
 
 
 #### Doing
-
+- backend : add domain history, such as mint value, transfers, sells.
+  - endpt accepts list of domains, returns info above.
+- frontend : work on individual domain layout
+  - https://ens.vision/name/lobo
 
 
 #### Hold/Backlog
@@ -51,3 +57,4 @@
   - ensure that non-ascii is being read correctly
 - backend : batch graphql calls
   - max total without subgraph fail is ~300
+  - only makes sense to batch calls in `ens_claw` and not in `ens_claw_update_domains`. in  `ens_claw_update_domains` domains are grabed from db, then code goes through each domain 1 by 1, updates the data, and saves the updated domain. There is no persistance of each domain. In `ens_claw` we have all domain data and know which domains failed `ownerOf`. we can batch the calls of only the domains that failed.
