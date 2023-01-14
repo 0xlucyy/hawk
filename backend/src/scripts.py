@@ -194,18 +194,3 @@ def refresh_domains():
     domains = models.Domains.query.all()
     ens_claw_update_domains(domains)
     print("--- %.2f seconds ---" % (time.time() - start_time))
-
-
-def domain_auction_window():
-    '''
-
-    '''
-    start_time = datetime.now()
-    # Day that grace expires.
-    expiryDate_gte = start_time - relativedelta(days=120)
-    # Day that auction ends.
-    lessThan = start_time - relativedelta(days=app.config['ENS_GRACE_PERIOD'])
-    # import pdb; pdb.set_trace()
-    print(time.mktime(expiryDate_gte.timetuple()))
-    print(time.mktime(lessThan.timetuple()))
-domain_auction_window()

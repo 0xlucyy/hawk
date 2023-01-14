@@ -1,6 +1,9 @@
+import time
 import requests
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 from graphql.queries import (
-  DOMAIN_ECO,
+  DOMAINS_IN_AUCTION,
   REGISTRATIONS,
   DOMAIN_OWNER,
 )
@@ -58,16 +61,16 @@ def make_graphql_request(query_target: str = None, domain_name: str = None):
     raise GraphQLRequestError(msg="Error requesting graphql.") from err
 
 
-def batch_graphql_requests(query_target: str = None, domain_name: str = None):
-  '''
-    Makes a request to
+def domain_auction_window():
+    '''
 
-    Parameters:
-        query_target - either 'domain' or 'history' queries.
-        domain_name - 'labelName' value of a domain.
-    Returns:
-        Returns 
-  '''
+    '''
+    start_time = datetime.now()
+    expiryDate_gte = start_time - relativedelta(days=120)
+    lessThan = start_time - relativedelta(days=app.config['ENS_GRACE_PERIOD'])
+    print(time.mktime(expiryDate_gte.timetuple()))
+    print(time.mktime(lessThan.timetuple()))
+domain_auction_window()
 
 # print(make_graphql_request(query_target='DOMAIN_ECO', domain_name='lobo'))
 # make_graphql_request(query_target='REGISTRATIONS', domain_name='lobo')

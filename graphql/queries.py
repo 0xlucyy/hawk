@@ -1,84 +1,60 @@
 # import pdb; pdb.set_trace()
-
-
 # TODO - unittests which validate json
 
-DOMAIN = """
-{
-  domains(where:{labelName:"_NAME"},first:1,block:{number_gte:9380410})
-  {
-    createdAt
-    owner {
-      id
-    }
-    events {
-      blockNumber
-      transactionID
-      __typename
-    }
-    resolver {
-      id
-      address
-      contentHash
-      addr{
-        id
-      }
-    }
-    resolvedAddress{
-      id
-    }
-  }
-}
-"""
 
-DOMAIN_ECO = """
-{
-  domains(where:{labelName:"_NAME"},first:1,block:{number_gte:9380410})
-  {
-    labelhash
-    events(orderBy: blockNumber) {
-      transactionID
-      __typename
-    }
-  }
-}
-"""
+'''
+  Returns all domains in auction.
 
-DOMAIN_RESOLVER = '''
+  Params:
+  - GREATER_THAN: 120 days ago from now(), in unix timestamp.
+  - LESS_THAN: 90 days ago from now(), in unix timestamp.
+  - SKIP: Used to paginate results.
+  - FIRST: Max results per response.
+'''
+DOMAINS_IN_AUCTION = '''
 {
-  domains(where:{labelName:"_NAME"},first:1,block:{number_gte:9380410})
+  registrations(
+    where:{
+        expiryDate_gte:GREATER_THAN,
+        expiryDate_lte:LESS_THAN
+    },
+    skip:SKIP,
+    first:FIRST,
+    block: {
+        number_gte:9380410
+    },
+    orderBy:expiryDate,
+    orderDirection:asc,
+  )
   {
-    resolver {
-      id
-      address
-      contentHash
-      addr{
-        id
-      }
-    }
-    resolvedAddress{
-      id
+    expiryDate
+    domain{
+        name
     }
   }
 }
 '''
 
-# TODO Does not work, does not return sales.
-DOMAIN_EVENTS = '''
-{
-  domains(where:{labelName:"_NAME"},first:1,block:{number_gte:9380410})
-  {
-    events {
-      transactionID
-      __typename
-    }
-  }
-}
-'''
 
+'''
+  Returns the current owner of a domain.
+
+  Params:
+  - _NAME: labelName of a domain, without .eth part.
+'''
 DOMAIN_OWNER = '''
 {
-  registrations(where:{labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
+  registrations(
+    where:{
+      labelName:"_NAME",
+      registrationDate_gte:1580409416
+    },
+    first:1,
+    block:{
+      number_gte:9380410
+    },
+    orderBy:registrationDate
+  )
   {
     registrant{
       id
@@ -86,18 +62,65 @@ DOMAIN_OWNER = '''
   }
 }
 '''
-# {'data': {'domains': [{'owner': {'id': '0x30321484937c8a5595a05fae7a698e2a2fc3e510'}}]}}
 
+
+'''
+  Looks up owners of a group of domains. Query is batched into
+  groups of 300, then those batches are added to a list of
+  batches, until there are no more domains to include.
+
+  See ethereum/read_ens.py::ens_claw for implementation. 
+
+  Params:
+  - _NAME: labelName of a domain, without .eth part.
+'''
 DOMAIN_OWNER_BATCH = '''
-
-  _HASH: registrations(where:{labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
+  _HASH: registrations(
+    where:{
+      labelName:"_NAME",
+      registrationDate_gte:1580409416
+    }, 
+    block:{
+      number_gte:9380410
+    },
+    orderBy:registrationDate
+  )
   {
     registrant{
       id
     }
   }
-
 '''
+
+
+# DOMAIN = """
+# {
+#   domains(where:{labelName:"_NAME"},first:1,block:{number_gte:9380410})
+#   {
+#     createdAt
+#     labelhash
+#     owner {
+#       id
+#     }
+#     events {
+#       blockNumber
+#       transactionID
+#       __typename
+#     }
+#     resolver {
+#       id
+#       address
+#       contentHash
+#       addr{
+#         id
+#       }
+#     }
+#     resolvedAddress{
+#       id
+#     }
+#   }
+# }
+# """
 
 REGISTRATIONS = '''
 {
@@ -115,27 +138,4 @@ REGISTRATIONS = '''
     }
   }
 }
-'''
-
-REGISTRATION_EVENTS = '''
-  registrations(where:{labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
-  {
-    events(orderBy: blockNumber) {
-      blockNumber
-      transactionID
-      __typename
-    }
-  }
-'''
-
-REGISTRATION_META = '''
-  registrations(where: {labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
-  {
-    expiryDate
-    registrationDate
-    cost
-    registrant {
-      id
-    }
-  }
 '''

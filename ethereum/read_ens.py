@@ -85,25 +85,25 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
             failedIndex += 1
             fails.append(domain)
 
-        # Get domain availability.
-        try:
-            avail = base_registrar_contract.functions.\
-                    available(int(payload[domain]['hash'])).call()
-            payload[domain]['available'] = bool(avail)
-        except(Exception) as e:
-            app.logger.error(f'available on {domain} - Hash {payload[domain]["hash"]}')
-            payload[domain]['available'] = False
+        # # Get domain availability.
+        # try:
+        #     avail = base_registrar_contract.functions.\
+        #             available(int(payload[domain]['hash'])).call()
+        #     payload[domain]['available'] = bool(avail)
+        # except(Exception) as e:
+        #     app.logger.error(f'available on {domain} - Hash {payload[domain]["hash"]}')
+        #     payload[domain]['available'] = False
 
-        # Get domain expiration.
-        try:
-            expires = base_registrar_contract.functions.\
-                        nameExpires(int(payload[domain]['hash'])).call()
-        except(Exception) as e:
-            app.logger.error(f'NameExpires_Error on {domain} - Hash {payload[domain]["hash"]}')
-            payload[domain]['expiration'] = 'null'
-        else: # From int timestamp to datetime.datetime object.
-            # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
-            payload[domain]['expiration'] = datetime.fromtimestamp(expires) if expires != 0 else 'null'
+        # # Get domain expiration.
+        # try:
+        #     expires = base_registrar_contract.functions.\
+        #                 nameExpires(int(payload[domain]['hash'])).call()
+        # except(Exception) as e:
+        #     app.logger.error(f'NameExpires_Error on {domain} - Hash {payload[domain]["hash"]}')
+        #     payload[domain]['expiration'] = 'null'
+        # else: # From int timestamp to datetime.datetime object.
+        #     # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
+        #     payload[domain]['expiration'] = datetime.fromtimestamp(expires) if expires != 0 else 'null'
 
     # Append last query calls, less than 300 in this batch.
     batched_list.append(copy.deepcopy(batched_graphql_calls))
