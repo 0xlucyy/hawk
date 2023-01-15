@@ -29,12 +29,11 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     '''
     Gathers owner, expiration, & availability data 
     on domains.
-    Payload structure is outlined in watchlists/watch_clean.json
-    Payload should always contain at least name and hash values
-    of a domain.
     
-    Params:
-    - payload: 
+    Payload structure is outlined in watchlists/watch_clean.json
+    
+    Payload should always contain at least name and hash keys.
+    Paired from apply_hashes_to_payload to get name and hash keys.
     '''
     w3_obj = Web3_Base()
     payload_copy = copy.deepcopy(payload)
@@ -55,6 +54,7 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     )
 
     app.logger.info(f"Gathering metadata on {len(payload_copy.keys())} domains...")
+
 
     # Iterate through all domains.
     for domain in payload_copy.keys():
@@ -105,8 +105,9 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
             # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
             payload[domain]['expiration'] = datetime.fromtimestamp(expires) if expires != 0 else 'null'
 
-    # Append last query calls, less than 300 in this batch.
-    batched_list.append(copy.deepcopy(batched_graphql_calls))
+    if batched_graphql_calls != '':
+        # Append last query calls, less than 300 in this batch.
+        batched_list.append(copy.deepcopy(batched_graphql_calls))
 
     app.logger.info(f"[INFO] Making a total of {len(batched_list)} batched requests to thegraph ens subgraph ...")
 

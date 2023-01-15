@@ -195,7 +195,7 @@ def getGraphData():
     Generalized thegraph query'ing endpoint. 
     
     Ex./getGraphData?target=DOMAIN_ECO&domainName=lobo
-    
+
     Possible targets: 
     '''
     from graphql.main import make_graphql_request
@@ -228,9 +228,11 @@ def getETHGasCosts():
 @app.route(f'{app.config["API_URI"]}/getReverseRecords', methods=['GET', 'POST'])
 def getReverseRecords():
     # Ex of addresses: "toro,lobo,testing,domainNames"
-    not_clean_addresses = (request.form.get('addresses')).split(',')
+
+    # not_clean_domains = (request.form.get('domains')).split(',')
+    not_clean_domains = (request.form.get('addresses')).split(',')
     try:
-        resp = get_reverse_record(not_clean_addresses)
+        resp = get_reverse_record(not_clean_domains)
         app.logger.info(f"[API] resp: {resp}")
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
@@ -289,11 +291,11 @@ def bulkSearch():
             get_hashes_cmd = f"node ethereum/normalize.js {' '.join(query_list)} >> watchlists/watch_clean.csv"
             subprocess.run(['sh', '-c', get_hashes_cmd])
 
-            build_watchlist() # Read from created json file.
+            build_watchlist() # Read from created csv file.
             added = populate_domains() # Populate with new domains
     
             found.extend(added)
-            app.logger.info(f"found 2: {found}")
+        app.logger.info(f"[STATUS2]: Found: {found}")
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
@@ -305,7 +307,7 @@ def bulkSearch():
                     del _domain.__dict__[key]
                 except:
                     pass
-        app.logger.info(f"found 3: {found}")
+        app.logger.info(f"[STATUS3]: Found: {found}")
         return jsonify({
             'added': not_found,
             'invalid': invalid,

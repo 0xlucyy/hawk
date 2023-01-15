@@ -2,22 +2,30 @@
 -666
 000
 0000
+0372
+0635
 0666
 0xaragorn
+0xcell
 0xchewbacca
 0xdooku
 0xdumbledore
+0xfrieza
 0xgaladriel
 0xgandalf
+0xgohan
+0xgoku
 0xgollum
 0xgrindelwald
 0xjade
 0xjoker
+0xkrillin
 0xlegolas
 0xluke
 0xmaul
 0xmorpheus
 0xnightwolf
+0xpiccolo
 0xplagueis
 0xraiden
 0xrex
@@ -27,36 +35,72 @@
 0xscorpion
 0xsidious
 0xsmoke
+0xtien
+0xtrunks
 0xvader
+0xvegeta
 0xvoldemort
 0xwoody
+0xyamcha
+1021
 111
 1111
 123
 1⃣2⃣
+2140
 222
 2222
+2243
+2386
+2460
+2491
+2711
+2890
+2924
 2pac
+3100
 333
 3333
+3443
 369
+372
+4156
+4178
 420
 420mph
 444
 4444
+4464
 49ers
 50-50
 50cent
+5217
+5314
 555
 5555
+5577
+5795
+5822
+5905
+6089
+6145
+635
 666
 6660
 6666
+6915
+6965
+7191
+7523
 777
 7777
 79ers
+8219
+8498
 888
 8888
+9265
+9280
 999
 9999
 aaron
@@ -153,6 +197,7 @@ aliado
 alice
 alicia
 alien
+aliens
 alistar
 all-in
 all-knowing
@@ -205,6 +250,8 @@ anarchy
 anasofia
 andrea
 andres
+android17
+android18
 andrés
 anfetas
 angel
@@ -229,6 +276,7 @@ antonia
 antonio
 anubis
 apasionado
+apes
 aphelios
 apollo
 apolo
@@ -342,11 +390,13 @@ aurelionsol
 aureola
 aurora
 austin
+austinpowers
 authoritarianism
 autobot
 autobots
 autocracy
 autumn
+avenged
 aventurero
 aviacion
 aviación
@@ -407,6 +457,7 @@ batería
 batman
 batsignal
 bautista
+bayc
 bayonetta
 bb-8
 beast
@@ -418,6 +469,7 @@ bee
 beedrill
 beelzebub
 beers
+beerus
 beginning
 behemot
 behemoth
@@ -544,6 +596,7 @@ brett
 brian
 brianna
 brick
+bridemaids
 bridget
 brine
 bringhomethebacon
@@ -553,6 +606,7 @@ brittany
 británico
 bro
 brock
+broly
 bronce
 brontosaurus
 bronzebeard
@@ -685,6 +739,7 @@ caterpie
 catmom
 catorce
 cattleman
+catwomen
 caza
 cazador
 cazadora
@@ -861,6 +916,7 @@ comic
 comics
 comida
 commander
+commanderinchief
 commodus
 commonwealth
 communism
@@ -964,6 +1020,7 @@ crown
 crucial
 cruda
 crudo
+cruiselines
 crush
 cruz
 cry
@@ -973,6 +1030,7 @@ cryptoaf
 cryptodeity
 cryptogod
 cryptome
+cryptopunks
 cráter
 cthulhu
 cuantico
@@ -1063,6 +1121,7 @@ deadzone
 dean
 death
 deathstar
+deathwing
 debaucher
 dec
 deceiver
@@ -1157,6 +1216,8 @@ doa
 doce
 doctor
 doctordoom
+doctorevil
+doctorstrange
 dodrio
 doduo
 dog
@@ -1503,6 +1564,7 @@ finlandes
 finlandia
 finlandés
 finn
+finneys
 fiora
 fire
 fireant
@@ -1620,6 +1682,7 @@ garcia
 garen
 garfield
 gargoyle
+garlicjr
 garry
 gary
 gas
@@ -1701,10 +1764,12 @@ godzilla
 goebbels
 gohan
 goku
+gokublack
 golbat
 gold
 goldbug
 goldeen
+golden
 goldenage
 goldencross
 golduck
@@ -1744,6 +1809,7 @@ greatest
 greatwolf
 grecia
 green
+greenday
 greg
 gregg
 gregory
@@ -1760,6 +1826,7 @@ grinch
 grindelwald
 gris
 grizzly
+groomsmen
 growlithe
 gruma
 grupobimbo
@@ -1852,6 +1919,7 @@ heliosfera
 heliosphere
 helium
 hell
+hellboy
 hellhound
 hemisferio
 hemisphere
@@ -1860,6 +1928,7 @@ hepa
 her
 hermana
 hermano
+hermione
 hermosa
 hermoso
 hernan
@@ -1933,6 +2002,7 @@ hotels
 hotline
 hound
 hounds
+house
 howard
 hubble
 hubert
@@ -2083,6 +2153,7 @@ jabbathehutt
 jack
 jackalope
 jackie
+jackoff
 jackson
 jaco
 jacobo
@@ -2096,6 +2167,7 @@ jamal
 jamesbond
 jameson
 jan
+jangofett
 janis
 janna
 japon
@@ -2165,6 +2237,7 @@ joe
 joe2
 joel
 john
+johnlocke
 johnnie
 johnny
 johnson
@@ -2231,6 +2304,7 @@ kabuto
 kabutops
 kadabra
 kaden
+kai
 kaisa
 kaiser
 kakuna
@@ -2301,9 +2375,11 @@ kingmaker
 kingofkings
 kingoftalk
 kingofthejungle
+kingpiccolo
 kingsguard
 kingslayer
 kingston
+kingvegeta
 kirby
 kled
 knew
@@ -2315,6 +2391,7 @@ koffing
 kogmaw
 kook
 koopa
+korin
 kotakmahindrabank
 kotaku
 krabby
@@ -2335,6 +2412,7 @@ lagonda
 lahabana
 lahache
 lamashtu
+land
 landlord
 lanzadera
 lapras
@@ -2397,6 +2475,7 @@ light
 lightforged
 lightning
 lightyear
+lightyears
 lili
 lilith
 lillia
@@ -2528,6 +2607,7 @@ magnus
 mago
 maite
 majesty
+majinbuu
 makenzie
 makeup
 mala
@@ -2618,6 +2698,7 @@ maríafernanda
 maríapaula
 massachusetts
 master
+masterdiver
 masterroshi
 masteryi
 mastretta
@@ -2782,6 +2863,7 @@ mota
 motherjones
 motion
 mouse
+mrfreeze
 mrgame&watch
 mrmine
 mrpopo
@@ -2823,6 +2905,7 @@ nacionesunidas
 naga
 nahuatl
 namacuix
+namekians
 nami
 nancy
 naomi
@@ -2907,6 +2990,7 @@ nidorino
 nig
 night
 nightelf
+nightking
 nilah
 nimodo
 nina
@@ -3041,6 +3125,7 @@ otto
 outrider
 owen
 owens
+owner
 oxigeno
 oxxo
 oxígeno
@@ -3135,6 +3220,7 @@ peru
 perú
 pete
 peter
+peterpan
 phatty
 philip
 phillip
@@ -3204,6 +3290,7 @@ pointman
 poison
 pokeball
 pokemon
+pokerroom
 pokémon
 pole
 polen
@@ -3411,6 +3498,7 @@ renault
 rene
 renekton
 rengar
+rentalhomes
 reporte
 reportes
 reptil
@@ -3429,6 +3517,7 @@ retriever
 reunion
 reunión
 revan
+revenge
 rex
 rey
 reyes
@@ -3472,6 +3561,7 @@ rodrigo
 rogelio
 roger
 rogue
+rogueone
 roja
 rojo
 rola
@@ -3599,6 +3689,7 @@ seaweed
 sebastian
 sebastián
 sec
+secretariat
 seda
 sedation
 sedo
@@ -3662,6 +3753,7 @@ shellder
 shelley
 shen
 shenlong
+shenron
 shield
 ship
 shipboy
@@ -3676,6 +3768,7 @@ shop
 short-term
 shower
 shrapnel
+shredder
 shrooms
 shulk
 shuttle
@@ -3699,6 +3792,7 @@ simba
 simon
 simonbelmont
 simón
+sinatra
 sine
 singapur
 singapurense
@@ -3723,6 +3817,7 @@ sktelecomt1
 sktt1
 skull
 skywalker
+slaughter
 slave
 slave1
 slaver
@@ -3773,6 +3868,7 @@ solarsystem
 solarwind
 soldado
 soledad
+solidsnake
 solo
 solstice
 solsticio
@@ -3781,6 +3877,7 @@ sombrero
 son
 sona
 song
+songoten
 sonia
 sonic
 sonreir
@@ -3820,6 +3917,7 @@ spirits
 splinter
 sponge
 spongebob
+spongebobsquarepants
 sportnews
 sports
 spot-check
@@ -3836,10 +3934,12 @@ stacey
 stalin
 stanley
 star
+starcommand
 starcraft
 stardestroyer
 stardust
 starfighter
+starfleet
 starfortress
 starlight
 starmie
@@ -3867,6 +3967,7 @@ stones
 storm
 stormtrooper
 stormwind
+strangelove
 stranger
 stratagem
 strategic
@@ -3905,6 +4006,7 @@ superpac
 supersexy
 supremacy
 supreme
+supremekai
 sur
 sureste
 surgeon
@@ -3993,10 +4095,13 @@ tezcatlipoca
 thanos
 thedude
 theeverchosen
+theforce
 theintercept
+thejedi
 theo
 theodore
 therapy
+theriddler
 thersites
 thiago
 thomas
@@ -4069,6 +4174,7 @@ trabajador
 tracey
 traci
 tradefederation
+tradeschool
 trailbreaker
 trainman
 travis
@@ -4266,8 +4372,10 @@ volibear
 voltaje
 voltorb
 voltron
+voodoo
 vortex
 voz
+vrgaming
 vulcan
 vulpix
 w-9
@@ -4294,6 +4402,7 @@ wave
 wavelength
 wayne
 weaponize
+weasley
 wednesday
 weedle
 weepinbell
@@ -4334,6 +4443,9 @@ wingedlion
 winklevoss
 winter
 winteriscoming
+witch
+witchcraft
+witchking
 wizard
 wizards
 wizkhalifa
@@ -4381,6 +4493,7 @@ xoxoxo
 xray
 xyz
 y-wing
+yajirobe
 yamcha
 yaotl
 yasuo
@@ -4408,6 +4521,7 @@ yvette
 yyds
 zac
 zack
+zamasu
 zapato
 zapatos
 zapdos
@@ -4415,6 +4529,7 @@ zed
 zeiss
 zelda
 zenith
+zeno
 zeph
 zeri
 zerosuitsamus
