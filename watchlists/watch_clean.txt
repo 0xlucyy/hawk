@@ -1,3 +1,4 @@
+
 -666
 000
 0000
@@ -60,6 +61,7 @@
 9999
 aaron
 aarón
+aatrox
 abc
 abel
 abigail
@@ -108,13 +110,16 @@ agustina
 agustín
 ah-teen
 ahorros
+ahri
 air
 airbender
 aire
 airs
 airways
 aitana
+akali
 akbar
+akshan
 ala
 alakazam
 alameda
@@ -148,6 +153,7 @@ aliado
 alice
 alicia
 alien
+alistar
 all-in
 all-knowing
 all-powerful
@@ -186,6 +192,7 @@ ametek
 ametralladora
 amir
 amor
+amumu
 amway
 amy
 américa
@@ -205,6 +212,7 @@ angelina
 angola
 animalplanet
 anita
+anivia
 ankylosaurus
 ann
 anna
@@ -221,6 +229,7 @@ antonia
 antonio
 anubis
 apasionado
+aphelios
 apollo
 apolo
 apophis
@@ -277,6 +286,7 @@ asalto
 ases
 asfalto
 ash
+ashe
 ashketchum
 ashley
 ashokathegreat
@@ -328,6 +338,7 @@ augustus
 aula
 aulas
 aurelian
+aurelionsol
 aureola
 aurora
 austin
@@ -349,6 +360,7 @@ axelrod
 azathoth
 azerbaiyan
 azerbaiyán
+azir
 aztecwarrior
 aztlan
 azucarnegra
@@ -376,6 +388,7 @@ barackobama
 barba
 barbara
 barco
+bard
 baron
 barry
 bartsimpson
@@ -415,6 +428,7 @@ bellaire
 belleza
 bello
 bellsprout
+belveth
 ben
 bender
 beneficio
@@ -470,6 +484,7 @@ blastoff
 blastoise
 bleak
 bling
+blitzcrank
 blitzwing
 bloodelf
 bloodsport
@@ -516,7 +531,9 @@ bowserjr
 boxing
 brachiosaurus
 brady
+brand
 brandy
+braum
 bravery
 brawl
 breakfast
@@ -584,6 +601,7 @@ caesar
 caesarion
 cafe
 café
+caitlyn
 calabera
 calderon
 caliente
@@ -599,6 +617,7 @@ camerun
 camerún
 camila
 camilia
+camille
 camilo
 campaign
 campamento
@@ -656,6 +675,7 @@ carter
 carvajal
 carvana
 cassie
+cassiopeia
 casusbelli
 cat
 catalina
@@ -745,6 +765,7 @@ chinita
 chiva
 chloe
 chocolate-covered
+chogath
 cholo
 chriscantino
 christ
@@ -889,6 +910,7 @@ copérnico
 corea
 coreadelnorte
 coreadelsur
+corki
 cornerback
 cornpop
 corona
@@ -1006,6 +1028,7 @@ danés
 daredevil
 dargon
 dario
+darius
 darkforged
 darkmatter
 darkpit
@@ -1196,12 +1219,14 @@ drakos
 drape
 draque
 dratini
+draven
 dreadnought
 dream
 dreamhack
 dreki
 drifter
 drmario
+drmundo
 droga
 drogas
 dronehub
@@ -1271,6 +1296,7 @@ egypt
 ejercito
 ejército
 ekans
+ekko
 elana
 eldragon
 eldragón
@@ -1284,6 +1310,7 @@ elf
 elguera
 elgüera
 elias
+elise
 elixir
 elizabeth
 elmer
@@ -1370,6 +1397,7 @@ etiopia
 etiopía
 euclid
 eva
+evelynn
 evilcorp
 ex-admiral
 ex-ceo
@@ -1395,6 +1423,7 @@ extraterrestre
 extraterrestrial
 extrovertido
 ezra
+ezreal
 fabiana
 fabrica
 fabricante
@@ -1457,6 +1486,7 @@ ferryman
 feud
 ficcion
 ficción
+fiddlesticks
 fiereza
 fierro
 fifty-fifty
@@ -1473,10 +1503,12 @@ finlandes
 finlandia
 finlandés
 finn
+fiora
 fire
 fireant
 firestone
 fisica
+fizz
 flamenco
 flare
 flareon
@@ -1568,6 +1600,7 @@ galadriel
 galaxia
 galaxy
 galileo
+galio
 gallardo
 galáctico
 gambit
@@ -1579,10 +1612,12 @@ gandalfthegrey
 gandalfthewhite
 gandhi
 ganglord
+gangplank
 gangsta
 gangster
 ganondorf
 garcia
+garen
 garfield
 gargoyle
 garry
@@ -1648,6 +1683,7 @@ gloom
 gloria
 gloton
 glotón
+gnar
 gnome
 goal
 gobierno
@@ -1686,6 +1722,7 @@ governor-elect
 gracchus
 grace
 gracias
+gragas
 granada
 grand
 grande
@@ -1696,6 +1733,7 @@ grassland
 grasslands
 gravedad
 graveler
+graves
 gravitacion
 gravitación
 gravitation
@@ -1749,6 +1787,7 @@ gusano
 gustavo
 guthrum
 guy
+gwen
 gyarados
 géminis
 güera
@@ -1798,9 +1837,11 @@ heaven
 heavens
 heavy-water
 hebrew
+hecarim
 hector
 hedon
 hegemon
+heimerdinger
 heinekenmexico
 heinekenméxico
 helen
@@ -1940,6 +1981,7 @@ ignacio
 ike
 iker
 iliad
+illaoi
 illinois
 immortals
 impaciente
@@ -2007,6 +2049,7 @@ invertir
 invierno
 irak
 iran
+irelia
 irene
 irlanda
 iron
@@ -2028,6 +2071,7 @@ isotrópico
 italia
 ivan
 ivanna
+ivern
 iverson
 ivory
 ivysaur
@@ -2053,12 +2097,15 @@ jamesbond
 jameson
 jan
 janis
+janna
 japon
 japones
 japonés
 japón
 jaquins
 jared
+jarvan
+jarvaniv
 jasmine
 jatt
 java
@@ -2068,6 +2115,7 @@ javier
 jax
 jaxx
 jay
+jayce
 jayde
 jazmin
 jazmín
@@ -2102,11 +2150,13 @@ jesuschrist
 jesús
 jetstream
 jeweler
+jhin
 jigglypuff
 jim
 jimena
 jimmie
 jimmy
+jinx
 jmp
 joanofarc
 joaquin
@@ -2181,8 +2231,10 @@ kabuto
 kabutops
 kadabra
 kaden
+kaisa
 kaiser
 kakuna
+kalista
 kami
 kane
 kangaroo
@@ -2193,11 +2245,17 @@ kara
 karina
 karl
 karlmarx
+karma
+karthus
+kassadin
 katana
 katanas
+katarina
 kate
 kathy
 katie
+kayle
+kayn
 kazajistan
 kazajistán
 keith
@@ -2206,11 +2264,13 @@ kelvin
 ken
 kenia
 kennedy
+kennen
 kenneth
 kenobi
 kering
 kerry
 kevin
+khazix
 kia
 kiara
 kid
@@ -2225,6 +2285,7 @@ kimberlyclark
 kimberlyclarkcorporation
 kimchi
 kimmie
+kindred
 king
 king-of-kings
 king-size
@@ -2244,12 +2305,14 @@ kingsguard
 kingslayer
 kingston
 kirby
+kled
 knew
 knight
 knucklehead
 koala
 kobe
 koffing
+kogmaw
 kook
 koopa
 kotakmahindrabank
@@ -2262,6 +2325,7 @@ krishna
 kristie
 kristy
 kruger
+ksante
 kylo
 kyloren
 labienus
@@ -2293,7 +2357,9 @@ lazer
 leaders
 leafstone
 leal
+leblanc
 lee
+leesin
 left
 legacy
 legend
@@ -2302,6 +2368,7 @@ lenin
 lenovo
 leo
 leon
+leona
 leonalado
 leonardo
 leonardodavinci
@@ -2332,6 +2399,7 @@ lightning
 lightyear
 lili
 lilith
+lillia
 lillian
 lima
 linda
@@ -2347,6 +2415,7 @@ linnormr
 lion
 lionheart
 lisa
+lissandra
 littlemac
 liung
 liveoak
@@ -2400,6 +2469,7 @@ lucario
 lucas
 lucas🚀
 lucia
+lucian
 luciana
 luciano
 lucid
@@ -2424,6 +2494,7 @@ lunes
 lung
 lupe
 luther
+lux
 luxury
 lynn
 léo
@@ -2468,7 +2539,9 @@ malgus
 mallory
 malo
 malparido
+malphite
 malware
+malzahar
 man
 mana
 managua
@@ -2480,6 +2553,7 @@ mankind
 mannuel
 manuel
 manuela
+maokai
 maquillaje
 maquinaria
 mar
@@ -2545,6 +2619,7 @@ maríapaula
 massachusetts
 master
 masterroshi
+masteryi
 mastretta
 matador
 mateo
@@ -2695,7 +2770,9 @@ moonstone
 moose
 morada
 morado
+mordekaiser
 morgan
+morgana
 morning
 morningglory
 morpheus
@@ -2746,6 +2823,7 @@ nacionesunidas
 naga
 nahuatl
 namacuix
+nami
 nancy
 naomi
 naples
@@ -2756,6 +2834,7 @@ naranja
 naranjo
 narendramodi
 nasa
+nasus
 natalia
 natasha
 nathan
@@ -2765,6 +2844,7 @@ nationalparks
 naturaleza
 nature
 naughty
+nautilus
 navidad
 naw
 nazi
@@ -2779,6 +2859,7 @@ necromancers
 necrophage
 necrófago
 nectar
+neeko
 negocio
 negocios
 negotiatior
@@ -2817,6 +2898,7 @@ nickel
 nicolas
 nicole
 nicolás
+nidalee
 nidoking
 nidoqueen
 nidoran
@@ -2825,6 +2907,7 @@ nidorino
 nig
 night
 nightelf
+nilah
 nimodo
 nina
 ninetales
@@ -2833,6 +2916,7 @@ nintendo
 nintendo64
 noam
 noche
+nocturne
 nolan
 nomadic
 nomames
@@ -2860,6 +2944,7 @@ nueve
 numbers
 nunchuck
 nunchucks
+nunu
 nwa
 oaks
 oath
@@ -2895,6 +2980,7 @@ ogre
 ogro
 ohtli
 oklahoma
+olaf
 old-fashioned
 oldguard
 oligarch
@@ -2935,8 +3021,10 @@ orcs
 ore
 orge
 orgy
+orianna
 origin
 ormr
+ornn
 oro
 osa
 osas
@@ -2987,6 +3075,7 @@ panaderia
 panadería
 panama
 panamá
+pantheon
 papel
 paper-clip
 paralaje
@@ -3137,6 +3226,7 @@ poolcorporation
 popcorn
 pope
 popeye
+poppy
 porkypig
 pornhistory
 portaaviones
@@ -3213,12 +3303,14 @@ purpleboy
 purplegirl
 puta
 puto
+pyke
 pyramid-of-the-moon
 pyramid-of-the-sun
 pyro
 python
 pythons
 púlsar
+qiyana
 quantum
 quark
 quarterback
@@ -3255,6 +3347,8 @@ raiders
 raids
 raindeer
 rainstorm
+rakan
+rammus
 ramon
 rampage
 randy
@@ -3306,12 +3400,17 @@ reina
 reinas
 reinounido
 rejoin
+reksai
 rekt
 relation
 relianceindustries
+rell
 renata
+renataglasc
 renault
 rene
+renekton
+rengar
 reporte
 reportes
 reptil
@@ -3354,6 +3453,7 @@ right
 rihanna
 rio
 rita
+riven
 river
 rnggod
 roberta
@@ -3393,6 +3493,7 @@ roxanna
 roy
 royalrumble
 ruben
+rumble
 run-in
 runner-up
 runningback
@@ -3402,6 +3503,7 @@ russell
 rusty
 ruth
 ryu
+ryze
 sabado
 saber
 sabretooth
@@ -3425,6 +3527,7 @@ salvadoreno
 salvadoreño
 sam
 samantha
+samira
 sammy
 samuel
 samus
@@ -3505,17 +3608,20 @@ seel
 seguimiento
 seis
 seiscientos
+sejuani
 selena
 self-check
 self-control
 self-respect
 selva
 sempiterno
+senna
 senor
 sensei
 sentimental
 sept
 septiembre
+seraphine
 serapis
 serena
 serene
@@ -3527,6 +3633,7 @@ sesenta
 setas
 setecientos
 setenta
+sett
 sex
 sexbeast
 sexcriminal
@@ -3538,6 +3645,7 @@ sexygirls
 seychelles
 señor
 shack
+shaco
 shakespeare
 shaman
 shannon
@@ -3552,6 +3660,7 @@ sheik
 shelby
 shellder
 shelley
+shen
 shenlong
 shield
 ship
@@ -3571,6 +3680,7 @@ shrooms
 shulk
 shuttle
 shyguy
+shyvana
 sid
 sideswipe
 sidious
@@ -3592,7 +3702,9 @@ simón
 sine
 singapur
 singapurense
+singed
 sinister
+sion
 siren
 sirena
 sirin
@@ -3601,8 +3713,10 @@ sistema
 sith
 sithlord
 sittingbull
+sivir
 six-foot
 six-pack
+skarner
 skateboard
 skimask
 sktelecomt1
@@ -3665,12 +3779,14 @@ solsticio
 somalia
 sombrero
 son
+sona
 song
 sonia
 sonic
 sonreir
 sonreír
 sophie
+soraka
 sorority
 soundwave
 south
@@ -3795,20 +3911,26 @@ surgeon
 suroeste
 susan
 susana
+swain
 sweets
 swindle
 switch
 sword
+sylas
 sylvester
 sylvia
 symbol
+syndra
 synthetic
 system
 sábado
 tah-neen
+tahmkench
 tailandes
 tailandia
 tailandés
+taliyah
+talon
 tan
 tangela
 tangent
@@ -3818,6 +3940,7 @@ tanya
 taquero
 target
 targets
+taric
 tasha
 tasker
 tataconsultancyservices
@@ -3832,6 +3955,7 @@ teamrocket
 teams
 tecate
 ted
+teemo
 tegucigalpa
 tela
 telcel
@@ -3881,6 +4005,7 @@ thrakena
 thrakos
 threat-of-violence
 threatofviolence
+thresh
 thunder
 thunderstorm
 thursday
@@ -3961,6 +4086,7 @@ tricks
 trillion
 trinidad
 trinity
+tristana
 triunfar
 triunfo
 troll
@@ -3970,8 +4096,10 @@ tropas
 truck-driver
 truco
 trucos
+trundle
 trunks
 trusts
+tryndamere
 tsar
 tucker
 tuesday
@@ -3987,6 +4115,8 @@ tutankhamun
 tutoria
 tutoría
 tweety
+twistedfate
+twitch
 tyga
 tyler
 typhon
@@ -3998,6 +4128,7 @@ u-turn
 u1tra
 ucrania
 ucranio
+udyr
 ufctickets
 ufo
 ufology
@@ -4028,6 +4159,7 @@ unviel
 uprising
 urano
 uranus
+urgot
 utopia
 uzbekistan
 uzbekistán
@@ -4053,14 +4185,19 @@ vanessa
 vanidoso
 vaporeon
 vaquero
+varus
 vassal
 vassals
 vatican
 vato
 vault
+vayne
 vegeta
+veigar
 veinte
 veinticinco
+vel'koz
+velkoz
 velociraptor
 vendedor
 vendedora
@@ -4085,6 +4222,8 @@ verity
 veronica
 veterana
 veterano
+vex
+vi
 viaappia
 viacom
 viaflaminia
@@ -4097,8 +4236,10 @@ victoria
 victreebel
 vida
 videl
+viego
 viento
 viernes
+viktor
 vileplume
 villager
 vino
@@ -4114,12 +4255,14 @@ virgo
 visionario
 vitalik1
 vitiate
+vladimir
 vladtheimpaler
 vodka
 voice
 void
 volcanes
 voldemort
+volibear
 voltaje
 voltorb
 voltron
@@ -4141,6 +4284,7 @@ warmaker
 warpath
 warren
 wartortle
+warwick
 wasabi
 wasp
 wasted
@@ -4218,6 +4362,7 @@ wormtongue
 wrestlemania
 writers
 wtf
+wukong
 wulf
 wuzetian
 wwe
@@ -4228,13 +4373,17 @@ x-ray
 x-wing
 xander
 xavier
+xayah
+xerath
 ximena
+xinzhao
 xoxoxo
 xray
 xyz
 y-wing
 yamcha
 yaotl
+yasuo
 year-end
 yellow
 yellowboy
@@ -4245,6 +4394,8 @@ yeti
 yoda
 yogibear
 yolanda
+yone
+yorick
 yoshi
 yottabyte
 youngking
@@ -4252,6 +4403,7 @@ younglink
 youtubers
 yummi
 yummy
+yuumi
 yvette
 yyds
 zac
@@ -4259,12 +4411,16 @@ zack
 zapato
 zapatos
 zapdos
+zed
 zeiss
 zelda
 zenith
 zeph
+zeri
 zerosuitsamus
 zig
+ziggs
+zilean
 zimbabue
 zimbabwe
 zodiaco
@@ -4278,6 +4434,7 @@ zoo
 zooko
 zorro
 zubat
+zyra
 ácido
 ádan
 águila
