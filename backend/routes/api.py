@@ -229,7 +229,6 @@ def getETHGasCosts():
 def getReverseRecords():
     # Ex of addresses: "toro,lobo,testing,domainNames"
 
-    # not_clean_domains = (request.form.get('domains')).split(',')
     not_clean_domains = (request.form.get('addresses')).split(',')
     try:
         resp = get_reverse_record(not_clean_domains)
@@ -245,7 +244,7 @@ def getReverseRecords():
 def bulkSearch():
     '''
     Accepts a string of domain names, seperated by commas.
-    Ex. "lobo,toro,testing,r2-d2"
+    Ex. "lobo,toro,testing,r2-d2,phoenix,trashdev"
     Returns all found domains.
     '''
     not_wanted = ['_created_at', '_last_activity_at', '_sa_instance_state', '_updated_at']
@@ -315,7 +314,8 @@ def bulkSearch():
             'status_code': 200
         })
 
-
+# TODO in backlog. endpt works, takes file, reads it, and returns correctly.
+# frontend isnt recieving the resp tho, very weird bug.
 @app.route(f'{app.config["API_URI"]}/handleSearchFile', methods=['GET', 'POST'])
 def handleSearchFile():
     '''
@@ -356,38 +356,6 @@ def handleSearchFile():
     # else:
     return {'status_code': 200, 'domains': domains, "invalid": not_printable}
 
-
-# @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['GET'])
-# def refreshDomains():
-#     # from ethereum.read_ens import get_premium
-#     try:
-#         print('test')
-#     except(Exception) as e:
-#         app.logger.error(f'Error: {e}')
-#         return log_error(error=e)
-#     else:
-#         return {'test': 'data'}
-
-
-# @app.route(f'{app.config["API_URI"]}/refreshDomains', methods=['PUT', 'PATCH'])
-# def refreshDomains():
-#     from ethereum.read_ens import ens_claw
-
-#     with open(f"{app.config['WATCH_LOCATION']}.json", 'r', encoding='utf8') as outfile:
-#         data = json.load(outfile)
-#     import pdb; pdb.set_trace()
-#     data = ens_claw(payload=data)
-#     import pdb; pdb.set_trace()
-#     print('SAVE MOCK INNTO DATA')
-
-
-# for param in request.args:
-#     if param != 'type' and param != 'page' and param !='search':
-#             opportunities = opportunities.filter(
-#                 getattr(Domains, param) == request.args.get(param)
-#             )
-
-# import pdb; pdb.set_trace()
 
 # for domain in all:
 #     status = domain_status(domain.expiration, domain.grace, domain.auction)

@@ -21,7 +21,10 @@
 
 #### Doing
 - backend : add domain history, such as mint value, transfers, sells.
-  - endpt accepts list of domains, returns info above.
+  - endpt accepts a string, a domain name.
+  - build with graphql first approach
+  - user clicks on a domain, all domain info should be dynaimcally loaded from thegraph.
+  - frontend takes user input (click on domain name), backend receives domain name and makes call to thegraph. backend respondes with domain history details & relevant metadata.
 - frontend : work on individual domain layout
   - https://ens.vision/name/lobo
 

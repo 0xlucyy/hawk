@@ -6,10 +6,10 @@
   Returns all domains in auction.
 
   Params:
-  - GREATER_THAN: 120 days ago from now(), in unix timestamp.
-  - LESS_THAN: 90 days ago from now(), in unix timestamp.
-  - SKIP: Used to paginate results.
-  - FIRST: Max results per response.
+  - GREATER_THAN (int): 120 days ago from now(), in unix timestamp.
+  - LESS_THAN (int) : 90 days ago from now(), in unix timestamp.
+  - SKIP (int): Used to paginate results.
+  - FIRST (int): Max results per response.
 '''
 DOMAINS_IN_AUCTION = '''
 {
@@ -40,7 +40,7 @@ DOMAINS_IN_AUCTION = '''
   Returns the current owner of a domain.
 
   Params:
-  - _NAME: labelName of a domain, without .eth part.
+  - _NAME (str): labelName of a domain, without .eth part.
 '''
 DOMAIN_OWNER = '''
 {
@@ -72,7 +72,7 @@ DOMAIN_OWNER = '''
   See ethereum/read_ens.py::ens_claw for implementation. 
 
   Params:
-  - _NAME: labelName of a domain, without .eth part.
+  - _NAME (str): labelName of a domain, without .eth part.
 '''
 DOMAIN_OWNER_BATCH = '''
   _HASH: registrations(
@@ -93,34 +93,37 @@ DOMAIN_OWNER_BATCH = '''
 '''
 
 
-# DOMAIN = """
-# {
-#   domains(where:{labelName:"_NAME"},first:1,block:{number_gte:9380410})
-#   {
-#     createdAt
-#     labelhash
-#     owner {
-#       id
-#     }
-#     events {
-#       blockNumber
-#       transactionID
-#       __typename
-#     }
-#     resolver {
-#       id
-#       address
-#       contentHash
-#       addr{
-#         id
-#       }
-#     }
-#     resolvedAddress{
-#       id
-#     }
-#   }
-# }
-# """
+'''
+  Returns all ens domains held in address
+  ETH_ADDRESS.
+
+  Params:
+  - ETH_ADDRESS (str): full ethereum address, including 0x.
+'''
+GET_ALL_DOMAINS = '''
+{
+  registrations(
+    where:{
+      registrant:"ETH_ADDRESS",
+      registrationDate_gte:1580409416
+    },
+    block:{
+      number_gte:9380410
+    },
+    orderBy:registrationDate
+  )
+  {
+    labelName
+  }
+}
+'''
+
+
+
+
+
+
+
 
 REGISTRATIONS = '''
 {
