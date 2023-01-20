@@ -16,7 +16,7 @@ from backend.models.models import Domains
 # TheGraph ENS subgraph sectio
 from graphql.queries import (
 #   DOMAIN_OWNER,
-  DOMAIN_OWNER_BATCH
+  DOMAIN_OWNERS_BATCH
 )
 from graphql.main import (
   make_graphql_request,
@@ -78,21 +78,12 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
                     ownerOf(int(payload[domain]['hash'])).call()
             payload[domain]['owner'] = str(owner).lower()
         except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
-            app.logger.error(f"[ERROR] OwnerOf Name:{payload[domain]['name']} - Hash: {payload[domain]['hash']} ...")
-            payload[domain]['owner'] = None
-            url = DOMAIN_OWNER_BATCH.replace('labelName:"_NAME"', f'labelName:"{str(domain)}"').replace('_HASH', f'H{payload[domain]["hash"]}')
+            app.logger.info(f"[INFO] Setting {payload[domain]['name']} owner to ENS_BASE_REGISTRAR_MAINNET ...")
+            payload[domain]['owner'] = app.config["ENS_BASE_REGISTRAR_MAINNET"]
+            url = DOMAIN_OWNERS_BATCH.replace('labelName:"_NAME"', f'labelName:"{str(domain)}"').replace('_HASH', f'H{payload[domain]["hash"]}')
             batched_graphql_calls += url
             failedIndex += 1
             fails.append(domain)
-
-        # Get domain availability.
-        try:
-            avail = base_registrar_contract.functions.\
-                    available(int(payload[domain]['hash'])).call()
-            payload[domain]['available'] = bool(avail)
-        except(Exception) as e:
-            app.logger.error(f'available on {domain} - Hash {payload[domain]["hash"]}')
-            payload[domain]['available'] = False
 
         # Get domain expiration.
         try:
@@ -117,19 +108,24 @@ def ens_claw(payload: Dict['str', dict] = None) -> Dict['str', dict]:
         batched_query = insert_str(batched_query, '}', -1)
         batched_query = batched_query.replace('\n\n\n\n', '\n')
         app.logger.info(f"[ACTION] Making batched ens subgraph request ...")
+
         resp = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": batched_query})
         data = resp.json()
         if 'error' not in data.keys():
+            app.logger.info(f"[INFO] Status: {resp.status_code} ...")
             all_data.update(copy.deepcopy(data['data']))
         else:
             app.logger.error(f"[ERROR] batched query failed. Error: {data}")
 
     for domain in fails:
         try:
+            owner = ''
             if all_data[f"H{payload[domain]['hash']}"] != []:
-                payload[domain]['owner'] = all_data[f"H{payload[domain]['hash']}"][0]['registrant']['id']
+                owner = all_data[f"H{payload[domain]['hash']}"][0]['registrant']['id']
+                app.logger.info(f"[INFO] Setting owner to {owner} ...")
+                payload[domain]['owner'] = owner
         except Exception as err:
-            pass
+            app.logger.error(f"[ERROR] Setting owner from graphql. Error: {err}")
 
     app.logger.info(f"Domain metadata aquired...")
     return payload

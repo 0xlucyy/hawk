@@ -37,7 +37,9 @@ DOMAINS_IN_AUCTION = '''
 
 
 '''
-  Returns the current owner of a domain.
+  Returns the current owner of a .eth TLD.
+  Block 16177964 contains first transaction for
+  ETH Registrar Controller contract.
 
   Params:
   - _NAME (str): labelName of a domain, without .eth part.
@@ -46,14 +48,12 @@ DOMAIN_OWNER = '''
 {
   registrations(
     where:{
-      labelName:"_NAME",
-      registrationDate_gte:1580409416
+      labelName:"_NAME"
     },
     first:1,
     block:{
-      number_gte:9380410
-    },
-    orderBy:registrationDate
+      number_gte:16177964
+    }
   )
   {
     registrant{
@@ -65,20 +65,20 @@ DOMAIN_OWNER = '''
 
 
 '''
-  Looks up owners of a group of domains. Query is batched into
+  Looks up owners of domains. Query is batched into
   groups of 300, then those batches are added to a list of
   batches, until there are no more domains to include.
 
   See ethereum/read_ens.py::ens_claw for implementation. 
 
   Params:
-  - _NAME (str): labelName of a domain, without .eth part.
+  - _HASH (str): keccak hash of domain, appended at index 0 with H.
+  - _NAME (str): labelName of a domain, ie .. without .eth part.
 '''
-DOMAIN_OWNER_BATCH = '''
+DOMAIN_OWNERS_BATCH = '''
   _HASH: registrations(
     where:{
-      labelName:"_NAME",
-      registrationDate_gte:1580409416
+      labelName:"_NAME"
     }, 
     block:{
       number_gte:9380410
@@ -94,23 +94,22 @@ DOMAIN_OWNER_BATCH = '''
 
 
 '''
-  Returns all ens domains held in address
-  ETH_ADDRESS.
+  Returns all ens domains held in an address.
 
   Params:
   - ETH_ADDRESS (str): full ethereum address, including 0x.
 '''
-GET_ALL_DOMAINS = '''
+ALL_DOMAINS = '''
 {
   registrations(
     where:{
-      registrant:"ETH_ADDRESS",
-      registrationDate_gte:1580409416
+      registrant:"ETH_ADDRESS"
     },
     block:{
       number_gte:9380410
     },
-    orderBy:registrationDate
+    orderBy:registrationDate,
+    orderDirection:asc,
   )
   {
     labelName
@@ -120,24 +119,89 @@ GET_ALL_DOMAINS = '''
 
 
 
+'''
+  Returns total onchain history of a domain.
+  Returns from oldest to newest transactions (asc).
 
-
-
-
-
-REGISTRATIONS = '''
+  Params:
+  - _NAME (str): labelName of a domain, ie .. without .eth part.
+'''
+DOMAIN_EVENTS = '''
 {
-  registrations(where:{labelName:"_NAME", registrationDate_gte: 1580409416}, block: {number_gte: 9380410}, orderBy: registrationDate)
+  registrations(
+    where:{
+      labelName:"_NAME"
+    },
+    block:{
+      number_gte:9380410
+    }
+  )
   {
-    expiryDate
-    registrationDate
-    cost
     registrant{
       id
     }
-    events(orderBy:blockNumber){
+    events(
+      where:{
+        blockNumber_gte:9380410
+      },
+      orderBy:blockNumber,
+      orderDirection:asc,
+    )
+    {
       transactionID
       __typename
+    }
+  }
+}
+'''
+
+
+'''
+  Returns domain owner & expiration.
+
+  Params:
+  - _NAME (str): labelName of a domain, ie .. without .eth part.
+'''
+DOMAIN_METADATA_BATCH = '''
+  _HASH: registrations(
+    where:{
+      labelName:"_NAME"
+    }, 
+    block:{
+      number_gte:9380410
+    },
+    orderBy:registrationDate
+  )
+  {
+    expiryDate
+    registrant{
+      id
+    }
+  }
+'''
+
+
+'''
+  Returns domain owner & expiration.
+
+  Params:
+  - _NAME (str): labelName of a domain, ie .. without .eth part.
+'''
+DOMAIN_METADATA = '''
+{
+  _HASH: registrations(
+    where:{
+      labelName:"_NAME"
+    }, 
+    block:{
+      number_gte:9380410
+    },
+    orderBy:registrationDate
+  )
+  {
+    expiryDate
+    registrant{
+      id
     }
   }
 }

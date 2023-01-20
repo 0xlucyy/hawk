@@ -35,10 +35,13 @@ class _Base(object):
     
     # GraphQL
     GRAPHQL_API_KEY = os.environ.get("GRAPHQL_API_KEY")
-    GRAPHQL_ENS_URL = f"https://gateway.thegraph.com/api/{GRAPHQL_API_KEY}/subgraphs/id/EjtE3sBkYYAwr45BASiFp8cSZEvd1VHTzzYFvJwQUuJx"
+    # GRAPHQL_ENS_URL = f"https://gateway.thegraph.com/api/{GRAPHQL_API_KEY}/subgraphs/id/EjtE3sBkYYAwr45BASiFp8cSZEvd1VHTzzYFvJwQUuJx"
+    GRAPHQL_ENS_URL = 'https://api.thegraph.com/subgraphs/name/ensdomains/ens'
 
     # Etherscan APIs
     ETHERSCAN_TOKEN = os.environ.get("ETHERSCAN_TOKEN")
+    ETHERSCAN_TX_SCAN = 'https://api.etherscan.io/api?module=account&action=txlistinternal&txhash=0x53bedcfc03842aabf0a910a173b3632f05dcb11985f4dee20f35553694b9015d&apikey={ETHERSCAN_TOKEN}'
+    ETHRSCAN_GET_GAS = 'https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey={API_TOKEN}'
 
     # Clean watch list settings.
     SPANISH_TILDES = ['á', 'é', 'í', 'ó', 'ú', 'ü', 'ñ']
@@ -70,7 +73,8 @@ class _Base(object):
 
     # Logging.
     LOGGING_DEBUG_LOCATION = os.path.dirname(__file__) + '/debug.log'
-    LOGGING_FORMAT = '[%(levelname)s] - %(name)s - %(asctime)s - %(funcName)s::%(lineno)d - %(message)s'
+    # LOGGING_FORMAT = '[%(levelname)s] - %(name)s - %(asctime)s - %(funcName)s::%(lineno)d - %(message)s'
+    LOGGING_FORMAT = '%(asctime)s %(levelname)-6s [%(filename)s::%(funcName)s():%(lineno)d] %(message)s'
     LOGGING_LEVEL =  logging.INFO
     SQLALCHEMY_ECHO = False
 
@@ -110,7 +114,7 @@ def set_logger():
                 'stream': 'ext://sys.stdout',  # Default is stderr
                 'formatter': 'default',
                 'level'    : 'INFO'
-            },            
+            },
             'wsgi': {
                 'class': 'logging.StreamHandler',
                 'stream': 'ext://flask.logging.wsgi_errors_stream',

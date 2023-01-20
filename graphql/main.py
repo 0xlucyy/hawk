@@ -4,7 +4,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from graphql.queries import (
   DOMAINS_IN_AUCTION,
-  REGISTRATIONS,
+  DOMAIN_EVENTS,
   DOMAIN_OWNER,
 )
 from backend.utils.utils import (
@@ -39,14 +39,14 @@ def make_graphql_request(query_target: str = None, domain_name: str = None):
   '''
   app.logger.info(f'Querying graphql. Target: {query_target} .. LableName: {domain_name} ...')
   try:
-    if query_target.upper() == "REGISTRATIONS":
-      url = REGISTRATIONS.replace('labelName:"_NAME"', f'labelName:"{domain_name}"')
+    if query_target.upper() == "DOMAIN_EVENTS":
+      url = DOMAIN_EVENTS.replace('labelName:"_NAME"', f'labelName:"{domain_name}"')
       response = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": url})
     elif query_target.upper() == "DOMAIN_OWNER":
       url = DOMAIN_OWNER.replace('labelName:"_NAME"', f'labelName:"{domain_name}"')
       response = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": url})
     else:
-      valid_values = ['REGISTRATIONS','DOMAIN_OWNER']
+      valid_values = ['DOMAIN_EVENTS','DOMAIN_OWNER']
       return {'msg':'invalid query_target value', 
               'valid_values':valid_values,
               'type':'str',
@@ -70,5 +70,5 @@ def domain_auction_window():
 # domain_auction_window()
 
 # print(make_graphql_request(query_target='DOMAIN_ECO', domain_name='lobo'))
-# make_graphql_request(query_target='REGISTRATIONS', domain_name='lobo')
+# make_graphql_request(query_target='EVENTS', domain_name='lobo')
 # make_graphql_request(query_target='DOMAIN_OWNER', domain_name='lobo')

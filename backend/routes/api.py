@@ -215,7 +215,8 @@ def getGraphData():
 
 @app.route(f'{app.config["API_URI"]}/getETHGasCosts', methods=['GET'])
 def getETHGasCosts():
-    url = f'https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey={app.config["ETHERSCAN_TOKEN"]}'
+    # url = f'https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey={app.config["ETHERSCAN_TOKEN"]}
+    url = app.config["ETHERSCAN_GET_GAS"].format(API_TOKEN=app.config['ETHERSCAN_TOKEN'])
     try:
         resp = requests.get(url)
     except(Exception) as e:
@@ -294,7 +295,6 @@ def bulkSearch():
             added = populate_domains() # Populate with new domains
     
             found.extend(added)
-        app.logger.info(f"[STATUS2]: Found: {found}")
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)

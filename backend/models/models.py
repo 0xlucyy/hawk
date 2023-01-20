@@ -21,7 +21,6 @@ class Domains(Base, Lockable):
     name = db.Column(db.VARCHAR(200), nullable=False)
     hash = db.Column(db.VARCHAR(100), unique=True, nullable=False)
     owner = db.Column(db.String(100), nullable=False)
-    available = db.Column(db.Boolean, nullable=False)
     status = db.Column(db.VARCHAR(50), nullable=False)
 
     # expiration = time expiration ends.
@@ -35,22 +34,21 @@ class Domains(Base, Lockable):
     orders = db.relationship('Orders', backref='domains') # 1 domain to many orders
 
     def __init__(self, name: str, owner: str, expiration: str,
-                 hash: str, available: bool):
+                 hash: str):
         if not isinstance(name, str):
             raise DomainModelDataTypeError(msg='Name must be a string.')
         if not isinstance(hash, str):
-            raise DomainModelDataTypeError(msg='Hash must be a string.')
-        if not isinstance(owner, str):
-            raise DomainModelDataTypeError(msg='Owner must be a string.')
-        if not isinstance(available, bool):
-            raise DomainModelDataTypeError(msg='Available must be a bool.')
+            raise DomainModelDataTypeError(msg='Hash must be a string or null')
+        if owner != None and type(owner) != str:
+            app.logger.error(f"Domain name: {name.lower()} ...")
+            app.logger.error(f"Owner: {owner} ... Type: {type(owner)} ...")
+            raise DomainModelDataTypeError(msg='models.py :: Owner must be a string ...')
         if not isinstance(expiration, str): # "YYYY-MM-DD HH:MM:SS"
             raise DomainModelDataTypeError(msg='Expiration must be a datetime string.')
 
         self.name = name.lower()
         self.owner = owner
         self.hash = hash
-        self.available = available
         self._created_at = datetime.now()
         self._updated_at = datetime.now()
         self._last_activity_at = datetime.now()

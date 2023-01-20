@@ -56,6 +56,7 @@ def populate_domains(file: str = app.config['WATCH_LOCATION']):
     
     added = []
     failed = []
+    app.logger.info(f"[INFO] Populating domains ...")
     for domain, domain_metadata in payload.items():
         try:
             new_domain = models.Domains(**domain_metadata)
@@ -76,6 +77,7 @@ def populate_domains(file: str = app.config['WATCH_LOCATION']):
                     f" - {failed}")
     return added
 
+from ethereum.replace import test
 def build_watchlist():
     '''
     Creates a json file of domains with metadata at WATCH_LOCATION
@@ -89,7 +91,8 @@ def build_watchlist():
     payload = {}
     # Dumps WATCH_LOCATION.csv into payload - Domain name & domain hash.
     payload = apply_hashes_to_payload(payload)
-    payload = ens_claw(payload)
+    # payload = ens_claw(payload)
+    payload = test(payload)
     with open(f"{app.config['WATCH_LOCATION']}.json", 'w', encoding='utf8') as outfile:
         json.dump(payload, outfile, indent=4, sort_keys=True, ensure_ascii=False, default=str)
 
