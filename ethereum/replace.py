@@ -96,6 +96,62 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 
 
 
+from siwe import SiweMessage
+from siwe.siwe import VerificationError, InvalidSignature, MalformedSession, DomainMismatch, ExpiredMessage, MalformedSession, NonceMismatch, NotYetValidMessage
+from dateutil.relativedelta import relativedelta
+import random
+web3 = Web3_Base()
+
+account = web3.w3.eth.account.privateKeyToAccount(app.config["NORDSTREAM2_PRIV_KEY"])
+
+try:
+  # addr = account.address
+  addr = '0xc342287e1059265016e0ec756971d44Ce85566CB'
+  now_dt = datetime.now()
+  iso_dt = now_dt.isoformat()
+  expiration = (now_dt + relativedelta(days=1))
+  exp_dt = expiration.isoformat()
+
+  message: SiweMessage = SiweMessage(message={
+    "domain": "127.0.0.1:7545",
+    "address": addr,
+    "statement": "Sign in with Ethereum to the app.",
+    # 'uri': 'http://geth.dappnode:8545',
+    'uri': 'http://127.0.0.1:7545',
+    "version": '1',
+    'chain_id': '1337',
+    'issued_at': iso_dt,
+    'expiration_time': exp_dt,
+    'nonce': random.randrange(000000000000, 999999999999)
+    }
+  )
+  import pdb; pdb.set_trace()
+  message.prepare_message()
+  # signed_message = web3.w3.eth.account.sign_message(message, private_key=app.config["NORDSTREAM2_PRIV_KEY"])
+  signed_message = web3.w3.eth.account.sign_message(message, private_key='5e26f25ef6d1ffd3881c82751d2ec7859b174ad0beb113ca3ef9df412e87d7b2')
+  message.verify(signature=addr)
+except ValueError:
+    # Invalid message
+    print("Authentication attempt rejected. Invalid message.")
+except NotYetValidMessage:
+    # The message is not yet valid
+    print("Authentication attempt rejected. The message is not yet valid.")
+except ExpiredMessage:
+    # The message has expired
+    print("Authentication attempt rejected. The message has expired.")
+except DomainMismatch:
+    print("Authentication attempt rejected. Domain mismatch.")
+except NonceMismatch:
+    print("Authentication attempt rejected. The nonce is not the expected one.")
+except MalformedSession as e:
+    # e.missing_fields contains the missing information needed for validation
+    print("Authentication attempt rejected. Missing fields")
+except InvalidSignature:
+    print("Authentication attempt rejected. Invalid signature.")
+except VerificationError:
+    # VerificationError
+    print("Authentication attempt rejected. Verification Error.")
+
 # def ens_claw_update_domains(domains):
 #     '''
 #         Called in backend/src/scripts.py.
