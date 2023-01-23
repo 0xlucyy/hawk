@@ -4695,6 +4695,8 @@ noble
 Scandinavia
 oldnorse
 norse
+norsemen
+northmen
 stead
 sovereign
 princely
@@ -4753,3 +4755,16 @@ zubat
 🦄🦄🦄
 ♦♦♦
 🌮🌮🌮
+harding
+explode
+toke
+lovely
+Berserker
+Berserkers
+slayer
+slayers
+killers
+clown
+circus
+smalls
+slay

@@ -86,7 +86,7 @@ class App extends React.Component {
   }
 
 
-  dismissError = async (e, value) => {
+  siwe = async (e, value) => {
     e.preventDefault();
     await onboard.connectWallet()
     // this.setState({ 
@@ -108,7 +108,7 @@ class App extends React.Component {
         <div class="ui hidden section divider"></div>
         <div class="ui hidden section divider"></div>
 
-        <Button onClick={this.dismissError}
+        <Button onClick={this.siwe}
           className="icon"
           labelPosition='left'>
           All Expired domains
