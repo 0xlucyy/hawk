@@ -31,7 +31,7 @@ class _Base(object):
 
     # Ethereum network connections.
     MAINNET_PROVIDER = os.environ.get("MAINNET_PROVIDER")
-    ROPSTEN_PROVIDER = os.environ.get("ROPSTEN_PROVIDER")
+    GOERLI_PROVIDER = os.environ.get("GOERLI_PROVIDER")
     
     # GraphQL
     GRAPHQL_API_KEY = os.environ.get("GRAPHQL_API_KEY")

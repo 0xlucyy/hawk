@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import Header from './Header.js';
-// import Footer from './Footer.js';
-// import Head from 'next/head';
 import { Container, Visibility, Sticky, Rail, Button } from 'semantic-ui-react';
 
 
@@ -26,6 +23,7 @@ export default class Layout extends Component {
 
     handleContextRef = contextRef => this.setState({ contextRef });
     handleUpdate = (e, { calculations }) => this.setState({ calculations });
+
 
     render() {
         const { calculations, contextRef } = this.state;
@@ -62,7 +60,6 @@ export default class Layout extends Component {
                     </Rail>
 
                     {/* This is required for all future props. */}
-                    {/* <Container fluid='true' textAlign='center'> */}
                     <Container textAlign='center'>
                         {this.props.children}
                     </Container>

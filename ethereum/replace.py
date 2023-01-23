@@ -39,28 +39,31 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 
   app.logger.info(f"Gathering metadata on {len(payload_copy.keys())} domains...")
 
-  # Iterate through all domains.
+  # Batch all queries into groups of 300, then add those groups to a list.
   for domain in payload_copy.keys():
     ''' 
         subgraph cant handle more than 300 queries in one request.
+        Add the 300 batched requests, and start working on the next
+        300.
     '''
     if batchIndex == 300:
       batched_list.append(copy.deepcopy(batched_graphql_calls))
       batched_graphql_calls = ''
       batchIndex = 0
 
+    # Prepare the URL and add to batched calls.
     url = DOMAIN_METADATA_BATCH.replace('labelName:"_NAME"', f'labelName:"{str(domain)}"').replace('_HASH', f'H{payload[domain]["hash"]}')
-    # app.logger.info(f"[INFO] Adding {domain} to batch ...")
     batched_graphql_calls += url
     batchIndex += 1
 
+  # Append last query calls, less than 300 in this batch.
   if batched_graphql_calls != '':
-    # Append last query calls, less than 300 in this batch.
     batched_list.append(copy.deepcopy(batched_graphql_calls))
 
   app.logger.info(f"[INFO] Making a total of {len(batched_list)} batched requests to thegraph ens subgraph ...")
 
-  # Transformations and adjustments on bulk query, then request to ens subgraph.
+
+  # Add outter brackets and normalize \n's, then make bulk query request.
   for batched_query in batched_list:
     batched_query = insert_str(batched_query, '{', 1)
     batched_query = insert_str(batched_query, '}', -1)
@@ -75,14 +78,18 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     else:
         app.logger.error(f"[ERROR] batched query failed. Error: {data}")
 
+  # Access respnse data from graphql ens subgraph.
   for domain in payload_copy.keys():
     try:
+      # Set domain name.
       payload[domain]['name'] = str(domain)
+      
+      # Set domain expiration & owner.
       if all_data[f"H{payload[domain]['hash']}"] != []:
         owner = all_data[f"H{payload[domain]['hash']}"][0]['registrant']['id']
-        expires = all_data[f"H{payload[domain]['hash']}"][0]['expiryDate']
+        expires = int(all_data[f"H{payload[domain]['hash']}"][0]['expiryDate'])
         payload[domain]['owner'] = owner
-        payload[domain]['expiration'] = datetime.fromtimestamp(int(expires)) if expires != 0 else 'null'
+        payload[domain]['expiration'] = datetime.fromtimestamp(expires) if expires != 0 else 'null'
       else:
         payload[domain]['owner'] = app.config["ENS_BASE_REGISTRAR_MAINNET"]
         payload[domain]['expiration'] = 'null'
@@ -95,62 +102,64 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
   return payload
 
 
+def siwe():
+  from siwe import SiweMessage
+  from siwe.siwe import VerificationError, InvalidSignature, MalformedSession, DomainMismatch, ExpiredMessage, MalformedSession, NonceMismatch, NotYetValidMessage
+  from dateutil.relativedelta import relativedelta
+  import random
+  web3 = Web3_Base()
 
-from siwe import SiweMessage
-from siwe.siwe import VerificationError, InvalidSignature, MalformedSession, DomainMismatch, ExpiredMessage, MalformedSession, NonceMismatch, NotYetValidMessage
-from dateutil.relativedelta import relativedelta
-import random
-web3 = Web3_Base()
+  account = web3.w3.eth.account.privateKeyToAccount(app.config["NORDSTREAM2_PRIV_KEY"])
 
-account = web3.w3.eth.account.privateKeyToAccount(app.config["NORDSTREAM2_PRIV_KEY"])
+  try:
+    # addr = account.address
+    addr = '0xc342287e1059265016e0ec756971d44Ce85566CB'
+    now_dt = datetime.now()
+    iso_dt = now_dt.isoformat()
+    expiration = (now_dt + relativedelta(days=1))
+    exp_dt = expiration.isoformat()
 
-try:
-  # addr = account.address
-  addr = '0xc342287e1059265016e0ec756971d44Ce85566CB'
-  now_dt = datetime.now()
-  iso_dt = now_dt.isoformat()
-  expiration = (now_dt + relativedelta(days=1))
-  exp_dt = expiration.isoformat()
+    message: SiweMessage = SiweMessage(message={
+      "domain": "127.0.0.1:7545",
+      "address": addr,
+      "statement": "Sign in with Ethereum to the app.",
+      # 'uri': 'http://geth.dappnode:8545',
+      'uri': 'http://127.0.0.1:7545',
+      "version": '1',
+      'chain_id': '1337',
+      'issued_at': iso_dt,
+      'expiration_time': exp_dt,
+      'nonce': random.randrange(000000000000, 999999999999)
+      }
+    )
+    import pdb; pdb.set_trace()
+    message.prepare_message()
+    # signed_message = web3.w3.eth.account.sign_message(message, private_key=app.config["NORDSTREAM2_PRIV_KEY"])
+    signed_message = web3.w3.eth.account.sign_message(message, private_key='5e26f25ef6d1ffd3881c82751d2ec7859b174ad0beb113ca3ef9df412e87d7b2')
+    message.verify(signature=addr)
+  except ValueError:
+      # Invalid message
+      print("Authentication attempt rejected. Invalid message.")
+  except NotYetValidMessage:
+      # The message is not yet valid
+      print("Authentication attempt rejected. The message is not yet valid.")
+  except ExpiredMessage:
+      # The message has expired
+      print("Authentication attempt rejected. The message has expired.")
+  except DomainMismatch:
+      print("Authentication attempt rejected. Domain mismatch.")
+  except NonceMismatch:
+      print("Authentication attempt rejected. The nonce is not the expected one.")
+  except MalformedSession as e:
+      # e.missing_fields contains the missing information needed for validation
+      print("Authentication attempt rejected. Missing fields")
+  except InvalidSignature:
+      print("Authentication attempt rejected. Invalid signature.")
+  except VerificationError:
+      # VerificationError
+      print("Authentication attempt rejected. Verification Error.")
+# siwe()
 
-  message: SiweMessage = SiweMessage(message={
-    "domain": "127.0.0.1:7545",
-    "address": addr,
-    "statement": "Sign in with Ethereum to the app.",
-    # 'uri': 'http://geth.dappnode:8545',
-    'uri': 'http://127.0.0.1:7545',
-    "version": '1',
-    'chain_id': '1337',
-    'issued_at': iso_dt,
-    'expiration_time': exp_dt,
-    'nonce': random.randrange(000000000000, 999999999999)
-    }
-  )
-  import pdb; pdb.set_trace()
-  message.prepare_message()
-  # signed_message = web3.w3.eth.account.sign_message(message, private_key=app.config["NORDSTREAM2_PRIV_KEY"])
-  signed_message = web3.w3.eth.account.sign_message(message, private_key='5e26f25ef6d1ffd3881c82751d2ec7859b174ad0beb113ca3ef9df412e87d7b2')
-  message.verify(signature=addr)
-except ValueError:
-    # Invalid message
-    print("Authentication attempt rejected. Invalid message.")
-except NotYetValidMessage:
-    # The message is not yet valid
-    print("Authentication attempt rejected. The message is not yet valid.")
-except ExpiredMessage:
-    # The message has expired
-    print("Authentication attempt rejected. The message has expired.")
-except DomainMismatch:
-    print("Authentication attempt rejected. Domain mismatch.")
-except NonceMismatch:
-    print("Authentication attempt rejected. The nonce is not the expected one.")
-except MalformedSession as e:
-    # e.missing_fields contains the missing information needed for validation
-    print("Authentication attempt rejected. Missing fields")
-except InvalidSignature:
-    print("Authentication attempt rejected. Invalid signature.")
-except VerificationError:
-    # VerificationError
-    print("Authentication attempt rejected. Verification Error.")
 
 # def ens_claw_update_domains(domains):
 #     '''

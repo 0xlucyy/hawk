@@ -188,3 +188,17 @@ def domain_status(expiration, grace, auction):
                 return app.config["DOMAIN_STATUS_IN_AUCTION"]
             else: # Grace period is not over.
                 return app.config["DOMAIN_STATUS_IN_GRACE"]
+
+
+def BASIC_TRANSACTION(w3: Web3 = None, address: str = None) -> dict:
+    print(f"Gas price: {w3.fromWei(w3.eth.gas_price, 'gwei')}")
+    print(f"Max Priority fee per gas: {w3.fromWei(w3.eth.max_priority_fee, 'gwei')}")
+    print(f"From: {address}")
+    print(f"Nonce: {w3.eth.get_transaction_count(address)}")
+
+    return {
+        'nonce': w3.eth.get_transaction_count(address),
+        'from': address,
+        'maxFeePerGas': w3.eth.gas_price, #w3.toWei(1, 'gwei'),
+        'maxPriorityFeePerGas': w3.eth.max_priority_fee, # w3.toWei(1, 'gwei'),
+    }

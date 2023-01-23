@@ -35,6 +35,8 @@ function days_between(date1, date2, view) {
     let day_str = days + " day" + (days > 1 ? "s " : "")
     let hr_str = hours + ' hr' + (hours > 1 ? "s " : "")
     let min_str = minutes + " min" + (minutes > 1 ? "s " : "")
+    // TODO BUG HERE WHEN ONLY MINUTES ARE LEFT
+    // Example: Grace expires in & 57 mins
     data = (days > 1 ? day_str : "") + (hours > 1 ? hr_str : "") + (minutes > 1 ? ` &  ${min_str}` : "")
   }
   return data

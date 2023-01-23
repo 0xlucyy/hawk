@@ -357,6 +357,13 @@ def handleSearchFile():
     return {'status_code': 200, 'domains': domains, "invalid": not_printable}
 
 
+@app.route(f'{app.config["API_URI"]}/siwe', methods=['GET', 'POST'])
+def siwe():
+    '''
+    Accepts form txt data file. single line per work.
+    '''
+    return {'data': 'WORKING'}
+
 # for domain in all:
 #     status = domain_status(domain.expiration, domain.grace, domain.auction)
 #     setattr(domain, 'status', status)

@@ -10,7 +10,8 @@ from web3.exceptions import TimeExhausted, ContractLogicError
 from backend.utils.utils import (
     app,
     post_to_db,
-    insert_str
+    insert_str,
+    BASIC_TRANSACTION
 )
 from backend.models.models import Domains
 # TheGraph ENS subgraph sectio

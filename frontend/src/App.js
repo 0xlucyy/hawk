@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  // Button,
+  Button,
   // Input,
   // Form,
   // Message,
@@ -17,10 +17,54 @@ import _Table from './components/Table.js';
 import BulkSearch from './components/BulkSearch';
 // import { Route, Routes } from "react-router-dom"
 
+
+import Onboard from '@web3-onboard/core'
+import injectedModule from '@web3-onboard/injected-wallets'
+
+const injected = injectedModule()
+
+const wallets = [injected]
+
+const chains = [
+    {
+      id: 1,
+      token: 'ETH',
+      label: 'Ethereum Mainnet',
+      rpcUrl: 'http://geth.dappnode:8545'
+    },
+    {
+      id: 137,
+      token: 'MATIC',
+      label: 'Matic Mainnet',
+      rpcUrl: 'https://matic-mainnet.chainstacklabs.com'
+    }
+  ]
+
+  const appMetadata = {
+    name: 'My App',
+    icon: '<SVG_ICON_STRING>',
+    logo: '<SVG_LOGO_STRING>',
+    description: 'My app using Onboard',
+    recommendedInjectedWallets: [
+      { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },
+      { name: 'MetaMask', url: 'https://metamask.io' }
+    ]
+  }
+
+const onboard = Onboard({
+    wallets,
+    chains,
+    appMetadata
+  })
+
+// const connectedWallets = await onboard.connectWallet()
+
+
+
 class App extends React.Component {
   state = {
     activeDataFormat: 'card', // table
-    activeItem: 'bulk search',
+    activeItem: 'home',
     payload: null,
     loading: false,
     timeout: 30,
@@ -44,11 +88,12 @@ class App extends React.Component {
 
   dismissError = async (e, value) => {
     e.preventDefault();
-    this.setState({ 
-      hidden: false,
-      error: true,
-      errorMessage: ''
-    });
+    await onboard.connectWallet()
+    // this.setState({ 
+    //   hidden: false,
+    //   error: true,
+    //   errorMessage: ''
+    // });
     console.log(`activeItem App:dismissError: ${this.state.activeItem}`);
   };
 
@@ -62,6 +107,12 @@ class App extends React.Component {
 
         <div class="ui hidden section divider"></div>
         <div class="ui hidden section divider"></div>
+
+        <Button onClick={this.dismissError}
+          className="icon"
+          labelPosition='left'>
+          All Expired domains
+        </Button>
 
         <Grid >
           <Grid.Row>
