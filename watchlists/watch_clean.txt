@@ -504,6 +504,8 @@ bentley
 beretta
 bergs
 bermuda
+berserker
+berserkers
 bertha
 best-known
 beta
@@ -869,6 +871,7 @@ cincinnatus
 cinco
 cincuenta
 cindy
+circus
 cirugia
 cirugía
 cirujana
@@ -902,6 +905,7 @@ cloud
 cloud9
 cloudcenter
 clover
+clown
 cloyster
 clyde
 co-own
@@ -1514,6 +1518,7 @@ executive
 executor
 exeggcute
 exeggutor
+explode
 explosion
 explosión
 exporta
@@ -1924,6 +1929,7 @@ hansel
 hansolo
 happybirthday
 happylife
+harding
 harihara
 harold
 haroldgodwinson
@@ -2415,6 +2421,7 @@ kidrock
 kill
 killer
 killerbee
+killers
 kills
 killz
 kilo
@@ -3090,9 +3097,11 @@ nope
 noreste
 noroeste
 norse
+norsemen
 north
 northeast
 northkorea
+northmen
 northside
 northstar
 northwest
@@ -3927,6 +3936,9 @@ slaver
 slaverevolt
 slavetrader
 slaving
+slay
+slayer
+slayers
 sled
 sleep
 sleepy
@@ -4261,6 +4273,7 @@ titus
 titán
 toad
 toga
+toke
 tom
 tomas
 tomb

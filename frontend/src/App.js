@@ -20,45 +20,43 @@ import BulkSearch from './components/BulkSearch';
 
 import Onboard from '@web3-onboard/core'
 import injectedModule from '@web3-onboard/injected-wallets'
+import { ethers } from 'ethers'
 
 const injected = injectedModule()
 
 const wallets = [injected]
 
 const chains = [
-    {
-      id: 1,
-      token: 'ETH',
-      label: 'Ethereum Mainnet',
-      rpcUrl: 'http://geth.dappnode:8545'
-    },
-    {
-      id: 137,
-      token: 'MATIC',
-      label: 'Matic Mainnet',
-      rpcUrl: 'https://matic-mainnet.chainstacklabs.com'
-    }
-  ]
-
-  const appMetadata = {
-    name: 'My App',
-    icon: '<SVG_ICON_STRING>',
-    logo: '<SVG_LOGO_STRING>',
-    description: 'My app using Onboard',
-    recommendedInjectedWallets: [
-      { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },
-      { name: 'MetaMask', url: 'https://metamask.io' }
-    ]
+  {
+    id: 1,
+    token: 'ETH',
+    label: 'Ethereum Mainnet',
+    rpcUrl: 'http://geth.dappnode:8545'
+  },
+  {
+    id: 137,
+    token: 'MATIC',
+    label: 'Matic Mainnet',
+    rpcUrl: 'https://matic-mainnet.chainstacklabs.com'
   }
+]
+
+const appMetadata = {
+  name: 'My App',
+  icon: '<SVG_ICON_STRING>',
+  logo: '<SVG_LOGO_STRING>',
+  description: 'My app using Onboard',
+  recommendedInjectedWallets: [
+    { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },
+    { name: 'MetaMask', url: 'https://metamask.io' }
+  ]
+}
 
 const onboard = Onboard({
-    wallets,
-    chains,
-    appMetadata
-  })
-
-// const connectedWallets = await onboard.connectWallet()
-
+  wallets,
+  chains,
+  appMetadata
+})
 
 
 class App extends React.Component {
@@ -69,6 +67,7 @@ class App extends React.Component {
     loading: false,
     timeout: 30,
     days: 0,
+    connectedWallet: null,
 
     // Error
     error: false,
@@ -88,13 +87,32 @@ class App extends React.Component {
 
   siwe = async (e, value) => {
     e.preventDefault();
-    await onboard.connectWallet()
-    // this.setState({ 
-    //   hidden: false,
-    //   error: true,
-    //   errorMessage: ''
-    // });
-    console.log(`activeItem App:dismissError: ${this.state.activeItem}`);
+    const connectedWallet = await onboard.connectWallet()
+
+    if (connectedWallet[0]) {
+      // create an ethers provider with the last connected wallet provider
+      const ethersProvider = await new ethers.providers.Web3Provider(
+        connectedWallet[0].provider,
+        'any'
+      )
+      let bal = await ethersProvider.getBalance(connectedWallet[0].accounts[0].address)
+      console.log(`Connected Address Balance: ${bal}`)
+      debugger
+      const signer = await ethersProvider.getSigner()
+      const msg = await signer.signMessage('Message')
+      console.log('Hold here to inspect debugger insight')
+    }
+    await this.setState({ connectedWallet })
+    console.log(`Connected Address: ${connectedWallet[0].accounts[0].address}`)
+    console.log(`Connected ENS Name: ${connectedWallet[0].accounts[0].ens.name}`)
+    console.log(`ConnectedWallets: ${connectedWallet}`);
+  };
+
+  disconnect = async (e, value) => {
+    e.preventDefault();
+    debugger
+    const disconnected = await onboard.disconnectWallet(this.state.connectedWallet)
+    console.log(`disconnected: ${disconnected}`);
   };
 
   render() {
@@ -111,7 +129,12 @@ class App extends React.Component {
         <Button onClick={this.siwe}
           className="icon"
           labelPosition='left'>
-          All Expired domains
+          SIWE
+        </Button>
+        <Button onClick={this.disconnect}
+          className="icon"
+          labelPosition='left'>
+          Disconnect SIWE
         </Button>
 
         <Grid >
