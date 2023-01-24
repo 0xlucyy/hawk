@@ -102,209 +102,60 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
   return payload
 
 
-def siwe():
-  from siwe import SiweMessage
-  from siwe.siwe import VerificationError, InvalidSignature, MalformedSession, DomainMismatch, ExpiredMessage, MalformedSession, NonceMismatch, NotYetValidMessage
-  from dateutil.relativedelta import relativedelta
-  import random
-  web3 = Web3_Base()
+# def siwe():
+#   from siwe import SiweMessage
+#   from siwe.siwe import VerificationError, InvalidSignature, MalformedSession, DomainMismatch, ExpiredMessage, MalformedSession, NonceMismatch, NotYetValidMessage
+#   from dateutil.relativedelta import relativedelta
+#   import random
+#   web3 = Web3_Base()
 
-  account = web3.w3.eth.account.privateKeyToAccount(app.config["NORDSTREAM2_PRIV_KEY"])
+#   account = web3.w3.eth.account.privateKeyToAccount(app.config["NORDSTREAM2_PRIV_KEY"])
 
-  try:
-    # addr = account.address
-    addr = '0xc342287e1059265016e0ec756971d44Ce85566CB'
-    now_dt = datetime.now()
-    iso_dt = now_dt.isoformat()
-    expiration = (now_dt + relativedelta(days=1))
-    exp_dt = expiration.isoformat()
+#   try:
+#     # addr = account.address
+#     addr = '0xc342287e1059265016e0ec756971d44Ce85566CB'
+#     now_dt = datetime.now()
+#     iso_dt = now_dt.isoformat()
+#     expiration = (now_dt + relativedelta(days=1))
+#     exp_dt = expiration.isoformat()
 
-    message: SiweMessage = SiweMessage(message={
-      "domain": "127.0.0.1:7545",
-      "address": addr,
-      "statement": "Sign in with Ethereum to the app.",
-      # 'uri': 'http://geth.dappnode:8545',
-      'uri': 'http://127.0.0.1:7545',
-      "version": '1',
-      'chain_id': '1337',
-      'issued_at': iso_dt,
-      'expiration_time': exp_dt,
-      'nonce': random.randrange(000000000000, 999999999999)
-      }
-    )
-    import pdb; pdb.set_trace()
-    message.prepare_message()
-    # signed_message = web3.w3.eth.account.sign_message(message, private_key=app.config["NORDSTREAM2_PRIV_KEY"])
-    signed_message = web3.w3.eth.account.sign_message(message, private_key='5e26f25ef6d1ffd3881c82751d2ec7859b174ad0beb113ca3ef9df412e87d7b2')
-    message.verify(signature=addr)
-  except ValueError:
-      # Invalid message
-      print("Authentication attempt rejected. Invalid message.")
-  except NotYetValidMessage:
-      # The message is not yet valid
-      print("Authentication attempt rejected. The message is not yet valid.")
-  except ExpiredMessage:
-      # The message has expired
-      print("Authentication attempt rejected. The message has expired.")
-  except DomainMismatch:
-      print("Authentication attempt rejected. Domain mismatch.")
-  except NonceMismatch:
-      print("Authentication attempt rejected. The nonce is not the expected one.")
-  except MalformedSession as e:
-      # e.missing_fields contains the missing information needed for validation
-      print("Authentication attempt rejected. Missing fields")
-  except InvalidSignature:
-      print("Authentication attempt rejected. Invalid signature.")
-  except VerificationError:
-      # VerificationError
-      print("Authentication attempt rejected. Verification Error.")
+#     message: SiweMessage = SiweMessage(message={
+#       "domain": "127.0.0.1:7545",
+#       "address": addr,
+#       "statement": "Sign in with Ethereum to the app.",
+#       # 'uri': 'http://geth.dappnode:8545',
+#       'uri': 'http://127.0.0.1:7545',
+#       "version": '1',
+#       'chain_id': '1337',
+#       'issued_at': iso_dt,
+#       'expiration_time': exp_dt,
+#       'nonce': random.randrange(000000000000, 999999999999)
+#       }
+#     )
+#     import pdb; pdb.set_trace()
+#     message.prepare_message()
+#     # signed_message = web3.w3.eth.account.sign_message(message, private_key=app.config["NORDSTREAM2_PRIV_KEY"])
+#     signed_message = web3.w3.eth.account.sign_message(message, private_key='5e26f25ef6d1ffd3881c82751d2ec7859b174ad0beb113ca3ef9df412e87d7b2')
+#     message.verify(signature=addr)
+#   except ValueError:
+#       # Invalid message
+#       print("Authentication attempt rejected. Invalid message.")
+#   except NotYetValidMessage:
+#       # The message is not yet valid
+#       print("Authentication attempt rejected. The message is not yet valid.")
+#   except ExpiredMessage:
+#       # The message has expired
+#       print("Authentication attempt rejected. The message has expired.")
+#   except DomainMismatch:
+#       print("Authentication attempt rejected. Domain mismatch.")
+#   except NonceMismatch:
+#       print("Authentication attempt rejected. The nonce is not the expected one.")
+#   except MalformedSession as e:
+#       # e.missing_fields contains the missing information needed for validation
+#       print("Authentication attempt rejected. Missing fields")
+#   except InvalidSignature:
+#       print("Authentication attempt rejected. Invalid signature.")
+#   except VerificationError:
+#       # VerificationError
+#       print("Authentication attempt rejected. Verification Error.")
 # siwe()
-
-
-# def ens_claw_update_domains(domains):
-#     '''
-#         Called in backend/src/scripts.py.
-#         Params
-#         - domains: db.Model.Domain .all() list
-#     '''
-#     w3_obj = Web3_Base()
-
-#     abiFile = json.load(open('./ethereum/abis/ENS_Base_Registrar.json'))
-#     abi = abiFile['abi']
-#     base_registrar_contract = w3_obj.w3.eth.contract(
-#         abi=abi,
-#         address=app.config["ENS_BASE_REGISTRAR_MAINNET"],
-#     )
-
-#     for domain in domains:
-#         app.logger.info(f"[INFO] Updating {domain.name} ...")
-
-#         try: # Get domain owner.
-#             owner = base_registrar_contract.functions.\
-#                     ownerOf(int(domain.hash)).call()
-#             owner = str(owner)
-#         except(ContractLogicError) as e: # require(expiries[tokenId] > block.timestamp); IE In Grace or Expired
-#             app.logger.error(f'OwnerOf_Error on {domain.name} - Hash {domain.hash}')
-#             owner = get_owner_graphql(domain.name)
-#             # owner = None
-
-#         try: # Get domain availability.
-#             avail = base_registrar_contract.functions.\
-#                     available(int(domain.hash)).call()
-#             avail = bool(avail)
-#         except(Exception) as e:
-#             app.logger.error(f'available on {domain.name} - Hash {domain.hash}')
-#             avail = False
-
-#         try: # Get domain expiration.
-#             expires = base_registrar_contract.functions.\
-#                         nameExpires(int(domain.hash)).call()
-#         except(Exception) as e:
-#             app.logger.error(f'NameExpires_Error on {domain.name} - Hash {domain.hash}')
-#             expires = None
-#         else: # From int timestamp to datetime.datetime object.
-#             # Converts expire TS into str DT -> 2122-01-14 01:12:19+00:00
-#             expires = datetime.fromtimestamp(expires) if str(expires).lower() != 'null' else None
-
-#         times = Domains.get_times_and_status(_expiration=expires.strftime(app.config['DATETIME_STR_FORMAT']))
-#         domain.owner = owner.lower()
-#         domain.available = avail
-#         domain.expiration = expires if expires != 'null' else 'NULL'
-#         domain.auction = times['auction']
-#         domain.grace = times['grace']
-#         domain.status = times['status']
-
-#         post_to_db(data=domain)
-
-
-# def get_premium(domain_name: str = None, years: int = 1):
-#     '''
-#     Returns premium of a domain in auction in ETH.
-#     '''
-#     w3_obj = Web3_Base()
-
-#     abiFile = json.load(open('./ethereum/abis/ETH_Registrar_Controller.json'))
-#     abi = abiFile['abi']
-#     eth_registrar_contract = w3_obj.w3.eth.contract(
-#         abi=abi,
-#         address=app.config["ENS_ETH_REGISTRAR_CONTROLLER_MAINNET"],
-#     )
-
-#     # Returns premium cost only, ensure domain is in auction when called.
-#     fee = eth_registrar_contract.functions.rentPrice(domain_name, int(years)).call()
-#     eth_fee = w3_obj.w3.fromWei(fee, 'ether')
-#     return eth_fee
-
-
-# def get_reverse_record(addresses: List[str] = None):
-#     '''
-#     Returns reverse record, ens domain set to address.
-#     '''
-#     import time
-#     start_time = time.time()
-
-#     # If addresses is not a list, return.
-#     if not isinstance(addresses, list):
-#         return {'error': 'addresses must be a list of string addresses'}
-
-#     cleaned = []
-#     records = {}
-#     for address in addresses:
-#         try:
-#             clean = address.replace('\n',  '').replace("'", "").replace('"', "").strip().replace('null', '').lower()
-#             clean = Web3.toChecksumAddress(clean)
-#             cleaned.append(clean)
-#         except Exception as error:
-#             pass
-
-#     app.logger.info(f'[ACTION] Cleaned addresses: {cleaned} ...')
-
-#     if len(cleaned) > 0:
-#         w3_obj = Web3_Base()
-
-#         abiFile = json.load(open('./ethereum/abis/ENS_Reverse_Records.json'))
-#         abi = abiFile['abi']
-#         ens_reverse_records_contract = w3_obj.w3.eth.contract(
-#             abi=abi,
-#             address=app.config["ENS_REVERSE_RECORDS_MAINNET"],
-#         )
-#     else:
-#         return {'error': 'must supply at least 1 address'} 
-
-#     # Get reverse records from ens contract.
-#     rr = ens_reverse_records_contract.functions.getNames(cleaned).call()
-
-#     # Map cleaned addresses to their reverse record.
-#     for index, clean in enumerate(cleaned):
-#         try:
-#             if (rr[index][:-4] != None and rr[index][:-4] != ''):
-#                 records[clean.lower()] = (rr[index][:-4]).lower()
-#             else:
-#                 records[clean.lower()] = None
-#                 # Set RR for address 0x822e70c9d887764e911ed43807E86cCA98f6A71c to 👨‍🦰 ...
-#             app.logger.info(f'Set RR for address {clean} to {rr[index][:-4]} ...')
-#         except Exception as error:
-#             records[clean] = None
-#             app.logger.warning(f'No RR for address: {clean}...')
-
-#     # records['time'] = time.time() - start_time
-#     data = {'reverse_records': records}
-#     return data
-
-
-# def get_owner_graphql(domain_name: str = None):
-#     '''
-#     Some domains have never had an owner because they have
-#     never been minted.
-#     '''
-#     try:
-#         resp = make_graphql_request('DOMAIN_OWNER', domain_name)
-#         owner = resp['data']['data']['registrations'][0]['registrant']['id']
-#         app.logger.info(f'Owner found from graphql query - {owner} ')
-#         if owner == []:
-#             return None
-#         else:
-#             return owner.lower()
-#     except Exception as error:
-#         app.logger.error(f'get_owner_graphql error: {error}')
-#         return (app.config["ENS_BASE_REGISTRAR_MAINNET"]).lower()

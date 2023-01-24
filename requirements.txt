@@ -9,7 +9,6 @@ Flask-SQLAlchemy==2.5.1
 python-box==6.0.2
 beautifulsoup4==4.11.1
 idna==3.3
-siwe==2.1.1
 
 coverage==6.4.4
 flake8==5.0.4

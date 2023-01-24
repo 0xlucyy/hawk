@@ -21,9 +21,12 @@ import BulkSearch from './components/BulkSearch';
 import Onboard from '@web3-onboard/core'
 import injectedModule from '@web3-onboard/injected-wallets'
 import { ethers } from 'ethers'
+import { SiweMessage } from 'siwe';
+
+const domain = window.location.host;
+const origin = window.location.origin;
 
 const injected = injectedModule()
-
 const wallets = [injected]
 
 const chains = [
@@ -68,6 +71,7 @@ class App extends React.Component {
     timeout: 30,
     days: 0,
     connectedWallet: null,
+    EIP4361Message: null,
 
     // Error
     error: false,
@@ -97,9 +101,21 @@ class App extends React.Component {
       )
       let bal = await ethersProvider.getBalance(connectedWallet[0].accounts[0].address)
       console.log(`Connected Address Balance: ${bal}`)
-      debugger
       const signer = await ethersProvider.getSigner()
-      const msg = await signer.signMessage('Message')
+
+      const message = new SiweMessage({
+        domain: domain,
+        address: connectedWallet[0].accounts[0].address,
+        statement: 'SIWE to the app.',
+        uri: 'http://127.0.0.1:5000/api/v1/siwe',
+        version: '1',
+        chainId: '1', // For LUKSO L16
+        resources: ['https://testing.xyz'],
+      });
+      const siweMessage = message.prepareMessage();
+      const signature = await signer.signMessage(siweMessage)
+      debugger
+      this.load_sig_data(connectedWallet[0].accounts[0].address)
       console.log('Hold here to inspect debugger insight')
     }
     await this.setState({ connectedWallet })
@@ -107,6 +123,18 @@ class App extends React.Component {
     console.log(`Connected ENS Name: ${connectedWallet[0].accounts[0].ens.name}`)
     console.log(`ConnectedWallets: ${connectedWallet}`);
   };
+
+  load_sig_data = async (address) => {
+    console.log(`[ACTION] Loading reverse records data ...`)
+    const params = new URLSearchParams();
+    params.append('address', address);
+
+    const response = await fetch('http://127.0.0.1:5000/api/v1/siwe', {method: 'POST', body: params});
+    const data = await response.json();
+    await this.setState({ EIP4361Message: data });
+    console.log(`[ACTION] EIP4361 ...`)
+    console.log(`Data: ${JSON.stringify(data)}`)
+  }
 
   disconnect = async (e, value) => {
     e.preventDefault();

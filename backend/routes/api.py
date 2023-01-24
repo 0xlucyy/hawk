@@ -362,6 +362,8 @@ def siwe():
     '''
     Accepts form txt data file. single line per work.
     '''
+    address = request.form.get('address')
+    import pdb; pdb.set_trace()
     return {'data': 'WORKING'}
 
 # for domain in all:
