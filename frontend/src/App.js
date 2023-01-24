@@ -113,8 +113,12 @@ class App extends React.Component {
         resources: ['https://testing.xyz'],
       });
       const siweMessage = message.prepareMessage();
-      const signature = await signer.signMessage(siweMessage)
       debugger
+      const signature = await signer.signMessage(siweMessage)
+      let verified = await ethers.utils.verifyMessage(siweMessage, signature);
+
+      console.log("verified", verified);
+
       this.load_sig_data(connectedWallet[0].accounts[0].address)
       console.log('Hold here to inspect debugger insight')
     }
