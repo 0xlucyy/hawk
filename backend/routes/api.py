@@ -29,6 +29,7 @@ from backend.src.scripts import (
     populate_domains
 )
 import json
+import secrets
 # import pdb; pdb.set_trace()
 
 
@@ -55,19 +56,6 @@ def health():
         })
 
 @app.route(f'{app.config["API_URI"]}/expiringDomains', methods=['GET'])
-# def expiredDomainsDEL():
-#     try:
-#         # app.logger.info(f'Expiring in {_order} order.')
-#         all = Domains.expired()
-#     except(Exception) as e:
-#         app.logger.error(f'Error: {e}')
-#         return log_error(error=e)
-#     else:
-#         return jsonify({
-#             'total': len(all),
-#             'domains': [domain.__dict__ for domain in all],
-#             'status_code': 200
-#         })
 def expiringDomains():
     days = request.args.get('days')
     try:
@@ -365,6 +353,17 @@ def siwe():
     address = request.form.get('address')
     import pdb; pdb.set_trace()
     return {'data': 'WORKING'}
+
+
+@app.route(f'{app.config["API_URI"]}/nonce', methods=['GET'])
+def nonce():
+    '''
+    Returns a nonce
+    '''
+    token = secrets.token_urlsafe()
+    app.logger.info(f'Nonce: {token}')
+    return {'data': token}
+
 
 # for domain in all:
 #     status = domain_status(domain.expiration, domain.grace, domain.auction)
