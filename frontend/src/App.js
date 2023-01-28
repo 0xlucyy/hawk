@@ -1,65 +1,18 @@
 import React from "react";
-import {
-  Button,
-  // Input,
-  // Form,
-  // Message,
-  // Card,
-  // Container,
-  // Segment,
-  Grid,
-  // Header
-} from 'semantic-ui-react'
 import Layout from './components/Layout.js';
 import Expiring from './components/Expiring.js';
 import _Header from './components/Header.js';
 import _Table from './components/Table.js';
 import BulkSearch from './components/BulkSearch';
-// import { Route, Routes } from "react-router-dom"
-
-
-import Onboard from '@web3-onboard/core'
-import injectedModule from '@web3-onboard/injected-wallets'
-import { ethers } from 'ethers'
-import { SiweMessage } from 'siwe';
-
-const domain = window.location.host;
-const origin = window.location.origin;
-
-const injected = injectedModule()
-const wallets = [injected]
-
-const chains = [
-  {
-    id: 1,
-    token: 'ETH',
-    label: 'Ethereum Mainnet',
-    rpcUrl: 'http://geth.dappnode:8545'
-  },
-  {
-    id: 137,
-    token: 'MATIC',
-    label: 'Matic Mainnet',
-    rpcUrl: 'https://matic-mainnet.chainstacklabs.com'
-  }
-]
-
-const appMetadata = {
-  name: 'My App',
-  icon: '<SVG_ICON_STRING>',
-  logo: '<SVG_LOGO_STRING>',
-  description: 'My app using Onboard',
-  recommendedInjectedWallets: [
-    { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },
-    { name: 'MetaMask', url: 'https://metamask.io' }
-  ]
-}
-
-const onboard = Onboard({
-  wallets,
-  chains,
-  appMetadata
-})
+import {
+  createSiweMessage,
+  connectWeb3Wallet,
+  signVerifyMessage,
+} from './utils.js'
+import {
+  Button,
+  Grid,
+} from 'semantic-ui-react'
 
 
 class App extends React.Component {
@@ -88,41 +41,27 @@ class App extends React.Component {
     console.log(`activeItem App:handleItem: ${this.state.activeItem}`);
   }
 
-
   siwe = async (e, value) => {
     e.preventDefault();
-    const connectedWallet = await onboard.connectWallet()
+    
+    // Attempt to connect to an ethereum wallet.
+    const results = await connectWeb3Wallet();
+    const ethersProvider = await results[0],
+          connectedWallet = await results[1];
 
-    if (connectedWallet[0]) {
-      // create an ethers provider with the last connected wallet provider
-      const ethersProvider = await new ethers.providers.Web3Provider(
-        connectedWallet[0].provider,
-        'any'
-      )
-      let bal = await ethersProvider.getBalance(connectedWallet[0].accounts[0].address)
-      console.log(`Connected Address Balance: ${bal}`)
-      const signer = await ethersProvider.getSigner()
+    if (connectedWallet[0] != false) {
+      const verified_address = await signVerifyMessage(connectedWallet, ethersProvider)
 
-      const message = new SiweMessage({
-        domain: domain,
-        address: connectedWallet[0].accounts[0].address,
-        statement: 'SIWE to the app.',
-        uri: 'http://127.0.0.1:5000/api/v1/siwe',
-        version: '1',
-        chainId: '1', // For LUKSO L16
-        resources: ['https://testing.xyz'],
-      });
-      const siweMessage = message.prepareMessage();
-      debugger
-      const signature = await signer.signMessage(siweMessage)
-      let verified = await ethers.utils.verifyMessage(siweMessage, signature);
-
-      console.log("verified", verified);
-
-      this.load_sig_data(connectedWallet[0].accounts[0].address)
-      console.log('Hold here to inspect debugger insight')
+      if (verified_address == false) {
+        console.log("verified: FALSE");
+      }
+      else {
+        console.log("verified: ", verified_address);
+      }
     }
+
     await this.setState({ connectedWallet })
+    debugger
     console.log(`Connected Address: ${connectedWallet[0].accounts[0].address}`)
     console.log(`Connected ENS Name: ${connectedWallet[0].accounts[0].ens.name}`)
     console.log(`ConnectedWallets: ${connectedWallet}`);
@@ -143,8 +82,8 @@ class App extends React.Component {
   disconnect = async (e, value) => {
     e.preventDefault();
     debugger
-    const disconnected = await onboard.disconnectWallet(this.state.connectedWallet)
-    console.log(`disconnected: ${disconnected}`);
+    // const disconnected = await onboard.disconnectWallet(this.state.connectedWallet)
+    // console.log(`disconnected: ${disconnected}`);
   };
 
   render() {
@@ -194,5 +133,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-

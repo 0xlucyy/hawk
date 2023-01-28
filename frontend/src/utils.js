@@ -1,6 +1,51 @@
 import { Button, Label, Popup } from 'semantic-ui-react'
 import React from 'react';
 
+import Onboard from '@web3-onboard/core'
+import injectedModule from '@web3-onboard/injected-wallets'
+import { ethers } from 'ethers';
+import { SiweMessage } from 'siwe';
+
+
+const domain = window.location.host;
+const origin = window.location.origin;
+
+const injected = injectedModule()
+const wallets = [injected]
+
+const chains = [
+  {
+    id: 1,
+    token: 'ETH',
+    label: 'Ethereum Mainnet',
+    rpcUrl: 'http://geth.dappnode:8545'
+  },
+  {
+    id: 137,
+    token: 'MATIC',
+    label: 'Matic Mainnet',
+    rpcUrl: 'https://matic-mainnet.chainstacklabs.com'
+  }
+]
+
+const appMetadata = {
+  name: 'ENS Hawk',
+  icon: './hawk.png',
+  logo: './hawk.png',
+  description: 'TESTING THE DESCRIPTION',
+  recommendedInjectedWallets: [
+    { name: 'Coinbase', url: 'https://wallet.coinbase.com/' },
+    { name: 'MetaMask', url: 'https://metamask.io' }
+  ]
+}
+
+const onboard = Onboard({
+  wallets,
+  chains,
+  appMetadata
+})
+
+
 const free_to_register = 'green'
 const in_grace = 'yellow'
 const in_auction = 'red'
@@ -164,6 +209,108 @@ function handleReverseRecord(payload) {
 }
 
 
+
+
+
+
+async function createSiweMessage(address, domain) {
+  /**
+   * Create an EIP-4361 message for a web3 wallet to sign.
+   * https://eips.ethereum.org/EIPS/eip-4361
+   */
+  const req = await fetch("http://127.0.0.1:5000/api/v1/nonce", {
+    method : 'GET',
+    headers: {
+      "Accept" : "application/json",
+      "Content-Type" : "application/json"
+    }
+  });
+  const data = await req.json();
+  const _nonce = data.data
+
+  const message = new SiweMessage({
+    domain: domain,
+    address: address,
+    statement: 'SIWE to ENSHawk.',
+    uri: domain,
+    version: '1',
+    chainId: '1',
+    nonce: _nonce,
+    resources: ['https://enshawk.eth'],
+  });
+
+  return message.prepareMessage();
+}
+
+
+async function connectWeb3Wallet() {
+  /**
+   * Try to connect a web3 wallet. If successful,
+   * get a provider.
+   */
+  const connectedWallet = await onboard.connectWallet()
+
+    // Create Provider.
+  if (connectedWallet[0]) {
+    const ethersProvider = await new ethers.providers.Web3Provider(
+      connectedWallet[0].provider,
+      'any'
+    )
+    return [ethersProvider, connectedWallet]
+  } else {
+    return [false, false]
+  }
+}
+
+
+async function signVerifyMessage(connectedWallet, ethersProvider) {
+  /**
+   * 
+   */
+  if (connectedWallet[0] != false) {
+
+    // Create a Signer.
+    const signer = await ethersProvider.getSigner()
+    
+    // Create SIWE message.
+    const siweMessage = await createSiweMessage(connectedWallet[0].accounts[0].address, domain)
+
+    // Sign message.
+    const signature = await signer.signMessage(siweMessage)
+
+    // Verify signature.
+    let verified_address = await ethers.utils.verifyMessage(siweMessage, signature);
+    
+    const address = await signer.getAddress();
+    if (verified_address != address) {
+      console.log("verified: FALSE");
+      return false
+    }
+    else {
+      console.log("verified: ", verified_address);
+      return verified_address
+    }
+  }
+
+  // const res = await fetch(`${BACKEND_ADDR}/verify`, {
+  //     method: "POST",
+  //     headers: {
+  //         'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ message, signature }),
+  //     credentials: 'include'
+  // });
+  console.log('THIS IS WORKING');
+}
+
+// async function getInformation() {
+//   const res = await fetch(`${BACKEND_ADDR}/personal_information`, {
+//       credentials: 'include',
+//   });
+//   console.log(await res.text());
+// }
+
+
 export {
   handleRatio,
   handleStatus,
@@ -174,4 +321,7 @@ export {
   handlePremium,
   capitalizeFirstLetter,
   handleReverseRecord,
+  createSiweMessage,
+  connectWeb3Wallet,
+  signVerifyMessage
 }

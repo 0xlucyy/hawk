@@ -64,13 +64,15 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 
 
   # Add outter brackets and normalize \n's, then make bulk query request.
+  index = 0
   for batched_query in batched_list:
     batched_query = insert_str(batched_query, '{', 1)
     batched_query = insert_str(batched_query, '}', -1)
     batched_query = batched_query.replace('\n\n\n\n', '\n')
-    app.logger.info(f"[ACTION] Making batched ens subgraph request ...")
+    app.logger.info(f"[ACTION] Making batched ens subgraph request #{index} ...")
     resp = requests.post(url=app.config["GRAPHQL_ENS_URL"], json={"query": batched_query})
     data = resp.json()
+    index += 1
 
     if 'error' not in data.keys():
         app.logger.info(f"[INFO] Status: {resp.status_code} ...")
