@@ -18,7 +18,7 @@ from backend.utils.exceptions import (
 )
 from backend.models.models import *
 from backend.utils.utils import (
-    # post_to_db,
+    post_to_db,
     is_db_live,
     # domain_status,
     app,
@@ -228,7 +228,8 @@ def getReverseRecords():
     else:
         return resp
 
-
+# from sqlalchemy.orm import class_mapper, object_mapper
+# from sqlalchemy.orm.exc import UnmappedClassError, UnmappedInstanceError
 @app.route(f'{app.config["API_URI"]}/bulkSearch', methods=['GET', 'POST'])
 def bulkSearch():
     '''
@@ -265,6 +266,8 @@ def bulkSearch():
 
         app.logger.info(f"found: {found}. not_found: {not_found}")
 
+        # import pdb; pdb.set_trace()
+
         # If some names not present in db, add them to db.
         if len(not_found) > 0:
             # Clean CSV file - needed due to python/node interchange.
@@ -283,21 +286,25 @@ def bulkSearch():
             added = populate_domains() # Populate with new domains
     
             found.extend(added)
+            # import pdb;pdb.set_trace()
     except(Exception) as e:
         app.logger.error(f'Error: {e}')
         return log_error(error=e)
     else:
-        # Remove unwanted model fields.
-        for _domain in found:
-            for key in not_wanted:
-                try:
-                    del _domain.__dict__[key]
-                except:
-                    pass
-        app.logger.info(f"[STATUS3]: Found: {found}")
+        # # Remove unwanted model fields.
+        # for _domain in found:
+        #     for key in not_wanted:
+        #         try:
+        #             del _domain.__dict__[key]
+        #         except:
+        #             pass
+        # import pdb;pdb.set_trace()
+        app.logger.info(f"[INFO] Found: {found}")
+
         return jsonify({
             'added': not_found,
             'invalid': invalid,
+            # 'domains': [domain.__dict__ for domain in found],
             'domains': [domain.__dict__ for domain in found],
             'status_code': 200
         })

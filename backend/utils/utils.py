@@ -18,6 +18,7 @@ from web3.exceptions import (
     TimeExhausted,
     # ContractLogicError
 )
+# from backend.models.models import Domains
 # import pdb; pdb.set_trace()
 
 

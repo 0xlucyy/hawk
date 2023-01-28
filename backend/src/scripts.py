@@ -15,6 +15,7 @@ from backend.utils.utils import (
 )
 from ethereum.read_ens import ens_claw, ens_claw_update_domains
 from backend.models import models
+from backend.models.models import Domains
 from sqlalchemy.exc import IntegrityError
 from backend.utils.exceptions import (
     DomainModelDataTypeError
@@ -47,6 +48,7 @@ def populate_markets():
                     f"Total failed: {len(failed)}" \
                     f" - {failed}")
 
+# import sqlalchemy.orm.session as fuckme
 def populate_domains(file: str = app.config['WATCH_LOCATION']):
     '''
     Assumes all domains are not in db.
@@ -59,6 +61,9 @@ def populate_domains(file: str = app.config['WATCH_LOCATION']):
     app.logger.info(f"[INFO] Populating domains ...")
     for domain, domain_metadata in payload.items():
         try:
+            # import pdb;pdb.set_trace()
+            # db.Session.merge(Domains(domain_metadata))
+            # new_domain = db.engine.execute(Domains.insert().values(**domain_metadata))
             new_domain = models.Domains(**domain_metadata)
         except DomainModelDataTypeError as DMDTE:
             app.logger.error(DMDTE)
