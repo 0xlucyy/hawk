@@ -26,7 +26,7 @@ from graphql.main import (
 # import pdb; pdb.set_trace()
 
 
-# Very upstread. changes to this need to be throught about a little
+# Very upstread. changes to this need to be throught about
 def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
   '''
   Gathers 
@@ -96,7 +96,7 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
         payload[domain]['owner'] = app.config["ENS_BASE_REGISTRAR_MAINNET"]
         payload[domain]['expiration'] = 'null'
       
-      app.logger.info(f"[INFO] Domain: {domain} Owner: {owner} Expires: {expires} ...")
+      app.logger.info(f"[INFO] Domain: {domain} Owner: {payload[domain]['owner']} Expires: {payload[domain]['expiration']} ...")
     except Exception as err:
       app.logger.error(f"[ERROR] Setting owner from graphql. Error: {err}")
 
