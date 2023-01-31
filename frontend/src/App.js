@@ -5,9 +5,8 @@ import _Header from './components/Header.js';
 import _Table from './components/Table.js';
 import BulkSearch from './components/BulkSearch';
 import {
-  createSiweMessage,
   connectWeb3Wallet,
-  signVerifyMessage,
+  createSignVerifyMessage,
 } from './utils.js'
 import {
   Button,
@@ -18,7 +17,7 @@ import {
 class App extends React.Component {
   state = {
     activeDataFormat: 'card', // table
-    activeItem: 'home',
+    activeItem: 'bulk search',
     payload: null,
     loading: false,
     timeout: 30,
@@ -50,8 +49,11 @@ class App extends React.Component {
           connectedWallet = await results[1];
 
     if (connectedWallet[0] != false) {
-      const verified_address = await signVerifyMessage(connectedWallet, ethersProvider)
-
+      const verified_address = await createSignVerifyMessage(
+        connectedWallet,
+        ethersProvider
+      )
+  
       if (verified_address == false) {
         console.log("verified: FALSE");
       }
@@ -67,17 +69,20 @@ class App extends React.Component {
     console.log(`ConnectedWallets: ${connectedWallet}`);
   };
 
-  load_sig_data = async (address) => {
-    console.log(`[ACTION] Loading reverse records data ...`)
-    const params = new URLSearchParams();
-    params.append('address', address);
+  // load_sig_data = async (address) => {
+  //   console.log(`[ACTION] Loading reverse records data ...`)
+  //   const params = new URLSearchParams();
+  //   params.append('address', address);
 
-    const response = await fetch('http://127.0.0.1:5000/api/v1/siwe', {method: 'POST', body: params});
-    const data = await response.json();
-    await this.setState({ EIP4361Message: data });
-    console.log(`[ACTION] EIP4361 ...`)
-    console.log(`Data: ${JSON.stringify(data)}`)
-  }
+  //   const response = await fetch('http://127.0.0.1:5000/api/v1/siwe', {
+  //     method: 'POST',
+  //     body: params
+  //   });
+  //   const data = await response.json();
+  //   await this.setState({ EIP4361Message: data });
+  //   console.log(`[ACTION] EIP4361 ...`)
+  //   console.log(`Data: ${JSON.stringify(data)}`)
+  // }
 
   disconnect = async (e, value) => {
     e.preventDefault();

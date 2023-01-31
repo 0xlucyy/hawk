@@ -7,8 +7,8 @@ import { ethers } from 'ethers';
 import { SiweMessage } from 'siwe';
 
 
-const domain = window.location.host;
-const origin = window.location.origin;
+// const domain = window.location.host;
+// const origin = window.location.origin;
 
 const injected = injectedModule()
 const wallets = [injected]
@@ -45,10 +45,10 @@ const onboard = Onboard({
   appMetadata
 })
 
-
 const free_to_register = 'green'
 const in_grace = 'yellow'
 const in_auction = 'red'
+
 
 // Expiration -> 90 days of grace -> 21 days of auction -> free_pool
 function handleRatio(payload) {
@@ -198,7 +198,6 @@ function handlePremium(payload, premium) {
   return `ERROR`
 }
 
-
 function handleReverseRecord(payload) {
   let owner = payload.payload.owner;
   try {
@@ -213,34 +212,6 @@ function handleReverseRecord(payload) {
 
 
 
-async function createSiweMessage(address, domain) {
-  /**
-   * Create an EIP-4361 message for a web3 wallet to sign.
-   * https://eips.ethereum.org/EIPS/eip-4361
-   */
-  const req = await fetch("http://127.0.0.1:5000/api/v1/nonce", {
-    method : 'GET',
-    headers: {
-      "Accept" : "application/json",
-      "Content-Type" : "application/json"
-    }
-  });
-  const data = await req.json();
-  const _nonce = data.data
-
-  const message = new SiweMessage({
-    domain: domain,
-    address: address,
-    statement: 'SIWE to ENSHawk.',
-    uri: domain,
-    version: '1',
-    chainId: '1',
-    nonce: _nonce,
-    resources: ['https://enshawk.eth'],
-  });
-
-  return message.prepareMessage();
-}
 
 
 async function connectWeb3Wallet() {
@@ -250,7 +221,7 @@ async function connectWeb3Wallet() {
    */
   const connectedWallet = await onboard.connectWallet()
 
-    // Create Provider.
+  // Create Provider.
   if (connectedWallet[0]) {
     const ethersProvider = await new ethers.providers.Web3Provider(
       connectedWallet[0].provider,
@@ -262,44 +233,81 @@ async function connectWeb3Wallet() {
   }
 }
 
+async function createSiweMessage(address, chainId) {
+  /**
+   * Create an EIP-4361 message for a web3 wallet to sign.
+   * https://eips.ethereum.org/EIPS/eip-4361
+   */
+  const request = await fetch("http://127.0.0.1:5000/api/v1/nonce", {
+    method : 'GET',
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    }
+  });
+  // const data = await request.json();
+  const _nonce = (await request.json()).data
 
-async function signVerifyMessage(connectedWallet, ethersProvider) {
+  const message = await new SiweMessage({
+    domain:  window.location.host,
+    address: address,
+    statement: 'SIWE to ENSHawk.',
+    uri: window.location.origin,
+    version: '1',
+    chainId: chainId,
+    issuedAt: Date.now(),
+    nonce: _nonce,
+    resources: ['https://enshawk.eth'],
+  });
+  // debugger
+
+  // return message.prepareMessage();
+  return message;
+}
+
+async function createSignVerifyMessage(connectedWallet, ethersProvider) {
   /**
    * 
    */
   if (connectedWallet[0] != false) {
-
     // Create a Signer.
     const signer = await ethersProvider.getSigner()
-    
+
+    // Get the chain the user is on.
+    const chainId = (await ethersProvider.getNetwork()).chainId;
+    debugger
     // Create SIWE message.
-    const siweMessage = await createSiweMessage(connectedWallet[0].accounts[0].address, domain)
+    const message = await createSiweMessage(connectedWallet[0].accounts[0].address, chainId)
+    const siweMessage = await message.prepareMessage()
 
     // Sign message.
     const signature = await signer.signMessage(siweMessage)
+    debugger
 
-    // Verify signature.
-    let verified_address = await ethers.utils.verifyMessage(siweMessage, signature);
+    await fetch('http://127.0.0.1:5000/api/v1/siwe', {
+      method: 'POST',
+      body: JSON.stringify({message, signature}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(async (res) => {
+      const message = await res.text();
+      console.log(JSON.parse(message).message);
+    })
+
+    // // Verify signature.
+    // let verified_address = await ethers.utils.verifyMessage(siweMessage, signature);
     
-    const address = await signer.getAddress();
-    if (verified_address != address) {
-      console.log("verified: FALSE");
-      return false
-    }
-    else {
-      console.log("verified: ", verified_address);
-      return verified_address
-    }
+    // const address = await signer.getAddress();
+    // if (verified_address != address) {
+    //   console.log("verified: FALSE");
+    //   return false
+    // }
+    // else {
+    //   console.log("verified: ", verified_address);
+    //   return verified_address
+    // }
   }
-
-  // const res = await fetch(`${BACKEND_ADDR}/verify`, {
-  //     method: "POST",
-  //     headers: {
-  //         'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ message, signature }),
-  //     credentials: 'include'
-  // });
   console.log('THIS IS WORKING');
 }
 
@@ -321,7 +329,6 @@ export {
   handlePremium,
   capitalizeFirstLetter,
   handleReverseRecord,
-  createSiweMessage,
   connectWeb3Wallet,
-  signVerifyMessage
+  createSignVerifyMessage
 }

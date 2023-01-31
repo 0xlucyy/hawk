@@ -60,7 +60,10 @@ export default class BulkSearch extends Component {
       const params = new URLSearchParams();
       params.append('domains', cleaned);
 
-      const response = await fetch('http://127.0.0.1:5000/api/v1/bulkSearch', {method: 'POST', body: params});
+      const response = await fetch('http://127.0.0.1:5000/api/v1/bulkSearch', {
+        method: 'POST',
+        body: params
+      });
       const search_results = await response.json();
 
       let owners = null
@@ -77,6 +80,7 @@ export default class BulkSearch extends Component {
       await this.setState({ activeButton: 'postSearch' });
 
       console.log(`[ACTION] State set to postSearch ...`)
+      // debugger
     } else {
       console.log("text is ''")
     }
@@ -92,10 +96,12 @@ export default class BulkSearch extends Component {
     const params = new URLSearchParams();
     params.append('addresses', addresses);
 
-    const response = await fetch('http://127.0.0.1:5000/api/v1/getReverseRecords', {method: 'POST', body: params});
+    const response = await fetch('http://127.0.0.1:5000/api/v1/getReverseRecords', {
+      method: 'POST',
+      body: params
+    });
     const data = await response.json();
     await this.setState({ reverse_records: data.reverse_records });
-    console.log(`[DATA] data: ${JSON.stringify(data.reverse_records)} ...`)
     console.log(`[ACTION] Set reverse records data ...`)
   }
 
@@ -115,7 +121,10 @@ export default class BulkSearch extends Component {
     console.log(`Uploading file: ${JSON.stringify(file)}`)
 
     try {
-      response = await fetch('http://127.0.0.1:5000/api/v1/handleSearchFile', {method: 'POST', body: formData});
+      response = await fetch('http://127.0.0.1:5000/api/v1/handleSearchFile', {
+        method: 'POST',
+        body: formData
+      });
       console.log(`Resp: ${JSON.stringify(response)}`) 
       console.log(`Resp: ${JSON.stringify(response.json())}`) 
     } catch (error) {
@@ -282,7 +291,6 @@ export default class BulkSearch extends Component {
 
               <Card.Group centered itemsPerRow="5" style={{ marginTop: "50px", textTransform: 'lowercase' }} className='domains'>
                 {this.state.bulk_search_results.domains.map(domain => (
-                  // <_Card payload={domain} key={domain.name}/>
                   <Card style={{backgroundColor:'black'}}>
                     <Card.Content>
                       <Card.Header as="a" href='https://www.google.com' target="_blank" style={{color:'white'}}>
