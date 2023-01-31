@@ -203,3 +203,6 @@ def BASIC_TRANSACTION(w3: Web3 = None, address: str = None) -> dict:
         'maxFeePerGas': w3.eth.gas_price, #w3.toWei(1, 'gwei'),
         'maxPriorityFeePerGas': w3.eth.max_priority_fee, # w3.toWei(1, 'gwei'),
     }
+
+def eip55_address_check(addr):
+    return Web3.toChecksumAddress(addr)
