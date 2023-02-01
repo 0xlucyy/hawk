@@ -359,33 +359,21 @@ def handleSearchFile():
 @app.route(f'{app.config["API_URI"]}/siwe', methods=['POST'])
 def siwe():
     '''
-    Accepts form txt data file. single line per work.
+    
     '''
-    # from siwe import SiweMessage
-    from eth_account.messages import encode_defunct
     mainner_provider = Web3_Base()
 
     data = request.json
 
-    # data['message']['address'] = eip55_address_check(data['message']['address'])
-    # data['message']['chain_id'] = data['message']['chainId']
-    # data['message']['issued_at'] = data['message']['issuedAt']
-    # # end = datetime.strptime(data['message']['issuedAt'], '%Y-%m-%dT%H:%M:%S.%fZ') + relativedelta(days=1)
-    # # data['message']['expiration_time'] = end.strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+    message = SiweMessage(message=data['api_message'])
 
-    # del data['message']['issuedAt']
-    # del data['message']['chainId']
-
-    message = SiweMessage(message=data['message'])
-
-    # import pdb; pdb.set_trace()
     message.verify(
         signature=data['signature'],
         provider=mainner_provider.w3.provider,
-        nonce="lLXYGRd3D9n",
+        nonce="oqd1huAzSqg",
         domain="localhost:3000"
     )
-    import pdb; pdb.set_trace()
+
     return {'data': 'WORKING'}
 
 
