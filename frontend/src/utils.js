@@ -248,6 +248,9 @@ async function createSiweMessage(address, chainId) {
   // const data = await request.json();
   const _nonce = (await request.json()).data
 
+  let time = Date.now()
+  time = new Date(time).toISOString()
+
   const message = await new SiweMessage({
     domain:  window.location.host,
     address: address,
@@ -255,7 +258,7 @@ async function createSiweMessage(address, chainId) {
     uri: window.location.origin,
     version: '1',
     chainId: chainId,
-    issuedAt: Date.now(),
+    issuedAt: time,
     nonce: _nonce,
     resources: ['https://enshawk.eth'],
   });
@@ -273,12 +276,26 @@ async function createSignVerifyMessage(connectedWallet, ethersProvider) {
     // Create a Signer.
     const signer = await ethersProvider.getSigner()
 
+    let saaa = await signer.getAddress()
+
+    console.log(`Signer Address: ${saaa} ...`)
+
     // Get the chain the user is on.
     const chainId = (await ethersProvider.getNetwork()).chainId;
-    debugger
+    
+    // Get signers address.
+    const address = await connectedWallet[0].accounts[0].address
+
+    // debugger
+
     // Create SIWE message.
-    const message = await createSiweMessage(connectedWallet[0].accounts[0].address, chainId)
+    const message = await createSiweMessage(saaa, chainId)
+
+    // Shown to user on wallet interface.
     const siweMessage = await message.prepareMessage()
+
+    // Serialized SiweMessage object to be sent to the backend.
+    const api_message = await message.toMessage()
 
     // Sign message.
     const signature = await signer.signMessage(siweMessage)
@@ -286,7 +303,8 @@ async function createSignVerifyMessage(connectedWallet, ethersProvider) {
 
     await fetch('http://127.0.0.1:5000/api/v1/siwe', {
       method: 'POST',
-      body: JSON.stringify({message, signature}),
+      // body: JSON.stringify({message, signature}),
+      body: JSON.stringify({api_message, signature}),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -294,6 +312,7 @@ async function createSignVerifyMessage(connectedWallet, ethersProvider) {
       const message = await res.text();
       console.log(JSON.parse(message).message);
     })
+    debugger
 
     // // Verify signature.
     // let verified_address = await ethers.utils.verifyMessage(siweMessage, signature);
