@@ -28,13 +28,27 @@
 - frontend : work on individual domain layout
   - https://ens.vision/name/lobo
 
+- front/backends : SIWE
+  - Frontend: user can sign a eip-4361 message (https://eips.ethereum.org/EIPS/eip-4361).
+  - Frontend: button which triggers SIWE action.
+  - Frontend: api call to get nonce from backend.
+  - Frontend: signing address much conform to eip-55 (https://eips.ethereum.org/EIPS/eip-55).
+  - Frontend: code to connect a wallet, which returns a provider.
+  - Frontend: code which creates a `SiweMessage` object, and returns that object.
+  - Frontend: code which can sign & verify eip-4361 messages. this endpt will call backend with serialized message + resulting signature data.
+  - Backend: GET `nonce` endpt which is called to get a random nonce.
+  - Backend: POST `siwe` endpt which takes a serialized string `SiweMessage` object, & signature data. endpt verifies whether the signature/serialized `SiweMessage` is valid.
+ 
+  - TODO Backend: sessions endpoint. brings together nonce & siwe endpoints. figure out how to use siwe to create sessions - mysql
+  - TODO Frontend: user can sign out of wallet
+  - TODO Frontend: change default wallet info display locations.
 
 #### Hold/Backlog
 - frontend: toggle between Deck/Cards and Table
 - frontend: bulkSearch file upload. check for file size and type.
   - Check file size on frontend
   - check file type on frontend
-  - ISSUE: API recieving file contents, api is returning resp obj, but front end resp object missing resp from api.... weird bug
+  - ISSUE: API recieving file contents, api is returning resp obj, but front end resp object missing resp from api.... weird bug (BUG HAS A SOLUTION. WILL GET TO WHEN SIWE DONE)
 
 
 #### Done

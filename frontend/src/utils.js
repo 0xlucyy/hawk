@@ -248,8 +248,8 @@ async function createSiweMessage(address, chainId) {
   // const data = await request.json();
   const _nonce = (await request.json()).data
 
-  let time = Date.now()
-  time = new Date(time).toISOString()
+  let time = await  Date.now()
+  time = await new Date(time).toISOString()
 
   const message = await new SiweMessage({
     domain:  window.location.host,
@@ -262,9 +262,7 @@ async function createSiweMessage(address, chainId) {
     nonce: _nonce,
     resources: ['https://enshawk.eth'],
   });
-  // debugger
 
-  // return message.prepareMessage();
   return message;
 }
 
@@ -276,20 +274,16 @@ async function createSignVerifyMessage(connectedWallet, ethersProvider) {
     // Create a Signer.
     const signer = await ethersProvider.getSigner()
 
-    let saaa = await signer.getAddress()
+    // Get signers address.
+    let address = await signer.getAddress()
 
-    console.log(`Signer Address: ${saaa} ...`)
+    console.log(`Signer Address: ${address} ...`)
 
     // Get the chain the user is on.
     const chainId = (await ethersProvider.getNetwork()).chainId;
-    
-    // Get signers address.
-    const address = await connectedWallet[0].accounts[0].address
-
-    // debugger
 
     // Create SIWE message.
-    const message = await createSiweMessage(saaa, chainId)
+    const message = await createSiweMessage(address, chainId)
 
     // Shown to user on wallet interface.
     const siweMessage = await message.prepareMessage()
@@ -297,22 +291,26 @@ async function createSignVerifyMessage(connectedWallet, ethersProvider) {
     // Serialized SiweMessage object to be sent to the backend.
     const api_message = await message.toMessage()
 
-    // Sign message.
+    // Sign message on frontend.
     const signature = await signer.signMessage(siweMessage)
-    debugger
+    // debugger
 
+    /**
+     * Send serialized message + resulting signature data
+     * for verification.
+     */
     await fetch('http://127.0.0.1:5000/api/v1/siwe', {
       method: 'POST',
-      // body: JSON.stringify({message, signature}),
       body: JSON.stringify({api_message, signature}),
       headers: {
         'Content-Type': 'application/json'
       }
     }).then(async (res) => {
+      debugger
       const message = await res.text();
       console.log(JSON.parse(message).message);
     })
-    debugger
+    // debugger
 
     // // Verify signature.
     // let verified_address = await ethers.utils.verifyMessage(siweMessage, signature);
