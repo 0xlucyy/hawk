@@ -1,8 +1,8 @@
 # hawk
 Full Stack application which tracks ens domains. User can keep a list of domains they wish to track by ammending `watchlsits/watch.txt` file.
 
-## Demo
-![Video Name](media/hawk.mp4)
+## Demonstration
+![Hawk Demonstration](media/hawk_demo.mp4)
 
 
 
