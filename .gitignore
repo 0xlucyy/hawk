@@ -134,3 +134,7 @@ backend/tests/reports/*
 
 node_modules
 public/
+
+watchlists/watch_clean.csv
+watchlists/watch_clean.json
+watchlists/watch_clean.txt
