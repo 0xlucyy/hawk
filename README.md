@@ -1,35 +1,34 @@
 # hawk
-domain watcher
+Full Stack application which tracks ens domains. User can keep a list of domains they wish to track by ammending `watchlsits/watch.txt` file.
+
+## Demo
+![Video Name](media/hawk.mp4)
+
+
 
 #### TODO UPDATE Instructions
 - Clone to local workspace.
 - Run `brew install mysql` if mysql not already installed.
-- Run `python3 -m venv venv`.
-- Run `. venv/bin/activate`.
-- Run `pip install -r requirements.txt`
+- Run `python3 -m venv venv`
+- Run `. venv/bin/activate`
+- Run `pip install -e .`
 - Run `alembic init alembic`
-- Run `mysql.server start`.
+- Run `mysql.server start`
 - Run `mysql -h localhost -u root -p` & insert password.
-- Run `create database hawk;`.
-- Run `SET GLOBAL sql_mode = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,ALLOW_INVALID_DATES';`.
-- Exit mysql & run `mysql.server restart`.
+- Run `create database hawk;`
 - Run `python app.py` to start server on port 5000.
 - Run `curl http://127.0.0.1:5000/api/v1/health` to check server status.
 
 
 ## Getting started
-- Start mysql server. Run `mysql.server start`.
-- Run `clean_slate`.
-
-
-## Getting started - Legacy
-- Copy/Paste domain names into `watchlists/watch.txt`, one name per line.
-- Run `clean_file watch` to clean domain names; creates `watchlists/watch_clean.txt`.
-- Run `node ethereum/normalize.js >> watchlists/watch_clean.csv`; creates `watchlists/watch_clean.csv`.
-- Run `build_watchlist` to grab metadata of domain names by querying the Ethereum network; creates `watchlists/watch_clean.json`.
-- Run `create_database` to destroy existing hawk db if it exists, creates pristine `hawk` mysql database.
-- Run `populate_domains` to populate database with `watchlists/watch_clean.json` data.
-- Run `populate_markets` to populate database with `backend/utils/markets.json` data.
+- Start mysql server. Run `mysql.server start`
+- Run `python3 -m venv venv`
+- Run `. venv/bin/activate`
+- Run `pip install -e .`
+- Run `clean_slate`
+- Run `python app.py`
+- Run `cd frontend/`
+- Run `npm run start`
 
 
 ## Upgrade MySQL Database
@@ -37,16 +36,6 @@ domain watcher
 - Run `alembic revision --autogenerate -m "describe model change(s)"`.
 - Inspect newly created `alembic/versions/*.py` file to ensure changes have been captured accurately.
 - Run `alembic upgrade head` to update db to latest version.
-
-# Trouble shooting
-#### Database/alembic
-- If alembic revisions are failing with `FAILED: Target database is not up to date.`, run `alembic stamp head`, then continue with upgrading head. [stackoverflow](https://stackoverflow.com/questions/17768940/target-database-is-not-up-to-date)
-- If previous versions of the database are needed, read this thread, [stackoverflow](https://stackoverflow.com/questions/48242324/undo-last-alembic-migration)
-
-#### Dependency Requirement Issues
-- Run `pip install --use-feature=2020-resolver py-evm`.
-- Run `pip install -r requirements.txt`.
-
 
 
 ### To use scripts

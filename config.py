@@ -22,7 +22,7 @@ class _Base(object):
     DATE_FORMAT = os.environ.get("DATE_FORMAT")
     API_URI = os.environ.get("API_URI")
     RETRY_LIMIT = os.environ.get("RETRY_LIMIT")
-    NORDSTREAM2_PRIV_KEY = os.environ.get("NORDSTREAM2_PRIV_KEY")
+    PRIV_KEY_ONE = os.environ.get("PRIV_KEY_ONE")
     
     # DB
     MYSQL_USERNAME = os.environ.get("MYSQL_USERNAME")

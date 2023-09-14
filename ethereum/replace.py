@@ -111,7 +111,7 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 #   import random
 #   web3 = Web3_Base()
 
-#   account = web3.w3.eth.account.privateKeyToAccount(app.config["NORDSTREAM2_PRIV_KEY"])
+#   account = web3.w3.eth.account.privateKeyToAccount(app.config["PRIV_KEY_ONE"])
 
 #   try:
 #     # addr = account.address
@@ -136,7 +136,7 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 #     )
 #     import pdb; pdb.set_trace()
 #     message.prepare_message()
-#     # signed_message = web3.w3.eth.account.sign_message(message, private_key=app.config["NORDSTREAM2_PRIV_KEY"])
+#     # signed_message = web3.w3.eth.account.sign_message(message, private_key=app.config["PRIV_KEY_ONE"])
 #     signed_message = web3.w3.eth.account.sign_message(message, private_key='5e26f25ef6d1ffd3881c82751d2ec7859b174ad0beb113ca3ef9df412e87d7b2')
 #     message.verify(signature=addr)
 #   except ValueError:

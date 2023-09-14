@@ -39,8 +39,8 @@ def BASIC_TRANSACTION(w3: Web3 = None, address: str = None) -> dict:
 Returns:
     (Bool, Str) : True/False, Either err msg or transaction hash
 '''
-def SIGN_SEND_WAIT(w3: Web3 = None, transaction: dict = None, FLOWERS_PRIV_KEY: str = None) -> Tuple[bool, str]:
-    signed_tx = w3.eth.account.sign_transaction(transaction, FLOWERS_PRIV_KEY)
+def SIGN_SEND_WAIT(w3: Web3 = None, transaction: dict = None, PRIV_KEY_TWO: str = None) -> Tuple[bool, str]:
+    signed_tx = w3.eth.account.sign_transaction(transaction, PRIV_KEY_TWO)
 
     try:
         tx_hash = w3.eth.send_raw_transaction(transaction=signed_tx.rawTransaction)
