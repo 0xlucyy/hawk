@@ -99,18 +99,14 @@ function handleStatus(payload) {
   } catch(e) {
     console.log('[ACTION] Correcting payload ...')
   }
+  _href = `https://app.ens.domains/${payload.payload.name}.eth`;
   if (payload.payload.status === 'IN_AUCTION') {
-      _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
-      // let response = fetch(_href);
       return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>In Auction!</Button>} />
   } else if (payload.payload.status === 'IN_GRACE') {
-      _href = `https://app.ens.domains/search/${payload.payload.name}`
       return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>In Grace!</Button>} />
   }  else if (payload.payload.status === 'BEING_HELD') {
-      _href = `https://app.ens.domains/search/${payload.payload.name}`
       return <Popup position="bottom center" inverted on='hover' size="small" content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Being Held!</Button>} />
   }
-  _href = `https://app.ens.domains/name/${payload.payload.name}.eth/register`;
   return <Popup position="bottom center" inverted on='hover' size="small"  content='ens.domains' trigger={<Button as='a' target='_blank' href={_href} circular style={{'background-color': handleColor(payload)}}>Claim!</Button>} />
 }
 
