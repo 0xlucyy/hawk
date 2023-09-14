@@ -138,6 +138,7 @@ def ens_claw_update_domains(domains):
         - domains: db.Model.Domain .all() list
     '''
     w3_obj = Web3_Base()
+    
 
     abiFile = json.load(open('./ethereum/abis/ENS_Base_Registrar.json'))
     abi = abiFile['abi']

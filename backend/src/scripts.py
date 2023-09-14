@@ -26,7 +26,16 @@ from dateutil.relativedelta import relativedelta
 
 def populate_markets():
     with open(f"backend/utils/markets.json", 'r', encoding='utf8') as outfile:
+    # with open(f"graphql/y2kusers.json", 'r', encoding='utf8') as outfile:
         payload = json.load(outfile)
+    # with open(f"graphql/y2k2.json", 'r', encoding='utf8') as outfile:
+    #     two = json.load(outfile)
+
+    # next_100 = two['data']['users']
+    # first_100 = payload['data']['users']
+    # all_players = next_100 + first_100
+    
+    # import pdb; pdb.set_trace()
 
     failed = []
     index = 0
@@ -48,7 +57,7 @@ def populate_markets():
                     f"Total failed: {len(failed)}" \
                     f" - {failed}")
 
-# import sqlalchemy.orm.session as fuckme
+
 def populate_domains(file: str = app.config['WATCH_LOCATION']):
     '''
     Assumes all domains are not in db.

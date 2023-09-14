@@ -182,7 +182,7 @@ export default class Expiring extends Component {
                         src='./opensea.png'
                         as='a'
                         size='small'
-                        href={this.state.markets.markets.opensea.base_url + '/assets/ethereum/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
+                        href={this.state.markets.markets.opensea.base_url + 'assets/ethereum/0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85/' + domain.hash}
                         target='_blank'
                         circular
                     />}
