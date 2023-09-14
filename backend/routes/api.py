@@ -362,19 +362,22 @@ def siwe():
     
     '''
     mainner_provider = Web3_Base()
-
     data = request.json
 
     message = SiweMessage(message=data['api_message'])
+    app.logger.warning(f"[INFO] Validating {message.address} signature...")
 
-    message.verify(
-        signature=data['signature'],
-        provider=mainner_provider.w3.provider,
-        nonce="oqd1huAzSqg",
-        domain="localhost:3000"
-    )
-
-    return {'data': 'WORKING'}
+    try:
+        test = message.verify(
+            signature=data['signature'],
+            provider=mainner_provider.w3.provider,
+            nonce=message.nonce,
+            domain="localhost:3000"
+        )
+        return {'data': 'WORKING'}
+    except Exception as error:
+        app.logger.error(f'Error: {error}')
+        return {'data': 'NOT WORKING'}
 
 
 @app.route(f'{app.config["API_URI"]}/nonce', methods=['GET'])

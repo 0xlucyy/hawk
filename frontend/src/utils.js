@@ -306,7 +306,7 @@ async function createSignVerifyMessage(connectedWallet, ethersProvider) {
         'Content-Type': 'application/json'
       }
     }).then(async (res) => {
-      debugger
+      // debugger
       const message = await res.text();
       console.log(JSON.parse(message).message);
     })

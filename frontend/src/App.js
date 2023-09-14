@@ -53,6 +53,8 @@ class App extends React.Component {
         connectedWallet,
         ethersProvider
       )
+
+      // debugger
   
       if (verified_address == false) {
         console.log("verified: FALSE");
@@ -63,7 +65,7 @@ class App extends React.Component {
     }
 
     await this.setState({ connectedWallet })
-    debugger
+    // debugger
     console.log(`Connected Address: ${connectedWallet[0].accounts[0].address}`)
     console.log(`Connected ENS Name: ${connectedWallet[0].accounts[0].ens.name}`)
     console.log(`ConnectedWallets: ${connectedWallet}`);
@@ -86,7 +88,7 @@ class App extends React.Component {
 
   disconnect = async (e, value) => {
     e.preventDefault();
-    debugger
+    // debugger
     // const disconnected = await onboard.disconnectWallet(this.state.connectedWallet)
     // console.log(`disconnected: ${disconnected}`);
   };

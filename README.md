@@ -9,14 +9,20 @@ domain watcher
 - Run `pip install -r requirements.txt`
 - Run `alembic init alembic`
 - Run `mysql.server start`.
-- Run `mysql -h localhost -u root` & insert password.
+- Run `mysql -h localhost -u root -p` & insert password.
 - Run `create database hawk;`.
 - Run `SET GLOBAL sql_mode = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,ALLOW_INVALID_DATES';`.
 - Exit mysql & run `mysql.server restart`.
 - Run `python app.py` to start server on port 5000.
 - Run `curl http://127.0.0.1:5000/api/v1/health` to check server status.
 
+
 ## Getting started
+- Start mysql server. Run `mysql.server start`.
+- Run `clean_slate`.
+
+
+## Getting started - Legacy
 - Copy/Paste domain names into `watchlists/watch.txt`, one name per line.
 - Run `clean_file watch` to clean domain names; creates `watchlists/watch_clean.txt`.
 - Run `node ethereum/normalize.js >> watchlists/watch_clean.csv`; creates `watchlists/watch_clean.csv`.
@@ -24,6 +30,7 @@ domain watcher
 - Run `create_database` to destroy existing hawk db if it exists, creates pristine `hawk` mysql database.
 - Run `populate_domains` to populate database with `watchlists/watch_clean.json` data.
 - Run `populate_markets` to populate database with `backend/utils/markets.json` data.
+
 
 ## Upgrade MySQL Database
 - Modify any table in `backend/models/*.py` file.

@@ -13,8 +13,6 @@ from app import (
     app,
     # db
 )
-# import pdb; pdb.set_trace()
-
 
 class Web3_Base():
     # load_dotenv() # load environment from .env.
