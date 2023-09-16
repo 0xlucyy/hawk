@@ -2,7 +2,11 @@
 Full Stack application which tracks ens domains. User can keep a list of domains they wish to track by ammending `watchlsits/watch.txt` file.
 
 ## Demonstration
-![Hawk Demonstration](media/hawk_demo_1.mp4)
+https://github.com/0xlucyy/hawk/assets/109987865/c7546048-541e-4795-9a7b-196c37efad48
+
+
+
+
 
 
 ## Getting started
