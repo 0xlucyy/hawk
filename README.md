@@ -2,22 +2,7 @@
 Full Stack application which tracks ens domains. User can keep a list of domains they wish to track by ammending `watchlsits/watch.txt` file.
 
 ## Demonstration
-![Hawk Demonstration](media/hawk_demo.mp4)
-
-
-
-#### TODO UPDATE Instructions
-- Clone to local workspace.
-- Run `brew install mysql` if mysql not already installed.
-- Run `python3 -m venv venv`
-- Run `. venv/bin/activate`
-- Run `pip install -e .`
-- Run `alembic init alembic`
-- Run `mysql.server start`
-- Run `mysql -h localhost -u root -p` & insert password.
-- Run `create database hawk;`
-- Run `python app.py` to start server on port 5000.
-- Run `curl http://127.0.0.1:5000/api/v1/health` to check server status.
+![Hawk Demonstration](media/hawk_demo_1.mp4)
 
 
 ## Getting started
@@ -56,11 +41,20 @@ mysql -h sqlite:////Users/ancientevil/0x/hawk/ENS.db -u root
 #### MY_NOTES DappNode
 EXTRA_OPTIONS = --http.api eth,engine,net,web3,txpool
 
-
-#### TODO Front end - legacy - 
+#### TODO Front end - LEGACY
 - Run `npx create-react-app frontend`
 - Add `"proxy": "http://localhost:5000",` to `frontend/package.json`.
 - Run `npm run build`.
 
-##### TODO Frontend
-- Run ``
+#### TODO UPDATE Instructions - LEGACY
+- Clone to local workspace.
+- Run `brew install mysql` if mysql not already installed.
+- Run `python3 -m venv venv`
+- Run `. venv/bin/activate`
+- Run `pip install -e .`
+- Run `alembic init alembic`
+- Run `mysql.server start`
+- Run `mysql -h localhost -u root -p` & insert password.
+- Run `create database hawk;`
+- Run `python app.py` to start server on port 5000.
+- Run `curl http://127.0.0.1:5000/api/v1/health` to check server status.
