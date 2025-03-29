@@ -168,6 +168,7 @@ def getPremium():
     _domain = request.args.get('domain')
     _duration = request.args.get('duration', 1)
     try:
+        app.logger.error(f'Getting Premium ...')
         data = get_premium(_domain, _duration)
     except(Exception) as e:
         app.logger.error(f'Error: {e}')

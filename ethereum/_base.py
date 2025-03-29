@@ -24,7 +24,7 @@ class Web3_Base():
         # import pdb; pdb.set_trace()
         self.w3 = Web3(self.get_provider())
         # self.w3.geth.txpool.inspect()
-        if self.w3.isConnected() == False:
+        if self.w3.is_connected() == False:
             raise ProviderOffline('Provider is not online.')
     
     def add_middleware(self):
