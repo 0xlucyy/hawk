@@ -11,7 +11,7 @@ https://github.com/0xlucyy/hawk/assets/109987865/c7546048-541e-4795-9a7b-196c37e
 
 ## Getting started
 - Start mysql server. Run `mysql.server start`
-- Run `python3 -m venv venv`
+- Run `npm run setup`
 - Run `. venv/bin/activate`
 - Run `pip install -e .`
 - Run `clean_slate`
@@ -25,13 +25,6 @@ https://github.com/0xlucyy/hawk/assets/109987865/c7546048-541e-4795-9a7b-196c37e
 - Run `alembic revision --autogenerate -m "describe model change(s)"`.
 - Inspect newly created `alembic/versions/*.py` file to ensure changes have been captured accurately.
 - Run `alembic upgrade head` to update db to latest version.
-
-
-### To use scripts
-- Run `python install -e .`.
-
-### To auto installed
-- Run `npm run setup`.
 
 
 #### MY_NOTES MYSQL

@@ -2,7 +2,8 @@ from app import db, app
 from datetime import datetime, timedelta
 from backend.models._base import Base
 from backend.models._lockable import Lockable
-from sqlalchemy import func
+from sqlalchemy import func, JSON, DateTime
+from datetime import datetime
 from backend.utils.exceptions import (
     DomainModelDataTypeError
 )
@@ -32,6 +33,7 @@ class Domains(Base, Lockable):
 
     # db.relationships
     orders = db.relationship('Orders', backref='domains') # 1 domain to many orders
+    history = db.relationship("DomainHistory", backref="domain") # 1 domain to many relationships
 
     def __init__(self, name: str, owner: str, expiration: str,
                  hash: str):
@@ -238,9 +240,17 @@ class Orders(Base, Lockable):
         # ).all()
         return orders
 
-# Orders.order = {
-#     'status': 'VALID',
-#     'expiration': 8127638921736,
-#     'listings': {'amount': 1, 'amount': .67},
-#     'bids': {}
-# }
+
+class DomainHistory(Base):
+    __tablename__ = 'domain_history'
+    id = db.Column(db.Integer, primary_key=True)
+    domain_id = db.Column(db.Integer, db.ForeignKey('domains.id'))
+    seller = db.Column(db.String(255))
+    buyer = db.Column(db.String(255))
+    total = db.Column(db.Numeric)
+    taxes = db.Column(db.Numeric)
+    arbitrary_data = db.Column(JSON)  # or String, if JSON not supported
+    timestamp = db.Column(DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<DomainHistory(seller={self.seller}, buyer={self.buyer}, total={self.total})>"

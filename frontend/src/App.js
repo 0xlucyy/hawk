@@ -104,7 +104,7 @@ class App extends React.Component {
         <div class="ui hidden section divider"></div>
         <div class="ui hidden section divider"></div>
 
-        <Button onClick={this.siwe}
+        {/* <Button onClick={this.siwe}
           className="icon"
           labelPosition='left'>
           SIWE
@@ -113,7 +113,7 @@ class App extends React.Component {
           className="icon"
           labelPosition='left'>
           Disconnect SIWE
-        </Button>
+        </Button> */}
 
         <Grid >
           <Grid.Row>

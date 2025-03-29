@@ -64,9 +64,9 @@ class _Base(object):
     MORE_THEN_FOUR_LETTERS = 5 # Five dollars USD per year.
 
     # ENS contract deployments.
-    ENS_ETH_REGISTRAR_CONTROLLER_MAINNET = Web3.toChecksumAddress("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5")
-    ENS_BASE_REGISTRAR_MAINNET = Web3.toChecksumAddress("0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85")
-    ENS_REVERSE_RECORDS_MAINNET = Web3.toChecksumAddress("0x3671aE578E63FdF66ad4F3E12CC0c0d71Ac7510C")
+    ENS_ETH_REGISTRAR_CONTROLLER_MAINNET = Web3.to_checksum_address("0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5")
+    ENS_BASE_REGISTRAR_MAINNET = Web3.to_checksum_address("0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85")
+    ENS_REVERSE_RECORDS_MAINNET = Web3.to_checksum_address("0x3671aE578E63FdF66ad4F3E12CC0c0d71Ac7510C")
 
     # ENS Metadata service.
     ENS_META_SERVICE = "https://metadata.ens.domains/mainnet/{eth_network}/{domain_hash}/"

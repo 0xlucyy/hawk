@@ -1,5 +1,7 @@
 import requests
 import json
+import time
+
 # import subprocess
 import copy
 from web3 import Web3
@@ -80,6 +82,10 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
     else:
         app.logger.error(f"[ERROR] batched query failed. Error: {data}")
 
+    app.logger.info(f"[INFO] Sleeping for 5 seconds ...")
+    time.sleep(5)
+
+
   # Access respnse data from graphql ens subgraph.
   for domain in payload_copy.keys():
     try:
@@ -137,7 +143,7 @@ def test(payload: Dict['str', dict] = None) -> Dict['str', dict]:
 #     import pdb; pdb.set_trace()
 #     message.prepare_message()
 #     # signed_message = web3.w3.eth.account.sign_message(message, private_key=app.config["PRIV_KEY_ONE"])
-#     signed_message = web3.w3.eth.account.sign_message(message, private_key='5e26f25ef6d1ffd3881c82751d2ec7859b174ad0beb113ca3ef9df412e87d7b2')
+#     signed_message = web3.w3.eth.account.sign_message(message, private_key=app.config["PRIV_KEY_TWO"])
 #     message.verify(signature=addr)
 #   except ValueError:
 #       # Invalid message

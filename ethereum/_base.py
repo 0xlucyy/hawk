@@ -1,8 +1,8 @@
 from web3 import (
     Web3,
     HTTPProvider,
-    WebsocketProvider,
-    IPCProvider,
+    # WebsocketProvider,
+    # IPCProvider,
     middleware
 )
 from backend.utils.exceptions import (
@@ -47,10 +47,10 @@ class Web3_Base():
         if provider:
             if 'http' in provider:
                 return HTTPProvider(provider)
-            elif 'ws' in provider:
-                return WebsocketProvider(provider)
-            elif '.ipc' in provider:
-                return IPCProvider(provider)
+            # elif 'ws' in provider:
+            #     return WebsocketProvider(provider)
+            # elif '.ipc' in provider:
+            #     return IPCProvider(provider)
         raise ProviderMissing('Invalid Provider. Set in settings.py.')
 
     # def load_context(self):
